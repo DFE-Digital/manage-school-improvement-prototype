@@ -6,7 +6,13 @@
 // Add imports here
 
 @import 'node_modules/dfe-frontend/packages/dfefrontend';
+@import url('https://rsms.me/inter/inter.css');
+$govuk-font-family: 'Inter', sans-serif;
 
 // Add extra styles here
 
 .govuk-width-container { @include govuk-width-container; }
+
+.tableNumbers{
+    font-feature-settings: 'tnum' 1, 'ss01' 1, 'zero' 1;
+}
