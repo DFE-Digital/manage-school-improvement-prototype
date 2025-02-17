@@ -35,30 +35,78 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-      <h1 class="govuk-heading-l">{{ serviceName }}</h1>
+      <span class="govuk-caption-xl">URN 100006</span>
+      <h1 class="govuk-heading-xl-summary-below">Cheltenham Spa Primary School</h1>
 
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Date added:</b>
+        13 February 2025
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Date of last OFSTED inspection:</b>
+        <span data-id="last-inspection" class="empty">Unknown</span>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Quality of education:</b>
+        <strong class="govuk-tag govuk-tag--grey" id="">Unknown</strong>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Behaviour and attitudes:</b>
+        <strong class="govuk-tag govuk-tag--grey" id="">Unknown</strong>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Personal development:</b>
+        <strong class="govuk-tag govuk-tag--grey" id="">Unknown</strong>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Leadership and management:</b>
+        <strong class="govuk-tag govuk-tag--grey" id="">Unknown</strong>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Assigned to:</b>
+        <span data-id="assigned-user" <!--class="empty"-->Bob Roberts</span>
+        <a class="govuk-link govuk-!-padding-left-50" href="/change-assigned-to/">Change</a>
+      </p>
+      <p class="govuk-body govuk-margin-bottom-1">
+        <b>Advised by:</b>
+        <span data-id="assigned-user" class="empty">EMPTY</span>
+        <a class="govuk-link govuk-!-padding-left-50" href="/change-advised-by/">Change</a>
+      </p>
 
-      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+    </div>
+  </div>
 
-        <ul class="moj-sub-navigation__list">
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Nav item 1</a>
-          </li>
-      
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Nav item 2</a>
-          </li>
-      
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#3">Nav item 3</a>
-          </li>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <nav class="app-sub-navigation" aria-label="sub menu">
+
+        <ul class="app-sub-navigation__list govuk-!-margin-top-6">
+  
+              <li class="app-sub-navigation__item">
+                <a class="app-sub-navigation__link" aria-current="page" href="#">Task list</a>
+              </li>
+              <li class="app-sub-navigation__item">
+                <a class="app-sub-navigation__link"  href="/pages/about-the-school/">About the school</a>
+              </li>
+              <li class="app-sub-navigation__item">
+                <a class="app-sub-navigation__link"  href="/notes/">Notes</a>
+              </li>
         </ul>
-      
+  
       </nav>
 
-      <h2 class="govuk-heading-m">Begin the project</h2>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Task list</h2>
+
+      <h3 class="govuk-heading-m">Begin the project</h3>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -116,13 +164,13 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Begin the project</h2>
+      <h2 class="govuk-heading-m">Establish support needs</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Contact the school
+              Send introductory email
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
@@ -134,7 +182,7 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Record the school's response
+              Arrange advisor visit to school
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
@@ -146,7 +194,84 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-              Check potential adviser conflicts of interest
+              Record date of visit to school
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-3-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+              Write and save the Note of Visit
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+              Complete and save the assessment template
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+              Record support decision
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Find possible supporting organisation</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+              Choose preferred supporting organisation
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+              Carry out due diligence on preferred supporting organisation
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
+              Record supporting organisation appointment
             </a>
             <!--
             <div id="company-details-3-hint" class="govuk-task-list__hint">
@@ -163,7 +288,7 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
+              Add supporting organisation contact details
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
@@ -174,13 +299,13 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Begin the project</h2>
+      <h2 class="govuk-heading-m">Send planning grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Contact the school
+              Request planning grant offer letter
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
@@ -192,7 +317,36 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Record the school's response
+              Confirm planning grant offer letter sent
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Create the improvement plan</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+              Share the improvement plan template
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+              Review the improvement plan
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
@@ -204,13 +358,8 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-              Check potential adviser conflicts of interest
+              Send the agreed improvement plan for approval
             </a>
-            <!--
-            <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company’s relevant financial information
-            </div>
-            -->
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
             <strong class="govuk-tag govuk-tag--blue">
@@ -221,7 +370,7 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
+              Record improvement plan decision
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
@@ -232,13 +381,13 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Begin the project</h2>
+      <h2 class="govuk-heading-m">Send improvement grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Contact the school
+              Request improvement grant offer letter
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
@@ -250,39 +399,10 @@
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Record the school's response
+              Confirm improvement grant offer letter sent
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-              Check potential adviser conflicts of interest
-            </a>
-            <!--
-            <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company’s relevant financial information
-            </div>
-            -->
-          </div>
-          <div class="govuk-task-list__status" id="company-details-3-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-4-status">
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
@@ -290,134 +410,12 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Begin the project</h2>
-
-      <ul class="govuk-task-list">
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Contact the school
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Record the school's response
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-              Check potential adviser conflicts of interest
-            </a>
-            <!--
-            <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company’s relevant financial information
-            </div>
-            -->
-          </div>
-          <div class="govuk-task-list__status" id="company-details-3-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-4-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-      </ul>
-
-      <h2 class="govuk-heading-m">Begin the project</h2>
-
-      <ul class="govuk-task-list">
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Contact the school
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
-              Record the school's response
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
-              Check potential adviser conflicts of interest
-            </a>
-            <!--
-            <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company’s relevant financial information
-            </div>
-            -->
-          </div>
-          <div class="govuk-task-list__status" id="company-details-3-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-4-status">
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-          </div>
-        </li>
-      </ul>
-
-     
-
-
-
-
-
-
-
-
+    
+      <!--
       <div class="govuk-!-margin-top-5">
         {{ govukButton({ text: "Apply", href: "#" }) }}
       </div>
+      -->
 
     </div>
   </div>
