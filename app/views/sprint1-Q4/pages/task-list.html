@@ -37,69 +37,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <span class="govuk-caption-xl">URN 100006</span>
-      <h1 class="govuk-heading-xl-summary-below">Cheltenham Spa Primary School</h1>
-
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Date added:</b>
-        13 February 2025
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Date of last OFSTED inspection:</b>
-        <span data-id="last-inspection" class="empty">Unknown</span>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Quality of education:</b>
-        <strong class="govuk-tag govuk-tag--yellow" id="">Requires improvement</strong>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Behaviour and attitudes:</b>
-        <strong class="govuk-tag govuk-tag--green" id="">Outstanding</strong>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Personal development:</b>
-        <strong class="govuk-tag govuk-tag--green" id="">Good</strong>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Leadership and management:</b>
-        <strong class="govuk-tag govuk-tag--orange" id="">Inadequate</strong>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Assigned to:</b>
-        <span data-id="assigned-user" <!--class="empty"-->Bob Roberts</span>
-        <a class="govuk-link govuk-!-padding-left-50" href="/change-assigned-to/">Change</a>
-      </p>
-      <p class="govuk-body govuk-margin-bottom-1">
-        <b>Advised by:</b>
-        <span data-id="assigned-user" class="empty">EMPTY</span>
-        <a class="govuk-link govuk-!-padding-left-50" href="/change-advised-by/">Change</a>
-      </p>
-
+      {% include "/layouts/summary-section.html" %}
+    
     </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
-      <nav class="app-sub-navigation" aria-label="sub menu">
-
-        <ul class="app-sub-navigation__list govuk-!-margin-top-6">
-  
-              <li class="app-sub-navigation__item">
-                <a class="app-sub-navigation__link" aria-current="page" href="#">Task list</a>
-              </li>
-              <li class="app-sub-navigation__item">
-                <a class="app-sub-navigation__link"  href="/pages/about-the-school/">About the school</a>
-              </li>
-              <li class="app-sub-navigation__item">
-                <a class="app-sub-navigation__link"  href="/notes/">Notes</a>
-              </li>
-        </ul>
-  
-      </nav>
-
-      </div>
+      
+      {% include "/layouts/sub-nav-tabs-task-list.html" %}
+      
     </div>
+  </div>
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
