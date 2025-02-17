@@ -32,3 +32,6 @@
     padding-left: 8px;
     margin-right:8px
 }
+.govuk-tag {
+    max-width: 300px !important;
+}
