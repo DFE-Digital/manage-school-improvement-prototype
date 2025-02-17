@@ -5,9 +5,13 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
+{% block stylesheets %}
+  {{ super() }}
+  <link href="/public/css/moj.css" rel="stylesheet" type="text/css" />
+  <link href="/public/css/custom-styles.css" rel="stylesheet" type="text/css" />
+{% endblock %}
 
-
-
+<a href="
 
 {# LAST BIT OF CODE - FOR DFE FRONTEND JS
 
