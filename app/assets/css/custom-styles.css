@@ -3,3 +3,32 @@
     padding-bottom: 10px;
     border-bottom:0px solid #b1b4b6
 }
+
+.govuk-margin-bottom-1 {
+    margin-bottom: 10px !important;
+}
+.govuk-heading-xl-summary-below {
+    margin-bottom: 20px !important;
+}
+.empty {
+    display: inline-block;
+    border: 2px solid;
+    outline-offset: -2px;
+    color: #505a5f;
+    background-color: #fff;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 14px;
+    font-size: .875rem;
+    line-height: 1;
+    padding-top: 3px;
+    padding-right: 8px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    margin-right:8px
+}
