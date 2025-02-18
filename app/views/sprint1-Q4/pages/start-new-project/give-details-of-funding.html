@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -34,48 +34,42 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-
-      {% include "/layouts/summary-section.html" %}
-
-    </div>
-  </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
 
-      {% include "/layouts/sub-nav-tabs-notes.html" %}
-
-      </div>
-    </div>
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
-      <h2 class="govuk-heading-l">Notes</h2>
-
-      
-
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "#" }) }}
-      </div>
-
-     
-
-        </div>
-      </div>
-      
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Give details of any funding the school has recevied, or is currently receiving
+      </h1>
 
     
-      <!--
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "#" }) }}
-      </div>
-      -->
+
+      <form class="form" action="check-school-details" method="post">
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+        {{ govukTextarea({
+          name: "details-of-funding",
+          id: "details-of-funding",
+          value: data['details-of-funding'],
+          label: {
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Include each grant or funding type, when they were paid and how much."
+          }
+        }) }}
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+      </form>
 
     </div>
   </div>
+
 {% endblock %}
 
 {% block footer %}

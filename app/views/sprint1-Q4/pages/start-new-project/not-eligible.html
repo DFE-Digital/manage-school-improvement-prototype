@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -34,48 +34,51 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
 
-      {% include "/layouts/summary-section.html" %}
+
+
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+      {% set html %}
+  <p class="govuk-notification-banner__heading">
+    This school is not eligible for targeted support at this time.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Not eligible
+      </h1>
+
+      <p>
+        This school is not currently eligible for targeted support.
+      </p>
+
+      <h2 class="govuk-heading-m">
+       Options
+      </h1>
+
+      <p>
+        The options for this school include...
+      </p>
 
     </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-
-      {% include "/layouts/sub-nav-tabs-notes.html" %}
-
-      </div>
-    </div>
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
-      <h2 class="govuk-heading-l">Notes</h2>
-
-      
-
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "#" }) }}
-      </div>
-
-     
-
-        </div>
-      </div>
-      
 
     
-      <!--
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "#" }) }}
-      </div>
-      -->
 
-    </div>
+
   </div>
+
 {% endblock %}
 
 {% block footer %}

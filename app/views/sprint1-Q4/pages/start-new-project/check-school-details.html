@@ -1,0 +1,142 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-l">Cheltenham Primary School</span>
+    <h1 class="govuk-heading-l">Check the details of this school before adding it</h1>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Has the school been inspected again since it became eligible for RISE targeted interventions?
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <p>{{ data['inspected-again']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="inspected-again.html">
+              Change<span class="govuk-visually-hidden">has the school been inspected again since it became eligible for RISE targeted interventions?</span>
+            </a>
+          </dd>
+        </div>
+
+        {% if data['inspected-again'] == "Yes" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Quality of education sub judgement
+          </dt>
+          <dd class="govuk-summary-list__value">               
+            <p>{{ data['outcome-education']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="outcome-of-inspection.html">
+              Change<span class="govuk-visually-hidden">quality of education sub judgement</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Leadership and management sub judgement
+          </dt>
+          <dd class="govuk-summary-list__value">               
+            <p>{{ data['outcome-leadership']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="outcome-of-inspection.html">
+              Change<span class="govuk-visually-hidden">leadership and management sub judgement</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+        {% if data['converting-or-transferring'] == "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Is this school going through, or has it completed, a conversion or transfer since it was indentified as eligible for RISE targeted intervention?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>{{ data['converting-or-transferring']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="converting-or-transferring.html">
+              Change<span class="govuk-visually-hidden">is this school going through, or has it completed, a conversion or transfer since it was indentified as eligible for RISE targeted intervention?</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+        
+        {% if data['converting-or-transferring'] == "No" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Give details of funding
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>{{ data['details-of-funding']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="give-details-of-funding.html">
+              Change<span class="govuk-visually-hidden">give details of funding</span>
+            </a>
+          </dd>
+        </div>
+        {% endif %}
+
+      </dl>
+
+
+
+
+      <form action="../project-list-school-added" method="post"> 
+
+        {{ govukButton({
+          text: "Add school"
+        }) }}
+
+      </form>
+
+    </main>
+  </main>   
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
