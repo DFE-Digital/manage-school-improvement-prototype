@@ -12,15 +12,13 @@
 
 {% block beforeContent %}
   
-  <!--
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-  -->
-
+  
   <!--
-  <div class="govuk-breadcrumbs">
+  <div class="govuk-breadcrumbs"
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
         <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
@@ -37,60 +35,47 @@
 
 {% endblock %}
 
-{% set pageTitle = "What is the school name? – Involuntary conversions – GOV.UK" %}
+{% block content %}
 
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">  
 
-{% block formQuestions %}
+    <!--<span class="govuk-caption-l">Cheltenham Spa Primary School</span>-->
+    
+
+    {% block formQuestions %}
     <form action="./inspected-again" method="post" novalidate>
         
-
-      
-        {% set pageHeading %}
-            What is the school name?
-        {% endset %}
-
-
-        {{ govukSelect({
-            label: {
-                html: pageHeading,
-                classes: "govuk-label--xl",
-                isPageHeading: true
-            },
-            hint: {
-              text: "Search by name or URN (Unique Reference Number)."
-            },
-            id: "school-name",
-            name: "school-name",
-            value: data['school-name'],
-            items: [
-              {
-                value: "",
-                text: ""
-              },
-              {
-                value: "Cheltenham Spa Primary School",
-                text: "Cheltenham Spa Primary School",
-                selected: checked("school-name", "Cheltenham Spa Primary School")
-              }
-            ]
-          }) }}
-
-
-
-
-          {{ govukButton({
-            text: "Continue"
-        }) }}
+      {{ xGovukAutocomplete({
+        id: "school",
+        name: "school",
+        allowEmpty: false,
+        label: {
+          classes: "govuk-label--l",
+          isPageHeading: true,
+          text: "Which school needs help?"
+        },
+        hint: {
+          text: "Enter school name or URN (Unique Reference Number)."
+        },
+        items: [
+          { text: "Cheltenham College" },
+          { text: "Cheltenham Ladies College" },
+          { text: "Cheltenham Spa Primary School" },
+          { text: "Cheltenham Spa Secondary School" }
+        ]
+       }) }}
           
-         
-
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
     </form>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      accessibleAutocomplete.enhanceSelectElement({
-        selectElement: document.querySelector('#school-name')
-      })
-    });
-    </script>
+ 
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
 {% endblock %}
