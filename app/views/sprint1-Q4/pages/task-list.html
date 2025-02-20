@@ -55,26 +55,28 @@
 
       <h2 class="govuk-heading-l">Task list</h2>
 
+      
+
       <h3 class="govuk-heading-m">Begin the project</h3>
 
       <ul class="govuk-task-list">
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="task-list/contact-the-school" aria-describedby="company-details-2-status">
               Contact the school
             </a>
           </div>
-
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-
-            {% if data['contact-the-school-steps'] == 'find-email-address-done' %}
+            {% if (data['find-school-email-address'] == 'done') and (data['use-template-notification-letter'] == 'done') and (data['attach-rise-info-pack'] == 'done') and (data['school-contacted-date-day'] != '') %}
+        
+              Completed
+       
+            {% elif (data['find-school-email-address'] == 'done') or (data['use-template-notification-letter'] == 'done') or (data['attach-rise-info-pack'] == 'done') or (data['school-contacted-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--light-blue">
               In progress
             </strong>
-            
-            {% else %}
-
+            {% elif (data['find-school-email-address'] == NULL) and (data['use-template-notification-letter'] == NULL) and (data['attach-rise-info-pack'] == NULL) and (data['school-contacted-date-day'] == '' ) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
