@@ -43,48 +43,68 @@
         Contact the school
       </h1>
 
-      <p class="padding-bottom-10">Confirm if the school wants to get targeted support or not.</p>
+      <p>Confirm if the school wants to get targeted support or not.</p>
 
       <form class="form" action="../task-list" method="post">
 
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "Which types of waste do you transport?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Done",
+      selected: (data["waste"] == 'Done'),
+      text: "Waste from animal carcasses"
+    },
+    {
+      value: "mines",
+      text: "Waste from mines or quarries"
+    },
+    {
+      value: "farm",
+      text: "Farm or agricultural waste"
+    }
+  ]
+}) }}
+
         
-        
- 
+        <!--
         {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
         {{ govukCheckboxes({
-          name: "find-school-email-address",
+          name: "contact-the-school-steps-1",
           items: [
             {
-              value: "done",
-              checked: (data['find-school-email-address'] == 'done'),
+              id: "contact-the-school-steps-1",
+              value: "find-email-address-done",
+              selected: (data['contact-the-school-steps=1'] === 'find-email-address-done'),
               text: "Find the school's email address"
-            }
-          ]
-        }) }}
-        
-        {{ govukCheckboxes({
-          name: "use-template-notification-letter",
-          items: [
-            {
-              value: "done",
-              checked: (data['use-template-notification-letter'] == 'done'),
+              },
+              {
+              id: "contact-the-school-steps-2",
+              value: "use-the-template-notification-letter-done",
+              selected: (data['contact-the-school-steps'] == 'use-the-template-notification-letter-done'),
               text: "Use the template notification letter to create the email"
-            }
-          ]
-        }) }}
-
-        {{ govukCheckboxes({
-          name: "attach-rise-info-pack",
-          items: [
-            {
-              value: "done",
-              checked: (data['attach-rise-info-pack'] == 'done'),
+              },
+              {
+              value: "attach-rise-info-pack-done",
+             
               text: "Attach the RISE information pack to the email"
-            }
-          ]
+              }
+            ]
         }) }}
-  
+      -->
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
@@ -94,13 +114,12 @@
           namePrefix: "school-contacted-date",
           fieldset: {
             legend: {
-              text: "Enter the date the school was contacted",
-              isPageHeading: true,
+        
               classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
-            text: "For example, 1 7 2024."
+            text: "For example, 1 7 2024"
           },
           items: [
             {
