@@ -3,7 +3,6 @@
     padding-bottom: 10px;
     border-bottom:0px solid #b1b4b6
 }
-
 .govuk-margin-bottom-1 {
     margin-bottom: 10px !important;
 }
@@ -35,23 +34,16 @@
 .govuk-tag {
     max-width: 300px !important;
 }
-
-
-
-  
-  .autocomplete__menu {
+.autocomplete__menu {
     margin-top:3px;
     padding-top:8px;
-  }
-  
-  .autocomplete__option {
+}
+.autocomplete__option {
     margin-top:-8px;
-  }
-
-  .govuk-checkboxes__item:last-of-type {
+}
+.govuk-checkboxes__item:last-of-type {
       margin-top:-15px;
-  }
-
-  .padding-bottom-10 {
+}
+.padding-bottom-10 {
     padding-bottom:10px;
 }

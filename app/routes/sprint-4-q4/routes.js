@@ -1,13 +1,13 @@
 // Add your routes here - above the module.exports line
 
 //***********
-//* SPRINT 1 Q4
+//* SPRINT 4 Q4
 //***********
 module.exports = function (router) {
 
-  var version = "sprint1-Q4";
+  var version = "sprint4-Q4";
 
-  router.post('/' + version + '/pages/start-new-project/inspected-again-answer', function(req, res) {
+  router.post('/' + version + '/start-new-project/inspected-again-answer', function(req, res) {
     // Make a variable to give it the value from the radio buttons on the index page  
     var inspectedAgain = req.session.data['inspected-again']
 
@@ -25,3 +25,6 @@ module.exports = function (router) {
   })
 
 }
+
+
+
