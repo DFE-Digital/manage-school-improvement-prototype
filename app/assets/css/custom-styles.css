@@ -6,6 +6,9 @@
 .govuk-margin-bottom-1 {
     margin-bottom: 10px !important;
 }
+.govuk-heading-l-summary-below {
+    margin-bottom: 20px !important;
+}
 .govuk-heading-xl-summary-below {
     margin-bottom: 20px !important;
 }
