@@ -43,6 +43,12 @@
         Contact the school
       </h1>
 
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
       <p class="padding-bottom-10">Confirm if the school wants to get targeted support or not.</p>
 
       <form class="form" action="../task-list" method="post">
@@ -128,6 +134,35 @@
       </form>
 
     </div>
+
+
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-the-school.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != "") %}
+      <p>4 March 2025<br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      {% endif %}
+
+
+
+    </div>
+
+
+
+
   </div>
 
 {% endblock %}
