@@ -38,17 +38,17 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="../task-list/contact-the-school-note-added" method="post">
+      <form class="form" action="./project-note-added" method="post">
 
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
         {{ govukTextarea({
-          name: "task-note",
-          id: "task-note",
-          value: data['task-note'],
+          name: "project-note",
+          id: "project-note",
+          value: data['project-note'],
           label: {
             text: "Enter note",
-            classes: "govuk-label--xl",
+            classes: "govuk-label--l",
             isPageHeading: true
           },
           hint: {
@@ -59,22 +59,22 @@
         
         <div class="govuk-button-group">
 
-        {% if (data['task-note'] != NULL) %}
+        {% if (data['project-note'] != NULL) %}
           <button type="submit" class="govuk-button" data-module="govuk-button">
           Save note
           </button>
-        {% elif (data['find-school-email-address'] == 'done') or (data['use-template-notification-letter'] == 'done') or (data['attach-rise-info-pack'] == 'done') or (data['school-contacted-date-day'] != '') %}
+        {% else %}
           <button type="submit" class="govuk-button" data-module="govuk-button">
           Add note
           </button>
         {% endif %}
 
-        {% if (data['task-note'] != NULL) %}
+        {% if (data['project-note'] != NULL) %}
           <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
           Delete
           </button>
         {% endif %}
-        <a class="govuk-link" href="../task-list/contact-the-school">Cancel</a>
+        <a class="govuk-link" href="project-notes">Cancel</a>
         
          </div>
 
