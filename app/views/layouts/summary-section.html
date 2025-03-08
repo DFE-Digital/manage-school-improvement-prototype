@@ -76,9 +76,9 @@
       Assigned to
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if (data['assigned-to'] == "Bob Roberts") %}
+      {% if (data['assigned-to'] != NULL) %}
       {{ data['assigned-to']}}
-      {% elif (data['assigned-to'] != 'Bob Roberts') %}
+      {% else %}
       <span data-id="assigned-user" class="empty">Empty</span>
       {% endif %}
     </dd>
