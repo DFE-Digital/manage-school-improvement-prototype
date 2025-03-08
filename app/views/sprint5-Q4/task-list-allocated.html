@@ -40,7 +40,7 @@
         <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
             <div class="govuk-notification-banner__header">
               <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Done
+                Success
               </h2>
             </div>
             <div class="govuk-notification-banner__content">
@@ -136,14 +136,26 @@
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/allocate-an-adviser" aria-describedby="company-details-4-status">
               Allocate an adviser
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+
+            {% elif (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
       </ul>

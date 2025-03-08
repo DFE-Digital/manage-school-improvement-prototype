@@ -44,7 +44,7 @@
     
 
     {% block formQuestions %}
-    <form action="./inspected-again" method="post" novalidate>
+    <form action="./check-school-details" method="post" novalidate>
         
       {{ xGovukAutocomplete({
         id: "school",
@@ -59,10 +59,10 @@
           text: "Find the school using its name or URN."
         },
         items: [
-          { text: "Cheltenham College" },
-          { text: "Cheltenham Ladies College" },
-          { text: "Cheltenham Spa Primary School" },
-          { text: "Cheltenham Spa Secondary School" }
+          { text: "Cheltenham College (104989)" },
+          { text: "Cheltenham Ladies College (102746)" },
+          { text: "Cheltenham Spa Primary School (100006)" },
+          { text: "Cheltenham Spa Secondary School (103871)" }
         ]
        }) }}
           
