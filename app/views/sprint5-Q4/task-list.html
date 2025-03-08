@@ -55,7 +55,12 @@
 
       <h2 class="govuk-heading-l">Task list</h2>
 
-      
+      <!--
+      <p>
+      Email address: {{ data['allocated-adviser-email']}}<br>
+      Date day: {{ data['adviser-allocated-date-day']}}
+      </p>
+      -->
 
       <h3 class="govuk-heading-m">Begin the project</h3>
 
@@ -68,17 +73,17 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if (data['find-school-email-address'] == 'done') and (data['use-template-notification-letter'] == 'done') and (data['attach-rise-info-pack'] == 'done') and (data['school-contacted-date-day'] != '') %}
-        
-              Completed
-       
-            {% elif (data['find-school-email-address'] == 'done') or (data['use-template-notification-letter'] == 'done') or (data['attach-rise-info-pack'] == 'done') or (data['school-contacted-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--light-blue">
-              In progress
-            </strong>
-            {% elif (data['find-school-email-address'] == NULL) and (data['use-template-notification-letter'] == NULL) and (data['attach-rise-info-pack'] == NULL) and (data['school-contacted-date-day'] == '' ) %}
+            {% if (data['find-school-email-address'] == NULL) and (data['use-template-notification-letter'] == NULL) and (data['attach-rise-info-pack'] == NULL) and (data['school-contacted-date-day'] == NULL ) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
+            </strong>
+            {% elif (data['find-school-email-address'] == 'done') and (data['use-template-notification-letter'] == 'done') and (data['attach-rise-info-pack'] == 'done') and (data['school-contacted-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
             </strong>
             {% endif %}
           </div>
@@ -90,20 +95,13 @@
               Record the school's response
             </a>
           </div>
-
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-         
-
           <strong class="govuk-tag govuk-tag--blue">
             Not started
           </strong>
-       
         </div>
-
-       
-          
         </li>
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
@@ -121,16 +119,66 @@
             </strong>
           </div>
         </li>
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/allocate-an-adviser" aria-describedby="company-details-4-status">
               Allocate an adviser
             </a>
           </div>
+
+
+
           <div class="govuk-task-list__status" id="company-details-4-status">
+
+            <!--
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+           
+            {% elif ((data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] != '')) or ((data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+
+            {% if (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+            -->
+            
+
+            
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+
+            
+     
+
+
+            
+           
+
+           
+          
+            
           </div>
         </li>
       </ul>

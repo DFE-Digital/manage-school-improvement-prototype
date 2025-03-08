@@ -40,8 +40,9 @@
 
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-xl">
-        Contact the school
+        Allocate an adviser
       </h1>
+     
 
    </div>
    </div>
@@ -49,58 +50,67 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p class="padding-bottom-10">Confirm if the school wants to get targeted support or not.</p>
+        <p>Enter the email address of the adviser and the date they were allocated to this school.</p>
 
-      <form class="form" action="../task-list" method="post">
 
+        {% if (data['allocated-adviser-email'] == NULL) %}
+        <form class="form" action="../task-list-allocated" method="post">
+        {% else %}
+        <form class="form" action="../task-list" method="post">
+        {% endif %}
         
         
- 
-        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        <!--
+        {% from "govuk/components/input/macro.njk" import govukInput %}
 
-        {{ govukCheckboxes({
-          name: "find-school-email-address",
-          items: [
-            {
-              value: "done",
-              checked: (data['find-school-email-address'] == 'done'),
-              text: "Find the school's email address"
-            }
-          ]
-        }) }}
-        
-        {{ govukCheckboxes({
-          name: "use-template-notification-letter",
-          items: [
-            {
-              value: "done",
-              checked: (data['use-template-notification-letter'] == 'done'),
-              text: "Use the template notification letter to create the email"
-            }
-          ]
-        }) }}
+        {{ govukInput({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "adviser-email",
+            name: "adviser-email",
+            value: data["adviser-email"],
+            hint: {
+                text: "It will be formatted like rise.firstname.lastname@education.gov.uk."
+              }
+          }) }}
+         -->
 
-        {{ govukCheckboxes({
-          name: "attach-rise-info-pack",
-          items: [
-            {
-              value: "done",
-              checked: (data['attach-rise-info-pack'] == 'done'),
-              text: "Attach the RISE information pack to the email"
-            }
-          ]
-        }) }}
+
+
+          {{ xGovukAutocomplete({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "allocated-adviser-email",
+            name: "allocated-adviser-email",
+            value: data['allocated-adviser-email'],
+            allowEmpty: false,
+            hint: {
+              text: "It will be formatted like rise.firstname.lastname@education.gov.uk."
+            },
+            items: [
+              { text: "rise.alan.smith@education.gov.uk" },
+              { text: "rise.alex.alexander@education.gov.uk" },
+              { text: "rise.alex.james@education.gov.uk" },
+              { text: "rise.alice.cooper@education.gov.uk" }
+            ]
+           }) }}
   
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
-          id: "school-contacted-date",
-          namePrefix: "school-contacted-date",
+          id: "adviser-allocated-date",
+          namePrefix: "adviser-allocated-date",
           fieldset: {
             legend: {
-              text: "Enter the date the school was contacted",
+              text: "Enter the date the adviser was allocated",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -111,20 +121,18 @@
           items: [
             {
               name: "day",
-              value: data["school-contacted-date-day"],
-              allowEmpty: false,
+              value: data["adviser-allocated-date-day"],
+              allowEmpty: true,
               classes: "govuk-input--width-2"
             },
             {
               name: "month",
-              value: data["school-contacted-date-month"],
-              allowEmpty: false,
+              value: data["adviser-allocated-date-month"],
               classes: "govuk-input--width-2"
             },                
             {
               name: "year",
-              value: data["school-contacted-date-year"],
-              allowEmpty: false,
+              value: data["adviser-allocated-date-year"],
               classes: "govuk-input--width-4"
             }
           ]

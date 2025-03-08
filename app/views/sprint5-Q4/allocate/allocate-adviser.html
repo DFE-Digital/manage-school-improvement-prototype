@@ -44,7 +44,7 @@
   
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Who will the adviser be on this project?
+        Which adviser will work with this school?
       </h1>
 
       <form action="../task-list-allocated" method="post" novalidate>
@@ -57,7 +57,7 @@
         value: data['assigned-to'],
         allowEmpty: false,
         hint: {
-          text: "The adviser for this project."
+          text: "Enter the person's name."
         },
         items: [
           { text: "Alan Smith" },
@@ -69,9 +69,9 @@
 
       <div class="govuk-button-group">
         <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
+            Allocate
         </button>
-        or&nbsp;&nbsp;<a class="govuk-link" href="">Unallocate the adviser</a>
+        or&nbsp;&nbsp;<a class="govuk-link" href="">Unallocate</a>
       </div>
 
     </form>
