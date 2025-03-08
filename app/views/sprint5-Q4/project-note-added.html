@@ -37,6 +37,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+
+        <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <h3 class="govuk-notification-banner__heading">
+                Note added
+              </h3>
+            </div>
+          </div>
+
       {% include "/layouts/summary-section.html" %}
 
     </div>
@@ -55,37 +69,22 @@
 
       <h2 class="govuk-heading-l">Notes</h2>
 
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "add-note" }) }}
-      </div>
-
-      {% if (data['task-note'] != NULL) %}
-
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
       
 
-      <p> 10 March 2025
-        <strong class="govuk-tag govuk-tag--green">
-          New
-        </strong>
-        <strong class="govuk-tag govuk-tag--yellow">
-          Task note
-        </strong>
-        
-        <br>
-      <strong>Bob Roberts</strong></p>
-      <p>{{ data['task-note']}}</p>
-      <p>
-        <a href="../task-notes/contact-the-school.html">Edit note</a>
-      </p>
-      {% endif %}
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add note", href: "#" }) }}
+      </div>
 
       {% if (data['project-note'] != NULL) %}   
       <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
       <p>1 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
         <strong class="govuk-tag govuk-tag--blue">
           Project note
         </strong>
+        
         <br>
       <strong>Bob Roberts</strong></p>
       <p>{{ data['project-note']}}</p>
@@ -95,8 +94,6 @@
       <hr class="govuk-section-break govuk-section-break--visible">
       {% endif %}
 
-
-      
      
 
         </div>
