@@ -44,7 +44,7 @@
   
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Who will be working on this project?
+        Who will work with this school?
       </h1>
 
       <form action="../task-list-assigned" method="post" novalidate>
@@ -57,7 +57,7 @@
         value: data['assigned-to'],
         allowEmpty: false,
         hint: {
-          text: "The delivery officer responsible for this project."
+          text: "Enter the person's name."
         },
         items: [
           { text: "Bo Bergman" },
@@ -68,10 +68,12 @@
        }) }}
 
       <div class="govuk-button-group">
+ 
         <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
+            Assign
         </button>
-        or&nbsp;&nbsp;<a class="govuk-link" href="">Unassign the delivery officer</a>
+        or&nbsp;&nbsp;<a class="govuk-link" href="">Unassign</a>
+
       </div>
 
     </form>

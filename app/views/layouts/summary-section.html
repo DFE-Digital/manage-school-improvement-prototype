@@ -91,14 +91,14 @@
       Allocated adviser
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if (data['allocated-adviser'] == "Alex James") %}
-      {{ data['allocated-adviser']}}
-      {% elif (data['allocated-adviser'] != 'Alex James') %}
+      {% if (data['allocated-adviser-email'] != NULL) %}
+      {{ data['allocated-adviser-email']}}
+      {% else %}
       <span data-id="allocated-adviser" class="empty">Empty</span>
       {% endif %}
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="./allocate/allocate-adviser">Change<span class="govuk-visually-hidden"> allocated adviser</span></a>
+      <a class="govuk-link" href="./task-list/allocate-an-adviser">Change<span class="govuk-visually-hidden"> allocated an adviser</span></a>
     </dd>
   </div>
 </dl>
