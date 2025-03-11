@@ -53,7 +53,7 @@
 {{ govukInput({
   label: {
     text: "Name",
-    classes: "govuk-label--l",
+    classes: "govuk-label--m",
     isPageHeading: true
   },
   id: "contact-name",
@@ -62,9 +62,20 @@
 }) }}
 
 {{ govukInput({
+  label: {
+    text: "Organisation",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "organisation-name",
+  name: "organisation-name",
+  value: data["organisation-name"]
+}) }}
+
+{{ govukInput({
     label: {
       text: "Email",
-      classes: "govuk-label--l",
+      classes: "govuk-label--m",
       isPageHeading: true
     },
     id: "contact-email",
@@ -75,7 +86,7 @@
   {{ govukInput({
     label: {
       text: "Phone",
-      classes: "govuk-label--l",
+      classes: "govuk-label--m",
       isPageHeading: true
     },
     id: "contact-phone",
