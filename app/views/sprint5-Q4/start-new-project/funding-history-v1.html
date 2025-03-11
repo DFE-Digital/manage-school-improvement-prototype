@@ -40,52 +40,26 @@
 
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-xl">
-        What funding has the school received?
+        Enter funding history
       </h1>
 
     
 
       <form class="form" action="../project-list-school-added" method="post">
-      
-
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-          {% set fundingHtml %}
-    
-          {{ govukTextarea({
-            name: "details-of-funding",
-            hint: {
-              text: ""
-            },
-            id: "details-of-funding",
-            title: "Not eligibility details",
-            value: data["value: data['details-of-funding'],"],
-            label: {
-              text: "Give details of any funding the school has received, or is currently receiving. Include each grant or funding type, when they were paid and how much."
-            }
-          }) }}
-          {% endset -%}
-    
-          {{ govukRadios({
-            idPrefix: "funding",
-            name: "funding",
-            items: [
-            {
-                value: "Yes",
-                checked:  data['funding'] === "Yes",
-                text: "Yes",
-                conditional: {
-                  html: fundingHtml
-                }
-            },
-            {
-                value: "No",
-                checked:  data['funding'] === "No",
-                text: "No"
-            }
-            ]
-          }) }}
 
+        {{ govukTextarea({
+          name: "details-of-funding",
+          id: "details-of-funding",
+          value: data['details-of-funding'],
+          label: {
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Give details of any funding the school has received, or is currently receiving. Include each grant or funding type, when they were paid and how much."
+          }
+        }) }}
 
       {{ govukButton({
         text: "Save and continue"
