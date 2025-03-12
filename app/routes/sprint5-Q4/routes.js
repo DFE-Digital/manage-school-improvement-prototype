@@ -10,6 +10,25 @@ module.exports = function (router) {
 
   // Routes for eligibility questions in the 'Add a school' journey
 
+  // Run this code when a form is submitted to 'funding-answer'
+  router.post('/' + version + '/start-new-project/funding-answer', function(req, res) {
+    
+    // Make a variable to give it the value from the radio buttons on the index page  
+    const fundingAnswer = req.body["received-funding"];
+
+    // Check whether the variable matches a condition
+    if (fundingAnswer == "Yes") { 
+      // Send user to next page 
+      res.redirect('/' + version + '/start-new-project/add-funding')
+    }   
+    else {
+      // Send user to ineligible page
+      res.redirect('/' + version + '/project-list-school-added')
+    }
+  })
+
+  // Routes for eligibility questions in the 'Add a school' journey
+
   // Run this code when a form is submitted to 'inspected-again-answer'
   router.post('/' + version + '/start-new-project/inspected-again-answer', function(req, res) {
     

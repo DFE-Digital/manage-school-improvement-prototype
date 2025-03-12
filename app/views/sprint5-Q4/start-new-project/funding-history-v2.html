@@ -40,31 +40,47 @@
 
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-xl">
-        Has the school received any funding?
+        What funding has the school received?
       </h1>
 
     
 
-      <form class="form" action="funding-answer" method="post">
+      <form class="form" action="../project-list-school-added" method="post">
       
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
- 
-         
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+          {% set fundingHtml %}
     
-         
+          {{ govukTextarea({
+            name: "details-of-funding",
+            hint: {
+              text: ""
+            },
+            id: "details-of-funding",
+            title: "Not eligibility details",
+            value: data["value: data['details-of-funding'],"],
+            label: {
+              text: "Give details of any funding the school has received, or is currently receiving. Include each grant or funding type, when they were paid and how much."
+            }
+          }) }}
+          {% endset -%}
+    
           {{ govukRadios({
-            idPrefix: "received-funding",
-            name: "received-funding",
+            idPrefix: "funding",
+            name: "funding",
             items: [
             {
                 value: "Yes",
-                checked:  data['received-funding'] === "Yes",
-                text: "Yes"
+                checked:  data['funding'] === "Yes",
+                text: "Yes",
+                conditional: {
+                  html: fundingHtml
+                }
             },
             {
                 value: "No",
-                checked:  data['received-funding'] === "No",
+                checked:  data['funding'] === "No",
                 text: "No"
             }
             ]
