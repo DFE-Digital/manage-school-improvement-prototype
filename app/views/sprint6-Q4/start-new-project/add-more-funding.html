@@ -45,7 +45,7 @@
         What funding has the school received?
       </h1>
       
-      <form class="form" action='../funding-history' method="post">
+      <form class="form" action='check-funding-details' method="post">
 
         
 <!--
@@ -78,13 +78,12 @@
 
       {{ govukInput({
         label: {
-          text: "Funding type",
+          text: "Funding name",
           classes: "govuk-label--m",
           isPageHeading: true
         },
         id: "funding-name",
-        name: "funding-name",
-        value: data["funding-name"]
+        name: "funding-name"
       }) }}
 
 
@@ -93,7 +92,6 @@
 {{ govukInput({
   id: "funding-amount",
   name: "funding-amount",
-  value: data["funding-amount"],
   label: {
     text: "Funding amount",
     classes: "govuk-label--m",
@@ -125,22 +123,20 @@
   items: [
     {
       name: "day",
-      value: data["funding-paid-date-day"],
       allowEmpty: false,
       classes: "govuk-input--width-2"
     },
     {
       name: "month",
-      value: data["funding-paid-date-month"],
       allowEmpty: false,
       classes: "govuk-input--width-2"
     },                
     {
       name: "year",
-      value: data["funding-paid-date-year"],
       allowEmpty: false,
       classes: "govuk-input--width-4"
     }
+    
   ]
 }) }}
 
@@ -148,7 +144,6 @@
 
 {{ govukTextarea({
   name: "funding-comments",
-  value: data["funding-comments"],
   id: "funding-comments",
   label: {
     text: "Add any comments about the funding",
@@ -159,6 +154,8 @@
     text: "Do not include personal or financial information."
   }
 }) }}
+
+
 
      
 

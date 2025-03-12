@@ -45,7 +45,7 @@
         Add funding
       </h1>
       
-      <form class="form" action='funding' method="post">
+      <form class="form" action='funding-history' method="post">
 
         
 
@@ -54,24 +54,24 @@
 
         {{ govukInput({
           label: {
-            text: "Grant name",
+            text: "Funding type",
             classes: "govuk-label--m",
             isPageHeading: true
           },
-          id: "grant-name-2",
-          name: "grant-name-2",
-          value: data["grant-name-2"]
+          id: "funding-name-2",
+          name: "funding-name-2",
+          value: data["funding-name-2"]
         }) }}
   
   
         {% from "govuk/components/input/macro.njk" import govukInput %}
   
   {{ govukInput({
-    id: "grant-amount-2",
-    name: "grant-amount-2",
-    value: data["grant-amount-2"],
+    id: "funding-amount-2",
+    name: "funding-amount-2",
+    value: data["funding-amount-2"],
     label: {
-      text: "Grant amount",
+      text: "Funding amount",
       classes: "govuk-label--m",
       isPageHeading: false
     },
@@ -86,11 +86,11 @@
   {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
   
   {{ govukDateInput({
-    id: "grant-paid-date-2",
-    namePrefix: "grant-paid-date-2",
+    id: "funding-paid-date-2",
+    namePrefix: "funding-paid-date-2",
     fieldset: {
       legend: {
-        text: "Enter the date the grant was paid",
+        text: "Enter the date the funding was paid",
         isPageHeading: false,
         classes: "govuk-fieldset__legend--m"
       }
@@ -101,19 +101,19 @@
     items: [
       {
         name: "day",
-        value: data["grant-paid-date-day-2"],
+        value: data["funding-paid-date-day-2"],
         allowEmpty: false,
         classes: "govuk-input--width-2"
       },
       {
         name: "month",
-        value: data["grant-paid-date-month-2"],
+        value: data["funding-paid-date-month-2"],
         allowEmpty: false,
         classes: "govuk-input--width-2"
       },                
       {
         name: "year",
-        value: data["grant-paid-date-year-2"],
+        value: data["funding-paid-date-year-2"],
         allowEmpty: false,
         classes: "govuk-input--width-4"
       }
@@ -123,11 +123,11 @@
   {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
   
   {{ govukTextarea({
-    name: "grant-comments-2",
-    value: data["grant-comments-2"],
-    id: "grant-comments",
+    name: "funding-comments-2",
+    value: data["funding-comments-2"],
+    id: "funding-comments-2",
     label: {
-      text: "Add any comments about the grant",
+      text: "Add any comments about the funding",
       classes: "govuk-label--m",
       isPageHeading: false
     },
