@@ -1,0 +1,181 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Contact the school
+      </h1>
+
+      <p>Confirm if the school wants to get targeted support or not.</p>
+
+      <form class="form" action="../task-list" method="post">
+
+        <!--
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-the-school-hint">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="find-school-email-address" name="find-school-email-address" type="checkbox" value="Done">
+                <label class="govuk-label govuk-checkboxes__label" for="find-school-email-address">
+                  Find the school's email address
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-the-school-hint">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="use-template-notification-letter" name="use-template-notification-letter" type="checkbox" value="Done">
+                <label class="govuk-label govuk-checkboxes__label" for="use-template-notification-letter">
+                  Use the template notification letter to create the email
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-the-school-hint">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="attach-rise-info-pack" name="attach-rise-info-pack" type="checkbox" value="Done">
+                <label class="govuk-label govuk-checkboxes__label" for="attach-rise-info-pack">
+                  Attach the RISE information pack to the email
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        -->
+        
+       
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          name: "contact-the-school-step-1",
+          items: [
+            {
+              id: "find-email-address",
+              value: "Yes",
+              selected: (data['find-email-address'] === 'Yes'),
+              text: "Find the school's email address"
+              }
+            ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "contact-the-school-step-2",
+          items: [
+            {
+              id: "use-the-template-notification-letter",
+              value: "Yes",
+              selected: (data['contact-the-school-step-2'] == 'Yes'),
+              text: "Use the template notification letter to create the email"
+              }
+            ]
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "contact-the-school-step-3",
+          items: [
+            {
+              id: "attach-the-rise-info-pack",
+              value: "Yes",
+              selected: (data['contact-the-school-step-3'] === 'Yes'),  
+              text: "Attach the RISE information pack to the email"
+              }
+            ]
+        }) }}
+   
+       
+
+       
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "school-contacted-date",
+          namePrefix: "school-contacted-date",
+          fieldset: {
+            legend: {
+        
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024"
+          },
+          items: [
+            {
+              name: "day",
+              value: data["school-contacted-date-day"],
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["school-contacted-date-month"],
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["school-contacted-date-year"],
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
