@@ -68,16 +68,16 @@
 
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="task-list/contact-the-school" aria-describedby="company-details-2-status">
-              Contact the school
+            <a class="govuk-link govuk-task-list__link" href="task-list/contact-responsible-body" aria-describedby="company-details-2-status">
+              Contact responsible body
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if ((data['find-school-email-address'] == NULL) and (data['use-template-notification-letter'] == NULL) and (data['attach-rise-info-pack'] == NULL) and (data['school-contacted-date-day'] == NULL )) or ((data['find-school-email-address'] == '') and (data['use-template-notification-letter'] == '') and (data['attach-rise-info-pack'] == '') and (data['school-contacted-date-day'] == '' ))%}
+            {% if ( (data['discuss-best-approach'] == NULL) and (data['email-responsible-body'] == NULL) and (data['school-contacted-date-day'] == NULL )) or ((data['discuss-best-approach'] == '') and (data['email-responsible-body'] == '') and (data['school-contacted-date-day'] == '' ))%}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-            {% elif (data['find-school-email-address'] == 'done') and (data['use-template-notification-letter'] == 'done') and (data['attach-rise-info-pack'] == 'done') and (data['school-contacted-date-day'] != '') %}
+            {% elif  (data['discuss-best-approach'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
