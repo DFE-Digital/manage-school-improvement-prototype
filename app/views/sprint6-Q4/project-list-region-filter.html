@@ -39,13 +39,30 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    <!--
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          School added
+        </h3>
+      </div>
+    </div>
+  -->
+
+
   <h1 class="govuk-heading-xl">
     Schools receiving targeted intervention
   </h1>
   <p>This is a list of all schools currently receiving targeted intervention.</p>
   <p>You can add schools to this list when they become eligible.</p>
   <br>
-  <a href="start-new-project/select-school" role="button" draggable="false" class="govuk-button <!--govuk-button--start-->" data-module="govuk-button">Add a school</a>
+  <a href="start-new-project/search-for-a-school" role="button" draggable="false" class="govuk-button <!--govuk-button--start-->" data-module="govuk-button">Add a school</a>
   </div>
 </div>
 
@@ -53,21 +70,42 @@
 
     <div class="govuk-grid-column-one-third">
     {% block filters %}
-        {% include "/layouts/project-list-filters.html" %}
+        {% include "/layouts/project-list-filters-region.html" %}
     {% endblock %}
     </div>
 
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-m">
-        5 schools found
+        3 schools found
       </h1>
 
       <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 5 </caption>
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 6 </caption>
       
-           
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+            <td class="govuk-table__cell">
+               <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+                  <strong>
+            <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="task-list.html">Cheltenham Spa Primary School</a>
+                  </strong>
+               </div>
+                <div class="govuk-!-margin-top-1">
+                    <span id="urn-0"><strong>URN:</strong> 100006</span>
+                </div>
+                <div id="localauthority-26" class="govuk-!-margin-top-1">
+                    <strong>Local authority:</strong>
+                        <span >Gloucestershire</span>
+                </div>
+               <div id="region-26" class="govuk-!-margin-top-1">
+                   <strong>Region:</strong>
+                       <span >South West</span>
+               </div>
+            </td>
+        </tr>    
+
+        <!--
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
               <strong>
@@ -86,12 +124,12 @@
                    <span >North West</span>
            </div>
         </td>
-    </tr>
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        </tr>
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
               <strong>
-        <a id="school-name-1" class="govuk-link" data-cy="trust-name-1" href="">Kendrick School</a>
+              <a id="school-name-1" class="govuk-link" data-cy="trust-name-1" href="">Kendrick School</a>
               </strong>
            </div>
             <div class="govuk-!-margin-top-1">
@@ -106,8 +144,9 @@
                    <span >South East</span>
            </div>
         </td>
-    </tr>
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        </tr>
+        -->
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
               <strong>
@@ -126,8 +165,10 @@
                    <span >South West</span>
            </div>
         </td>
-    </tr>
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        </tr>
+
+        <!--
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
               <strong>
@@ -146,8 +187,9 @@
                    <span >North West</span>
            </div>
         </td>
-    </tr>
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        </tr>
+        -->
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
               <strong>

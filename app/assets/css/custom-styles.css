@@ -66,3 +66,12 @@
 .margin-top-minus-15 {
     margin-top:-15px;
 }
+.filter-tags {
+    margin-top:-20px;
+    padding-bottom:20px;
+}
+
+
+.moj-filter__tag {
+    margin-right:-15px !important;
+}
