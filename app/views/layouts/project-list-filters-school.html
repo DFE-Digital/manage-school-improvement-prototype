@@ -23,13 +23,22 @@
 
                 
                 <div class="moj-filter__heading-action">
-                    <p><a class="govuk-link govuk-link--no-visited-state" data-cy="clear-filter" href="">Clear filters</a></p>
+                    <p><a class="govuk-link govuk-link--no-visited-state" data-cy="clear-filter" href="project-list-school-added">Clear filters</a></p>
                 </div>
 
             
                 <div class="moj-filter__heading-title margin-bottom-minus-20">
-                    <p>No filters selected.</p>
-                   
+                    <h3 class="govuk-heading-s">Region</h3>
+                    <ul class="moj-filter-tags">
+                        <li class="filter-tags"><a class="moj-filter__tag" href="/schools-requiring-improvement?remove&amp;SelectedRegions=North West"><span class="govuk-visually-hidden">Remove this filter</span> South West&nbsp;&nbsp;x</a></li>
+                    </ul>
+                </div>
+                <br><br>
+                <div class="moj-filter__heading-title">
+                    <h3 class="govuk-heading-s margin-top-15">Local authority</h3>
+                    <ul class="moj-filter-tags">
+                        <li class="filter-tags"><a class="moj-filter__tag" href="/schools-requiring-improvement?remove&amp;SelectedRegions=North West"><span class="govuk-visually-hidden">Remove this filter</span> Gloucestershire&nbsp;&nbsp;x</a></li>
+                    </ul>
                 </div>
 
                
@@ -46,7 +55,7 @@
         </div>
 
         <div class="moj-filter__options">
-            <form method="get" action="project-list-region-filter" class="form">
+            <form method="get" action="project-list-school-filter" class="form">
                
 
                 <div class="govuk-form-group">
@@ -54,7 +63,7 @@
                         Find a school
                     </label>
                     <span class="govuk-hint">You can filter by school name or URN (unique reference number)</span>
-                    <input id="Title" name="Title" type="text" class="govuk-input margin-top-15" aria-describedby="filter-project-title-hint" data-cy="select-projectlist-filter-title" value="">
+                    <input id="Title" name="Title" type="text" class="govuk-input margin-top-15" aria-describedby="filter-project-title-hint" data-cy="select-projectlist-filter-title" value="Cheltenham">
 
                 </div>
 
@@ -109,14 +118,14 @@
                                             </div>
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-region-south-west" name="selectedRegions" type="checkbox" value="South West" data-cy="select-projectlist-filter-region-South West"
-                                                 />
+                                                 checked />
                                                 <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-south-west">
                                                     South West
                                                 </label>
                                             </div>
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-region-west-midlands" name="selectedRegions" type="checkbox" value="West Midlands" data-cy="select-projectlist-filter-region-West Midlands"
-                                                 />
+                                                  />
                                                 <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-west-midlands">
                                                     West Midlands
                                                 </label>
@@ -216,16 +225,13 @@
                                                     Doncaster
                                                 </label>
                                             </div>
-
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-local-authority-gloucestershire" name="selectedLocalAuthorities" type="checkbox" value="Gloucestershire" data-cy="select-projectlist-filter-local-authority-Gloucestershire"
-                                                 />
+                                                checked />
                                                 <label class="govuk-label govuk-checkboxes__label" for="filter-project-local-authority-gloucestershire">
                                                     Gloucestershire
                                                 </label>
                                             </div>
-
-
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-local-authority-greenwich" name="selectedLocalAuthorities" type="checkbox" value="Greenwich" data-cy="select-projectlist-filter-local-authority-Greenwich"
                                                  />
