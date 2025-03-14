@@ -38,7 +38,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <!--<span class="govuk-caption-l">Cheltenham Primary School</span>-->
-    <h1 class="govuk-heading-xl">Check school details</h1>
+    <h1 class="govuk-heading-xl">Check funding details</h1>
 
     <h2 class="govuk-heading-l">School</h1>
 
@@ -46,10 +46,10 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Name
+            Grant name
           </dt>
           <dd class="govuk-summary-list__value">
-              <p>Cheltenham Spa Primary School</p>
+              <p>{{ data['grant-name']}}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -57,10 +57,10 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Current URN
+            Grant amount
           </dt>
           <dd class="govuk-summary-list__value">
-              <p>100006</p>
+              <p>{{ data['grant-amount']}}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -68,10 +68,13 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Local authority
+            Date grant paid
           </dt>
           <dd class="govuk-summary-list__value">
-              <p>Gloucestershire County Council</p>
+             
+              <span>{{ data['grant-paid-date-day'] }} </span>
+          <span>{{ data['grant-paid-date-month'] }} </span>
+          <span>{{ data['grant-paid-date-year'] }}</span>
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -79,78 +82,33 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Trust
+            Comments
           </dt>
           <dd class="govuk-summary-list__value">
-              <p>Gloucestershire Academies Trust</p>
+              <p>{{ data['grant-comments']}}</p>
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Region
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <p>South West</p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
+       
+      
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            School type
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <p>Academy converter</p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Phase of education
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <p>Primary</p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Religious character
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <p>Church of England</p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Diocese
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <p>Diocese of Gloucestershire</p>
-          </dd>
-          <dd class="govuk-summary-list__actions">
-          </dd>
-        </div>
       </dl>
-    <form action="../project-list-school-added" method="post"> 
+    
+
+        
+
 
         <div class="govuk-button-group">
- 
-          <button type="submit" class="govuk-button" data-module="govuk-button">
-              Add school
-          </button>
-          &nbsp;&nbsp;<a class="govuk-link" href="./select-school">Choose a different school</a>
+          <a href="../project-list-school-added" role="button" draggable="false" data-module="govuk-button" class="govuk-button">
+            Save and add school
+          </a>
+          <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+            Add another grant
+          </a>
+        </div>
+         
   
         </div>
 

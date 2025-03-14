@@ -1,11 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block header %}
-{% include "/layouts/dfe-header.html" %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,41 +29,20 @@
 
 {% endblock %}
 
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <!--<span class="govuk-caption-l">Cheltenham Primary School</span>-->
+    <h1 class="govuk-heading-xl">Check funding details</h1>
 
-        
-
-
-
-      {% include "/layouts/summary-section.html" %}
-
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-
-      {% include "/layouts/sub-nav-tabs-funding-history.html" %}
-
-      </div>
-    </div>
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-
-      <h2 class="govuk-heading-l">Funding history</h2>
+    <h2 class="govuk-heading-l">Funding</h1>
 
      
-      
-
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add funding", href: "add-more-funding" }) }}
-      </div>
-
-     
-      {% if (data['funding-name'] != NULL) %}
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -75,7 +50,7 @@
             {{ data['funding-name']}}
           </h2>
           <ul class="govuk-summary-card__actions">
-                <li class="govuk-summary-card__action"> <a class="govuk-link" href="./start-new-project/edit-funding.html">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-funding">
                     Change<span class="govuk-visually-hidden"> funding</span>
                   </a>
                 </li>
@@ -96,6 +71,7 @@
                 Financial year
               </dt>
               <dd class="govuk-summary-list__value">
+                <!--{{ data | isoDateFromDateInput("funding-paid-date") | govukDate }}-->
                 {{ data['funding-year']}}
               </dd>
             </div>
@@ -114,23 +90,22 @@
               <dd class="govuk-summary-list__value">
                 {{ data['funding-comments']}}
               </dd>
+             
             </div>
           </dl>
         </div>
       </div>
-     
-      {% endif %}
+
 
 
       {% if (data['funding-name-2'] != NULL) %}
-
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
             {{ data['funding-name-2']}}
           </h2>
           <ul class="govuk-summary-card__actions">
-                <li class="govuk-summary-card__action"> <a class="govuk-link" href="">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-more-funding">
                     Change<span class="govuk-visually-hidden"> funding</span>
                   </a>
                 </li>
@@ -169,29 +144,77 @@
               <dd class="govuk-summary-list__value">
                 {{ data['funding-comments-2']}}
               </dd>
+             
             </div>
           </dl>
         </div>
       </div>
-     
       {% endif %}
 
+    
 
-     
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+         
+          
 
-        </div>
+          <form class="form" action="../task-list" method="post">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="funding-completed" name="funding-completed" type="checkbox" value="done" {{checked("funding-completed", "done")}}>
+            <label class="govuk-label govuk-checkboxes__label" for="funding-completed">
+              Mark this section as complete, you can still make changes later
+            </label>
+           
+          </div>
+
+          <br>
+
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+       
+          &nbsp; &nbsp;
+
+        <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+          Add more funding
+        </a>
+
+      </form>
+  
+        </fieldset>
       </div>
-      
+
 
     
-      <!--
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add note", href: "#" }) }}
-      </div>
-      -->
+  
 
-    </div>
+<!--
+        <div class="govuk-button-group">
+          <a href="../task-list" role="button" draggable="false" data-module="govuk-button" class="govuk-button govuk-button">
+            Save and return
+          </a>
+        -->
+
+        
+    
+        </div>
+
+
+       
+
+
+         
+  
+        </div>
+
+ 
+
+    </main>
+  </main>   
   </div>
+</div>
+
 {% endblock %}
 
 {% block footer %}

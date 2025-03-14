@@ -90,22 +90,16 @@
               <dd class="govuk-summary-list__value">
                 &pound;{{ data['funding-amount']}}
               </dd>
+             
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Financial year
+                Date funding paid
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['funding-year']}}
+                {{ data | isoDateFromDateInput("funding-paid-date") | govukDate }}
               </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Funding rounds
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['funding-rounds']}}
-              </dd>
+            
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -114,6 +108,7 @@
               <dd class="govuk-summary-list__value">
                 {{ data['funding-comments']}}
               </dd>
+             
             </div>
           </dl>
         </div>
@@ -145,22 +140,16 @@
               <dd class="govuk-summary-list__value">
                 &pound;{{ data['funding-amount-2']}}
               </dd>
+             
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Financial year
+                Date funding paid
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['funding-year-2']}}
+                {{ data | isoDateFromDateInput("funding-paid-date-2") | govukDate }}
               </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Funding rounds
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['funding-rounds-2']}}
-              </dd>
+            
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -169,6 +158,7 @@
               <dd class="govuk-summary-list__value">
                 {{ data['funding-comments-2']}}
               </dd>
+             
             </div>
           </dl>
         </div>
