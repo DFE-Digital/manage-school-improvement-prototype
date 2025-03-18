@@ -79,7 +79,7 @@
          -->
 
 
-
+          <!--
           {{ xGovukAutocomplete({
             label: {
                 text: "Email address",
@@ -91,15 +91,34 @@
             value: data['allocated-adviser-email'],
             allowEmpty: false,
             hint: {
-              text: "It will be formatted like rise.firstname.lastname@education.gov.uk."
+              text: "It will be formatted like firstname.lastname-rise@education.gov.uk."
             },
             items: [
-              { text: "rise.alan.smith@education.gov.uk" },
-              { text: "rise.alex.alexander@education.gov.uk" },
-              { text: "rise.alex.james@education.gov.uk" },
-              { text: "rise.alice.cooper@education.gov.uk" }
+              { text: "alan.smith-rise@education.gov.uk" },
+              { text: "alex.alexander-rise@education.gov.uk" },
+              { text: "alex.james-rise@education.gov.uk" },
+              { text: "alice.cooper-rise@education.gov.uk" }
             ]
            }) }}
+          -->
+
+
+
+
+           {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Email address",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  },
+  hint: {
+    text: "It will be formatted like firstname.lastname-rise@education.gov.uk."
+  },
+  id: "allocated-adviser-email",
+  name: "allocated-adviser-email"
+}) }}
   
 
 
