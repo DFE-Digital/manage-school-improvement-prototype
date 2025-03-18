@@ -170,15 +170,16 @@
 
           <br>
 
-          {{ govukButton({
-            text: "Save and return"
-          }) }}
-       
-          &nbsp; &nbsp;
-
-        <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button--secondary">
-          Add more funding
-        </a>
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and return"
+            }) }}
+          <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+            Add more funding
+          </a>
+          <a href="funding-history">
+            <p>Change answer</p>
+          </div>
 
       </form>
   
@@ -189,16 +190,8 @@
     
   
 
-<!--
-        <div class="govuk-button-group">
-          <a href="../task-list" role="button" draggable="false" data-module="govuk-button" class="govuk-button govuk-button">
-            Save and return
-          </a>
-        -->
 
         
-    
-        </div>
 
 
        

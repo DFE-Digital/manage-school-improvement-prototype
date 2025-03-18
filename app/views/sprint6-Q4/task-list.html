@@ -98,34 +98,21 @@
               Enter funding history
             </a>
             {% endif %}
-
-
-
-
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
             {% if (data['received-funding'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
-           
-
             {% elif (data['received-funding'] == 'No') or ((data['received-funding'] == 'Yes') and (data['funding-name'] != NULL) and (data['funding-completed'] == 'done'))  %}
-            
-            
-
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
-            
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
