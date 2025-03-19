@@ -45,7 +45,7 @@
         Add contact
       </h1>
       
-      <form class="form" action='add-contact-details' method="post">
+      <form class="form" action='add-another-contact-details' method="post">
 
         
 
@@ -55,9 +55,9 @@
         
         {% set otherHtml %}
         {{ govukInput({
-          id: "other-role-title",
-          name: "other-role-title",
-          value: data["other-role-title"],
+          id: "other-role-title-2",
+          name: "other-role-title-2",
+          value: data["other-role-title-2"],
           spellcheck: false,
           classes: "govuk-!-width-one-half"
         }) }}
@@ -68,7 +68,7 @@
        
         
         {{ govukRadios({
-          name: "contact",
+          name: "contact-2",
           fieldset: {
             legend: {
               text: "Role",
@@ -83,7 +83,7 @@
           {
             value: "Director of Education",
             text: "Director of Education",
-            checked:  data['contact'] === "Director of Education",
+            checked:  data['contact-2'] === "Director of Education",
             conditional: {
               html: doeHtml
             }
@@ -91,7 +91,7 @@
           {
             value: "Headteacher",
             text: "Headteacher",
-            checked:  data['contact'] === "Headteacher",
+            checked:  data['contact-2'] === "Headteacher",
             conditional: {
               html: headHtml
             }
@@ -99,7 +99,7 @@
           {
             value: "Chair of governors",
             text: "Chair of governors",
-            checked:  data['contact'] === "Chair of governors",
+            checked:  data['contact-2'] === "Chair of governors",
             conditional: {
               html: chairHtml
             }
@@ -107,7 +107,7 @@
           {
             value: "Trust relationship manager",
             text: "Trust relationship manager",
-            checked:  data['contact'] === "Trust relationship manager",
+            checked:  data['contact-2'] === "Trust relationship manager",
             conditional: {
               html: trmHtml
             }
@@ -115,7 +115,7 @@
           {
             value: "Trust CEO",
             text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO",
+            checked:  data['contact-2'] === "Trust CEO",
             conditional: {
               html: trustceoHtml
             }
@@ -123,7 +123,7 @@
           {
             value: "Trust accounting officer",
             text: "Trust accounting officer",
-            checked:  data['contact'] === "Trust accounting officer",
+            checked:  data['contact-2'] === "Trust accounting officer",
             conditional: {
               html: accountingofficerHtml
             }

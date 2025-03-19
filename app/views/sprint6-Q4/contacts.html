@@ -98,6 +98,15 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
+                Organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['contact-organisation']}}
+              </dd>
+             
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
                 Email
               </dt>
               <dd class="govuk-summary-list__value">
@@ -115,6 +124,62 @@
                 {% else %}
                 {{ data['contact-phone']}}
                 {% endif %}
+              </dd>
+             
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {% if (data['other-role-title'] != '') %}
+            {{ data['other-role-title']}}
+            {% else %}
+            {{ data['contact']}}
+            {% endif %}
+          </h2>
+          <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-contact">
+                    Change<span class="govuk-visually-hidden"> main contact</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Alex James
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Organisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Alex James
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Email
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <a href="mailto:{{ data['contact-phone']}}">alex.james@gloucestershireacademiestrust.org.uk</a>
+              </dd>
+            
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Phone
+              </dt>
+              <dd class="govuk-summary-list__value">
+                01242 678909
               </dd>
              
             </div>
