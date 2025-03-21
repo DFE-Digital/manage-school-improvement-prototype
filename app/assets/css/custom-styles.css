@@ -78,3 +78,12 @@
 .moj-filter__tag {
     margin-right:-15px !important;
 }
+
+@media (max-width: 40.0625em) {
+    .govuk-summary-list__actions__engagement {
+      width:150px;
+      text-align: right;
+      background-color:#b1b4b6;
+      float:right;
+    }
+  }
