@@ -44,48 +44,41 @@
         Select the current level of engagement by this school
       </h1>
 
- 
    </div>
    </div>
 
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="./engagement-history" method="post">
-
-       
+      <form class="form" action="./engagement-history-updated" method="post">
 
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          name: "engagement-level",
+          name: "engagement-level-2",
           hint: {
             text: "Some guidance around levels of engagement here."
           },
           items: [
           {
             value: "Outstanding",
-            text: "Outstanding",
-            checked:  data['engagement-level'] === "Outstanding"
+            text: "Outstanding"
           },
           {
             value: "Frankly could be better",
-            text: "Frankly could be better",
-            checked:  data['engagement-level'] === "Frankly could be better"
+            text: "Frankly could be better"
           },
           {
             value: "Diabolical",
-            text: "Diabolical",
-            checked:  data['engagement-level'] === "Diabolical"
+            text: "Diabolical"
           }
           ]
         }) }}
 
         {{ govukTextarea({
-          name: "engagement-note",
-          id: "engagement-note",
-          value: data['engagement-note'],
+          name: "engagement-note-2",
+          id: "engagement-note-2",
           label: {
             text: "Comments",
             classes: "govuk-label--l",
@@ -96,11 +89,6 @@
             }
           })      
         }}
-
-
-       
-
-     
         
         <div class="govuk-button-group">
 
@@ -115,7 +103,7 @@
           Delete
           </button>
         {% endif %}
-       
+        <a class="govuk-link" href="task-list-engagement">Cancel</a>
         
          </div>
 

@@ -50,7 +50,12 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="./task-list-engagement-updated" method="post">
+      <form class="form" action="./engagement-history-updated" method="post">
+
+
+        {% if (data['engagement-level'] == NULL) %}
+               
+               
 
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -89,10 +94,57 @@
             }
           })      
         }}
+
+        {% else %}
+        
+
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          name: "engagement-level-2",
+          hint: {
+            text: "Some guidance around levels of engagement here."
+          },
+          items: [
+          {
+            value: "Outstanding",
+            text: "Outstanding"
+          },
+          {
+            value: "Frankly could be better",
+            text: "Frankly could be better"
+          },
+          {
+            value: "Diabolical",
+            text: "Diabolical"
+          }
+          ]
+        }) }}
+
+        {{ govukTextarea({
+          name: "engagement-note-2",
+          id: "engagement-note-2",
+          label: {
+            text: "Comments",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Additional hint text here if needed."
+            }
+          })      
+        }}
+
+        {% endif %}
+
+
+
+
+
         
         <div class="govuk-button-group">
 
-       
           <button type="submit" class="govuk-button" data-module="govuk-button">
           Save and continue
           </button>
