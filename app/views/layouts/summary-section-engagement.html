@@ -2,6 +2,7 @@
 <h1 class="govuk-heading-xl">Cheltenham Spa Primary School</h1>
 
 
+
 <dl class="govuk-summary-list">
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
@@ -106,18 +107,39 @@
       Engagement level
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if (data['engagement-level'] == 'Outstanding') %}
-      <strong class="govuk-tag govuk-tag--green" id="">{{ data['engagement-level']}}</strong>
 
+      {% if (data['engagement-level'] != NULL) and (data['engagement-level-2'] == NULL )%}
 
+                {% if (data['engagement-level'] =='Outstanding') %}
+                <strong class="govuk-tag govuk-tag--green" id="">{{ data['engagement-level']}}</strong>
+                {% elif (data['engagement-level'] =='Frankly could be better') %}
+                <strong class="govuk-tag govuk-tag--orange" id="">{{ data['engagement-level']}}</strong>
+                {% else %}
+                <strong class="govuk-tag govuk-tag--red" id="">{{ data['engagement-level']}}</strong>
+                {% endif %}
 
+      {% elseif (data['engagement-level'] != NULL) and (data['engagement-level-2'] != NULL )%}
+
+                {% if (data['engagement-level-2'] =='Outstanding') %}
+                <strong class="govuk-tag govuk-tag--green" id="">{{ data['engagement-level-2']}}</strong>
+                {% elif (data['engagement-level-2'] =='Frankly could be better') %}
+                <strong class="govuk-tag govuk-tag--orange" id="">{{ data['engagement-level-2']}}</strong>
+                {% else %}
+                <strong class="govuk-tag govuk-tag--red" id="">{{ data['engagement-level-2']}}</strong>
+                {% endif %}
+      
       {% else %}
       <span data-id="engagement-status" class="empty">Empty</span>
       {% endif %}
+
+
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="./add-engagement-note">Update<span class="govuk-visually-hidden"> level of engagement</span></a>
+     <!--<a class="govuk-link" href="./add-engagement-note">Update<span class="govuk-visually-hidden"> level of engagement</span></a>-->
+     
       <a class="govuk-link" href="./engagement-history">View history<span class="govuk-visually-hidden"> of engagement</span></a>
+      
     </dd>
   </div>
 </dl>
+

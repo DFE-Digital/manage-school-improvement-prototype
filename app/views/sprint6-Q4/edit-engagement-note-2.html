@@ -44,7 +44,8 @@
         Select the current level of engagement by this school
       </h1>
 
- 
+
+
    </div>
    </div>
 
@@ -59,7 +60,7 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          name: "engagement-level",
+          name: "engagement-level-2",
           hint: {
             text: "Some guidance around levels of engagement here."
           },
@@ -67,25 +68,25 @@
           {
             value: "Outstanding",
             text: "Outstanding",
-            checked:  data['engagement-level'] === "Outstanding"
+            checked:  data['engagement-level-2'] === "Outstanding"
           },
           {
             value: "Frankly could be better",
             text: "Frankly could be better",
-            checked:  data['engagement-level'] === "Frankly could be better"
+            checked:  data['engagement-level-2'] === "Frankly could be better"
           },
           {
             value: "Diabolical",
             text: "Diabolical",
-            checked:  data['engagement-level'] === "Diabolical"
+            checked:  data['engagement-level-2'] === "Diabolical"
           }
           ]
         }) }}
 
         {{ govukTextarea({
-          name: "engagement-note",
-          id: "engagement-note",
-          value: data['engagement-note'],
+          name: "engagement-note-2",
+          id: "engagement-note-2",
+          value: data['engagement-note-2'],
           label: {
             text: "Comments",
             classes: "govuk-label--l",
