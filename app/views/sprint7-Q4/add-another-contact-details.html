@@ -42,55 +42,64 @@
 
       <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-xl">
-        Is this school still eligible for targeted intervention?
+        Add contact details
       </h1>
       
-      <form class="form" action='../task-list-task-updated' method="post">
+      <form class="form" action='contact-added' method="post">
 
         
+        {% from "govuk/components/input/macro.njk" import govukInput %}
 
+{{ govukInput({
+  label: {
+    text: "Name",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "contact-name-2",
+  name: "contact-name-2",
+  value: data["contact-name-2"]
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Organisation",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "contact-organisation-2",
+  name: "contact-organisation-2",
+  value: data["contact-organisation-2"]
+}) }}
+
+{{ govukInput({
+    label: {
+      text: "Email",
+      classes: "govuk-label--m",
+      isPageHeading: true
+    },
+    id: "contact-email-2",
+    name: "contact-email-2",
+    value: data["contact-email-2"]
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Phone",
+      classes: "govuk-label--m",
+      isPageHeading: true
+    },
+    id: "contact-phone-2",
+    name: "contact-phone-2",
+    allowEmpty: false,
+    value: data["contact-phone-2"]
+  }) }}
     
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-      {% set noHtml %}
-
-      {{ govukTextarea({
-        name: "not-eligible-details",
-        hint: {
-          text: ""
-        },
-        id: "not-eligible-details",
-        title: "Not eligibility details",
-        value: data["not-eligible-details"],
-        label: {
-          text: "If it is no longer eligible, give details."
-        }
-      }) }}
-      {% endset -%}
-
-      {{ govukRadios({
-        idPrefix: "eligible",
-        name: "eligible",
-        items: [
-        {
-            value: "Yes",
-            checked:  data['eligible'] === "Yes",
-            text: "Yes"
-        },
-        {
-            value: "No",
-            checked:  data['eligible'] === "No",
-            text: "No",
-            conditional: {
-              html: noHtml
-            }
-        }
-        ]
-      }) }}
+      
     
 
 {{ govukButton({
-  text: "Continue"
+  text: "Add contact"
 }) }}
       
 

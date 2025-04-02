@@ -55,20 +55,6 @@
     </div>
   -->
 
-  <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-    <div class="govuk-notification-banner__header">
-      <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-        Success
-      </h2>
-    </div>
-    <div class="govuk-notification-banner__content">
-      <h3 class="govuk-notification-banner__heading">
-        Filters applied
-      </h3>
-      <p>3 schools found on 1 page of results</p>
-    </div>
-  </div>
-
 
   <h1 class="govuk-heading-xl">
     Schools identified for targeted intervention
@@ -85,14 +71,14 @@
 
     <div class="govuk-grid-column-one-third">
     {% block filters %}
-        {% include "/layouts/project-list-filters-region.html" %}
+        {% include "/layouts/project-list-filters-school.html" %}
     {% endblock %}
     </div>
 
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-m">
-        3 schools found
+        1 school found
       </h1>
 
       <table class="govuk-table">
@@ -160,7 +146,7 @@
            </div>
         </td>
         </tr>
-        -->
+       
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
@@ -182,7 +168,7 @@
         </td>
         </tr>
 
-        <!--
+       
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
@@ -203,7 +189,7 @@
            </div>
         </td>
         </tr>
-        -->
+        
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
@@ -223,7 +209,8 @@
                    <span >South West</span>
            </div>
         </td>
-    </tr>
+      </tr>
+      -->
     </tbody>
     </table>
 

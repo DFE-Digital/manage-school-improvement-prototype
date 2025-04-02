@@ -38,61 +38,38 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-     
-
-      <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
-      <h1 class="govuk-heading-xl">
-        Is this school still eligible for targeted intervention?
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Is this school going through, or has it completed, a conversion or transfer since it was indentified as eligible for RISE targeted intervention?
       </h1>
       
-      <form class="form" action='../task-list-task-updated' method="post">
+      <form class="form" action="/convert-or-transfer-answer" method="post">
 
         
-
-    
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-      {% set noHtml %}
 
-      {{ govukTextarea({
-        name: "not-eligible-details",
-        hint: {
-          text: ""
-        },
-        id: "not-eligible-details",
-        title: "Not eligibility details",
-        value: data["not-eligible-details"],
-        label: {
-          text: "If it is no longer eligible, give details."
-        }
-      }) }}
-      {% endset -%}
-
-      {{ govukRadios({
-        idPrefix: "eligible",
-        name: "eligible",
-        items: [
-        {
-            value: "Yes",
-            checked:  data['eligible'] === "Yes",
-            text: "Yes"
-        },
-        {
-            value: "No",
-            checked:  data['eligible'] === "No",
-            text: "No",
-            conditional: {
-              html: noHtml
-            }
-        }
-        ]
-      }) }}
-    
+{{ govukRadios({
+  name: "converting-or-transferring",
+  fieldset: {
+    legend: {
+      isPageHeading: false
+    }
+  },
+  items: [
+    {
+      value: "Yes",
+      text: "Yes"
+    },
+    {
+      value: "No",
+      text: "No"
+    }
+  ]
+}) }}
 
 {{ govukButton({
-  text: "Continue"
+  text: "Save and continue"
 }) }}
-      
 
 
       </form>
