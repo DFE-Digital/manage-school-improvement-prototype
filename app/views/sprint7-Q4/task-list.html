@@ -447,31 +447,51 @@
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/choose-preferred-supporting-organisation" aria-describedby="company-details-2-status">
               Choose preferred supporting organisation
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if ((data['supporting-organisation-name'] == NULL) or (data['supporting-organisation-name'] == '')) and ((data['id-number'] == NULL) or (data['id-number'] == '')) and ((data['supporting-org-chosen-date-day'] == NULL ) or (data['supporting-org-chosen-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['supporting-organisation-name'] != '') and (data['id-number'] != '') and (data['supporting-org-chosen-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/carry-out-due-diligence" aria-describedby="company-details-2-status">
               Carry out due diligence on preferred supporting organisation
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['discuss-choice-with-sfso'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['discuss-choice-with-sfso'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/record-supporting-org-appointment" aria-describedby="company-details-3-hint company-details-3-status">
               Record supporting organisation appointment
             </a>
             <!--
@@ -481,21 +501,41 @@
             -->
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
+            {% if (data['so-approved'] == NULL) and ((data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/add-so-contact-details" aria-describedby="company-details-4-status">
               Add supporting organisation contact details
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
+            {% if ((data['supporting-organisation-contact-name'] == NULL) or (data['supporting-organisation-contact-name'] == '')) and ((data['so-contact-email'] == NULL) or (data['so-contact-email'] == '')) and ((data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['supporting-organisation-contact-name'] != '') and (data['so-contact-email'] != '') and (data['so-contact-added-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
       </ul>
