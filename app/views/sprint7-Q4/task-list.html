@@ -601,50 +601,90 @@
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/share-improvement-plan-template" aria-describedby="company-details-2-status">
               Share the improvement plan template
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/review-improvement-plan" aria-describedby="company-details-2-status">
               Review the improvement plan
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if (data['review-plan-with-team'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL ) or (data['improvement-plan-received-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['review-plan-with-team'] == 'done') and (data['improvement-plan-received-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/send-plan-for-approval" aria-describedby="company-details-3-hint company-details-3-status">
               Send the agreed improvement plan for approval
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
+            {% if (data['save-plan-in-sharepoint'] == NULL) and (data['email-plan-for-approval'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif (data['save-plan-in-sharepoint'] == 'done') and (data['email-plan-for-approval'] == 'done') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/record-improvement-plan-decision" aria-describedby="company-details-4-status">
               Record improvement plan decision
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
+            {% if (data['plan-approved'] == NULL) and ((data['plan-approved-date-day'] == NULL) or (data['plan-approved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+            {% elif  (data['plan-approved'] != NULL) and (data['plan-approved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
           </div>
         </li>
       </ul>
