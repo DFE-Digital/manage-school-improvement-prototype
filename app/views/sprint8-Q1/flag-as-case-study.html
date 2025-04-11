@@ -38,43 +38,58 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="./project-note-added" method="post">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Case study candidates
+      </h1>
+
+      <form class="form" action="./case-study-flagged" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="case-study-candidate" name="case-study-candidate" type="checkbox" value="done" {{checked("case-study-candidate", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="case-study-candidate">
+            Add this school to list of case study candidates
+          </label>
+        </div>
+        </div>
+
+        </fieldset>
+        </div>
+
+
 
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
         {{ govukTextarea({
-          name: "project-note",
+          name: "case-study-reasons",
           id: "project-note",
-          value: data['project-note'],
+          value: data['case-study-reasons'],
           label: {
-            text: "Enter note",
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "Reasons",
+            classes: "govuk-label--m",
+            isPageHeading: false
           },
           hint: {
-            text: "Do not include personal or financial information."
+            text: "Give some reasons or background as to why this school would be a good candidate for a case study."
             }
           })      
         }}
         
         <div class="govuk-button-group">
 
-        {% if (data['project-note'] != NULL) %}
+       
           <button type="submit" class="govuk-button" data-module="govuk-button">
-          Save note
+          Save and return
           </button>
-        {% else %}
-          <button type="submit" class="govuk-button" data-module="govuk-button">
-          Add note
-          </button>
-        {% endif %}
+     
 
-        {% if (data['project-note'] != NULL) %}
-          <button type="submit" class="govuk-button govuk-button--warning" data-module="govuk-button">
-          Delete
-          </button>
-        {% endif %}
-        <a class="govuk-link" href="project-notes">Cancel</a>
+       
+        <a class="govuk-link" href="case-study">Cancel</a>
         
          </div>
 
