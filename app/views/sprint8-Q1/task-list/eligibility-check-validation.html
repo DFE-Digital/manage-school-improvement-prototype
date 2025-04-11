@@ -38,6 +38,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "You must select an answer",
+      href: "#"
+    }
+  ]
+}) }}
+
      
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
@@ -50,6 +63,7 @@
       {% else %}
       <form class="form" action='../task-list-task-updated' method="post"></form>
       {% endif %}
+
         
 
     
@@ -88,7 +102,11 @@
               html: noHtml
             }
         }
-        ]
+        ],
+  errorMessage: {
+    text: "You must select an answer"
+  }
+       
       }) }}
     
 

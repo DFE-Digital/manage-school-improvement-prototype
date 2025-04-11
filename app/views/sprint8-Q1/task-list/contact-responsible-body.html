@@ -38,8 +38,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
-      <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
         Contact the responsible body
       </h1>
 
@@ -53,7 +53,7 @@
 
       <p>How to do this may vary between regions, local authorities and trusts.</p>
 
-      <p class="padding-bottom-10">You or one of your colleagues may have already done this. If so, complete the checklist and enter the date this happened.</p>
+      <p>You or one of your colleagues may have already done this. If so, complete the checklist and enter the date this happened.</p>
 
       <form class="form" action="../task-list" method="post">
 
@@ -61,10 +61,7 @@
         
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
-            <div id="nationality-hint" class="govuk-hint">
-             
-              
-            </div>
+           
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="discuss-best-approach" name="discuss-best-approach" type="checkbox" value="done" aria-describedby="discuss-best-approach-hint" {{checked("discuss-best-approach", "done")}}>
@@ -112,7 +109,7 @@
             legend: {
               text: "Enter the date of contact",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
