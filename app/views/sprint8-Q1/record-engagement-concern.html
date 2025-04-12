@@ -41,21 +41,29 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Case study candidates
+        Record engagement concern
       </h1>
 
-      <form class="form" action="./case-study-flagged" method="post">
+      {% if (data['engagement-concern'] != 'Yes') %}
+      <form class="form" action="task-list-engagement-concern" method="post">
+      {% elif (data['engagement-concern'] == 'Yes') %}
+      <form class="form" action="task-list" method="post">
+      {% endif %}
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
 
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item margin-bottom-20">
-          <input class="govuk-checkboxes__input" id="case-study-candidate" name="case-study-candidate" type="checkbox" value="done" {{checked("case-study-candidate", "done")}}>
-          <label class="govuk-label govuk-checkboxes__label" for="case-study-candidate">
-            Add this school to list of case study candidates
+          <input class="govuk-checkboxes__input" id="engagement-concern" name="engagement-concern" type="checkbox" value="Yes" {{checked("engagement-concern", "Yes")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="engagement-concern">
+            Record engagement concern with this school
           </label>
+          <div id="email-responsible-body-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            Check this box if the there are concerns with the level of engagement from this school, for example if they have stopped responding to emails. 
+          </div>
         </div>
+       
         </div>
 
         </fieldset>
@@ -66,16 +74,16 @@
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
         {{ govukTextarea({
-          name: "case-study-reasons",
-          id: "case-study-reasons",
-          value: data['case-study-reasons'],
+          name: "engagement-concern-reasons",
+          id: "engagement-concern-reasons",
+          value: data['engagement-concern-reasons'],
           label: {
-            text: "Reasons",
+            text: "Details",
             classes: "govuk-label--m",
             isPageHeading: false
           },
           hint: {
-            text: "Give some reasons or background as to why this school would be a good candidate for a case study."
+            text: "Give some details about the lack of engagement from this school."
             }
           })      
         }}
@@ -89,7 +97,7 @@
      
 
        
-        <a class="govuk-link" href="case-study">Cancel</a>
+        <a class="govuk-link" href="task-list">Cancel</a>
         
          </div>
 
