@@ -56,7 +56,82 @@
       <form class="form" action="../task-list" method="post">
 
         
-        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+        <div class="govuk-checkboxes__item margin-bottom-minus-15">
+          <input class="govuk-checkboxes__input" id="required-contacts" name="required-contacts" type="checkbox" value="done" {{checked("required-contacts", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="required-contacts">
+            Include the required contact details in the email
+          </label>
+          <div id="required-contacts-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            Make sure you add the contacts the grant team need to this project.
+            <details class="govuk-details margin-top-15">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Contacts needed
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p>For local authority maintained schools, you must add name, email and postal address for:<p>
+                <ul>
+                  <li>Headteacher</li>
+                  <li>Chair of governors</li>
+                  <li> Supporting organisation</li>
+                </ul>
+                <p>For academies, you must add name, email and postal address details for:</p>
+                <ul>
+                  <li>Headteacher</li>
+                  <li>Trust CEO</li>
+                  <li>Supporting organisation</li>
+                </ul>
+              </div>
+            </details>
+
+          </div>
+          
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="confirm-amount" name="confirm-amount" type="checkbox" value="done" {{checked("confirm-amount", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="confirm-amount">
+            Confirm the amount of funding requested
+          </label>
+          <div id="confirm-amount-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            This will always be £3,000.
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="copy-in-rd" name="copy-in-rd" type="checkbox" value="done" {{checked("copy-in-rd", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="copy-in-rd">
+            Copy the regional director in to the email
+          </label>
+          <div id="copy-in-rd-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            You may need to copy in the regional director's office rather than them personally.
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="send-to-gmfu" name="send-to-gmfu" type="checkbox" value="done" {{checked("send-to-gmfu", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="send-to-gmfu">
+            Send email to the Grant Management and Finance Unit
+          </label>
+          <!--
+          <div id="send-to-gmfu-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            Check this box if the there are concerns with the level of engagement from this school, for example if they have stopped responding to emails. 
+          </div>
+          -->
+        </div>
+
+       
+       
+        </div>
+
+        </fieldset>
+        </div>
        
 
 

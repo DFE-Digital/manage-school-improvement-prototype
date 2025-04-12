@@ -553,12 +553,13 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if ((data['planning-grant-letter-requested-date-day'] == NULL) or (data['planning-grant-letter-requested-date-day'] == '')) %}
+
+            {% if (data['required-contacts'] == NULL) and (data['confirm-amount'] == NULL) and (data['copy-in-rd'] == NULL) and (data['send-to-gmfu'] == NULL) and ((data['planning-grant-letter-requested-date-day'] == NULL) or (data['planning-grant-letter-requested-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
 
-            {% elif (data['planning-grant-letter-requested-date-day'] != '') %}
+            {% elif (data['required-contacts'] == 'done') and (data['confirm-amount'] == 'done') and (data['copy-in-rd'] == 'done') and (data['send-to-gmfu'] == 'done') and (data['planning-grant-letter-requested-date-day'] != '')  %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
