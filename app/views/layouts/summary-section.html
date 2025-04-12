@@ -101,4 +101,27 @@
       <a class="govuk-link" href="./task-list/allocate-an-adviser">Change<span class="govuk-visually-hidden"> allocated an adviser</span></a>
     </dd>
   </div>
+
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Engagement concern
+    </dt>
+    <dd class="govuk-summary-list__value">
+
+      {% if (data['engagement-concern'] == NULL) %}
+      No
+      {% elseif (data['engagement-concern'] == 'Yes') %}
+      Yes
+      {% endif %}
+
+    </dd>
+    <dd class="govuk-summary-list__actions">
+     <!--<a class="govuk-link" href="./add-engagement-note">Update<span class="govuk-visually-hidden"> level of engagement</span></a>-->
+     
+      <a class="govuk-link" href="./record-engagement-concern">Change<span class="govuk-visually-hidden"> engagement concern</span></a>
+      
+    </dd>
+  </div>
+
 </dl>
