@@ -8,6 +8,40 @@ module.exports = function (router) {
 
   var version = "sprint8-Q1";
 
+
+ // Run this code when a form is submitted to 'add-contact-answer'
+ router.post('/' + version + '/add-contact-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["contact"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "Director of Children's Services") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-contact-details-address')
+  }   
+  else if (contactAnswer == "Chair of governors") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-contact-details-address')
+  } 
+  else if (contactAnswer == "Trust chief accounting officer") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-contact-details-address')
+  }
+  else if (contactAnswer == "Supporting organisation chief accounting officer") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-contact-details-address')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-contact-details')
+  }
+})
+
+
+
+
+
   // Routes for eligibility questions in the 'Add a school' journey
 
   // Run this code when a form is submitted to 'funding-answer'

@@ -45,7 +45,7 @@
         Add contact
       </h1>
       
-      <form class="form" action='add-contact-details' method="post">
+      <form class="form" action='add-contact-answer' method="post">
 
         
 
@@ -81,9 +81,9 @@
           },
           items: [
           {
-            value: "Director of Education",
-            text: "Director of Education",
-            checked:  data['contact'] === "Director of Education",
+            value: "Director of Children's Services",
+            text: "Director of Children's Services",
+            checked:  data['contact'] === "Director of Children's Services",
             conditional: {
               html: doeHtml
             }
@@ -121,11 +121,19 @@
             }
           },
           {
-            value: "Trust accounting officer",
-            text: "Trust accounting officer",
-            checked:  data['contact'] === "Trust accounting officer",
+            value: "Trust chief accounting officer",
+            text: "Trust chief accounting officer",
+            checked:  data['contact'] === "Trust chief accounting officer",
             conditional: {
               html: accountingofficerHtml
+            }
+          },
+          {
+            value: "Supporting organisation chief accounting officer",
+            text: "Supporting organisation chief accounting officer",
+            checked:  data['contact'] === "Supporting organisation chief accounting officer",
+            conditional: {
+              html: soaccountingofficerHtml
             }
           },
           {

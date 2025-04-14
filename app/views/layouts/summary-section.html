@@ -102,19 +102,13 @@
     </dd>
   </div>
 
-
+  {% if (data['engagement-concern'] == 'Yes') %}
   <div class="govuk-summary-list__row">
     <dt class="govuk-summary-list__key">
       Engagement concern
     </dt>
     <dd class="govuk-summary-list__value">
-
-      {% if (data['engagement-concern'] == NULL) %}
-      No
-      {% elseif (data['engagement-concern'] == 'Yes') %}
-      Yes
-      {% endif %}
-
+    Yes
     </dd>
     <dd class="govuk-summary-list__actions">
      <!--<a class="govuk-link" href="./add-engagement-note">Update<span class="govuk-visually-hidden"> level of engagement</span></a>-->
@@ -123,5 +117,6 @@
       
     </dd>
   </div>
+  {% endif %}
 
 </dl>
