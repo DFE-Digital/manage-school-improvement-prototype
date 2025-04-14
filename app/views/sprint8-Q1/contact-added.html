@@ -136,6 +136,20 @@
                 {% endif %}
               </dd>
             </div>
+            {% if (data['contact'] == "Director of Children's Services") %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if (data['contact-address'] == '') %}
+                <span data-id="contact-phone" class="empty">Empty</span>
+                {% else %}
+                {{ data['contact-address']}}
+                {% endif %}
+              </dd>
+            </div>
+            {% endif %}
           </dl>
         </div>
       </div>
