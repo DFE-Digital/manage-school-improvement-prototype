@@ -60,9 +60,13 @@
       <h2 class="govuk-heading-l">Contacts</h2>
 
       
-
+     
       <div class="govuk-!-margin-top-5">
+        {% if (data['contact'] == NULL) %}
         {{ govukButton({ text: "Add contact", href: "add-contact" }) }}
+        {% else %}
+        {{ govukButton({ text: "Add contact", href: "add-another-contact" }) }}
+        {% endif %}
       </div>
 
      
@@ -125,23 +129,42 @@
                 {{ data['contact-phone']}}
                 {% endif %}
               </dd>
-             
             </div>
+            {% if (data['contact'] == "Headteacher") or (data['contact'] == "Chair of governors") or (data['contact'] == "Trust chief accounting officer") or (data['contact'] == "Supporting organisation chief accounting officer") %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if (data['contact-address'] == '') %}
+                <span data-id="contact-phone" class="empty">Empty</span>
+                {% else %}
+                {{ data['contact-address']}}
+                {% endif %}
+              </dd>
+            </div>
+            {% endif %}
           </dl>
         </div>
       </div>
 
+      {% endif %}
+
+
+      {% if (data['contact-2'] != NULL) %}
+
+
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
-            {% if (data['other-role-title'] != '') %}
-            {{ data['other-role-title']}}
+            {% if (data['other-role-title-2'] != '') %}
+            {{ data['other-role-title-2']}}
             {% else %}
-            {{ data['contact']}}
+            {{ data['contact-2']}}
             {% endif %}
           </h2>
           <ul class="govuk-summary-card__actions">
-                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-contact">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-another-contact">
                     Change<span class="govuk-visually-hidden"> main contact</span>
                   </a>
                 </li>
@@ -154,7 +177,7 @@
                 Name
               </dt>
               <dd class="govuk-summary-list__value">
-                Alex James
+                {{ data['contact-name-2']}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -162,7 +185,7 @@
                 Organisation
               </dt>
               <dd class="govuk-summary-list__value">
-                Alex James
+                {{ data['contact-organisation-2']}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -170,25 +193,44 @@
                 Email
               </dt>
               <dd class="govuk-summary-list__value">
-                <a href="mailto:{{ data['contact-phone']}}">alex.james@gloucestershireacademiestrust.org.uk</a>
+                <a href="mailto:{{ data['contact-phone']}}">{{ data['contact-email-2']}}</a>
               </dd>
-            
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Phone
               </dt>
               <dd class="govuk-summary-list__value">
-                01242 678909
+                {% if (data['contact-phone-2'] == '') %}
+                <span data-id="contact-phone" class="empty">Empty</span>
+                {% else %}
+                {{ data['contact-phone-2']}}
+                {% endif %}
               </dd>
-             
             </div>
+            {% if (data['contact-2'] == "Headteacher") or (data['contact'] == "Chair of governors") or (data['contact'] == "Trust chief accounting officer") or (data['contact'] == "Supporting organisation chief accounting officer") %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if (data['contact-address-2'] == '') %}
+                <span data-id="contact-phone" class="empty">Empty</span>
+                {% else %}
+                {{ data['contact-address-2']}}
+                {% endif %}
+              </dd>
+            </div>
+            {% endif %}
           </dl>
         </div>
       </div>
      
       
       {% endif %}
+     
+      
+     
 
 
      

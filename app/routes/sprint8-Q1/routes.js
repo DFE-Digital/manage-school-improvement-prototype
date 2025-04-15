@@ -16,7 +16,7 @@ module.exports = function (router) {
   const contactAnswer = req.body["contact"];
 
   // Check whether the variable matches a condition
-  if (contactAnswer == "Director of Children's Services") { 
+  if (contactAnswer == "Headteacher") { 
     // Send user to next page 
     res.redirect('/' + version + '/add-contact-details-address')
   }   
@@ -35,6 +35,36 @@ module.exports = function (router) {
   else {
     // Send user to ineligible page
     res.redirect('/' + version + '/add-contact-details')
+  }
+})
+
+
+ // Run this code when a form is submitted to 'add-contact-answer'
+ router.post('/' + version + '/add-contact-2-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer2 = req.body["contact-2"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer2 == "Headteacher") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-another-contact-details-address')
+  }   
+  else if (contactAnswer2 == "Chair of governors") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-another-contact-details-address')
+  } 
+  else if (contactAnswer2 == "Trust chief accounting officer") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-another-contact-details-address')
+  }
+  else if (contactAnswer2 == "Supporting organisation chief accounting officer") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-another-contact-details-address')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-another-contact-details')
   }
 })
 

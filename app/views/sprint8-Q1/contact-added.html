@@ -136,7 +136,7 @@
                 {% endif %}
               </dd>
             </div>
-            {% if (data['contact'] == "Director of Children's Services") %}
+            {% if (data['contact'] == "Headteacher") or (data['contact'] == "Chair of governors") or (data['contact'] == "Trust chief accounting officer") or (data['contact'] == "Supporting organisation chief accounting officer") %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Address
@@ -215,6 +215,20 @@
                 {% endif %}
               </dd>
             </div>
+            {% if (data['contact-2'] == "Headteacher") or (data['contact'] == "Chair of governors") or (data['contact'] == "Trust chief accounting officer") or (data['contact'] == "Supporting organisation chief accounting officer") %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if (data['contact-address-2'] == '') %}
+                <span data-id="contact-phone" class="empty">Empty</span>
+                {% else %}
+                {{ data['contact-address-2']}}
+                {% endif %}
+              </dd>
+            </div>
+            {% endif %}
           </dl>
         </div>
       </div>
