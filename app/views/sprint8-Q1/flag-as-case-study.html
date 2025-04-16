@@ -53,7 +53,7 @@
         <div class="govuk-checkboxes__item margin-bottom-20">
           <input class="govuk-checkboxes__input" id="case-study-candidate" name="case-study-candidate" type="checkbox" value="done" {{checked("case-study-candidate", "done")}}>
           <label class="govuk-label govuk-checkboxes__label" for="case-study-candidate">
-            Add this school to list of case study candidates
+            Case study candidate
           </label>
         </div>
         </div>
@@ -70,12 +70,12 @@
           id: "case-study-reasons",
           value: data['case-study-reasons'],
           label: {
-            text: "Reasons",
+            text: "Details",
             classes: "govuk-label--m",
             isPageHeading: false
           },
           hint: {
-            text: "Give some reasons or background as to why this school would be a good candidate for a case study."
+            text: "Enter details about why this school would be a good candidate for a case study."
             }
           })      
         }}

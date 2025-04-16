@@ -62,7 +62,7 @@
 
       {% if (data['engagement-concern'] == NULL) %}
 
-      <p>Some text here about engagement concerns...</p>
+      <p>Enter details about situations where a school or responsible body do not respond to you.</p>
 
       <div class="govuk-!-margin-top-5">
         {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern" }) }}
@@ -71,16 +71,12 @@
      
       {% else %}
 
-     
-
-
       <div class="govuk-inset-text">
-       
         
-        <p>Some concern has been raised regarding the level of engagement from Cheltenham Spa Primary School</p>
+      <p>An engagement concern has been recorded.</p>
       </div>
       
-      <h2 class="govuk-heading-m">Reasons</h2>
+      <h2 class="govuk-heading-m">Details</h2>
 
       <p>{{ data['engagement-concern-reasons']}}</p>
 
@@ -89,9 +85,6 @@
       </div>
       
       {% endif %}
-
-
-     
 
         </div>
       </div>
