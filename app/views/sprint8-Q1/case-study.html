@@ -62,10 +62,12 @@
 
       {% if (data['case-study-candidate'] == NULL) %}
 
-      <p>Some text here about case studies, especially the ones for Channel 4 documentaries about schools improvement plans...</p>
+      <p>DfE would like to identify schools that could be used to help promote the benefits of the RISE intervention.</p>
+      <p>If you think this school is a good example, enter details about the school and its progress.</p>
+      <p>This will be used by the department to discuss potential promotional content and news coverage with interested parties.</p>
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Add to list of case study candidates", href: "flag-as-case-study" }) }}
+        {{ govukButton({ text: "Enter school details", href: "flag-as-case-study" }) }}
       </div>
 
      
@@ -77,15 +79,15 @@
       <div class="govuk-inset-text">
        
         
-        <p>Cheltenham Spa primary School has been added to the list of schools that would make good candidates for a case study.</p>
+        <p>This school might be used as a case study.</p>
       </div>
       
-      <h2 class="govuk-heading-m">Reasons</h2>
+      <h2 class="govuk-heading-m">Details</h2>
 
       <p>{{ data['case-study-reasons']}}</p>
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Update", href: "flag-as-case-study" }) }}
+        {{ govukButton({ text: "Update details", href: "flag-as-case-study" }) }}
       </div>
       
       {% endif %}
