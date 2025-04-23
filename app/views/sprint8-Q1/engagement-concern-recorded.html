@@ -46,11 +46,12 @@
             </div>
             <div class="govuk-notification-banner__content">
               <h3 class="govuk-notification-banner__heading">
-                Engagement concern recorded
+                Engagement concern updated
               </h3>
             </div>
           </div>
 
+         
 
       {% include "/layouts/summary-section.html" %}
 
@@ -73,7 +74,7 @@
 
       {% if (data['engagement-concern'] == NULL) %}
 
-      <p>An engagement concern has been recorded.</p>
+      <p>Enter details about situations where a school or responsible body do not respond to you.</p>
 
       <div class="govuk-!-margin-top-5">
         {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern" }) }}

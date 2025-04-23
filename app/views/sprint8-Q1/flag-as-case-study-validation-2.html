@@ -38,6 +38,18 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Delete details to remove the school as a case study candidate",
+              href: "#"
+            }
+          ]
+        }) }}
+
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -46,39 +58,27 @@
 
       <form class="form" action="./case-study-flagged" method="post">
 
-      
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+            <!--
+            <p id="countries-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Confirm if this school could be a case study
+              </p>
+            -->
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="case-study-candidate" name="case-study-candidate" type="checkbox" value="done" {{checked("case-study-candidate", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="case-study-candidate">
+            Case study candidate
+          </label>
+        </div>
+        </div>
+
+        </fieldset>
+        </div>
 
 
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-      
-      {% set detailsHtml %}
-      {{ govukTextarea({
-        name: "case-study-reasons",
-        id: "case-study-reasons",
-        value: data["case-study-reasons"],
-        label: {
-          text: "Enter details about why this school would be a good candidate for a case study"
-        }
-      }) }}
-      {% endset -%}
-      
-      {{ govukCheckboxes({
-        name: "case-study-candidate",
-        id: "case-study-candidate",
-        items: [
-          {
-            value: "Yes",
-            checked: data['case-study-candidate'] == "Yes",
-            text: "Case study candidate",
-            conditional: {
-              html: detailsHtml
-            }
-          }
-        ]
-      }) }}
 
-        <!--
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
         {{ govukTextarea({
@@ -90,12 +90,14 @@
             classes: "govuk-label--m",
             isPageHeading: false
           },
+          errorMessage: {
+            text: "Delete details to remove the school as a case study candidate"
+          },
           hint: {
             text: "Enter details about why this school would be a good candidate for a case study."
             }
           })      
         }}
-        -->
         
         <div class="govuk-button-group">
 

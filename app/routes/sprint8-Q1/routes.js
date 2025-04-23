@@ -8,6 +8,23 @@ module.exports = function (router) {
 
   var version = "sprint8-Q1";
 
+  // Run this code when a form is submitted to 'engagement-answer'
+ router.post('/' + version + '/engagement-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the checkbox on the index page  
+  const engagementConcernAnswer = req.body["engagement-concern"];
+
+  // Check whether the variable matches a condition
+  if (engagementConcernAnswer != "Yes") {
+    // Send user to next page 
+    res.redirect('/' + version + '/engagement-concern-recorded')
+  }   
+  else { 
+    // Send user to next page 
+    res.redirect('/' + version + '/record-engagement-concern-validation-2')
+  }
+})
+
 
  // Run this code when a form is submitted to 'add-contact-answer'
  router.post('/' + version + '/add-contact-answer', function(req, res) {
