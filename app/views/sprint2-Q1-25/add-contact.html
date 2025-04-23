@@ -1,0 +1,166 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add contact
+      </h1>
+      
+      <form class="form" action='add-contact-answer' method="post">
+
+        
+
+    
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        
+        {% set otherHtml %}
+        {{ govukInput({
+          id: "other-role-title",
+          name: "other-role-title",
+          value: data["other-role-title"],
+          spellcheck: false,
+          classes: "govuk-!-width-one-half"
+        }) }}
+        {% endset -%}
+        
+        
+        
+       
+        
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "Role",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select one option"
+          },
+          items: [
+          {
+            value: "Director of Children's Services",
+            text: "Director of Children's Services",
+            checked:  data['contact'] === "Director of Children's Services",
+            conditional: {
+              html: doeHtml
+            }
+          },
+          {
+            value: "Headteacher",
+            text: "Headteacher",
+            checked:  data['contact'] === "Headteacher",
+            conditional: {
+              html: headHtml
+            }
+          },
+          {
+            value: "Chair of governors",
+            text: "Chair of governors",
+            checked:  data['contact'] === "Chair of governors",
+            conditional: {
+              html: chairHtml
+            }
+          },
+          {
+            value: "Trust relationship manager",
+            text: "Trust relationship manager",
+            checked:  data['contact'] === "Trust relationship manager",
+            conditional: {
+              html: trmHtml
+            }
+          },
+          {
+            value: "Trust CEO",
+            text: "Trust CEO",
+            checked:  data['contact'] === "Trust CEO",
+            conditional: {
+              html: trustceoHtml
+            }
+          },
+          {
+            value: "Trust chief accounting officer",
+            text: "Trust chief accounting officer",
+            checked:  data['contact'] === "Trust chief accounting officer",
+            conditional: {
+              html: accountingofficerHtml
+            }
+          },
+          {
+            value: "Supporting organisation chief accounting officer",
+            text: "Supporting organisation chief accounting officer",
+            checked:  data['contact'] === "Supporting organisation chief accounting officer",
+            conditional: {
+              html: soaccountingofficerHtml
+            }
+          },
+          {
+            value: "other-role",
+            text: "Other role",
+            checked: false,
+            conditional: {
+            html: otherHtml
+              }
+            } 
+          ]
+        }) }}
+    
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

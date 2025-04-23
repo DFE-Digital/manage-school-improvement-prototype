@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-xl">
+        Add contact details
+      </h1>
+      
+      <form class="form" action='contact-added' method="post">
+
+        
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Name",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "contact-name-2",
+  name: "contact-name-2",
+  value: data["contact-name-2"]
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Organisation",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "contact-organisation-2",
+  name: "contact-organisation-2",
+  value: data["contact-organisation-2"]
+}) }}
+
+{{ govukInput({
+    label: {
+      text: "Email",
+      classes: "govuk-label--m",
+      isPageHeading: true
+    },
+    id: "contact-email-2",
+    name: "contact-email-2",
+    value: data["contact-email-2"]
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Phone",
+      classes: "govuk-label--m",
+      isPageHeading: true
+    },
+    id: "contact-phone-2",
+    name: "contact-phone-2",
+    allowEmpty: false,
+    value: data["contact-phone-2"]
+  }) }}
+
+
+  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+  {{ govukTextarea({
+    name: "contact-address-2",
+    id: "contact-address-2",
+    autocomplete: "contact-street-address-2",
+    label: {
+      text: "Address",
+      classes: "govuk-label--m"
+    }
+  }) }}
+    
+      
+    
+
+{{ govukButton({
+  text: "Add contact"
+}) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
