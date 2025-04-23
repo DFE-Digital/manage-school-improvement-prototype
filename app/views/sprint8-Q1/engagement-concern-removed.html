@@ -38,20 +38,18 @@
     <div class="govuk-grid-column-two-thirds">
 
         
-      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-        <div class="govuk-notification-banner__header">
-          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Success
-          </h2>
-        </div>
-        <div class="govuk-notification-banner__content">
-          <h3 class="govuk-notification-banner__heading">
-            <!--School identified as a case study candidate-->
-           <!--Case study details updated-->
-           School removed as a case study candidate
-          </h3>
-        </div>
-      </div>
+        <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <h3 class="govuk-notification-banner__heading">
+                Engagement concern removed
+              </h3>
+            </div>
+          </div>
 
 
       {% include "/layouts/summary-section.html" %}
@@ -62,7 +60,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "/layouts/sub-nav-tabs-case-study.html" %}
+      {% include "/layouts/sub-nav-tabs-engagement-concern.html" %}
 
       </div>
     </div>
@@ -70,43 +68,34 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Case study</h2>
+      <h2 class="govuk-heading-l">Engagement concern</h2>
 
 
-      {% if (data['case-study-candidate'] == NULL) %}
+      {% if (data['engagement-concern'] == NULL) %}
 
-      <p>DfE would like to identify schools that could be used to help promote the benefits of the RISE intervention.</p>
-      <p>If you think this school is a good example, enter details about the school and its progress.</p>
-      <p>This will be used by the department to discuss potential promotional content and news coverage with interested parties.</p>
+      <p>Enter details about situations where a school or responsible body do not respond to you.</p>
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Enter school details", href: "flag-as-case-study" }) }}
+        {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern" }) }}
       </div>
 
      
       {% else %}
 
-     
-
-
       <div class="govuk-inset-text">
-       
         
-        <p>School identified as a case study candidate.</p>
+      <p>An engagement concern has been recorded.</p>
       </div>
       
       <h2 class="govuk-heading-m">Details</h2>
 
-      <p>{{ data['case-study-reasons']}}</p>
+      <p>{{ data['engagement-concern-reasons']}}</p>
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Change case study details", href: "flag-as-case-study" }) }}
+        {{ govukButton({ text: "Update", href: "record-engagement-concern" }) }}
       </div>
       
       {% endif %}
-
-
-     
 
         </div>
       </div>
