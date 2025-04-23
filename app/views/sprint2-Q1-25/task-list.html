@@ -700,12 +700,12 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if ((data['improvement-grant-letter-requested-date-day'] == NULL) or (data['improvement-grant-letter-requested-date-day'] == '')) %}
+            {% if (data['required-contacts-2'] == NULL) and (data['attach-sip-template'] == NULL) and (data['copy-in-rd-2'] == NULL) and (data['send-to-gmfu-2'] == NULL) and ((data['improvement-grant-letter-requested-date-day'] == NULL) or (data['improvement-grant-letter-requested-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
 
-            {% elif (data['improvement-grant-letter-requested-date-day'] != '') %}
+            {% elif (data['required-contacts-2'] == 'done') and (data['attach-sip-template'] == 'done') and (data['copy-in-rd-2'] == 'done') and (data['send-to-gmfu-2'] == 'done') and (data['improvement-grant-letter-requested-date-day'] != '')  %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
