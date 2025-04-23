@@ -629,14 +629,16 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if (data['review-plan-with-team'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL ) or (data['improvement-plan-received-date-day'] == '')) %}
+            {% if (data['review-sip'] == NULL) and (data['send-draft-plans'] == NULL) and (data['confirm-plan-cleared'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL) or (data['improvement-plan-received-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-            {% elif (data['review-plan-with-team'] == 'done') and (data['improvement-plan-received-date-day'] != '') %}
+
+            {% elif (data['review-sip'] == 'done') and (data['send-draft-plans'] == 'done') and (data['confirm-plan-cleared'] == 'done') and (data['improvement-plan-received-date-day'] != '')  %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
+         
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress

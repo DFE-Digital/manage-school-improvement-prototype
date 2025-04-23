@@ -38,6 +38,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Day must be between 1 and 31",
+              href: "#"
+            },
+            {
+              text: "Month must be between 1 and 12",
+              href: "#"
+            },
+            {
+              text: "You must enter today's date or a date in the past",
+              href: "#"
+            }
+          ]
+        }) }}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Review the improvement plan
@@ -67,6 +87,9 @@
           },
           hint: {
             text: "For example, 1 7 2024."
+          },
+          errorMessage: {
+            text: "Day must be between 1 and 31"
           },
           items: [
             {
