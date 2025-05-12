@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-xl">
+        What funding has the school received?
+      </h1>
+
+    
+
+      <form class="form" action="../project-list-school-added" method="post">
+      
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+          {% set fundingHtml %}
+    
+          {{ govukTextarea({
+            name: "details-of-funding",
+            hint: {
+              text: ""
+            },
+            id: "details-of-funding",
+            title: "Not eligibility details",
+            value: data["value: data['details-of-funding'],"],
+            label: {
+              text: "Give details of any funding the school has received, or is currently receiving. Include each grant or funding type, when they were paid and how much."
+            }
+          }) }}
+          {% endset -%}
+    
+          {{ govukRadios({
+            idPrefix: "funding",
+            name: "funding",
+            items: [
+            {
+                value: "Yes",
+                checked:  data['funding'] === "Yes",
+                text: "Yes",
+                conditional: {
+                  html: fundingHtml
+                }
+            },
+            {
+                value: "No",
+                checked:  data['funding'] === "No",
+                text: "No"
+            }
+            ]
+          }) }}
+
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
