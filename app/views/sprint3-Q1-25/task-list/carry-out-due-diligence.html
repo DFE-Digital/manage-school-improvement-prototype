@@ -82,31 +82,42 @@
                   Speak to trust relationship manager or local authority lead to check choice
                 </label>
               </div>
-              
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="discuss-choice-with-sfso" name="discuss-choice-with-sfso" type="checkbox" value="done" {{checked("discuss-choice-with-sfso", "done")}}>
-                <label class="govuk-label govuk-checkboxes__label" for="discuss-choice-with-sfso">
-                  Discuss choice with SFSO (Schools Financial Support and Oversight)
-                </label>
-              </div>
 
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="talk-to-grant-team" name="talk-to-grant-team" type="checkbox" value="done" {{checked("talk-to-grant-team", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="talk-to-grant-team">
-                  Talk to the grant team to check for any known financial concerns at the supporting organisation
+                  Contact SFSO (Schools Financial Support and Oversight) so that they can complete financial check on supporting organisation.<br>
+                  <a href="https://forms.office.com/pages/responsepage.aspx?id=yXfS-grGoU2187O4s0qC-YuBOAolASxHohL1eqzSacxUREk5Mkw2UUZRWUk3R0k2MkZSSTVFOEgxUi4u&route=shorturl" target="_blank">Use the commissioning form (opens in new tab)</a> to raise the request with SFSO.
                 </label>
               </div>
 
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="check-for-vendor-account" name="check-for-vendor-account" type="checkbox" value="done" {{checked("check-for-vendor-account", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="check-for-vendor-account">
-                  Check the organisation has a vendor account so they can be paid
+                  Check the supporting organisation has a vendor account<br>
+                  You can <a href="https://login.microsoftonline.com/common/DeviceAuthTls/reprocess" target="_blank">check if the supporting organisation has a vendor account (opens in new tab)</a> on SharePoint.
                 </label>
               </div>
+
+              
         
             </div>
           </fieldset>
         </div>
+
+        <details class="govuk-details margin-top-minus-15">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              How to set up a vendor account
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>The organisation receiving the grant must have a vendor account. They cannot be paid without one.</p>
+            <p>They can <a href=https://www.gov.uk/guidance/provide-information-about-your-banking-and-payments-to-dfe" target="_blank">set up a vendor account (opens in new tab)</a> when they provide information about their banking and payments to Department for Education.</p>
+            <p>Share the link with them so they can register if needed.</p>
+            <p>It can take 15 to 20 days for an account to be created.</p>
+          </div>
+        </details>
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}

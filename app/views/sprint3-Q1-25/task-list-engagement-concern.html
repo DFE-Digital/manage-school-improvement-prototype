@@ -488,11 +488,11 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['discuss-choice-with-sfso'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
+            {% if (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-            {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['discuss-choice-with-sfso'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
+            {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
