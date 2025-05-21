@@ -1,0 +1,196 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Record improvement plan decision
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>Confirm if a regional director has approved this improvement plan.</p>
+
+
+
+      <form class="form" action="../task-list" method="post">
+
+        
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        {% set noHtml %}
+
+        {{ govukTextarea({
+          name: "not-approved-details",
+          hint: {
+            text: ""
+          },
+          id: "not-approved-details",
+          title: "Not approved details",
+          value: data["not-approved-details"],
+          label: {
+            text: "Provide some details about why approval was not given."
+          }
+        }) }}
+        {% endset -%}
+         
+        {{ govukRadios({
+          idPrefix: "plan-approved",
+          name: "plan-approved",
+          fieldset: {
+            legend: {
+              text: "Has a regional director approved this improvement plan?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+              text: "If approval has not been given, add a note to explain why."
+          },
+          items: [
+          {
+              value: "Yes",
+              checked:  data['plan-approved'] === "Yes",
+              text: "Yes"
+          },
+          {
+              value: "No",
+              checked:  data['plan-approved'] === "No",
+              text: "No",
+              conditional: {
+                html: noHtml
+              }
+          }
+          ]
+        }) }}
+
+
+
+       
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "plan-approved-date",
+          namePrefix: "plan-approved-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the regional director approved this plan",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["plan-approved-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["plan-approved-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["plan-approved-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
