@@ -1,0 +1,197 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Review the improvement plan
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">Check the improvement plan that the supporting organisation and responsible body have completed. If needed, give feedback and suggest changes.</p>
+
+      <form class="form" action="../task-list" method="post">
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "improvement-plan-received-date",
+          namePrefix: "improvement-plan-received-date",
+          fieldset: {
+            legend: {
+              text: "Enter date improvement plan received",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["improvement-plan-received-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["improvement-plan-received-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["improvement-plan-received-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+
+        <h2 class="govuk-heading-m">Review the plan</h2>
+
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+        
+
+        <div class="govuk-checkboxes__item margin-bottom-15">
+          <input class="govuk-checkboxes__input" id="review-sip" name="review-sip" type="checkbox" value="done" {{checked("review-sip", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="review-sip">
+            Review the plan with the adviser and regional team
+          </label>
+        </div>
+
+
+        <div class="govuk-checkboxes__item margin-bottom-minus-15">
+          <input class="govuk-checkboxes__input" id="send-draft-plans" name="send-draft-plans" type="checkbox" value="done" {{checked("send-draft-plans", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="send-draft-plans">
+            Send the draft improvement and expenditure plans to the RISE grant team for review
+          </label>
+          
+          <div id="send-draft-plans-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            You must include the name of the supporting organisation and the school. Send the plans to <a href="mailto:rise.grant@education.gov.uk">rise.grant@education.gov.uk</a>.
+            <details class="govuk-details margin-top-15">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What to do if the plans need changing
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p>The RISE grant team will tell you if any changes are needed to the plans.</p>
+                <p>When this happens, give the feedback to the supporting organisation and responsible body.</p>
+                <p>They should then update and resubmit the improvement and expenditure plans.<p>
+                <p>You only need to record the date the first version of the plans were sent.</p>
+              </div>
+            </details>
+
+          </div>
+          
+        </div>
+
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="confirm-plan-cleared" name="confirm-plan-cleared" type="checkbox" value="done" {{checked("confirm-plan-cleared", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="confirm-plan-cleared">
+            Confirm plan has been cleared by the RISE grant team
+          </label>
+        </div>
+
+       
+        </div>
+
+        </fieldset>
+        </div>
+       
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
