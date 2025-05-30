@@ -38,9 +38,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['assigned-to'] == NULL) %} 
-      {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['discuss-best-approach'] != 'done') or (data['email-responsible-body'] != 'done') or (data['school-contacted-date-day'] == '') %}
+      {% if (data['assigned-to'] == NULL) %}  
       {% include "/layouts/task-locked-banner.html" %}
       {% endif %}
 
@@ -143,8 +141,8 @@
           ]
         }) }}
 
-       
-        {% if (data['discuss-best-approach'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+        {% if (data['assigned-to'] != NULL) and (data['discuss-best-approach'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+        
         {{ govukButton({
           text: "Save and return"
         }) }}

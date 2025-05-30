@@ -38,6 +38,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['conflicts-form-sent'] != 'done') or (data['conflicts-form-back'] != 'done') or (data['conflicts-form-saved'] != 'done') or (data['conflicts-of-interest-date-day'] == '') %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Allocate an adviser
@@ -52,14 +58,16 @@
 
         <p>Enter the email address of the adviser and the date they were allocated to this school.</p>
 
-
+        <!--
         {% if (data['allocated-adviser-email'] == NULL) %}
         <form class="form" action="../task-list-allocated" method="post">
         {% else %}
         <form class="form" action="../task-list" method="post">
         {% endif %}
-        
-        
+        -->
+
+        <form class="form" action="../task-list" method="post">
+
         <!--
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
@@ -158,15 +166,17 @@
           ]
         }) }}
 
+
+        {% if (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
         {{ govukButton({
           text: "Save and return"
         }) }}
-
+        {% endif %}
       </form>
 
     </div>
 
-
+    <!--
     <div class="govuk-grid-column-one-third">
 
       <h2 class="govuk-heading-m">
@@ -190,7 +200,7 @@
 
 
     </div>
-
+    -->
 
 
 

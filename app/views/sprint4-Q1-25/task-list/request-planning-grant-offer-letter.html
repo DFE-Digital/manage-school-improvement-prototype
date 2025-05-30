@@ -38,6 +38,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      
+      {% if (data['assigned-to'] == NULL) %}  
+      {% include "/layouts/task-locked-banner-2.html" %}
+        {% elif (data['organisation-capacity'] != 'done') or (data['speak-to-relationship-manager'] != 'done') or (data['talk-to-grant-team'] != 'done') or (data['check-for-vendor-account'] != 'done') or (data['due-diligence-date-day'] == NULL) or (data['so-approved'] == NULL) or (data['so-approved-date-day'] == NULL) or (data['supporting-organisation-contact-name'] == NULL) or (data['so-contact-email'] == '') or (data['so-contact-added-date-day'] == '') %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Request planning grant offer letter
@@ -180,9 +187,11 @@
           ]
         }) }}
 
+        {% if (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done')and (data['talk-to-grant-team'] == 'done')and (data['check-for-vendor-account'] == 'done')and (data['due-diligence-date-day'] != NULL) and (data['so-approved'] != NULL) and (data['so-approved-date-day'] != NULL) and (data['supporting-organisation-contact-name'] != NULL) and (data['so-contact-email'] != NULL) and (data['so-contact-added-date-day'] != '') %}
         {{ govukButton({
-          text: "Save and return"
+        text: "Save and return"
         }) }}
+        {% endif %}
 
       </form>
 
