@@ -130,9 +130,16 @@
 
           <div class="govuk-task-list__status" id="company-details-2-status">
 
+             {% if (data['assigned-to'] == NULL) and (data['eligible'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot start yet
             </strong>
+             {% elif (data['assigned-to'] != NULL) and (data['eligible'] != NULL) %}
+             <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% endif %}
+
 
             <!--
             {% if (data['received-funding'] == NULL) %}
@@ -183,9 +190,15 @@
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
 
+            {% if (data['assigned-to'] == NULL) and (data['eligible'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot start yet
             </strong>
+             {% elif (data['assigned-to'] != NULL) and (data['eligible'] != NULL) %}
+             <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% endif %}
 
             <!--
             {% if (data['discuss-best-approach'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
@@ -212,9 +225,19 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-             <strong class="govuk-tag govuk-tag--grey">
+
+
+             {% if (data['school-contacted-date-day'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
               Cannot start yet
             </strong>
+             {% elif (data['assigned-to'] != NULL) and (data['discuss-best-approach'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+             <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% endif %}
+
+
             <!--
             {% if (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
@@ -246,9 +269,15 @@
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
 
+            {% if (data['assigned-to'] == NULL) and (data['eligible'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot start yet
             </strong>
+             {% elif (data['assigned-to'] != NULL) and (data['eligible'] != NULL) %}
+             <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% endif %}
             
             <!--
             {% if (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}

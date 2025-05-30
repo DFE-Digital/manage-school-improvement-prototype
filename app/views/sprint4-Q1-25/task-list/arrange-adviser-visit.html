@@ -38,6 +38,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['accepted-support'] == NULL) or (data['response-saved'] != 'done') or (data['school-response-date-day'] == '') or (data['allocated-adviser-email'] == NULL) or (data['adviser-allocated-date-day'] == '') %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Arrange adviser visit to school
@@ -97,9 +103,11 @@
           ]
         }) }}
 
+        {% if (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') and (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
         {{ govukButton({
-          text: "Save and return"
+        text: "Save and return"
         }) }}
+        {% endif %}
 
       </form>
 

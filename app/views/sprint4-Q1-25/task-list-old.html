@@ -53,7 +53,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-      <!--<h2 class="govuk-heading-l">Task list</h2>-->
+      <h2 class="govuk-heading-l">Task list</h2>
 
       <!--
       Best approach: {{ data['discuss-best-approach']}}<br>
@@ -85,8 +85,8 @@
       </p>
       -->
 
-      <h2 class="govuk-heading-l">Phase 1: Identifying</h2>
-      <h3 class="govuk-heading-m">Before you start</h3>
+      <h3 class="govuk-heading-l">Phase 1: Identifying</h3>
+      <h4 class="govuk-heading-m">Before you start</h2>
 
 
   
@@ -111,9 +111,6 @@
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-
-      
           <div class="govuk-task-list__name-and-hint">
             {% if (data['received-funding'] == NULL) or (data['received-funding'] == 'No') %}
             <a class="govuk-link govuk-task-list__link" href="task-list/funding-history" aria-describedby="company-details-2-status">
@@ -125,16 +122,7 @@
             </a>
             {% endif %}
           </div>
-
-
-
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['received-funding'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -148,7 +136,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <!--
@@ -171,7 +158,7 @@
 
 
      
-      <h3 class="govuk-heading-m">Begin the project</h3>
+      <h4 class="govuk-heading-m">Begin the project</h3>
 
       <ul class="govuk-task-list">
 
@@ -182,12 +169,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['discuss-best-approach'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -201,7 +182,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
 
@@ -212,10 +192,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-             <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-            <!--
             {% if (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -229,7 +205,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
         </div>
         </li>
 
@@ -245,12 +220,7 @@
             -->
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
             
-            <!--
             {% if (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -264,7 +234,7 @@
               In progress
             </strong>
             {% endif %}
-            -->
+
           </div>
         </li>
 
@@ -279,12 +249,27 @@
 
           <div class="govuk-task-list__status" id="company-details-4-status">
 
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
+            <!--
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
             </strong>
+           
+            {% elif ((data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] != '')) or ((data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+
+            {% if (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+            -->
             
 
-            <!--
+            
             {% if ((data['allocated-adviser-email'] == NULL) or (data['allocated-adviser-email'] == '')) and ((data['adviser-allocated-date-day'] == NULL) or (data['adviser-allocated-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -300,7 +285,7 @@
               In progress
             </strong>
             {% endif %}
-            -->
+          
 
             
      
@@ -316,8 +301,8 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-l">Phase 2: Initial diagnosis and matching</h2>
-      <h3 class="govuk-heading-m">Establish support needs</h3>
+      <h3 class="govuk-heading-l">Phase 2: Initial diagnosis and matching</h3>
+      <h4 class="govuk-heading-m">Establish support needs</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -327,12 +312,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['share-email-template'] == NULL) and (data['remind-the-adviser'] == NULL) and ((data['introductory-email-date-day'] == NULL ) or (data['introductory-email-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -346,8 +325,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
-
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -357,12 +334,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['adviser-visit-date-day'] == NULL) or (data['adviser-visit-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -372,13 +343,12 @@
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
+         
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -388,12 +358,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['adviser-visit-recorded-date-day'] == NULL) or (data['adviser-visit-recorded-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -409,8 +373,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
-
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -420,12 +382,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['give-note-of-visit-template'] == NULL) and (data['ask-adviser-for-notes'] == NULL) and ((data['note-of-visit-saved-date-day'] == NULL ) or (data['note-of-visit-saved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -439,7 +395,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -449,28 +404,19 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['talk-to-adviser'] == NULL) and (data['complete-assessment-template'] == NULL) and ((data['assessment-template-saved-date-day'] == NULL ) or (data['assessment-template-saved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif (data['talk-to-adviser'] == 'done') and (data['complete-assessment-template'] == 'done') and (data['assessment-template-saved-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -480,35 +426,25 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['school-matched'] == NULL) and ((data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif  (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
-
           </div>
         </li>
       </ul>
 
      
-      <h3 class="govuk-heading-m">Find possible supporting organisation</h3>
+      <h4 class="govuk-heading-m">Find possible supporting organisation</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -518,29 +454,19 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['supporting-organisation-name'] == NULL) or (data['supporting-organisation-name'] == '')) and ((data['id-number'] == NULL) or (data['id-number'] == '')) and ((data['supporting-org-chosen-date-day'] == NULL ) or (data['supporting-org-chosen-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif (data['supporting-organisation-name'] != '') and (data['id-number'] != '') and (data['supporting-org-chosen-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
-
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -550,28 +476,19 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -586,28 +503,19 @@
             -->
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['so-approved'] == NULL) and ((data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -617,36 +525,27 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['supporting-organisation-contact-name'] == NULL) or (data['supporting-organisation-contact-name'] == '')) and ((data['so-contact-email'] == NULL) or (data['so-contact-email'] == '')) and ((data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif (data['supporting-organisation-contact-name'] != '') and (data['so-contact-email'] != '') and (data['so-contact-added-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
       </ul>
 
 
 
-      <h2 class="govuk-heading-l">Phase 3: Diagnosis and planning</h2>
-      <h3 class="govuk-heading-m">Send planning grant offer letter</h3>
+      <h3 class="govuk-heading-l">Phase 3: Diagnosis and planning</h3>
+      <h4 class="govuk-heading-m">Send planning grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -657,11 +556,6 @@
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
 
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['required-contacts'] == NULL) and (data['confirm-amount'] == NULL) and (data['copy-in-rd'] == NULL) and (data['send-to-gmfu'] == NULL) and ((data['planning-grant-letter-requested-date-day'] == NULL) or (data['planning-grant-letter-requested-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -677,7 +571,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -687,12 +580,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['planning-letter-sent-date-day'] == NULL) or (data['planning-letter-sent-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -708,12 +595,11 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
       </ul>
 
-      <h3 class="govuk-heading-m">Create the improvement plan</h3>
+      <h3 class="govuk-heading-m">Create the improvement plan</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -723,12 +609,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -742,7 +622,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -752,12 +631,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['review-sip'] == NULL) and (data['send-draft-plans'] == NULL) and (data['confirm-plan-cleared'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL) or (data['improvement-plan-received-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -773,7 +646,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -783,28 +655,19 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-3-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['save-plan-in-sharepoint'] == NULL) and (data['email-plan-for-approval'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif (data['save-plan-in-sharepoint'] == 'done') and (data['email-plan-for-approval'] == 'done') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -814,33 +677,24 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-4-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['plan-approved'] == NULL) and ((data['plan-approved-date-day'] == NULL) or (data['plan-approved-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-
             {% elif  (data['plan-approved'] != NULL) and (data['plan-approved-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
-
             {% else %}
             <strong class="govuk-tag govuk-tag--orange">
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
       </ul>
 
-      <h3 class="govuk-heading-m">Send improvement grant offer letter</h3>
+      <h3 class="govuk-heading-m">Send improvement grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -850,12 +704,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if (data['required-contacts-2'] == NULL) and (data['attach-sip-template'] == NULL) and (data['copy-in-rd-2'] == NULL) and (data['send-to-gmfu-2'] == NULL) and ((data['improvement-grant-letter-requested-date-day'] == NULL) or (data['improvement-grant-letter-requested-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -871,7 +719,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -881,12 +728,6 @@
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
-
-            <!--
             {% if ((data['improvement-letter-sent-date-day'] == NULL) or (data['improvement-letter-sent-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
@@ -902,7 +743,6 @@
               In progress
             </strong>
             {% endif %}
-            -->
           </div>
         </li>
       </ul>

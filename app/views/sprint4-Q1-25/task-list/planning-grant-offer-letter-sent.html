@@ -38,6 +38,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if (data['assigned-to'] == NULL) %}  
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['required-contacts'] != 'done') or (data['confirm-amount'] != 'done') or (data['copy-in-rd'] != 'done') or (data['send-to-gmfu'] != 'done') or (data['planning-grant-letter-requested-date-day'] == '')  %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Confirm planning grant offer letter sent
@@ -97,9 +103,11 @@
           ]
         }) }}
 
+        {% if (data['required-contacts'] == 'done') and (data['confirm-amount'] == 'done') and (data['copy-in-rd'] == 'done') and (data['send-to-gmfu'] == 'done') and (data['planning-grant-letter-requested-date-day'] != '')  %}
         {{ govukButton({
-          text: "Save and return"
+        text: "Save and return"
         }) }}
+        {% endif %}
 
       </form>
 

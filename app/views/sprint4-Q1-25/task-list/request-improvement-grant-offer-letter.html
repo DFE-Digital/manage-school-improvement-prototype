@@ -38,6 +38,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if (data['assigned-to'] == NULL) %}  
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['plan-approved'] == NULL) or (data['plan-approved-date-day'] == '') %}
+       {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Request improvement grant offer letter
@@ -168,9 +174,12 @@
         }) }}
 
 
+        
+        {% if (data['plan-approved'] != NULL) and (data['plan-approved-date-day'] != '') %}
         {{ govukButton({
-          text: "Save and return"
+        text: "Save and return"
         }) }}
+        {% endif %}
 
       </form>
 
