@@ -1,0 +1,189 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        
+
+
+
+      {% include "/layouts/summary-section.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "/layouts/sub-nav-tabs-funding-history.html" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Funding history</h2>
+
+     
+      
+
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add funding", href: "add-more-funding" }) }}
+      </div>
+
+     
+      {% if (data['funding-name'] != NULL) %}
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['funding-name']}}
+          </h2>
+          <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="./start-new-project/edit-funding.html">
+                    Change<span class="govuk-visually-hidden"> funding</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                &pound;{{ data['funding-amount']}}
+              </dd>
+             
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date funding paid
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data | isoDateFromDateInput("funding-paid-date") | govukDate }}
+              </dd>
+            
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comments
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-comments']}}
+              </dd>
+             
+            </div>
+          </dl>
+        </div>
+      </div>
+     
+      {% endif %}
+
+
+      {% if (data['funding-name-2'] != NULL) %}
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['funding-name-2']}}
+          </h2>
+          <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="">
+                    Change<span class="govuk-visually-hidden"> funding</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                &pound;{{ data['funding-amount-2']}}
+              </dd>
+             
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date funding paid
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data | isoDateFromDateInput("funding-paid-date-2") | govukDate }}
+              </dd>
+            
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comments
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-comments-2']}}
+              </dd>
+             
+            </div>
+          </dl>
+        </div>
+      </div>
+     
+      {% endif %}
+
+
+     
+
+        </div>
+      </div>
+      
+
+    
+      <!--
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add note", href: "#" }) }}
+      </div>
+      -->
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
