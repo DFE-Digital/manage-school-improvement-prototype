@@ -1,0 +1,183 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['assigned-to'] == NULL) %}  
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['planning-letter-sent-date-day'] == NULL) %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Share the improvement plan template
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">Send a copy of the school improvement template to the supporting organisation and the school's responsible body.</p>
+
+
+
+      <form class="form" action="../task-list" method="post">
+
+        
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <!--
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h2 class="govuk-fieldset__heading padding-bottom-15">
+                Save the school’s response in SharePoint
+              </h1>
+            </legend>
+          -->
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="send-template-to-so" name="send-template-to-so" type="checkbox" value="done" {{checked("send-template-to-so", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="send-template-to-so">
+                  Send the template to the supporting organisation
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="send-template-to-rb" name="send-template-to-rb" type="checkbox" value="done" {{checked("send-template-to-rb", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="send-template-to-rb">
+                  Send the template to the school's responsible body
+                </label>
+              </div>
+              
+             
+        
+            </div>
+          </fieldset>
+        </div>
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "templates-sent-date",
+          namePrefix: "templates-sent-date",
+          fieldset: {
+            legend: {
+              text: "Enter date templates sent",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["templates-sent-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["templates-sent-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["templates-sent-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {% if (data['planning-letter-sent-date-day'] != NULL) %}
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
