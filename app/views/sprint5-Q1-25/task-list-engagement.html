@@ -35,9 +35,9 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
 
-      {% include "/layouts/summary-section.html" %}
+      {% include "/layouts/summary-section-engagement.html" %}
     
     </div>
   </div>
@@ -55,30 +55,108 @@
 
       <h2 class="govuk-heading-l">Task list</h2>
 
-      
+      <!--
+      <p>
+      Email address: {{ data['allocated-adviser-email']}}<br>
+      Date day: {{ data['adviser-allocated-date-day']}}
+      </p>
+      -->
 
-      <h3 class="govuk-heading-m">Begin the project</h3>
+      <h3 class="govuk-heading-l">Phase 1: Identifying</h3>
+      <h4 class="govuk-heading-m">Before you start</h2>
+
+
+  
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/eligibility-check" aria-describedby="company-details-2-status">
+              Confirm eligibility
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if (data['eligible'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            {% if (data['received-funding'] == NULL) or (data['received-funding'] == 'No') %}
+            <a class="govuk-link govuk-task-list__link" href="task-list/funding-history" aria-describedby="company-details-2-status">
+              Enter funding history
+            </a>
+            {% elif (data['received-funding'] != NULL) and (data['funding-complete'] != "done") %}
+            <a class="govuk-link govuk-task-list__link" href="task-list/check-funding-details" aria-describedby="company-details-2-status">
+              Enter funding history
+            </a>
+            {% endif %}
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            {% if (data['received-funding'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['received-funding'] == 'No') or ((data['received-funding'] == 'Yes') and (data['funding-name'] != NULL) and (data['funding-completed'] == 'done'))  %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          </div>
+        </li>
+        <!--
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/support-history" aria-describedby="company-details-2-status">
+              Enter support history
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          </div>
+        </li>
+        -->
+      </ul>
+
+
+
+
+
+      <h4 class="govuk-heading-m">Begin the project</h3>
 
       <ul class="govuk-task-list">
 
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="task-list/contact-the-school" aria-describedby="company-details-2-status">
-              Contact the school
+            <a class="govuk-link govuk-task-list__link" href="task-list/contact-responsible-body" aria-describedby="company-details-2-status">
+              Contact the responsible body
             </a>
           </div>
           <div class="govuk-task-list__status" id="company-details-2-status">
-            {% if (data['find-school-email-address'] == 'done') and (data['use-template-notification-letter'] == 'done') and (data['attach-rise-info-pack'] == 'done') and (data['school-contacted-date-day'] != '') %}
-        
-              Completed
-       
-            {% elif (data['find-school-email-address'] == 'done') or (data['use-template-notification-letter'] == 'done') or (data['attach-rise-info-pack'] == 'done') or (data['school-contacted-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--light-blue">
-              In progress
-            </strong>
-            {% elif (data['find-school-email-address'] == NULL) and (data['use-template-notification-letter'] == NULL) and (data['attach-rise-info-pack'] == NULL) and (data['school-contacted-date-day'] == '' ) %}
+            {% if ( (data['discuss-best-approach'] == NULL) and (data['email-responsible-body'] == NULL) and (data['school-contacted-date-day'] == NULL )) or ((data['discuss-best-approach'] == '') and (data['email-responsible-body'] == '') and (data['school-contacted-date-day'] == '' ))%}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
+            </strong>
+            {% elif  (data['discuss-best-approach'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
             </strong>
             {% endif %}
           </div>
@@ -86,24 +164,27 @@
 
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-2-status">
+            <a class="govuk-link govuk-task-list__link" href="task-list/record-schools-response" aria-describedby="company-details-2-status">
               Record the school's response
             </a>
           </div>
-
           <div class="govuk-task-list__status" id="company-details-2-status">
-
-         
-
-          <strong class="govuk-tag govuk-tag--blue">
-            Not started
-          </strong>
-       
+            {% if ((data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and (data['school-contacted-date-day'] == NULL )) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
         </div>
-
-       
-          
         </li>
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
@@ -111,7 +192,7 @@
             </a>
             <!--
             <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company's relevant financial information
+              Include 5 years of the company’s relevant financial information
             </div>
             -->
           </div>
@@ -121,21 +202,71 @@
             </strong>
           </div>
         </li>
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-4-status">
-              Assign an adviser
+            <a class="govuk-link govuk-task-list__link" href="task-list/allocate-an-adviser" aria-describedby="company-details-4-status">
+              Allocate an adviser
             </a>
           </div>
+
+
+
           <div class="govuk-task-list__status" id="company-details-4-status">
+
+            <!--
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
+           
+            {% elif ((data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] != '')) or ((data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+
+            {% if (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+            -->
+            
+
+            
+            {% if (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+
+            
+     
+
+
+            
+           
+
+           
+          
+            
           </div>
         </li>
       </ul>
-
-      <h2 class="govuk-heading-m">Establish support needs</h2>
+      <h3 class="govuk-heading-l">Phase 2: Initial diagnosis and matching</h3>
+      <h4 class="govuk-heading-m">Establish support needs</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -212,7 +343,7 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Find possible supporting organisation</h2>
+      <h4 class="govuk-heading-m">Find possible supporting organisation</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -246,7 +377,7 @@
             </a>
             <!--
             <div id="company-details-3-hint" class="govuk-task-list__hint">
-              Include 5 years of the company's relevant financial information
+              Include 5 years of the company’s relevant financial information
             </div>
             -->
           </div>
@@ -270,7 +401,10 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Send planning grant offer letter</h2>
+
+
+      <h3 class="govuk-heading-l">Phase 3: Diagnosis and planning</h3>
+      <h4 class="govuk-heading-m">Send planning grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -299,7 +433,7 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Create the improvement plan</h2>
+      <h4 class="govuk-heading-m">Create the improvement plan</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -352,7 +486,7 @@
         </li>
       </ul>
 
-      <h2 class="govuk-heading-m">Send improvement grant offer letter</h2>
+      <h4 class="govuk-heading-m">Send improvement grant offer letter</h2>
 
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -377,58 +511,6 @@
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-          </div>
-        </li>
-      </ul>
-
-      <h2 class="govuk-heading-m">Additional bonus tasks</h2>
-      <ul class="govuk-task-list">
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 1</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 2</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 3</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 4</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 5</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
-          </div>
-        </li>
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="#">Bonus task 6</a>
-          </div>
-          <div class="govuk-task-list__status">
-            <strong class="govuk-tag govuk-tag--blue">Not started</strong>
           </div>
         </li>
       </ul>
