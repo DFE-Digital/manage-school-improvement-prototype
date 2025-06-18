@@ -15,21 +15,7 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
+ 
 
 {% endblock %}
 
@@ -68,21 +54,201 @@
         {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern" }) }}
       </div>
 
+      
+
      
       {% else %}
 
-      <div class="govuk-inset-text">
-        
-      <p>An engagement concern has been recorded.</p>
-      </div>
-      
-      <h2 class="govuk-heading-m">Details</h2>
+      <div class="govuk-button-group">
 
-      <p>{{ data['engagement-concern-reasons']}}</p>
-
+        {% if (data['escalation-primary-reason'] == NULL) %}
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Update", href: "record-engagement-concern" }) }}
+        {{ govukButton({ text: "Escalate concern", href: "escalate-engagement-concern" }) }}
       </div>
+      {% endif %}
+
+      {% if (data['information-powers'] != "Yes") %}
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
+      </div>
+      {% endif %}
+
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Engagement concern
+          </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-engagement-concern">
+                Change<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date raised
+              </dt>
+              <dd class="govuk-summary-list__value">
+                30 May 2025
+              </dd>
+              
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of the concern
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['engagement-concern-reasons']}}
+              </dd>
+             
+            </div>
+
+
+
+
+
+            
+            {% if (data['escalation-primary-reason'] != NULL) %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Escalated
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+             
+            </div>
+            {% endif %}
+
+          </dl>
+        </div>
+      </div>
+
+      
+
+      
+
+      {% if (data['escalation-primary-reason'] != NULL) %}
+
+<div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Escalation details
+          </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action"> <a class="govuk-link" href="escalation-reason">
+                Change<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date escalated
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['escalation-decision-date']}}
+
+                <span>{{ data['escalation-decision-date-day'] }} </span>
+          <span>{{ data['escalation-decision-date-month'] }} </span>
+          <span>{{ data['escalation-decision-date-year'] }}</span>
+              </dd>
+             
+            </div>
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Primary reason for escalation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['escalation-primary-reason']}}
+              </dd>
+             
+            </div>
+        
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of escalation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['escalation-reason-details']}}
+              </dd>
+             
+            </div>
+
+           
+
+
+          </dl>
+        </div>
+      </div>
+
+      {% endif %}
+    
+      
+      {% if (data['information-powers'] == "Yes") %}
+
+      <div class="govuk-summary-card">
+              <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                  Information powers
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
+                      Change<span class="govuk-visually-hidden"> information powers</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Date used
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                     
+      
+                      <span>{{ data['information-powers-date-day'] }} </span>
+                <span>{{ data['information-powers-date-month'] }} </span>
+                <span>{{ data['information-powers-date-year'] }}</span>
+                    </dd>
+                   
+                  </div>
+                  
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Details
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['information-powers-details']}}
+                    </dd>
+                   
+                  </div>
+              
+                  
+      
+                 
+      
+      
+                </dl>
+              </div>
+            </div>
+      
+            {% endif %}
+    
+      
+      
       
       {% endif %}
 
