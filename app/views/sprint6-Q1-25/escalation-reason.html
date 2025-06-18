@@ -1,0 +1,126 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Reason for escalation
+      </h1>
+
+      <p>Select the primary reason for escalation and enter details.</p>
+
+      <h2 class="govuk-heading-m">
+        Primary reason for escalation
+      </h2>
+
+      <form class="form" action="escalation-date" method="post">
+
+
+
+
+      <p>There may be several reasons to escalate, but choose the main cause.</p>
+    
+      {{ govukRadios({
+        idPrefix: "escalation-primary-reason",
+        name: "escalation-primary-reason",
+        items: [
+        {
+            value: "Lack of communication or cooperation",
+            checked:  data['escalation-primary-reason'] === "Lack of communication or cooperation",
+            text: "Lack of communication or cooperation"
+        },
+        {
+            value: "Witheld information from adviser",
+            checked:  data['escalation-primary-reason'] === "Witheld information from adviser",
+            text: "Witheld information from adviser"
+        },
+        {
+            value: "Rejected DfE or supporting organisation decisions",
+            checked:  data['escalation-primary-reason'] === "Rejected DfE or supporting organisation decisions",
+            text: "Rejected DfE or supporting organisation decisions"
+        }
+        ]
+      }) }}
+     
+
+      
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Details of escalation
+            </h2>
+          </legend>
+
+          <p>Enter details of any contentious or complicated issues. This can include past or present legal action, political affiliations and conflicts of interest.</p>
+           
+
+          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+          {{ govukTextarea({
+           name: "escalation-reason-details",
+           value: data["escalation-reason-details"],
+           id: "escalation-reason-details",
+           rows: 5
+        }) }}
+
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+          </button>
+
+      
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
