@@ -1,0 +1,187 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['adviser-visit-date-day'] == NULL) %}  
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Complete and save the assessment template
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">Work with the adviser to decide whether the school should receive targeted intervention or be monitored for more time first.</p>
+
+
+
+      <form class="form" action="../task-list" method="post">
+
+        
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <!--
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h2 class="govuk-fieldset__heading padding-bottom-15">
+                Save the school’s response in SharePoint
+              </h1>
+            </legend>
+          -->
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="talk-to-adviser" name="talk-to-adviser" type="checkbox" value="done" {{checked("talk-to-adviser", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="talk-to-adviser">
+                  Talk to the adviser about their findings from the visit and discussions with the school
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="complete-assessment-template" name="complete-assessment-template" type="checkbox" value="done" {{checked("complete-assessment-template", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="complete-assessment-template">
+                  Complete the assessment template
+                </label>
+                <div id="complete-assessment-template-hint" class="govuk-hint govuk-checkboxes__hint">
+                  Use the assessment criteria to help make your decision
+                </div>
+              </div>
+        
+            </div>
+          </fieldset>
+        </div>
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "assessment-template-saved-date",
+          namePrefix: "assessment-template-saved-date",
+          fieldset: {
+            legend: {
+              text: "Enter date assessment template saved in SharePoint",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            },
+            hint: {
+              text: "If the school will not be matched with a supporting organisation, add details to explain why."
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["assessment-template-saved-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["assessment-template-saved-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["assessment-template-saved-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {% if (data['adviser-visit-date-day'] != NULL) %}
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
