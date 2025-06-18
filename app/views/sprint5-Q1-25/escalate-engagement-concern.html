@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Escalate an engagement concern
+      </h1>
+
+      <p>If you have been unable resolve an engagement concern, you may need to use mandation to compel the school to undergo the intervention.</p>
+
+      <h2 class="govuk-heading-m">
+        Before you start
+      </h2>
+
+      <p>In order to escalate an engagement concern, you must have:</p>
+      <ol class="govuk-list govuk-list--number margin-left-10">
+        <li>used any relationship levers available to the department</li>
+        <li>approval to escalate from a regional director</li>
+        <li>ratification from SOPU (Schools Operational Practice Unit)</li>
+      </ol>
+
+      <form class="form" action="escalation-reason" method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Gather evidence
+            </h2>
+          </legend>
+
+          <p>Enter details of any contentious or complicated issues. This can include past or present legal action, political affiliations and conflicts of interest.</p>
+            <ul class="govuk-list govuk-list--bullet margin-left-10">
+                <li>adviser notes of meetings</li>
+            <li>your contact log</li>
+          </ul>
+
+          <p>You must also gather evidence of the school's failure to comply with the intervention.</p>
+
+          <p>You must also gather evidence of the school's failure to comply with the intervention.</p>
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      
+      {{ govukCheckboxes({
+        name: "concern-steps-taken",
+        id: "concern-steps-taken",
+        items: [
+          {
+            value: "Yes",
+            checked: data['concern-steps-taken'] == "Yes",
+            text: "Confirm you have taken the required steps before escalating this concern"
+          }
+        ]
+        }) }}
+      
+
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and continue
+          </button>
+
+        <a class="govuk-link" href="engagement-concern">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
