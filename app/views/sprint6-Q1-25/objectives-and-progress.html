@@ -1,0 +1,259 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        
+
+
+
+      {% include "/layouts/summary-section.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "/layouts/sub-nav-tabs-objectives-progress.html" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Objectives and progress</h2>
+
+       
+
+
+      {% if (data['area-of-improvement'] == NULL) %}
+
+      <p>You can add the objectives of this school improvement plan here.</p>
+      <p>Once the plan objectives have been added here, you can record the progress of the plan following each of the termly visits to the school by the RISE adviser.</p>
+
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add an objective", href: "area-of-improvement" }) }}
+      </div>
+
+     
+      {% else %}
+
+     
+
+
+      
+      
+      <h2 class="govuk-heading-m">Objectives and progress</h2>
+
+      <p>You can add additional objectives of this school improvement plan and record how the plan is progressing.</p>
+
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add an objective", href: "area-of-improvement" }) }}
+      </div>
+
+ {% endif %}
+
+
+ {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-3'] == NULL) %}
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">{{ data['area-of-improvement']}}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data['plan-objective-1']}}</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {% endif %}
+
+
+      {% if (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] == NULL) %}
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">{{ data['area-of-improvement-2']}}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data['plan-objective-2']}}</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {% endif %}
+
+      {% if  (data['area-of-improvement-3'] != NULL) %}
+      
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">{{ data['area-of-improvement']}}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data['plan-objective-1']}}</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Another quality of education objective.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">{{ data['area-of-improvement-2']}}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data['plan-objective-2']}}</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Another leadership and management objective.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">{{ data['area-of-improvement-3']}}</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">{{ data['plan-objective-3']}}</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Another behaviour and attitudes objective.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Attendance</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Embed the consistency of pupil attendance throughout the academic year.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Another attendance objective.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Personal development</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-three-quarters" >Objective</th>
+            <th scope="col" class="govuk-table__header">Progress</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Embed the consistency of support for SEND pupils in mainstream lessons.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__cell">Another personal development objective.</th>
+            <td class="govuk-table__cell">Not started</td>
+          </tr>
+        </tbody>
+      </table>
+
+     {% endif %}
+     
+
+        </div>
+      </div>
+      
+
+    
+      <!--
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add note", href: "#" }) }}
+      </div>
+      -->
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
