@@ -63,17 +63,36 @@
 .padding-top-15 {
     padding-top:15px;
 }
+.padding-top-0 {
+    padding-top:0px !important;
+}
+.padding-bottom-0 {
+    padding-bottom:0px !important;
+}
 .margin-bottom-minus-20 {
     margin-bottom:-20px;
 }
 .margin-bottom-minus-15 {
     margin-bottom:-15px;
 }
+
+.margin-bottom-15 {
+    margin-bottom:15px;
+}
 .margin-top-minus-15 {
     margin-top:-15px;
 }
-.margin-bottom-15 {
-    margin-bottom:15px;
+.margin-top-minus-20 {
+    margin-top:-20px;
+}
+.margin-top-minus-25 {
+    margin-top:-25px;
+}
+.margin-top-minus-30 {
+    margin-top:-30px;
+}
+.margin-top-minus-40 {
+    margin-top:-40px;
 }
 .margin-bottom-30 {
     margin-bottom:30px;
@@ -85,8 +104,25 @@
     margin-top:-20px;
     padding-bottom:20px;
 }
-
-
+.no-border {
+    border:none;
+}
+.ticket-height { 
+    height: 40px !important;
+}
+.redbg {
+    background-color: #b12e31;
+}
+.text-align-right {
+    text-align:right;
+}
+.text-align-bottom {
+vertical-align: text-bottom;
+}
+.text-align-bottom-right {
+    text-align:right;
+    vertical-align: text-bottom;
+    }
 .moj-filter__tag {
     margin-right:-15px !important;
 }
