@@ -48,7 +48,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) %}
+        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL)%}
          
         {{ govukRadios({
           idPrefix: "area-of-improvement",
@@ -82,7 +82,7 @@
           ]
           }) }}
 
-        {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) %}
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL) %}
 
         {{ govukRadios({
           idPrefix: "area-of-improvement-2",
@@ -118,7 +118,7 @@
 
 
 
-          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) %}
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] == NULL) %}
 
         {{ govukRadios({
           idPrefix: "area-of-improvement-3",
@@ -147,6 +147,40 @@
           {
               value: "Personal development",
               checked:  data['area-of-improvement-3'] === "Personal development",
+              text: "Personal development"
+          }
+          ]
+          }) }}
+
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] != NULL) %}
+
+        {{ govukRadios({
+          idPrefix: "area-of-improvement-4",
+          name: "area-of-improvement-4",
+          items: [
+          {
+              value: "Quality of education",
+              checked:  data['area-of-improvement-4'] === "Quality of education",
+              text: "Quality of education"
+          },
+          {
+              value: "Leadership and management",
+              checked:  data['area-of-improvement-4'] === "Leadership and management",
+              text: "Leadership and management"
+          },
+          {
+              value: "Behaviour and attitudes",
+              checked:  data['area-of-improvement-4'] === "Behaviour and attitudes",
+              text: "Behaviour and attitudes"
+          },
+          {
+              value: "Attendance",
+              checked:  data['area-of-improvement-4'] === "Attendance",
+              text: "Attendance"
+          },
+          {
+              value: "Personal development",
+              checked:  data['area-of-improvement-4'] === "Personal development",
               text: "Personal development"
           }
           ]

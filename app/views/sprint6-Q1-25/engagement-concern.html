@@ -155,11 +155,9 @@
                 Date escalated
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['escalation-decision-date']}}
+                {{ data | isoDateFromDateInput("escalation-decision-date") | govukDate }}
 
-                <span>{{ data['escalation-decision-date-day'] }} </span>
-          <span>{{ data['escalation-decision-date-month'] }} </span>
-          <span>{{ data['escalation-decision-date-year'] }}</span>
+                
               </dd>
              
             </div>

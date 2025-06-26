@@ -39,10 +39,21 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-      <span class="govuk-caption-l">{{ data['area-of-improvement']}}</span>
+      <span class="govuk-caption-l">
+        {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-3'] == NULL) %}
+        {{ data['area-of-improvement']}}
+        {% elif (data['area-of-improvement'] != NULL) and (data['area-of-improvement-3'] != NULL)  %}
+        {{ data['area-of-improvement-3']}}
+        {% endif %}
+      </span>
       <h1 class="govuk-heading-l">
         Add an objective
       </h1>
+
+    
+
+
+      
 
       <form class="form" action="./objectives-and-progress" method="post">
 
@@ -50,7 +61,7 @@
 
         {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) %}
+        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL)%}
 
         {{ govukTextarea({
         name: "plan-objective-1",
@@ -60,7 +71,7 @@
         } 
         }) }}
 
-       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) %}
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL) %}
 
        {{ govukTextarea({
        name: "plan-objective-2",
@@ -70,11 +81,21 @@
        }
        }) }}
 
-       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) %}
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] == NULL) %}
 
        {{ govukTextarea({
        name: "plan-objective-3",
        id: "plan-objective-3",
+       hint: {
+       text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
+       }
+       }) }}
+
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] != NULL) %}
+
+       {{ govukTextarea({
+       name: "plan-objective-4",
+       id: "plan-objective-4",
        hint: {
        text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
        }
@@ -94,9 +115,11 @@
           Save and return
           </button>
 
-          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button-secondary">
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button-secondary" formaction="./area-of-improvement">
             Add another objective
             </button>
+
+           
      
 
        
