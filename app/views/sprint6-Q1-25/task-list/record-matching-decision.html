@@ -46,7 +46,7 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Record matching decision
+        Record initial diagnosis decision
       </h1>
 
    </div>
@@ -55,7 +55,7 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p>Confirm whether this school will be matched with a supporting organisation. A regional director must have approved this decision.</p>
+      <p>Confirm if this school will be matched with a supporting organistion or not. A regional director must have approved this decision.</p>
 
 
 
@@ -77,7 +77,7 @@
           title: "Not matched details",
           value: data["not-matched-details"],
           label: {
-            text: "Provide some details about why approval was not given."
+            text: "Enter the reasons for the decision if the school will not be matched."
           }
         }) }}
         {% endset -%}
@@ -99,16 +99,21 @@
           {
               value: "Yes",
               checked:  data['school-matched'] === "Yes",
-              text: "Yes, school to be matched"
+              text: "Match with a supporting organisation"
           },
           {
               value: "No",
               checked:  data['school-matched'] === "No",
-              text: "No, school will not be matched",
+              text: "Review school's progress",
               conditional: {
                 html: noHtml
               }
-          }
+          },
+          {
+            value: "No access",
+            checked:  data['school-matched'] === "No access",
+            text: "Unable to access"
+        }
           ]
         }) }}
 
