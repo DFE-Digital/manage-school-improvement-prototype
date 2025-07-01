@@ -1,0 +1,220 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Objectives and progress</span>
+      <h1 class="govuk-heading-l">
+        Select an area of improvement
+      </h1>
+
+      <form class="form" action="./add-an-objective" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL)%}
+         
+        {{ govukRadios({
+          idPrefix: "area-of-improvement",
+          name: "area-of-improvement",
+          items: [
+          {
+              value: "Quality of education",
+              checked:  data['area-of-improvement'] === "Quality of education",
+              text: "Quality of education"
+          },
+          {
+              value: "Leadership and management",
+              checked:  data['area-of-improvement'] === "Leadership and management",
+              text: "Leadership and management"
+          },
+          {
+              value: "Behaviour and attitudes",
+              checked:  data['area-of-improvement'] === "Behaviour and attitudes",
+              text: "Behaviour and attitudes"
+          },
+          {
+              value: "Attendance",
+              checked:  data['area-of-improvement'] === "Attendance",
+              text: "Attendance"
+          },
+          {
+              value: "Personal development",
+              checked:  data['area-of-improvement'] === "Personal development",
+              text: "Personal development"
+          }
+          ]
+          }) }}
+
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL) %}
+
+        {{ govukRadios({
+          idPrefix: "area-of-improvement-2",
+          name: "area-of-improvement-2",
+          items: [
+          {
+              value: "Quality of education",
+              checked:  data['area-of-improvement-2'] === "Quality of education",
+              text: "Quality of education"
+          },
+          {
+              value: "Leadership and management",
+              checked:  data['area-of-improvement-2'] === "Leadership and management",
+              text: "Leadership and management"
+          },
+          {
+              value: "Behaviour and attitudes",
+              checked:  data['area-of-improvement-2'] === "Behaviour and attitudes",
+              text: "Behaviour and attitudes"
+          },
+          {
+              value: "Attendance",
+              checked:  data['area-of-improvement-2'] === "Attendance",
+              text: "Attendance"
+          },
+          {
+              value: "Personal development",
+              checked:  data['area-of-improvement-2'] === "Personal development",
+              text: "Personal development"
+          }
+          ]
+          }) }}
+
+
+
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] == NULL) %}
+
+        {{ govukRadios({
+          idPrefix: "area-of-improvement-3",
+          name: "area-of-improvement-3",
+          items: [
+          {
+              value: "Quality of education",
+              checked:  data['area-of-improvement-3'] === "Quality of education",
+              text: "Quality of education"
+          },
+          {
+              value: "Leadership and management",
+              checked:  data['area-of-improvement-3'] === "Leadership and management",
+              text: "Leadership and management"
+          },
+          {
+              value: "Behaviour and attitudes",
+              checked:  data['area-of-improvement-3'] === "Behaviour and attitudes",
+              text: "Behaviour and attitudes"
+          },
+          {
+              value: "Attendance",
+              checked:  data['area-of-improvement-3'] === "Attendance",
+              text: "Attendance"
+          },
+          {
+              value: "Personal development",
+              checked:  data['area-of-improvement-3'] === "Personal development",
+              text: "Personal development"
+          }
+          ]
+          }) }}
+
+          {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] != NULL) %}
+
+        {{ govukRadios({
+          idPrefix: "area-of-improvement-4",
+          name: "area-of-improvement-4",
+          items: [
+          {
+              value: "Quality of education",
+              checked:  data['area-of-improvement-4'] === "Quality of education",
+              text: "Quality of education"
+          },
+          {
+              value: "Leadership and management",
+              checked:  data['area-of-improvement-4'] === "Leadership and management",
+              text: "Leadership and management"
+          },
+          {
+              value: "Behaviour and attitudes",
+              checked:  data['area-of-improvement-4'] === "Behaviour and attitudes",
+              text: "Behaviour and attitudes"
+          },
+          {
+              value: "Attendance",
+              checked:  data['area-of-improvement-4'] === "Attendance",
+              text: "Attendance"
+          },
+          {
+              value: "Personal development",
+              checked:  data['area-of-improvement-4'] === "Personal development",
+              text: "Personal development"
+          }
+          ]
+          }) }}
+
+
+
+        {% endif %}
+
+
+
+        
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+          </button>
+     
+
+       
+        <a class="govuk-link" href="case-study">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

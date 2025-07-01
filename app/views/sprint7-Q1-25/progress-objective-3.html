@@ -1,0 +1,198 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <span class="govuk-caption-l">Progress review</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        Update progress objectives
+      </h1>
+
+      <form class="form" action="./progress-objective-4" method="post">
+
+
+        {% if (data['review-term-1'] == NULL) and (data['review-term-2'] == NULL) %}
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No termly reviews added</h2>
+              <p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>
+              <!--<a class="govuk-button govuk-!-margin-bottom-1" data-module="govuk-button">
+                Add review
+              </a>-->
+            
+            </section>
+          
+          </article>
+        
+          <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
+
+        {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] == NULL) %}
+
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue ticket-height" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15 ">
+                    <!-- 
+                    <div class="govuk-summary-list__row no-border">
+                      
+                      <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
+                        {{ data['review-term-1']}}
+                      </dt>
+                      
+                      <dd class="govuk-summary-list__value text-align-right">
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+                      </dd>
+                    </div>
+                    -->
+                    <div class="govuk-summary-list__row no-border ">
+                      <dt class="govuk-summary-list__key govuk-!-width-one-half ">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
+                        by <span class="govuk-body">{{ data['review-name-1']}}</span>
+                      </dt>
+                     
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+
+          <div class="govuk-inset-text">
+            
+            <b>{{ data['area-of-improvement-3']}}</b><br>
+            {{ data['plan-objective-3']}}
+          
+           
+            </div>
+
+
+          <h2 class="govuk-heading-m margin-bottom-20">
+            How is the school progressing with this objective?
+          </h2>
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+         
+          {{ govukRadios({
+          idPrefix: "progress-objective-3",
+          name: "progress-objective-3",
+          items: [
+          {
+              value: "School progressing well",
+              checked:  data['progress-objective-3'] === "School progressing well",
+              text: "School progressing well"
+          },
+          {
+              value: "Targeted intervention complete",
+              checked:  data['progress-objective-3'] === "Targeted intervention complete",
+              text: "Targeted intervention complete"
+          },
+          {
+              value: "School not improving",
+              checked:  data['progress-objective-3'] === "School not improving",
+              text: "School not improving"
+          }
+          ]
+          }) }}
+
+
+
+          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+          {{ govukTextarea({
+          name: "progress-objective-3-details",
+          id: "progress-objective-1-details",
+          rows: 5,
+          value: data["progress-objective-3-details"],
+          label: {
+          text: "Details",
+          classes: "govuk-label--m",
+          
+          isPageHeading: true
+          },
+          hint: {
+          text: "Hint text if needed..."
+          }
+          }) }}
+
+          {% endif %}
+
+       
+
+        
+        
+        <div class="govuk-button-group margin-top-15">
+
+       
+            {% from "govuk/components/button/macro.njk" import govukButton %}
+
+            {{ govukButton({
+                type: "submit",
+              html: "Save and continue to next objective"
+            }) }}
+     
+
+       
+            <button type="submit" formaction="termly-reviews" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+                Save and return to progress reviews
+              </button>
+        
+         </div>
+
+      </form>
+
+      
+    
+    <a class="govuk-link" href="./progress-objective-4.html">Skip this objective</a>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
