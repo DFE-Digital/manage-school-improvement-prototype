@@ -39,55 +39,67 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-      <span class="govuk-caption-l">Progress reviews</span>
-      <h1 class="govuk-heading-l">
-        Which term's review is this?
+      <span class="govuk-caption-l">Plan progress</span>
+      <h1 class="govuk-heading-l margin-bottom-30">
+       Add progress review
       </h1>
 
-      <form class="form" action="./review-details" method="post">
+      <form class="form" action="./next-review" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% if (data['termly-review-1'] == NULL) and (data['termly-review-2'] == NULL) %}
 
-        {% if (data['review-term-1'] == NULL) and (data['review-term-2'] == NULL) %}
-         
-        {{ govukRadios({
-          idPrefix: "review-term-1",
-          name: "review-term-1",
+        
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "review-date-1",
+          namePrefix: "review-date-1",
+          fieldset: {
+            legend: {
+              text: "Enter the date of the review",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007"
+          },
           items: [
           {
-              value: "First term",
-              checked:  data['review-term-1'] === "First term",
-              text: "First term"
+            name: "day",
+            value: data["review-date-1-day"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
           },
           {
-              value: "Second term",
-              checked:  data['review-term-1'] === "Second term",
-              text: "Second term"
-          },
+            name: "month",
+            value: data["review-date-1-month"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
+          },                
           {
-              value: "Third term",
-              checked:  data['review-term-1'] === "Third term",
-              text: "Third term"
-          },
-          {
-              value: "Fourth term",
-              checked:  data['review-term-1'] === "Fourth term",
-              text: "Fourth term"
-          },
-          {
-              value: "Fifth term",
-              checked:  data['review-term-1'] === "Fifth term",
-              text: "Fifth term"
-          },
-          {
-            value: "Sixth term",
-              checked:  data['review-term-1'] === "Sixth term",
-            text: "Sixth term"
+            name: "year",
+            value: data["review-date-1-year"],
+            allowEmpty: false,
+            classes: "govuk-input--width-4"
           }
-          ]
-          }) }}
+        ]
+      }) }}
 
-        {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] == NULL) %}
+
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Enter the name of the person who carried out the review",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "review-name-1",
+  name: "review-name-1"
+}) }}
+
+        {% elif (data['termly-review-1'] != NULL) and (data['termly-review-2'] == NULL) %}
 
         {{ govukRadios({
             idPrefix: "review-term-2",
@@ -128,7 +140,7 @@
 
 
 
-          {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] != NULL) %}
+          {% elif (data['termly-review-1'] != NULL) and (data['termly-review-2'] != NULL) %}
 
           {{ govukRadios({
             idPrefix: "review-term-3",
@@ -184,7 +196,7 @@
      
 
        
-        <a class="govuk-link" href="case-study">Cancel</a>
+       
         
          </div>
 

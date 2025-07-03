@@ -1,0 +1,140 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">
+        {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-3'] == NULL) %}
+        {{ data['area-of-improvement']}}
+        {% elif (data['area-of-improvement'] != NULL) and (data['area-of-improvement-3'] != NULL)  %}
+        {{ data['area-of-improvement-3']}}
+        {% endif %}
+      </span>
+      <h1 class="govuk-heading-l">
+        Add an objective
+      </h1>
+
+    
+
+
+      
+
+      <form class="form" action="./objectives" method="post">
+
+        
+
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+        {% if (data['plan-objective-1'] == NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL)%}
+
+        {{ govukTextarea({
+        name: "plan-objective-1",
+        id: "plan-objective-1",
+        hint: {
+        text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
+        } 
+        }) }}
+
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] == NULL) and (data['plan-objective-3'] == NULL) %}
+
+       {{ govukTextarea({
+       name: "plan-objective-2",
+       id: "plan-objective-2",
+       hint: {
+       text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
+       }
+       }) }}
+
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] == NULL) %}
+
+       {{ govukTextarea({
+       name: "plan-objective-3",
+       id: "plan-objective-3",
+       hint: {
+       text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
+       }
+       }) }}
+
+       {% elif (data['plan-objective-1'] != NULL) and (data['plan-objective-2'] != NULL) and (data['plan-objective-3'] != NULL) %}
+
+       {{ govukTextarea({
+       name: "plan-objective-4",
+       id: "plan-objective-4",
+       hint: {
+       text: "Give details of the school's plan to improve in this area. You may want to copy and paste from the plan itself."
+       }
+       }) }}
+
+       {% endif %}
+
+
+
+
+        
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and return
+          </button>
+
+          <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button-secondary" formaction="./area-of-improvement-alt">
+            Add another objective
+            </button>
+
+           
+     
+
+       
+       
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
