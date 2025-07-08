@@ -55,7 +55,7 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p>Confirm if this school will be matched with a supporting organistion or not. A regional director must have approved this decision.</p>
+      <p>Using <a href="https://www.gov.uk/government/publications/assessment-tool-1-initial-diagnosis" target="_blank">Assessment Tool 1: Initial Diagnosis (opens in new tab)</a>, confirm if this school will be matched with a supporting organistion or not. A regional director must have approved this decision.</p>
 
 
 
@@ -76,8 +76,8 @@
           id: "not-matched-details",
           title: "Not matched details",
           value: data["not-matched-details"],
-          label: {
-            text: "Enter the reasons for the decision if the school will not be matched."
+          hint: {
+            text: "Add details to explain why this is. Include information you have been prevented from accessing; a summary of attempts to work with the school/responsible body; and why you are unable to make the assessment."
           }
         }) }}
         {% endset -%}
@@ -93,7 +93,7 @@
             }
           },
           hint: {
-              text: "If the school will not be matched with a supporting organisation, add details to explain why."
+              text: "Enter the reasons for the decision if the school cannot be assessed."
           },
           items: [
           {
@@ -104,15 +104,15 @@
           {
               value: "No",
               checked:  data['school-matched'] === "No",
-              text: "Review school's progress",
-              conditional: {
-                html: noHtml
-              }
+              text: "Review school's progress"
           },
           {
             value: "No access",
             checked:  data['school-matched'] === "No access",
-            text: "Unable to access"
+            text: "Unable to access",
+            conditional: {
+              html: noHtml
+            }
         }
           ]
         }) }}
