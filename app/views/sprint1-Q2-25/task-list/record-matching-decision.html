@@ -77,7 +77,7 @@
           title: "Not matched details",
           value: data["not-matched-details"],
           hint: {
-            text: "Add details to explain why this is. Include information you have been prevented from accessing; a summary of attempts to work with the school/responsible body; and why you are unable to make the assessment."
+            text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
           }
         }) }}
         {% endset -%}
@@ -107,9 +107,9 @@
               text: "Review school's progress"
           },
           {
-            value: "No access",
-            checked:  data['school-matched'] === "No access",
-            text: "Unable to access",
+            value: "Unable to assess",
+            checked:  data['school-matched'] === "Unable to assess",
+            text: "Unable to assess",
             conditional: {
               html: noHtml
             }
