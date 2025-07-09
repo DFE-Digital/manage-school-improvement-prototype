@@ -81,6 +81,22 @@
           }
         }) }}
         {% endset -%}
+
+        {% set reviewHtml %}
+
+        {{ govukTextarea({
+          name: "review-details",
+          hint: {
+            text: ""
+          },
+          id: "not-matched-details",
+          title: "Not matched details",
+          value: data["review-details"],
+          hint: {
+            text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
+          }
+        }) }}
+        {% endset -%}
          
         {{ govukRadios({
           idPrefix: "school-matched",
@@ -104,7 +120,10 @@
           {
               value: "No",
               checked:  data['school-matched'] === "No",
-              text: "Review school's progress"
+              text: "Review school's progress",
+              conditional: {
+                html: reviewHtml
+              }
           },
           {
             value: "Unable to assess",
