@@ -61,6 +61,32 @@
 
       <form class="form" action="../task-list" method="post">
 
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <!--
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h2 class="govuk-fieldset__heading padding-bottom-15">
+                Save the school’s response in SharePoint
+              </h1>
+            </legend>
+          -->
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="give-note-of-visit-template" name="give-note-of-visit-template" type="checkbox" value="done" {{checked("give-note-of-visit-template", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="give-note-of-visit-template">
+                  Confirm the adviser has the Note of Visit template
+                </label>
+              </div>
+              
+        
+            </div>
+          </fieldset>
+        </div>
+
         
         
        
