@@ -6,6 +6,17 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 
+{% block header %}
+
+  {{ govukHeader() }}
+
+  {{ govukServiceNavigation({
+    serviceName: serviceName,
+    serviceUrl: "http://www.google.com"
+  }) }}
+
+{% endblock %}
+
 
 {% block stylesheets %}
   {{ super() }}
@@ -14,6 +25,8 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
   <link href="/app/assets/css/accessible-autocomplete.min.css" el="stylesheet" type="text/css" />
 
 {% endblock %}
+
+
 
 <a href="
 
