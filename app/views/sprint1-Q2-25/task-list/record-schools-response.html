@@ -46,7 +46,7 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Record the school's response
+        Record the responsible body's response
       </h1>
 
    </div>
@@ -55,7 +55,7 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p>Confirm if the school wants to get targeted support or not.</p>
+      <p>Confirm if the responsible body has acknowledged the school is eligible for targeted intervention and if they and the school will engage in the process.</p>
 
 
 
@@ -68,16 +68,23 @@
         {{ govukRadios({
           idPrefix: "accepted-support",
           name: "accepted-support",
+          fieldset: {
+            legend: {
+              text: "Responsible body's response",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
           items: [
           {
               value: "Accepted",
               checked:  data['accepted-support'] === "Accepted",
-              text: "Accepted support"
+              text: "Acknowledged and will engage"
           },
           {
               value: "Declined",
               checked:  data['accepted-support'] === "Declined",
-              text: "Declined support"
+              text: "Not acknowledged"
           }
           ]
         }) }}
@@ -88,14 +95,14 @@
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading padding-bottom-15">
-                Save the school’s response in SharePoint
+                Save the response
               </h2>
             </legend>
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="response-saved" name="response-saved" type="checkbox" value="done" {{checked("response-saved", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="response-saved">
-                  School’s response saved in SharePoint
+                  Response saved in SharePoint
                 </label>
               </div>
             </div>
@@ -110,7 +117,7 @@
           namePrefix: "school-response-date",
           fieldset: {
             legend: {
-              text: "Enter date the school’s response was saved in SharePoint",
+              text: "Enter date the response was received",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
