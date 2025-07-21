@@ -59,8 +59,6 @@
 
       <h2 class="govuk-heading-l">Improvement plan</h2>
 
-
-
        
 
 
@@ -150,90 +148,6 @@
 {% endif %}
 
 
-<!--
-<div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['area-of-improvement']}}
-          </h2>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row ">
-              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-                Objective 1
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['plan-objective-1']}}
-              </dd>
-             <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-              </dd>
-               
-            </div>
-           
-           
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Objective 2
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{ data['plan-objective-2']}}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
-              </dd>
-              </div>
-           
-
-          </dl>
-        </div>
-      </div>
-
-
-
-       <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['area-of-improvement-3']}}
-          </h2>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row ">
-              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-                Objective 1
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['plan-objective-3']}}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
-              </dd>
-               
-            </div>
-            
-            
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Objective 2
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    {{ data['plan-objective-4']}}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 4 progress</span></a>
-              </dd>
-              </div>
-           
-           
-          </dl>
-        </div>
-      </div>
-      -->
-
-
-
 
 
 
@@ -256,16 +170,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-1'] != NULL) %}
                 {{ data['progress-objective-1']}}
-                {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-1'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-1'] != NULL) %}
                 <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -273,16 +181,10 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-1-details'] != NULL) %}
-                  {{ data['progress-objective-1-details']}}
-                  {% elif (data['progress-objective-1-details'] == NULL) or (data['progress-objective-1-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-1-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-1'] != NULL) %}
                   <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress details</span></a>
-                  {% endif %}
                 </dd>
               </div>
           </dl>
@@ -311,16 +213,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-1'] != NULL) %}
                 {{ data['progress-objective-1']}}
-                {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-1'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-1'] != NULL) %}
                 <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -328,23 +224,15 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-1-details'] != NULL) %}
-                  {{ data['progress-objective-1-details']}}
-                  {% elif (data['progress-objective-1-details'] == NULL) or (data['progress-objective-1-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-1-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-1'] != NULL) %}
                   <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress details</span></a>
-                  {% endif %}
                 </dd>
               </div>
           </dl>
         </div>
       </div>
-
-
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -359,16 +247,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-2'] != NULL) %}
                 {{ data['progress-objective-2']}}
-                 {% elif (data['progress-objective-2'] == NULL) or (data['progress-objective-2'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-2'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -376,16 +258,10 @@
                 Details
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-2-details'] != NULL) %}
-                  {{ data['progress-objective-2-details']}}
-                  {% elif (data['progress-objective-2-details'] == NULL) or (data['progress-objective-2-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                {{ data['progress-objective-2-details']}}
               </dd>
               <dd class="govuk-summary-list__actions">
-               {% if (data['progress-objective-2'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
-                {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
               </dd>
             </div>
           </dl>
@@ -414,16 +290,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-1'] != NULL) %}
                 {{ data['progress-objective-1']}}
-                {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-1'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-1'] != NULL) %}
                 <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -431,23 +301,15 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-1-details'] != NULL) %}
-                  {{ data['progress-objective-1-details']}}
-                  {% elif (data['progress-objective-1-details'] == NULL) or (data['progress-objective-1-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-1-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-1'] != NULL) %}
                   <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress details</span></a>
-                  {% endif %}
                 </dd>
               </div>
           </dl>
         </div>
       </div>
-
-
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -462,16 +324,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                 {% if (data['progress-objective-2'] != NULL) %}
                 {{ data['progress-objective-2']}}
-               {% elif (data['progress-objective-2'] == NULL) or (data['progress-objective-2'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-               {% if (data['progress-objective-2'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -479,16 +335,10 @@
                 Details
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-2-details'] != NULL) %}
-                  {{ data['progress-objective-2-details']}}
-                  {% elif (data['progress-objective-2-details'] == NULL) or (data['progress-objective-2-details'] == '') %}
-                 No progress recorded yet
-                  {% endif %}
+                {{ data['progress-objective-2-details']}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-2'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
-                {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
               </dd>
             </div>
           </dl>
@@ -512,16 +362,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-3'] != NULL) %}
                 {{ data['progress-objective-3']}}
-               {% elif (data['progress-objective-3'] == NULL) or (data['progress-objective-3'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-3'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-3-update">Change<span class="govuk-visually-hidden"> objective 3 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -529,16 +373,10 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    {% if (data['progress-objective-3-details'] != NULL) %}
-                  {{ data['progress-objective-3-details']}}
-                  {% elif (data['progress-objective-3-details'] == NULL) or (data['progress-objective-3-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-3-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-3'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-3-update">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
-                {% endif %}
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress details</span></a>
                 </dd>
               </div>
           </dl>
@@ -569,16 +407,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-1'] != NULL) %}
                 {{ data['progress-objective-1']}}
-                {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-1'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-1'] != NULL) %}
                 <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-                {% endif %}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -586,26 +418,15 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-1-details'] != NULL) %}
-                  {{ data['progress-objective-1-details']}}
-                  {% elif (data['progress-objective-1-details'] == NULL) or (data['progress-objective-1-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-1-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-1'] != NULL) %}
                   <a class="govuk-link" href="./progress-objective-1-update">Change<span class="govuk-visually-hidden"> objective 1 progress details</span></a>
-                  {% endif %}
                 </dd>
               </div>
           </dl>
         </div>
       </div>
-
-
-
-
-
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -620,16 +441,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-2'] != NULL) %}
                 {{ data['progress-objective-2']}}
-                {% elif (data['progress-objective-2'] == NULL) or (data['progress-objective-2'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-2'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -637,16 +452,10 @@
                 Details
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-2-details'] != NULL) %}
                 {{ data['progress-objective-2-details']}}
-                {% elif (data['progress-objective-2-details'] == NULL) or (data['progress-objective-2-details'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if (data['progress-objective-2'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-2-update">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
-                {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress details</span></a>
               </dd>
             </div>
           </dl>
@@ -670,16 +479,10 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-3'] != NULL) %}
                 {{ data['progress-objective-3']}}
-               {% elif (data['progress-objective-3'] == NULL) or (data['progress-objective-3'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-               {% if (data['progress-objective-3'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-3-update">Change<span class="govuk-visually-hidden"> objective 3 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -687,16 +490,10 @@
                   Details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-3-details'] != NULL) %}
-                  {{ data['progress-objective-3-details']}}
-                  {% elif (data['progress-objective-3-details'] == NULL) or (data['progress-objective-3-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
+                    {{ data['progress-objective-3-details']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-3'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-3-update">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
-                {% endif %}
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress details</span></a>
                 </dd>
               </div>
           </dl>
@@ -706,7 +503,7 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
-            {{ data['plan-objective-4']}}
+              {{ data['plan-objective-4']}}
           </h2>
         </div>
         <div class="govuk-summary-card__content">
@@ -716,40 +513,26 @@
                 Progress
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if (data['progress-objective-4'] != NULL) %}
                 {{ data['progress-objective-4']}}
-                {% elif (data['progress-objective-4'] == NULL) or (data['progress-objective-4'] == '') %}
-                No progress recorded yet
-                {% endif %}
               </dd>
               <dd class="govuk-summary-list__actions">
-               {% if (data['progress-objective-4'] != NULL) %}
-                  <a class="govuk-link" href="./progress-objective-4-update">Change<span class="govuk-visually-hidden"> objective 4 progress details</span></a>
-                  {% endif %}
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 4 progress</span></a>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Details
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {% if (data['progress-objective-4-details'] != NULL) %}
-                  {{ data['progress-objective-4-details']}}
-                   {% elif (data['progress-objective-4-details'] == NULL) or (data['progress-objective-4-details'] == '') %}
-                  No progress recorded yet
-                  {% endif %}
-                </dd>
-                <dd class="govuk-summary-list__actions">
-                  {% if (data['progress-objective-4'] != NULL) %}
-                <a class="govuk-link" href="./progress-objective-4-update">Change<span class="govuk-visually-hidden"> objective 4 progress</span></a>
-                {% endif %}
-                </dd>
-              </div>
+              <dt class="govuk-summary-list__key">
+                Details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['progress-objective-4-details']}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 4 progress details</span></a>
+              </dd>
+            </div>
           </dl>
         </div>
       </div>
-
-     
 
 
      {% endif %}
