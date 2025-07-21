@@ -40,15 +40,15 @@
 
       
 
-      <span class="govuk-caption-l">Progress review</span>
+      <span class="govuk-caption-l">{{ data['area-of-improvement']}}</span>
       <h1 class="govuk-heading-l margin-bottom-20">
-        Update progress objectives
+        {{ data['plan-objective-2']}}
       </h1>
 
-      <form class="form" action="./progress-objective-2" method="post">
+      <form class="form" action="./review-progress" method="post">
 
 
-        {% if (data['review-term-1'] == NULL) and (data['review-term-2'] == NULL) %}
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
 
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
 
@@ -65,7 +65,7 @@
         
           <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
 
-        {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] == NULL) %}
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
 
 
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
@@ -89,7 +89,7 @@
                     <div class="govuk-summary-list__row no-border ">
                       <dt class="govuk-summary-list__key govuk-!-width-one-half ">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
-                        by <span class="govuk-body">{{ data['review-name-1']}}</span>
+                        by <span class="govuk-body">Alex James</span>
                       </dt>
                      
                     </div>
@@ -100,13 +100,7 @@
           </article>
 
 
-          <div class="govuk-inset-text">
-            
-            <b>{{ data['area-of-improvement']}}</b><br>
-            {{ data['plan-objective-1']}}
           
-           
-            </div>
 
 
           <h2 class="govuk-heading-m margin-bottom-20">
@@ -116,23 +110,33 @@
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
          
           {{ govukRadios({
-          idPrefix: "progress-objective-1",
-          name: "progress-objective-1",
+          idPrefix: "progress-objective-4",
+          name: "progress-objective-4",
           items: [
           {
               value: "School progressing well",
-              checked:  data['progress-objective-1'] === "School progressing well",
+              checked:  data['progress-objective-4'] === "School progressing well",
               text: "School progressing well"
           },
           {
-              value: "Targeted intervention complete",
-              checked:  data['progress-objective-1'] === "Targeted intervention complete",
-              text: "Targeted intervention complete"
+              value: "School has improved/RISE targeted intervention complete",
+              checked:  data['progress-objective-4'] === "School has improved/RISE targeted intervention complete",
+              text: "School has improved/RISE targeted intervention complete"
           },
           {
-              value: "School not improving",
-              checked:  data['progress-objective-1'] === "School not improving",
-              text: "School not improving"
+              value: "School not improving as required",
+              checked:  data['progress-objective-4'] === "School not improving",
+              text: "School not improving as required"
+          },
+          {
+              value: "Review not taken place",
+              checked:  data['progress-objective-4'] === "Review not taken place",
+              text: "Review not taken place"
+          },
+          {
+              value: "School not engaging",
+              checked:  data['progress-objective-4'] === "School not engaging",
+              text: "School not engaging"
           }
           ]
           }) }}
@@ -142,10 +146,10 @@
           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
           {{ govukTextarea({
-          name: "progress-objective-1-details",
-          id: "progress-objective-1-details",
+          name: "progress-objective-4-details",
+          id: "progress-objective-4-details",
           rows: 5,
-          value: data["progress-objective-1-details"],
+          value: data["progress-objective-4-details"],
           label: {
           text: "Details",
           classes: "govuk-label--m",
@@ -160,36 +164,33 @@
 
         
         
-          <div class="govuk-button-group margin-top-15">
+        <div class="govuk-button-group margin-top-15">
 
        
             {% from "govuk/components/button/macro.njk" import govukButton %}
-        
+
             {{ govukButton({
                 type: "submit",
-              html: "Save and continue to next objective"
+              html: "Save and continue"
             }) }}
-        
-        
-        
-            <button type="submit" formaction="termly-reviews" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-                Return to progress reviews
-              </button>
+     
+
+       <a class="govuk-link" href="./review-progress">Skip this objective</a>
+
+
+            
         
          </div>
-        
-        </form>
-        
-        <a class="govuk-link" href="./progress-objective-2.html">Skip this objective</a>
+
+      </form>
+
+     
+    
+   
 
     </div>
 
-
-    
-
   </div>
-
- 
 
 {% endblock %}
 

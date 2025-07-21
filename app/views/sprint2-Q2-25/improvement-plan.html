@@ -49,7 +49,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "/layouts/sub-nav-tabs-objectives-progress.html" %}
+      {% include "/layouts/sub-nav-tabs-improvement-plan.html" %}
 
       </div>
     </div>
@@ -66,12 +66,10 @@
 
       {% if (data['area-of-improvement'] == NULL) %}
 
-      <p>Record progress on the improvement plan objectives after each progress review.</p>
+      <p>Once you have added the improvement plan objectives, they will be listed here.</p>
+      <p>When they are, you should record progress on the objectives after each progress review.</p>
 
-      <div class="govuk-!-margin-top-5">
-       
-        {{ govukButton({ text: "Add an objective", href: "area-of-improvement" }) }}
-      </div>
+      
 
      
       {% else %}
@@ -116,7 +114,7 @@
           <div class="govuk-summary-list__row no-border">
             
             <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-full margin-bottom-minus-20">
-             {{ data['review-term-1']}}
+             First review
             </dt>
             
             <dd class="govuk-summary-list__value text-align-right">
@@ -130,7 +128,7 @@
           <div class="govuk-summary-list__row no-border">
             <dt class="govuk-summary-list__key margin-bottom-minus-20">
               Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
-              by <span class="govuk-body">{{ data['review-name-1']}}</span>
+              by <span class="govuk-body">Alex James</span>
             </dt>
             <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
               {% if (data['another-review'] == 'Yes') %}

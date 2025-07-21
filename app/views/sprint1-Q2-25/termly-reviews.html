@@ -96,16 +96,16 @@
                       <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
                         {{ data['review-term-1']}}
                       </dt>
-                      <dd class="govuk-summary-list__value text-align-right">
-                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) %}
+                      <dd class="govuk-summary-list__value text-align-right">hgfj
+                        {% if (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
                         <strong class="govuk-tag ">
                             Progress not recorded
                           </strong>
-                          {% elif (data['progress-summary'] != NULL) and ((data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)) %}
+                          {% elif ((data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)) %}
                           <strong class="govuk-tag govuk-tag--orange ">
-                            Progress summarised
+                            Progress partially recorded
                           </strong>
-                          {% elif (data['progress-summary'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL)%}
                           <strong class="govuk-tag govuk-tag--green ">
                             Progress recorded
                           </strong>
@@ -147,7 +147,7 @@
      
 
        
-        <a class="govuk-link" href="objectives-and-progress">Return to objectives</a>
+        <a class="govuk-link" href="objectives-and-progress">Return to improvement plan</a>
         
          </div>
 

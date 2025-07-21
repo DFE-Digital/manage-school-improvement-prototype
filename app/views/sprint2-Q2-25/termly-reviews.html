@@ -73,8 +73,8 @@
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
 
             <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews added</h2>
-              <p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one progress review of the school’s progress.</p>
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews recorded</h2>
+              <p class="govuk-body">You must enter details of a progress review first.</p>
               <!--<a class="govuk-button govuk-!-margin-bottom-1" data-module="govuk-button">
                 Add review
               </a>-->
@@ -97,15 +97,15 @@
                         {{ data['review-term-1']}}
                       </dt>
                       <dd class="govuk-summary-list__value text-align-right">
-                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) %}
+                        {% if (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
                         <strong class="govuk-tag ">
                             Progress not recorded
                           </strong>
-                          {% elif (data['progress-summary'] != NULL) and ((data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)) %}
+                          {% elif ((data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)) %}
                           <strong class="govuk-tag govuk-tag--orange ">
-                            Progress summarised
+                            Progress partially recorded
                           </strong>
-                          {% elif (data['progress-summary'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL)%}
                           <strong class="govuk-tag govuk-tag--green ">
                             Progress recorded
                           </strong>
@@ -118,7 +118,7 @@
                         by <span class="govuk-body">{{ data['review-name-1']}}</span>
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
-                        <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
+                        <a href="progress-objective-1" class="govuk-link margin-top-15">View progress review</a>
                       </dd>
                     </div>
                   </dl>
@@ -147,7 +147,7 @@
      
 
        
-        <a class="govuk-link" href="objectives-and-progress">Return to objectives</a>
+        <a class="govuk-link" href="objectives-and-progress">Return to improvement plan</a>
         
          </div>
 
