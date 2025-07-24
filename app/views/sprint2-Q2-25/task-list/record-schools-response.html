@@ -40,7 +40,7 @@
 
       {% if (data['assigned-to'] == NULL) %} 
       {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['call-responsible-body'] != 'done') or (data['draft-email'] != 'done') or (data['add-attachments'] != 'done') or (data['add-recipients'] != 'done') or (data['email-responsible-body'] != 'done') or (data['school-contacted-date-day'] == '') %}
+      {% elif (data['call-responsible-body'] != 'done') or (data['initial-contact-date-day'] == '') %}
       {% include "/layouts/task-locked-banner.html" %}
       {% endif %}
 
@@ -148,7 +148,7 @@
         }) }}
 
        
-        {% if (data['call-responsible-body'] == 'done') and (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+        {% if (data['call-responsible-body'] == 'done') and (data['initial-contact-date-day'] != '') %}
         {{ govukButton({
           text: "Save and return"
         }) }}
