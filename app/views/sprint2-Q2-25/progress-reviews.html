@@ -52,10 +52,10 @@
       <div class="govuk-inset-text">
       {% if (data['another-review'] == 'Yes') %}
       The next review should happen on or around <b>{{ data | isoDateFromDateInput("next-review") | govukDate }}</b>.
-      <p class="govuk-body"><a href="next-review" class="govuk-link">Change date</a></p>
+      <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p>
       {% elif (data['another-review'] == 'No') %}
       <b>No more reviews needed</b>
-      <p class="govuk-body"><a href="next-review" class="govuk-link">Change date</a></p> 
+      <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p> 
       {% endif %} 
       </div>
 
@@ -119,7 +119,7 @@
                       <dt class="govuk-summary-list__key margin-bottom-minus-20">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
                         by <span class="govuk-body">Alex James<br><br>
-                        <a href="./review-details-edit.html">Edit details</a></span>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
@@ -162,7 +162,8 @@
                     <div class="govuk-summary-list__row no-border">
                       <dt class="govuk-summary-list__key margin-bottom-minus-20">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-2") | govukDate }}<br>
-                        by <span class="govuk-body">{{ data['review-name-2']}}</span>
+                        by <span class="govuk-body">Bob Roberts<br><br>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
@@ -208,7 +209,8 @@
                     <div class="govuk-summary-list__row no-border">
                       <dt class="govuk-summary-list__key margin-bottom-minus-20">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
-                        by <span class="govuk-body">{{ data['review-name-1']}}</span>
+                        by <span class="govuk-body">Alex James<br><br>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
