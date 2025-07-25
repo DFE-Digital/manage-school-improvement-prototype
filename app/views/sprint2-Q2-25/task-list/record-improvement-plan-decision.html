@@ -38,11 +38,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['assigned-to'] == NULL) %}  
-      {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['save-plan-in-sharepoint'] != 'done') or (data['email-plan-for-approval'] != 'done') %}
-      {% include "/layouts/task-locked-banner.html" %}
-      {% endif %}
+     
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -154,11 +150,11 @@
           ]
         }) }}
 
-        {% if (data['save-plan-in-sharepoint'] == 'done') and (data['email-plan-for-approval'] == 'done') %}
+       
         {{ govukButton({
         text: "Save and return"
         }) }}
-        {% endif %}
+     
 
       </form>
 

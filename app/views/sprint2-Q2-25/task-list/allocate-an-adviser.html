@@ -1,7 +1,13 @@
+{% extends "../includes/form-template.html" %}
+
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -10,9 +16,9 @@
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-
+  
   <!--
-  <div class="govuk-breadcrumbs">
+  <div class="govuk-breadcrumbs"
     <ol class="govuk-breadcrumbs__list">
       <li class="govuk-breadcrumbs__list-item">
         <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
@@ -29,20 +35,12 @@
 
 {% endblock %}
 
-{% block header %}
-{% include "/layouts/dfe-header.html" %}
-{% endblock %}
-
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['assigned-to'] == NULL) %} 
-      {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['conflicts-form-sent'] != 'done') or (data['conflicts-form-back'] != 'done') or (data['conflicts-form-saved'] != 'done') or (data['conflicts-of-interest-date-day'] == '') %}
-      {% include "/layouts/task-locked-banner.html" %}
-      {% endif %}
+    
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -56,7 +54,7 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        <p>Enter the email address of the adviser and the date they were allocated to this school.</p>
+        <p>Enter the name of the adviser and the date they were allocated to this school.</p>
 
         <!--
         {% if (data['allocated-adviser-email'] == NULL) %}
@@ -113,21 +111,27 @@
 
 
 
-           {% from "govuk/components/input/macro.njk" import govukInput %}
 
-{{ govukInput({
-  label: {
-    text: "Email address",
-    classes: "govuk-label--m",
-    isPageHeading: true
-  },
-  hint: {
-    text: "It will be formatted like firstname.lastname-rise@education.gov.uk."
-  },
-  id: "allocated-adviser-email",
-  name: "allocated-adviser-email",
-  value: data["allocated-adviser-email"]
-}) }}
+{% block formQuestions %}
+        
+      {{ xGovukAutocomplete({
+        id: "aallocated-adviser-email",
+        name: "allocated-adviser-email",
+        value: data['allocated-adviser-email'],
+        label: {
+          text: "Enter the name of the adviser",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        allowEmpty: false,
+        items: [
+          { text: "Alex James" },
+          { text: "Alex Smith" },
+          { text: "Alexander McTavish" },
+          { text: "Alexandria Taylor" }
+        ]
+       }) }}
+
   
 
 
@@ -167,11 +171,11 @@
         }) }}
 
 
-        {% if (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+       
         {{ govukButton({
           text: "Save and return"
         }) }}
-        {% endif %}
+        
       </form>
 
     </div>
@@ -205,6 +209,8 @@
 
 
   </div>
+
+  {% endblock %}
 
 {% endblock %}
 
