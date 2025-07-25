@@ -159,6 +159,23 @@ module.exports = function (router) {
   }
 })
 
+ // Run this code when a form is submitted to 'funding-answer'
+ router.post('/' + version + '/task-list-locked/funding-answer-locked', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const fundingAnswer = req.body["received-funding"];
+
+  // Check whether the variable matches a condition
+  if (fundingAnswer == "Yes") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-locked/add-funding')
+  }   
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/task-list-locked')
+  }
+})
+
 
 
   // Routes for eligibility questions in the 'Add a school' journey

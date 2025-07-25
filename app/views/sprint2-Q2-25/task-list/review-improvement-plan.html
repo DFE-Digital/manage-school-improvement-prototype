@@ -38,11 +38,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['assigned-to'] == NULL) %}  
-      {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['send-template-to-so'] != 'done') or (data['send-template-to-rb'] != 'done') or (data['templates-sent-date-day'] == '') %}
-      {% include "/layouts/task-locked-banner.html" %}
-      {% endif %}
+     
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -212,11 +208,11 @@
         </fieldset>
         </div>
        
-        {% if (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != NULL) %}
+       
         {{ govukButton({
         text: "Save and return"
         }) }}
-        {% endif %}
+    
 
       </form>
 

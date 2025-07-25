@@ -38,11 +38,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data['assigned-to'] == NULL) %} 
-      {% include "/layouts/task-locked-banner-2.html" %}
-      {% elif (data['allocated-adviser-email'] == NULL) %}  
-      {% include "/layouts/task-locked-banner.html" %}
-      {% endif %}
+      
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -104,15 +100,15 @@
                         </span>
                       </summary>
                       <div class="govuk-details__text">
-                        <h3 class="govuk-heading-s">Academies</h3>
+                        <h2 class="govuk-heading-m">Academies</h2>
                         <p>Send the email to the Chair of the trust and the trust CEO.</p>
-                        <h3 class="govuk-heading-s">Local authority maintained schools</h3>
+                        <h2 class="govuk-heading-m">Local authority maintained schools</h2>
                         <p>Send the email to the Chair of governors and the director of children's services at the local authority. You must also copy in the school's headteacher.</p>
-                        <h3 class="govuk-heading-s">Faith schools</h3>
+                        <h2 class="govuk-heading-m">Faith schools</h2>
                         <p>Copy in the diocese or other relevant religious authority if it is a faith school.</p>
-                        <h3 class="govuk-heading-s">Foundation schools</h3>
+                        <h2 class="govuk-heading-m">Foundation schools</h2>
                         <p>Copy in the foundation trust if it is a foundation school.</p>
-                        <h3 class="govuk-heading-s">DfE</h3>
+                        <h2 class="govuk-heading-m">DfE</h2>
                         You must copy in the regional director or their support team, along with the trust relationship manager or local authority lead.
                         
   
@@ -177,11 +173,11 @@
 
 
         
-        {% if (data['allocated-adviser-email'] != NULL) %}
+        
         {{ govukButton({
         text: "Save and return"
         }) }}
-        {% endif %}
+   
      
 
 
