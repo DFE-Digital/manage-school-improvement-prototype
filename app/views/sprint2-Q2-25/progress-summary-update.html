@@ -40,12 +40,13 @@
 
       
 
-      <span class="govuk-caption-l">{{ data['area-of-improvement-4']}}</span>
+      <span class="govuk-caption-l">Progress review</span>
       <h1 class="govuk-heading-l margin-bottom-20">
-        {{ data['plan-objective-4']}}
+        Overall progress
       </h1>
 
-      <form class="form" action="./progress-summary" method="post">
+     
+      <form class="form" action="./review-progress" method="post">
 
 
         {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
@@ -53,7 +54,7 @@
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
 
             <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No termly reviews added</h2>
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews added</h2>
               <p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>
               <!--<a class="govuk-button govuk-!-margin-bottom-1" data-module="govuk-button">
                 Add review
@@ -89,7 +90,7 @@
                     <div class="govuk-summary-list__row no-border ">
                       <dt class="govuk-summary-list__key govuk-!-width-one-half ">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
-                        by <span class="govuk-body">Alex James</span>
+                        by Alex James
                       </dt>
                      
                     </div>
@@ -100,43 +101,40 @@
           </article>
 
 
-          
-
-
           <h2 class="govuk-heading-m margin-bottom-20">
-            How is the school progressing with this objective?
+            How is the school progressing overall?
           </h2>
 
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
          
           {{ govukRadios({
-          idPrefix: "progress-objective-4",
-          name: "progress-objective-4",
+          idPrefix: "progress-summary",
+          name: "progress-summary",
           items: [
           {
-              value: "Complete",
-              checked:  data['progress-objective-4'] === "Complete",
-              text: "Complete"
+              value: "School progressing well",
+              checked: data['progress-summary'] === "School progressing well",
+              text: "School progressing well"
           },
           {
-              value: "Ahead of schedule",
-              checked:  data['progress-objective-4'] === "Ahead of schedule",
-              text: "Ahead of schedule"
+              value: "School has improved/RISE targeted intervention complete",
+              checked: data['progress-summary'] === "School has improved/RISE targeted intervention complete",
+              text: "School has improved/RISE targeted intervention complete"
           },
           {
-              value: "On schedule",
-              checked:  data['progress-objective-4'] === "On schedule",
-              text: "On schedule"
+              value: "School not improving as required",
+              checked: data['progress-summary'] === "School not improving as required",
+              text: "School not improving as required"
           },
           {
-              value: "Behind schedule",
-              checked:  data['progress-objective-4'] === "Behind schedule",
-              text: "Behind schedule"
+              value: "Review not taken place",
+              checked: data['progress-summary'] === "Review not taken place",
+              text: "Review not taken place"
           },
           {
-              value: "Not started",
-              checked:  data['progress-objective-4'] === "Not started",
-              text: "Not started"
+              value: "School not engaging",
+              checked: data['progress-summary'] === "School not engaging",
+              text: "School not engaging"
           }
           ]
           }) }}
@@ -146,14 +144,13 @@
           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
           {{ govukTextarea({
-          name: "progress-objective-4-details",
-          id: "progress-objective-4-details",
+          name: "progress-summary-details",
+          id: "progress-summary-details",
           rows: 5,
-          value: data["progress-objective-4-details"],
+          value: data["progress-summary-details"],
           label: {
           text: "Details",
           classes: "govuk-label--m",
-          
           isPageHeading: true
           }
           }) }}
@@ -171,21 +168,20 @@
 
             {{ govukButton({
                 type: "submit",
-              html: "Save"
+              html: "Save and return"
             }) }}
      
 
-       <a class="govuk-link" href="./progress-summary.html">Skip this objective</a>
+       
+           
 
-            
+           
         
          </div>
 
       </form>
 
-     
-    
-   
+      
 
     </div>
 

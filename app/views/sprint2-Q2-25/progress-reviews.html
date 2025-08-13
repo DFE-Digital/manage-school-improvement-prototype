@@ -83,6 +83,12 @@
             </section>
           
           </article>
+
+          {% if (data['allocated-adviser-email'] == NULL) %}
+          <div class="govuk-inset-text">
+          Before you can add a progress review, you must allocate an adviser.
+          </div>
+          {% endif %}
         
           <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
 
@@ -98,17 +104,17 @@
                         First review
                       </dt>
                       <dd class="govuk-summary-list__value text-align-right">
-                        {% if (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
                         <strong class="govuk-tag ">
                             Progress not recorded
                           </strong>
 
-                           {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                           {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
                           <strong class="govuk-tag govuk-tag--orange ">
                             Progress partly recorded
                           </strong>
                          
-                          {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          {% elif (data['progress-summary'] != NULL) and (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
                           <strong class="govuk-tag govuk-tag--green ">
                             Progress recorded
                           </strong>
@@ -215,7 +221,7 @@
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
                         {% if (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)%}
-                        <a href="progress-objective-1" class="govuk-link margin-top-15">Record progress</a>
+                        <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
                         {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
                         <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
                         {% endif %}
@@ -246,10 +252,21 @@
        
             {% from "govuk/components/button/macro.njk" import govukButton %}
 
+            {% if (data['allocated-adviser-email'] != NULL) %}
+
             {{ govukButton({
               html: "Add review",
               href: "review-details"
             }) }}
+
+            {% elif (data['allocated-adviser-email'] == NULL) %}
+
+            {{ govukButton({
+              html: "Allocate an adviser",
+              href: "task-list/allocate-an-adviser"
+            }) }}
+
+            {% endif %}
      
             <a class="govuk-link" href="improvement-plan">Return to improvement plan</a>
        

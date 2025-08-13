@@ -45,11 +45,22 @@
         Review objectives
       </h1>
 
+      <!--
+      1: {{ data['plan-objective-1']}}<br>
+      2: {{ data['plan-objective-2']}}<br>
+      3: {{ data['plan-objective-3']}}<br>
+      4: {{ data['plan-objective-4']}}<br><br>
+
+      1: {{ data['area-of-improvement']}}<br>
+      2: {{ data['area-of-improvement-2']}}<br>
+      3: {{ data['area-of-improvement-3']}}<br>
+      4: {{ data['area-of-improvement-4']}}
+    -->
      
 
 
       
-      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] == NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] == NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) %}
 
  <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -82,7 +93,7 @@
 
 
 
-       {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+       {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) %}
 
  <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -127,7 +138,7 @@
 
 
 
-      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] == NULL) %}
 
  <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -202,7 +213,10 @@
 
 
 
-{% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] != NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+
+
+
+{% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] != NULL) %}
 
  <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -289,11 +303,7 @@
   {% endif %}
 
 
-              
-
-
-        
-        
+             
         <div class="govuk-button-group margin-top-15">
 
 
