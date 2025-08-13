@@ -40,7 +40,7 @@
 
       
 
-      <span class="govuk-caption-l">{{ data['area-of-improvement']}}</span>
+      <span class="govuk-caption-l">{{ data['area-of-improvement-2']}}</span>
       <h1 class="govuk-heading-l margin-bottom-20">
         {{ data['plan-objective-2']}}
       </h1>
@@ -116,29 +116,29 @@
           name: "progress-objective-2",
           items: [
           {
-              value: "School progressing well",
-              checked:  data['progress-objective-2'] === "School progressing well",
-              text: "School progressing well"
+              value: "Complete",
+              checked:  data['progress-objective-2'] === "Complete",
+              text: "Complete"
           },
           {
-              value: "School has improved/RISE targeted intervention complete",
-              checked:  data['progress-objective-2'] === "School has improved/RISE targeted intervention complete",
-              text: "School has improved/RISE targeted intervention complete"
+              value: "Ahead of schedule",
+              checked:  data['progress-objective-2'] === "Ahead of schedule",
+              text: "Ahead of schedule"
           },
           {
-              value: "School not improving as required",
-              checked:  data['progress-objective-2'] === "School not improving",
-              text: "School not improving as required"
+              value: "On schedule",
+              checked:  data['progress-objective-2'] === "On schedule",
+              text: "On schedule"
           },
           {
-              value: "Review not taken place",
-              checked:  data['progress-objective-2'] === "Review not taken place",
-              text: "Review not taken place"
+              value: "Behind schedule",
+              checked:  data['progress-objective-2'] === "Behind schedule",
+              text: "Behind schedule"
           },
           {
-              value: "School not engaging",
-              checked:  data['progress-objective-2'] === "School not engaging",
-              text: "School not engaging"
+              value: "Not started",
+              checked:  data['progress-objective-2'] === "Not started",
+              text: "Not started"
           }
           ]
           }) }}
@@ -173,14 +173,14 @@
 
             {{ govukButton({
                 type: "submit",
-              html: "Save"
+              html: "Save and return"
             }) }}
      
 
        
 
 
-               <a class="govuk-link" href="./progress-objective-3.html">Skip this objective</a>
+            
         
          </div>
 

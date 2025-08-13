@@ -45,7 +45,7 @@
         {{ data['plan-objective-4']}}
       </h1>
 
-      <form class="form" action="./progress-summary" method="post">
+      <form class="form" action="./improvement-plan" method="post">
 
 
         {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
@@ -171,11 +171,12 @@
 
             {{ govukButton({
                 type: "submit",
-              html: "Save"
+              html: "Save and return"
             }) }}
      
 
-       <a class="govuk-link" href="./progress-summary.html">Skip this objective</a>
+      
+
 
             
         

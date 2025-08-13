@@ -42,13 +42,13 @@
 
       <span class="govuk-caption-l">Progress review</span>
       <h1 class="govuk-heading-l margin-bottom-20">
-        Update progress summary
+        Overall progress
       </h1>
 
-      <form class="form" action="./progress-reviews" method="post">
+      <form class="form" action="./progress-summary-validation" method="post">
 
 
-        {% if (data['review-term-1'] == NULL) and (data['review-term-2'] == NULL) %}
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
 
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
 
@@ -65,7 +65,7 @@
         
           <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
 
-        {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] == NULL) %}
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
 
 
         <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
@@ -89,7 +89,7 @@
                     <div class="govuk-summary-list__row no-border ">
                       <dt class="govuk-summary-list__key govuk-!-width-one-half ">
                         Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
-                        by <span class="govuk-body">{{ data['review-name-1']}}</span>
+                        by Alex James
                       </dt>
                      
                     </div>
@@ -101,7 +101,7 @@
 
 
           <h2 class="govuk-heading-m margin-bottom-20">
-            How is the school progressing?
+            How is the school progressing overall?
           </h2>
 
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -112,18 +112,28 @@
           items: [
           {
               value: "School progressing well",
-              checked:  data['progress-summary'] === "School progressing well",
+              checked: data['progress-summary'] === "School progressing well",
               text: "School progressing well"
           },
           {
-              value: "Targeted intervention complete",
-              checked:  data['progress-summary'] === "Targeted intervention complete",
-              text: "Targeted intervention complete"
+              value: "School has improved/RISE targeted intervention complete",
+              checked: data['progress-summary'] === "School has improved/RISE targeted intervention complete",
+              text: "School has improved/RISE targeted intervention complete"
           },
           {
-              value: "School not improving",
-              checked:  data['progress-summary'] === "School not improving",
-              text: "School not improving"
+              value: "School not improving as required",
+              checked: data['progress-summary'] === "School not improving as required",
+              text: "School not improving as required"
+          },
+          {
+              value: "Review not taken place",
+              checked: data['progress-summary'] === "Review not taken place",
+              text: "Review not taken place"
+          },
+          {
+              value: "School not engaging",
+              checked: data['progress-summary'] === "School not engaging",
+              text: "School not engaging"
           }
           ]
           }) }}
@@ -141,9 +151,6 @@
           text: "Details",
           classes: "govuk-label--m",
           isPageHeading: true
-          },
-          hint: {
-          text: "Hint text if needed..."
           }
           }) }}
 
@@ -160,14 +167,14 @@
 
             {{ govukButton({
                 type: "submit",
-              html: "Save and return"
+              html: "Save"
             }) }}
      
 
        
            
 
-              <a class="govuk-link" href="progress-reviews">Cancel</a>
+              <!--<a class="govuk-link" href="./progress-objective-2.html">Skip overall progress</a>-->
         
          </div>
 

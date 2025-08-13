@@ -40,12 +40,14 @@
 
       
 
-      <span class="govuk-caption-l">{{ data['area-of-improvement-4']}}</span>
+      <span class="govuk-caption-l">{{ data['area-of-improvement']}}</span>
       <h1 class="govuk-heading-l margin-bottom-20">
-        {{ data['plan-objective-4']}}
+        {{ data['plan-objective-2']}}
       </h1>
 
-      <form class="form" action="./progress-summary" method="post">
+      
+      <form class="form" action="./task-list/review-objectives" method="post">
+      
 
 
         {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
@@ -110,33 +112,33 @@
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
          
           {{ govukRadios({
-          idPrefix: "progress-objective-4",
-          name: "progress-objective-4",
+          idPrefix: "progress-objective-2",
+          name: "progress-objective-2",
           items: [
           {
               value: "Complete",
-              checked:  data['progress-objective-4'] === "Complete",
+              checked:  data['progress-objective-2'] === "Complete",
               text: "Complete"
           },
           {
-              value: "Ahead of schedule",
-              checked:  data['progress-objective-4'] === "Ahead of schedule",
-              text: "Ahead of schedule"
+              value: "Progressing well",
+              checked:  data['progress-objective-2'] === "Progressing well",
+              text: "Progressing well"
           },
           {
-              value: "On schedule",
-              checked:  data['progress-objective-4'] === "On schedule",
-              text: "On schedule"
-          },
-          {
-              value: "Behind schedule",
-              checked:  data['progress-objective-4'] === "Behind schedule",
-              text: "Behind schedule"
+              value: "Not progressing as required",
+              checked:  data['progress-objective-2'] === "Not progressing as required",
+              text: "Not progressing as required"
           },
           {
               value: "Not started",
-              checked:  data['progress-objective-4'] === "Not started",
+              checked:  data['progress-objective-2'] === "Not started",
               text: "Not started"
+          },
+          {
+              value: "Review not taken place",
+              checked:  data['progress-objective-2'] === "Review not taken place",
+              text: "Review not taken place"
           }
           ]
           }) }}
@@ -146,10 +148,10 @@
           {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
           {{ govukTextarea({
-          name: "progress-objective-4-details",
-          id: "progress-objective-4-details",
+          name: "progress-objective-2-details",
+          id: "progress-objective-2-details",
           rows: 5,
-          value: data["progress-objective-4-details"],
+          value: data["progress-objective-2-details"],
           label: {
           text: "Details",
           classes: "govuk-label--m",
@@ -171,14 +173,14 @@
 
             {{ govukButton({
                 type: "submit",
-              html: "Save"
+              html: "Save and return"
             }) }}
      
 
-       <a class="govuk-link" href="./progress-summary.html">Skip this objective</a>
+       
+
 
             
-        
          </div>
 
       </form>
