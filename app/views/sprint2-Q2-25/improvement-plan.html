@@ -55,7 +55,7 @@
 
       <h2 class="govuk-heading-l">Improvement plan</h2>
 
-      {% if (data['objectives-completed'] != 'done') %}
+      {% if (data['objectives-completed'] != 'done') or (data['allocated-adviser-email'] == '') or (data['allocated-adviser-email'] == NULL) %}
 
       <p>As you add the improvement plan objectives they will be listed on this page.</p>
       <p>You will only be able to record a progress review when:</p>
@@ -78,7 +78,7 @@
         {% endif %}
 
 
- {% if (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+ {% if (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
  
  <article class="moj-ticket-panel margin-bottom-30 padding-bottom-0" aria-label="Sub navigation 1">
 
@@ -92,9 +92,21 @@
             
             <dd class="govuk-summary-list__value text-align-right">
              
-                          <strong class="govuk-tag govuk-tag--green">
+                         {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+
+                           {% elif (data['progress-summary'] == NULL) or (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                          <strong class="govuk-tag govuk-tag--orange ">
+                            Progress partly recorded
+                          </strong>
+                         
+                          {% elif (data['progress-summary'] != NULL) and (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          <strong class="govuk-tag govuk-tag--green ">
                             Progress recorded
                           </strong>
+                          {% endif %}
                         
             </dd>
           </div>
@@ -121,7 +133,7 @@
 {% endif %}
 
 
-
+<!--
 {% if (data['progress-summary'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
  
  <article class="moj-ticket-panel margin-bottom-30 padding-bottom-0" aria-label="Sub navigation 1">
@@ -163,6 +175,7 @@
 </article>
 
 {% endif %}
+-->
 
 
 
