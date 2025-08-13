@@ -136,7 +136,7 @@
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
                         {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
-                        <a href="progress-objective-1" class="govuk-link margin-top-15">Record progress</a>
+                        <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
                         {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
                         <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
                         {% endif %}
@@ -226,9 +226,9 @@
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
-                        {% if (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL)%}
+                         {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
                         <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
-                        {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                        {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
                         <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
                         {% endif %}
 

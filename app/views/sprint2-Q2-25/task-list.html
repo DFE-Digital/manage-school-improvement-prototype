@@ -239,6 +239,62 @@
           </div>
         </li>
 
+        
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/formal-letter-of-notification" aria-describedby="company-details-2-status">
+              Send the formal notification
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+
+            
+            {% if (data['draft-email'] == NULL) and (data['add-attachments'] == NULL) and (data['add-recipients'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/record-schools-response" aria-describedby="company-details-2-status">
+              Record the responsible body's response to the conflict of interest form
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+  
+            {% if (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+        </div>
+        </li>
+
+
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
           <div class="govuk-task-list__name-and-hint">
             <a class="govuk-link govuk-task-list__link" href="task-list/allocate-an-adviser" aria-describedby="company-details-4-status">
@@ -271,59 +327,6 @@
             
             
           </div>
-        </li>
-
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="task-list/formal-letter-of-notification" aria-describedby="company-details-2-status">
-              Send the formal letter of notification
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-
-            
-
-            
-            {% if (data['draft-email'] == NULL) and (data['add-attachments'] == NULL) and (data['add-recipients'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-            {% elif (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
-            {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
-            {% endif %}
-            
-          </div>
-        </li>
-
-        <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          <div class="govuk-task-list__name-and-hint">
-            <a class="govuk-link govuk-task-list__link" href="task-list/record-schools-response" aria-describedby="company-details-2-status">
-              Record the responsible body's response
-            </a>
-          </div>
-          <div class="govuk-task-list__status" id="company-details-2-status">
-  
-            {% if (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
-            {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
-            {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
-            {% endif %}
-            
-        </div>
         </li>
 
       </ul>

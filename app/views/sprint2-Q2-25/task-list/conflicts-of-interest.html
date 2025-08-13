@@ -51,7 +51,9 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p>For example, if the potential adviser used to work for the school or trust involved.</p>
+      <p>The adviser completed a conflict of interest declaration form when they began working with DfE.</p>
+
+      <p>Use this to check for any conflicts of interest they may have with this school or its responsible body.</p>
 
 
 
@@ -75,22 +77,10 @@
               <div class="govuk-checkboxes__item padding-bottom-15">
                 <input class="govuk-checkboxes__input" id="conflicts-form-sent" name="conflicts-form-sent" type="checkbox" value="done" {{checked("conflicts-form-sent", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="conflicts-form-sent">
-                  Send conflict of interest form to proposed adviser and the school
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item padding-bottom-15">
-                <input class="govuk-checkboxes__input" id="conflicts-form-back" name="conflicts-form-back" type="checkbox" value="done" {{checked("conflicts-form-back", "done")}}>
-                <label class="govuk-label govuk-checkboxes__label" for="conflicts-form-back">
-                  Receive completed conflict of interest form
+                  Review the adviser's conflict of interest declaration
                 </label>
               </div>
               
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="conflicts-form-saved" name="conflicts-form-saved" type="checkbox" value="done" {{checked("conflicts-form-saved", "done")}}>
-                <label class="govuk-label govuk-checkboxes__label" for="conflicts-form-saved">
-                  Save completed conflict of interest form in SharePoint
-                </label>
-              </div>
         
             </div>
           </fieldset>
@@ -104,7 +94,7 @@
           namePrefix: "conflicts-of-interest-date",
           fieldset: {
             legend: {
-              text: "Enter date when conflicts of interest were checked",
+              text: "Enter date when the adviser's conflicts of interest declaration was checked",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
