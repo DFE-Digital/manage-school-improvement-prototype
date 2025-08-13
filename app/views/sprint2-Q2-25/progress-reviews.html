@@ -44,7 +44,13 @@
         Progress reviews
       </h1>
 
-
+      <!--
+      Summary - {{ data['progress-summary']}}<br>
+      1 - {{ data['progress-objective-1']}}<br>
+      2 - {{ data['progress-objective-2']}}<br>
+      3 - {{ data['progress-objective-3']}}<br>
+      4 - {{ data['progress-objective-4']}}<br>
+      -->
 
 
       {% if (data['next-review-day'] != NULL) %}
@@ -109,7 +115,7 @@
                             Progress not recorded
                           </strong>
 
-                           {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                           {% elif (data['progress-summary'] == NULL) or (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
                           <strong class="govuk-tag govuk-tag--orange ">
                             Progress partly recorded
                           </strong>
@@ -129,9 +135,9 @@
                       </dt>
                       <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
 
-                        {% if (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
                         <a href="progress-objective-1" class="govuk-link margin-top-15">Record progress</a>
-                        {% elif (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                        {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
                         <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
                         {% endif %}
 
