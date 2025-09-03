@@ -38,18 +38,6 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
-
-        {{ govukErrorSummary({
-          titleText: "There is a problem",
-          errorList: [
-            {
-              text: "You must enter details",
-              href: "#"
-            }
-          ]
-        }) }}
-
 
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
@@ -57,14 +45,15 @@
         Record engagement concern
       </h1>
 
-  
+      <!--
       {% if (data['engagement-concern'] != 'Yes') %}
       <form class="form" action="engagement-concern-recorded" method="post">
       {% elif (data['engagement-concern'] == 'Yes') %}
       <form class="form" action="engagement-concern" method="post">
       {% endif %}
+      -->
 
-
+      <form class="form" action="engagement-concerns" method="post">
 
       <!--
       <div class="govuk-form-group">
@@ -104,14 +93,11 @@
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
       
-      {% set reasonHtml %}
+      {% set reason2Html %}
       {{ govukTextarea({
-        name: "engagement-concern-reasons",
-        id: "engagement-concern-reasons",
-        value: data["engagement-concern-reasons"],
-        errorMessage: {
-          text: "You must enter details"
-        },
+        name: "engagement-concern-reasons-2",
+        id: "engagement-concern-reasons-2",
+        value: data["engagement-concern-reasons-2"],
         label: {
           text: "Enter details about your engagement concern"
         }
@@ -119,15 +105,15 @@
       {% endset -%}
       
       {{ govukCheckboxes({
-        name: "engagement-concern",
-        id: "engagement-concern",
+        name: "engagement-concern-2",
+        id: "engagement-concern-2",
         items: [
           {
             value: "Yes",
-            checked: true,
+            checked: data['engagement-concern-2'] == "Yes",
             text: "Record engagement concern with this school",
             conditional: {
-              html: reasonHtml
+              html: reason2Html
             }
           }
         ]
@@ -184,14 +170,24 @@
         
         <div class="govuk-button-group">
 
+
        
           <button type="submit" class="govuk-button" data-module="govuk-button">
           Save and return
           </button>
+
+          <!--
+          {{ govukButton({
+            text: "Escalate concern",
+            classes: "govuk-button--secondary",
+            href: "escalate-engagement-concern"
+          }) }}
+           -->
+      
      
 
        
-        <a class="govuk-link" href="engagement-concerns">Cancel</a>
+        <a class="govuk-link" href="engagement-concern">Cancel</a>
         
          </div>
 

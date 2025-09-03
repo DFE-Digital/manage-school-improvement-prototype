@@ -38,18 +38,41 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+  <div role="alert">
+    <h2 class="govuk-error-summary__title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#">You must complete all actions in Before you consider using a notice</a>
+        </li>
+        <li>
+          <a href="#">You must complete all actions in Get approval to use a notice</a>
+        </li>
+        <li>
+          <a href="#">You must complete all actions in Issuing a notice</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Escalate an engagement concern
       </h1>
 
-      <p>This will record that the school has been issued a NEIA (notice to enter into arrangements).</p>
+      <p>This will record that the school has been issued a TWN (termination warning notice).</p>
       <p>Only use these notices as a last resort.</p>
 
-     <form class="form" action="escalation-reason" method="post">
+    
       
       <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="before-using-notice-hint">
+  <div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" aria-describedby="before-using-notice-error">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
       <h2 class="govuk-fieldset__heading">
         Before you consider using a notice
@@ -58,6 +81,9 @@
     <div id="before-using-notice-hint" class="govuk-hint">
       You must complete the following steps before you can use a notice to mandate engagement.
     </div>
+    <p id="before-using-notice-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span>You must complete all actions in Before you consider using a notice
+    </p>
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="existing-relationships" name="existing-relationships" type="checkbox" value="done" {{checked("existing-relationships", "done")}}>
@@ -73,8 +99,8 @@
               </div>
 
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="use-information-powers" name="use-information-powers" type="checkbox" value="done" {{checked("use-information-powers", "done")}}>
-                <label class="govuk-label govuk-checkboxes__label" for="use-information-powers">
+                <input class="govuk-checkboxes__input" id="information-powers" name="information-powers" type="checkbox" value="done" {{checked("information-powers", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="information-powers">
                   Consider the use of information powers if mediation fails
                 </label>
               </div>
@@ -85,7 +111,8 @@
       
 
       <div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="notice-approval-hint">
+  <div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" aria-describedby="get-approval-error">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
       <h2 class="govuk-fieldset__heading">
         Get approval to use a notice
@@ -94,6 +121,9 @@
     <div id="notice-approval-hint" class="govuk-hint">
       You must gather evidence and get approval before using a notice.
     </div>
+     <p id="get-approval-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span>You must complete all actions in Get approval to use a notice
+    </p>
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="gather-evidence" name="gather-evidence" type="checkbox" value="done" {{checked("gather-evidence", "done")}}>
@@ -149,8 +179,8 @@
 
 
 
-<div class="govuk-form-group">
-  <fieldset class="govuk-fieldset" aria-describedby="before-using-notice-hint">
+<div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" aria-describedby="issue-notice-error">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
       <h2 class="govuk-fieldset__heading">
         Issuing a notice
@@ -159,6 +189,9 @@
     <div id="before-using-notice-hint" class="govuk-hint">
       Before issuing a notice you must:
     </div>
+      <p id="issue-notice-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span>You must complete all actions in Issuing a notice
+    </p>
     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
       <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="notify-responsible-body" name="notify-responsible-body" type="checkbox" value="done" {{checked("notify-responsible-body", "done")}}>
@@ -184,6 +217,7 @@
 </div>
 
 
+        
 
         
         <div class="govuk-button-group">

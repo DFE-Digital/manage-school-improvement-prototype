@@ -44,7 +44,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "You must enter details",
+              text: "You must select Record engagement concern with this school",
               href: "#"
             }
           ]
@@ -109,9 +109,6 @@
         name: "engagement-concern-reasons",
         id: "engagement-concern-reasons",
         value: data["engagement-concern-reasons"],
-        errorMessage: {
-          text: "You must enter details"
-        },
         label: {
           text: "Enter details about your engagement concern"
         }
@@ -121,7 +118,9 @@
       {{ govukCheckboxes({
         name: "engagement-concern",
         id: "engagement-concern",
-        
+        errorMessage: {
+      text: "You must select Record engagement concern with this school"
+      },
         items: [
           {
             value: "Yes",
@@ -192,7 +191,7 @@
      
 
        
-        <a class="govuk-link" href="engagement-concern">Cancel</a>
+        <a class="govuk-link" href="engagement-concerns">Cancel</a>
         
          </div>
 

@@ -45,7 +45,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Delete details to remove your engagement concern",
+              text: "Untick the box to remove engagement concern",
               href: "#"
             }
           ]
@@ -64,13 +64,11 @@
       <form class="form" action="engagement-concern" method="post">
       {% endif %}
 
-        <div class="govuk-form-group">
+        <div class="govuk-form-group govuk-form-group--error">
           <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
-            <!--
             <p id="countries-error" class="govuk-error-message">
-                <span class="govuk-visually-hidden">Error:</span> Confirm that you have an engagement concern
+                <span class="govuk-visually-hidden">Error:</span> Untick the box to remove engagement concern
               </p>
-            -->
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
         <div class="govuk-checkboxes__item margin-bottom-20">
           <input class="govuk-checkboxes__input" id="engagement-concern" name="engagement-concern" type="checkbox" value="Yes" {{checked("engagement-concern", "Yes")}}>
@@ -96,9 +94,6 @@
             text: "Details",
             classes: "govuk-label--m",
             isPageHeading: false
-          },
-          errorMessage: {
-            text: "Delete details to remove your engagement concern"
           },
           hint: {
             text: "Enter details about your engagement concern."

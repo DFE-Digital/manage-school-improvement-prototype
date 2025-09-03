@@ -40,40 +40,40 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter date of regional director's approval to mandate
+        Enter date of regional director's decision to create an interim executive board
       </h1>
 
      
 
       
 
-      <form class="form" action="escalation-recorded" method="post">
+      <form class="form" action="engagement-concerns" method="post">
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
-          id: "escalation-decision-date",
-          namePrefix: "escalation-decision-date",
+          id: "interim-exective-board-date",
+          namePrefix: "interim-executive-board-date",
           hint: {
             text: "For example, 1 7 2024."
           },
           items: [
             {
               name: "day",
-              value: data["escalation-decision-date-day"],
+              value: data["interim-executive-board-date-day"],
               allowEmpty: false,
               classes: "govuk-input--width-2"
             },
             {
               name: "month",
-              value: data["escalation-decision-date-month"],
+              value: data["interim-executive-board-date-month"],
               allowEmpty: false,
               classes: "govuk-input--width-2"
             },                
             {
               name: "year",
-              value: data["escalation-decision-date-year"],
+              value: data["interim-executive-board-date-year"],
               allowEmpty: false,
               classes: "govuk-input--width-4"
             }
