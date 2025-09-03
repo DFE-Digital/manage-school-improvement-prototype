@@ -1,0 +1,350 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        Review objectives
+      </h1>
+
+     
+
+
+      
+      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] == NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+
+ <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-1']}}
+              </dd>
+             <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+              </dd>
+               
+            </div>
+           
+           
+    
+          </dl>
+        </div>
+      </div>
+
+  {% endif %}
+
+
+
+       {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+
+ <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-1']}}
+              </dd>
+             <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+              </dd>
+               
+            </div>
+           
+           
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Objective 2
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['plan-objective-2']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
+              </dd>
+              </div>
+           
+
+          </dl>
+        </div>
+      </div>
+
+  {% endif %}
+
+
+
+      {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+
+ <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-1']}}
+              </dd>
+             <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+              </dd>
+               
+            </div>
+           
+           
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Objective 2
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['plan-objective-2']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
+              </dd>
+              </div>
+           
+
+          </dl>
+        </div>
+      </div>
+
+
+
+      
+           
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement-3']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-3']}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
+              </dd>
+               
+            </div>
+            
+           
+          </dl>
+        </div>
+      </div>
+
+  {% endif %}
+
+
+
+{% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] != NULL) and (data['area-of-improvement-3'] != NULL) and (data['area-of-improvement-4'] != NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+
+ <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-1']}}
+              </dd>
+             <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+              </dd>
+               
+            </div>
+           
+           
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Objective 2
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['plan-objective-2']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 2 progress</span></a>
+              </dd>
+              </div>
+           
+
+          </dl>
+        </div>
+      </div>
+
+
+
+      
+           
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['area-of-improvement-3']}}
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row ">
+              <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+                Objective 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['plan-objective-3']}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 3 progress</span></a>
+              </dd>
+               
+            </div>
+            
+            
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Objective 2
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ data['plan-objective-4']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 4 progress</span></a>
+              </dd>
+              </div>
+           
+           
+          </dl>
+        </div>
+      </div>
+
+  {% endif %}
+
+
+              
+
+
+        
+        
+        <div class="govuk-button-group margin-top-15">
+
+
+ <form class="form" action="../task-list-locked" method="post">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="objectives-completed" name="objectives-completed" type="checkbox" value="done" {{checked("objectives-completed", "done")}}>
+            <label class="govuk-label govuk-checkboxes__label" for="objectives-completed">
+              Mark this section as complete, you can still make changes later
+            </label>
+           
+          </div>
+
+          <br>
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and return"
+            }) }}
+          <a href="area-of-improvement" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+            Add another objective
+          </a>
+         
+          </div>
+
+      </form>
+
+
+
+
+
+
+       
+          
+     
+
+       
+            
+        
+         </div>
+
+     
+
+      
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

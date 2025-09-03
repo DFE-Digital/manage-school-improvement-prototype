@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Delete details to remove the school as a case study candidate",
+              href: "#"
+            }
+          ]
+        }) }}
+
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Case study candidates
+      </h1>
+
+      <form class="form" action="./case-study-flagged" method="post">
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+            <!--
+            <p id="countries-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> Confirm if this school could be a case study
+              </p>
+            -->
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="case-study-candidate" name="case-study-candidate" type="checkbox" value="done" {{checked("case-study-candidate", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="case-study-candidate">
+            Case study candidate
+          </label>
+        </div>
+        </div>
+
+        </fieldset>
+        </div>
+
+
+
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+        {{ govukTextarea({
+          name: "case-study-reasons",
+          id: "case-study-reasons",
+          value: data['case-study-reasons'],
+          label: {
+            text: "Details",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          errorMessage: {
+            text: "Delete details to remove the school as a case study candidate"
+          },
+          hint: {
+            text: "Enter details about why this school would be a good candidate for a case study."
+            }
+          })      
+        }}
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and return
+          </button>
+     
+
+       
+        <a class="govuk-link" href="case-study">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

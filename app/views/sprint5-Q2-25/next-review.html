@@ -1,0 +1,148 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Progress reviews</span>
+      <h1 class="govuk-heading-l">
+        Is another review needed?
+      </h1>
+
+      <form class="form" action="./progress-reviews" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+        {% set yesHtml %}
+
+        {{ govukDateInput({
+            id: "rnext-review",
+            namePrefix: "next-review",
+            fieldset: {
+                legend: {
+                  text: "Enter a date for the next review",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+            hint: {
+              text: "For example, 27 3 2007."
+            },
+            items: [
+            {
+              name: "day",
+              value: data["next-review-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["next-review-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["next-review-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+          {% endset -%}
+    
+          {{ govukRadios({
+            idPrefix: "another-review",
+            name: "another-review",
+            items: [
+            {
+                value: "Yes",
+                checked:  data['another-review'] === "Yes",
+                text: "Yes",
+                conditional: {
+                  html: yesHtml
+                }
+            },
+            {
+                value: "No",
+                checked:  data['another-review'] === "No",
+                text: "No"
+            }
+            ]
+          }) }}
+
+
+
+
+
+
+
+       
+        
+
+        
+
+
+
+
+        
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and return
+          </button>
+     
+
+       
+
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
