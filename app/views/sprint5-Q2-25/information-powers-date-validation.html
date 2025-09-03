@@ -38,44 +38,60 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Enter the date the school was informed of the use of information powers",
+              href: "#"
+            }
+          ]
+        }) }}
+
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter date of regional director's approval to mandate
+        Enter date the school was informed of the use of information powers
       </h1>
 
      
 
       
 
-      <form class="form" action="escalation-recorded" method="post">
+      <form class="form" action="engagement-concerns" method="post">
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
-          id: "escalation-decision-date",
-          namePrefix: "escalation-decision-date",
+          id: "information-powers-date",
+          namePrefix: "information-powers-date",
           hint: {
             text: "For example, 1 7 2024."
           },
+        errorMessage: {
+         text: "Enter the date the school was informed of the use of information powers"
+        },
           items: [
             {
               name: "day",
-              value: data["escalation-decision-date-day"],
+              value: data["information-powers-date-day"],
               allowEmpty: false,
-              classes: "govuk-input--width-2"
+              classes: "govuk-input--width-2 govuk-input--error"
             },
             {
               name: "month",
-              value: data["escalation-decision-date-month"],
+              value: data["information-powers-date-month"],
               allowEmpty: false,
-              classes: "govuk-input--width-2"
+              classes: "govuk-input--width-2 govuk-input--error"
             },                
             {
               name: "year",
-              value: data["escalation-decision-date-year"],
+              value: data["information-powers-date-year"],
               allowEmpty: false,
-              classes: "govuk-input--width-4"
+              classes: "govuk-input--width-4 govuk-input--error"
             }
           ]
         }) }}

@@ -38,44 +38,60 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You must enter today's date or a date in the past",
+              href: "#"
+            }
+          ]
+        }) }}
+
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter date of regional director's approval to mandate
+        Enter date of regional director's decision to create an interim executive board
       </h1>
 
      
 
       
 
-      <form class="form" action="escalation-recorded" method="post">
+      <form class="form" action="engagement-concerns" method="post">
 
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
-          id: "escalation-decision-date",
-          namePrefix: "escalation-decision-date",
+          id: "interim-exective-board-date",
+          namePrefix: "interim-executive-board-date",
           hint: {
             text: "For example, 1 7 2024."
           },
+          errorMessage: {
+         text: "You must enter today's date or a date in the past"
+        },
           items: [
             {
               name: "day",
-              value: data["escalation-decision-date-day"],
+              value: "1",
               allowEmpty: false,
-              classes: "govuk-input--width-2"
+              classes: "govuk-input--width-2 govuk-input--error"
             },
             {
               name: "month",
-              value: data["escalation-decision-date-month"],
+              value: "6",
               allowEmpty: false,
-              classes: "govuk-input--width-2"
+              classes: "govuk-input--width-2 govuk-input--error"
             },                
             {
               name: "year",
-              value: data["escalation-decision-date-year"],
+              value: "2026",
               allowEmpty: false,
-              classes: "govuk-input--width-4"
+              classes: "govuk-input--width-4 govuk-input--error"
             }
           ]
         }) }}
