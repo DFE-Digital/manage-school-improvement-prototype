@@ -38,11 +38,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['eligible'] == NULL) %}  
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Send the formal letter of notification
+        Contact the responsible body
       </h1>
 
    </div>
@@ -51,45 +55,84 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <p class="govuk-body">Somebody from the RISE regional team with access to their team mailbox must send the formal notification. They may not have access to Manage school improvement so you may have to complete this task on their behalf.</p>
+      <p class="govuk-body">There are two parts to contacting the responsible body. First, an informal phone call. Then, formal letters are sent by email.</p>
 
-      <p class="govuk-body">DfE must send the formal notification by email to the responsible body and other stakeholders.</p>
+      <h2 class="govuk-heading-m">Initial phone call</h2>
 
-      <p class="govuk-body">This must be sent by email from the regional RISE team's mailbox.</p>
+      <p class="govuk-body">You should decide in your RISE team who is best placed to contact the responsible body about this school.</p>
+      <br>
+      <details class="govuk-details margin-top-minus-15">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Who should make initial contact
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>The person who should contact the responsible depends on the circumstances of the school and responsible body, and their relationship with DfE.</p>
 
-     
+          <p>Depending on the type of school, it would be one of the trust relationship manager, the local authorty lead or a member of the RISE team.</p>
 
-    
+          <p>Discuss what the best approach is for this responsible body as a team and make your decision based on your collective knowledge.</p>
+        </div>
+      </details>
 
       <form class="form" action="../task-list" method="post">
 
         
         
-       
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+           
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="call-responsible-body" name="call-responsible-body" type="checkbox" value="done" aria-describedby="call-responsible-body-hint" {{checked("call-responsible-body", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="call-responsible-body">
+                  Call the responsible body
+                </label>
+                <div id="call-responsible-body-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                  There is <a href="https://educationgovuk.sharepoint.com/:u:/r/sites/lvewp00030/SitePages/2-Intervention/RISE/RISE-Targeted-Intervention-Guidance.aspx?csf=1&web=1&e=DKm7Q3" target="_blank">guidance on SharePoint (opens in new tab)</a> that contains links to a call script 
+                  and answers to commonly asked questions that can help you.
+                  <p>
+                  <details class="govuk-details margin-top-minus-15">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        What to say on the call
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <p>During the call, reassure the responsible body that RISE targeted intervention is a collaborative process.</p>
 
-             
+                      <p>Explain that the RISE team and adviser will work together with the responsible body and school and their experience, plans and views will be taken into account.</p>
+
+                     <!-- <p class="govuk-body">You should also explain that the school is eligible for targeted intervention and that the responsible body should contact the RISE team to discuss the next steps.</p> -->
+                    </div>
+                  </details>
+                  </p>
+                </div>
+              </div>
+
+              <h2 class="govuk-heading-m">Formal letters of notification</h2>
+
+              <p class="govuk-body">You must send a formal letter, by email, to the responsible body to inform them the school is entering the targeted intervention programme.</p>
+
+              <p class="govuk-body">The email must be sent from the regional RISE team mailbox.</p>
 
              
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="draft-email" name="draft-email" type="checkbox" value="done" {{checked("draft-email", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="draft-email">
-                  Use the enrolment letter template to draft the email
+                  Draft email
                 </label>
-                <div id="add-attachments-item-hint" class="govuk-hint govuk-checkboxes__hint">
-                  <a href="https://educationgovuk.sharepoint.com/:u:/r/sites/lvewp00030/SitePages/2-Intervention/RISE/RISE-Targeted%20Intervention.aspx?csf=1&web=1&e=ekgYLH" target="_blank">Download the enrolment letter template from SharePoint (opens in new tab)</a> and edit it as required. The template includes the conflict of interest form.
-                </div>
               </div>
 
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="add-attachments" name="add-attachments" type="checkbox" value="done" {{checked("add-attachments", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="add-attachments">
-                  Attach the targeted intervention information sheet
+                  Add attachments
                 </label>
-                <!--
                 <div id="add-attachments-item-hint" class="govuk-hint govuk-checkboxes__hint">
-                  You must include the RISE targeted intervention information sheet and the conflict of interest form.
+                  You must include the enrolment letter and RISE targeted intervention information sheet 
                 </div>
-              -->
               </div>
 
               <div class="govuk-checkboxes__item margin-bottom-minus-30">
@@ -98,7 +141,7 @@
                   Add recipients
                 </label>
                 <div id="add-recipients-item-hint" class="govuk-hint govuk-checkboxes__hint">
-                  The enrolment letter must be sent to particular people at the responsible body depending on the type of school.
+                  The formal letter must be sent to particular people at the responsible body depending on the type of school
                   <p>
                     <details class="govuk-details margin-top-minus-15">
                       <summary class="govuk-details__summary">
@@ -107,15 +150,15 @@
                         </span>
                       </summary>
                       <div class="govuk-details__text">
-                        <h2 class="govuk-heading-m">Academies</h2>
-                        <p>Send the letter, by email, to the Chair of the trust and the trust CEO.</p>
-                        <h2 class="govuk-heading-m">Local authority maintained schools</h2>
-                        <p>Send the letter, by email, to the Chair of governors and the director of children's services at the local authority. You must also copy in the school's headteacher.</p>
-                        <h2 class="govuk-heading-m">Faith schools</h2>
+                        <h3 class="govuk-heading-s">Academies</h3>
+                        <p>Send the email to the Chair of the trust and the trust CEO.</p>
+                        <h3 class="govuk-heading-s">Local authority maintained schools</h3>
+                        <p>Send the email to the Chair of governors, the director of children's services at the local authority. You must also copy in the school's headteacher.</p>
+                        <h3 class="govuk-heading-s">Faith schools</h3>
                         <p>Copy in the diocese or other relevant religious authority if it is a faith school.</p>
-                        <h2 class="govuk-heading-m">Foundation schools</h2>
+                        <h3 class="govuk-heading-s">Foundation schools</h3>
                         <p>Copy in the foundation trust if it is a foundation school.</p>
-                        <h2 class="govuk-heading-m">DfE</h2>
+                        <h3 class="govuk-heading-s">DfE</h3>
                         You must copy in the regional director or their support team, along with the trust relationship manager or local authority lead.
                         
   
@@ -138,7 +181,7 @@
           </fieldset>
         </div>
   
-<br>
+
 
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
@@ -180,11 +223,11 @@
 
 
         
-        
+        {% if (data['eligible'] != NULL) %}
         {{ govukButton({
         text: "Save and return"
         }) }}
-   
+        {% endif %}
      
 
 
