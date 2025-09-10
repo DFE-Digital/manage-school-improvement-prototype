@@ -1,0 +1,215 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <!--<span class="govuk-caption-l">Cheltenham Primary School</span>-->
+    <h1 class="govuk-heading-l">Check funding details</h1>
+
+    <h2 class="govuk-heading-m">Funding</h1>
+
+     
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['funding-name']}}
+          </h2>
+          <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-funding">
+                    Change<span class="govuk-visually-hidden"> funding</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                &pound;{{ data['funding-amount']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Financial year
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <!--{{ data | isoDateFromDateInput("funding-paid-date") | govukDate }}-->
+                {{ data['funding-year']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding rounds
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-rounds']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comments
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-comments']}}
+              </dd>
+             
+            </div>
+          </dl>
+        </div>
+      </div>
+
+
+
+      {% if (data['funding-name-2'] != NULL) %}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            {{ data['funding-name-2']}}
+          </h2>
+          <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-more-funding">
+                    Change<span class="govuk-visually-hidden"> funding</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding amount
+              </dt>
+              <dd class="govuk-summary-list__value">
+                &pound;{{ data['funding-amount-2']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Financial year
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-year-2']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Funding rounds
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-rounds-2']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comments
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['funding-comments-2']}}
+              </dd>
+             
+            </div>
+          </dl>
+        </div>
+      </div>
+      {% endif %}
+
+    
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+         
+          
+
+          <form class="form" action="../task-list" method="post">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="funding-completed" name="funding-completed" type="checkbox" value="done" {{checked("funding-completed", "done")}}>
+            <label class="govuk-label govuk-checkboxes__label" for="funding-completed">
+              Mark this section as complete, you can still make changes later
+            </label>
+           
+          </div>
+
+          <br>
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and return"
+            }) }}
+          <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button--secondary">
+            Add more funding
+          </a>
+          <a href="funding-history">
+            <p>Change answer</p>
+          </div>
+
+      </form>
+  
+        </fieldset>
+      </div>
+
+
+    
+  
+
+
+        
+
+
+       
+
+
+         
+  
+        </div>
+
+ 
+
+    </main>
+  </main>   
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
