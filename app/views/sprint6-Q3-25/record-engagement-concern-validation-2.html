@@ -44,7 +44,11 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "You must enter details",
+              text: "You must enter a summary of your concern",
+              href: "#"
+            },
+            {
+              text: "You must enter details of your concern",
               href: "#"
             }
           ]
@@ -105,15 +109,43 @@
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
       
       {% set reasonHtml %}
+
+      {{ govukCharacterCount({
+        name: "engagement-concern-summary",
+        id: "engagement-concern-summary",
+        value: data["engagement-concern-summary"],
+        maxlength: 200,
+        rows: 3,
+        errorMessage: {
+          text: "You must enter a summary of your concern"
+        },
+        label: {
+          text: "Concern summary",
+          classes: "govuk-label--m",
+          isPageHeading: true
+          },
+        hint: {
+        text: "Enter a short summary of your concern"
+        }
+      }) }}
+
+
+
+
       {{ govukTextarea({
         name: "engagement-concern-reasons",
         id: "engagement-concern-reasons",
         value: data["engagement-concern-reasons"],
         errorMessage: {
-          text: "You must enter details"
+          text: "You must enter details of your concern"
         },
         label: {
-          text: "Enter details about your engagement concern"
+          text: "Concern details",
+          classes: "govuk-label--m",
+          isPageHeading: true 
+        },
+        hint: {
+          text: "Enter details about your concern"
         }
       }) }}
       {% endset -%}
