@@ -107,8 +107,9 @@
           Confirm and continue
           </button>
 
-        <a class="govuk-link" href="engagement-concerns">Cancel</a>
-        
+          {% if (data['engagement-concern-2'] == NULL) %}
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% endif %}
          </div>
 
       </form>

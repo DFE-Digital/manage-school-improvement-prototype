@@ -92,14 +92,37 @@
       
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
       
       {% set reason2Html %}
+
+      {{ govukCharacterCount({
+        name: "engagement-concern-summary-2",
+        id: "engagement-concern-summary-2",
+        value: data["engagement-concern-summary-2"],
+        maxlength: 200,
+        rows: 3,
+        label: {
+          text: "Concern summary",
+          classes: "govuk-label--m",
+          isPageHeading: true
+          },
+        hint: {
+        text: "Enter a short summary of your concern"
+        }
+      }) }}
+      
       {{ govukTextarea({
         name: "engagement-concern-reasons-2",
         id: "engagement-concern-reasons-2",
         value: data["engagement-concern-reasons-2"],
         label: {
-          text: "Enter details about your engagement concern"
+          text: "Concern details",
+          classes: "govuk-label--m",
+          isPageHeading: true 
+        },
+        hint: {
+          text: "Enter details about your concern"
         }
       }) }}
       {% endset -%}
