@@ -62,18 +62,19 @@
 
           {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern-2" }) }}
 
-          {% if (data['engagement-concern-2'] == NULL) %}
+          {% if (data['engagement-concern-summary-2'] == NULL) %}
           {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
           {% endif %}
-          {% if (data['engagement-concern-2'] != NULL) %}
+          {% if (data['engagement-concern-summary-2'] != NULL) %}
           {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "select-information-powers-concern" }) }}
           {% endif %}
           
-          {% if (data['engagement-concern-2'] == NULL) %}
+          {% if (data['engagement-concern-summary-2'] == NULL) %}
           {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "record-interim-executive-board" }) }}
           {% endif %}
-          {% if (data['engagement-concern-2'] != NULL) %}
+          {% if (data['engagement-concern-summary-2'] != NULL) %}
           {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "select-interim-executive-board-concern" }) }}
+          
           {% endif %}
         </div>
       </div>
