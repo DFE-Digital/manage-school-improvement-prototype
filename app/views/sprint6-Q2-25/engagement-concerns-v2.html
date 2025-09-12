@@ -50,7 +50,7 @@
       {% if (data['engagement-concern'] == NULL) and (data['engagement-concern-2'] == NULL)%}
       <p>Enter details about situations where a school or responsible body do not respond to you.</p> 
        <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Record engagement concern here", href: "record-engagement-concern" }) }}
+        {{ govukButton({ text: "Record engagement concern here", href: "record-engagement-concern-v2" }) }}
        </div>
        {% endif %}
       
@@ -378,14 +378,7 @@
               </dd>
             </div>
             {% endif %}
-
-            
-
-
-
-
-            
-           
+ 
 
           </dl>
         </div>
@@ -395,10 +388,12 @@
 
       {% endif %}
 
-     
-    
-      
-      {% if (data['ip-concern'] == "Concern-1") and (data['information-powers'] == "Yes") %}
+
+
+
+
+
+      {% if (data['ip-concern'] == NULL) and (data['information-powers'] == "Yes") %}
 
       <div class="govuk-summary-card">
               <div class="govuk-summary-card__title-wrapper">
@@ -410,11 +405,13 @@
                       Change<span class="govuk-visually-hidden"> information powers</span>
                     </a>
                   </li>
+                  {% if (data['engagement-concern-2'] != NULL) %}
                   &nbsp;|
                   <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
                     Assign <span class="govuk-visually-hidden">information powers </span>to different concern
                   </a>
                 </li>
+                {% endif %}
                 </ul>
               </div>
               <div class="govuk-summary-card__content">
@@ -450,6 +447,69 @@
 
 
 
+
+
+     
+    
+      
+      {% if (data['ip-concern'] == "Concern-1") and (data['information-powers'] == "Yes") %}
+
+      <div class="govuk-summary-card">
+              <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                  Information powers
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
+                      Change<span class="govuk-visually-hidden"> information powers</span>
+                    </a>
+                  </li>
+                  {% if (data['engagement-concern-2'] != NULL) %}
+                  &nbsp;|
+                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
+                    Assign <span class="govuk-visually-hidden">information powers </span>to different concern
+                  </a>
+                </li>
+                {% endif %}
+                </ul>
+              </div>
+              <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Date used
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data | isoDateFromDateInput("information-powers-date") | govukDate }}
+                    </dd>
+                  </div>
+                  
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Details
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['information-powers-details']}}
+                    </dd>
+                   
+                  </div>
+              
+      
+                </dl>
+              </div>
+            </div>
+      
+            {% endif %}
+
+
+
+            
+
+
+
+
             {% if (data['ieb-concern'] == "Concern-1") and (data['interim-executive-board'] == "Yes") %}
 
       <div class="govuk-summary-card">
@@ -462,10 +522,13 @@
                       Change<span class="govuk-visually-hidden"> interim executive board</span>
                     </a>
                   </li>
+                  {% if (data['engagement-concern-2'] != NULL) %}
                   &nbsp;|
                   <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-interim-executive-board-concern-change">
                   Assign <span class="govuk-visually-hidden">interim executive board </span>to different concern
                   </a>
+                  </li>
+                  {% endif %}
                 </ul>
               </div>
               <div class="govuk-summary-card__content">

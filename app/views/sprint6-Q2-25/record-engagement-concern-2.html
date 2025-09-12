@@ -94,7 +94,7 @@
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
       {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
       
-      {% set reason2Html %}
+     
 
       {{ govukCharacterCount({
         name: "engagement-concern-summary-2",
@@ -125,22 +125,7 @@
           text: "Enter details about your concern"
         }
       }) }}
-      {% endset -%}
       
-      {{ govukCheckboxes({
-        name: "engagement-concern-2",
-        id: "engagement-concern-2",
-        items: [
-          {
-            value: "Yes",
-            checked: data['engagement-concern-2'] == "Yes",
-            text: "Record engagement concern with this school",
-            conditional: {
-              html: reason2Html
-            }
-          }
-        ]
-      }) }}
       
 
       
