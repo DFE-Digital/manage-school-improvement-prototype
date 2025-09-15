@@ -40,25 +40,31 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Has this engagement concern been resolved?
+        Record use of interim executive board
       </h1>
 
-      <!--
-      <p>Information powers can be used to compel a school to share information the department needs.</p>
+        <p>Interim executive boards (IEBs) are temporary boards who replace the existing governors at a local authority maintained school.</p>
+        
+        <p>An IEB should only be used if all other attempts to engage with the governors have failed.</p>
+
+        <p>You must read the latest <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/Interim-Executive-Boards(IEB).aspx?" target="_blank">guidance on how to create an IEB (opens in new tab)</a>.</p>
 
       <details class="govuk-details margin-top-15">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
-            How to use information powers
+            How to create an interim executive board
           </span>
         </summary>
         <div class="govuk-details__text">
          
-          <p>To use information powers, you must email the school and inform them that the department is going to use the powers.</p>
-          <p>For example, use a phrase like "Under information powers, then..."</p>
+          <p>An IEB is a small group of experienced people who temporarily take over the role of a school's governing body.</p>
+          <p>Their job is to improve how the school is run and help raise educational standards.</p> 
+          <p>DfE can only create an IEB after a period of formal consultation with the local authority and governing body. The diocese or foundation trust must also be consluted if it is a faith school or part of a foundation.</p>
+          <p>After the consultation, a regional director must decide if an IEB is needed.</p>
+          <p>An IEB can only be created with a regional director's approval.</p>
+
         </div>
       </details>
-        -->
 
 
 
@@ -67,7 +73,7 @@
 
      
 
-      <form class="form" action="resolved-date" method="post">
+      <form class="form" action="interim-executive-board-date" method="post">
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
@@ -75,32 +81,27 @@
             {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
-            {% set resolveddetailsHtml %}
+            {% set iebdetailsHtml %}
             {{ govukTextarea({
-              name: "resolved-details",
-              id: "resolved-details",
-              value: data["resolved-details"],
+              name: "interim-executive-board-details",
+              id: "interim-executive-board-details",
+              value: data["interim-executive-board-details"],
               label: {
-                text: "Enter details about how this concern was resolved."
+                text: "Give details of the IEB, who is on it and why it is necessary."
               }
             }) }}
             {% endset -%}
             
-            {{ govukRadios({
-              name: "resolved",
-              id: "resolved",
+            {{ govukCheckboxes({
+              name: "interim-executive-board",
+              id: "interim-executive-board",
               items: [
                 {
-                  value: "No",
-                  text: "No",
-                  checked: data['resolved'] == "No"
-                },
-                {
                   value: "Yes",
-                  text: "Yes",
-                  checked: data['resolved'] == "Yes",
+                  checked: data['interim-executive-board'] == "Yes",
+                  text: "Interim executive board created",
                   conditional: {
-                    html: resolveddetailsHtml
+                    html: iebdetailsHtml
                   }
                 }
               ]
@@ -114,7 +115,9 @@
           Confirm and continue
           </button>
 
-        <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% if (data['engagement-concern-2'] == NULL) %}
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% endif %}
         
          </div>
 

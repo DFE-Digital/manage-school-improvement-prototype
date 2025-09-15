@@ -70,7 +70,7 @@
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
           
-            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
             {% set ipdetailsHtml %}
@@ -84,20 +84,34 @@
             }) }}
             {% endset -%}
             
-            {{ govukCheckboxes({
-              name: "information-powers",
-              id: "information-powers",
-              items: [
-                {
-                  value: "Yes",
-                  checked: data['information-powers'] == "Yes",
-                  text: "Information powers in use",
-                  conditional: {
-                    html: ipdetailsHtml
-                  }
-                }
-              ]
-            }) }}
+            
+
+{{ govukRadios({
+  name: "information-powers",
+  id: "information-powers",
+  fieldset: {
+    legend: {
+      text: "Do you need to use information powers?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "No",
+      text: "No",
+      checked: data['information-powers'] == "No"
+    },
+    {
+      value: "Yes",
+      text: "Yes",
+      checked: data['information-powers'] == "Yes",
+      conditional: {
+        html: ipdetailsHtml
+      }
+    }
+  ]
+}) }}
       
 
         

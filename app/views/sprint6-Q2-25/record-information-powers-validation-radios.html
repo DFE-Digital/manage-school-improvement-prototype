@@ -38,12 +38,23 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You must select whether or not information powers are in use",
+              href: "#"
+            }
+          ]
+        }) }}
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Has this engagement concern been resolved?
+        Record use of information powers
       </h1>
 
-      <!--
       <p>Information powers can be used to compel a school to share information the department needs.</p>
 
       <details class="govuk-details margin-top-15">
@@ -58,7 +69,6 @@
           <p>For example, use a phrase like "Under information powers, then..."</p>
         </div>
       </details>
-        -->
 
 
 
@@ -67,7 +77,7 @@
 
      
 
-      <form class="form" action="resolved-date" method="post">
+      <form class="form" action="information-powers-date" method="post">
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
@@ -75,36 +85,48 @@
             {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
-            {% set resolveddetailsHtml %}
+            {% set ipdetailsHtml %}
             {{ govukTextarea({
-              name: "resolved-details",
-              id: "resolved-details",
-              value: data["resolved-details"],
+              name: "information-powers-details",
+              id: "information-powers-details",
+              value: data["information-powers-details"],
               label: {
-                text: "Enter details about how this concern was resolved."
+                text: "Enter details about why and how the powers have been used. Describe what information you used the powers to get."
               }
             }) }}
             {% endset -%}
             
-            {{ govukRadios({
-              name: "resolved",
-              id: "resolved",
-              items: [
-                {
-                  value: "No",
-                  text: "No",
-                  checked: data['resolved'] == "No"
-                },
-                {
-                  value: "Yes",
-                  text: "Yes",
-                  checked: data['resolved'] == "Yes",
-                  conditional: {
-                    html: resolveddetailsHtml
-                  }
-                }
-              ]
-            }) }}
+            {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  name: "information-powers",
+  id: "information-powers",
+  fieldset: {
+    legend: {
+      text: "Do you need to use information powers?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "No",
+      text: "No",
+      checked: data['information-powers'] == "No"
+    },
+    {
+      value: "Yes",
+      text: "Yes",
+      checked: data['information-powers'] == "Yes",
+      conditional: {
+        html: ipdetailsHtml
+      }
+    }
+  ],
+  errorMessage: {
+    text: "You must select whether or not information powers are in use"
+  }
+}) }}
       
 
         
@@ -114,8 +136,9 @@
           Confirm and continue
           </button>
 
-        <a class="govuk-link" href="engagement-concerns">Cancel</a>
-        
+          {% if (data['engagement-concern-2'] == NULL) %}
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% endif %}
          </div>
 
       </form>

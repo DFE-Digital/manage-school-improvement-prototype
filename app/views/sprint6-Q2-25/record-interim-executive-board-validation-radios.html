@@ -38,6 +38,20 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+         {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You must select whether or not an interim executive board has been created",
+              href: "#"
+            }
+          ]
+        }) }}
+
+        You must select Interim executive board created
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Record use of interim executive board
@@ -92,35 +106,35 @@
             }) }}
             {% endset -%}
             
-            
-
             {{ govukRadios({
-              name: "interim-executive-board",
-              id: "interim-executive-board",
-              fieldset: {
-                legend: {
-                  text: "Do you need create an interim executive board?",
-                  isPageHeading: true,
-                  classes: "govuk-fieldset__legend--m"
-                }
-              },
-              items: [
-                {
-                  value: "No",
-                  text: "No",
-                  checked: data['interim-executive-board'] == "No"
-                },
-                {
-                  value: "Yes",
-                  text: "Yes",
-                  checked: data['interim-executive-board'] == "Yes",
-                  conditional: {
-                    html: iebdetailsHtml
+                name: "interim-executive-board",
+                id: "interim-executive-board",
+                fieldset: {
+                  legend: {
+                    text: "Do you need create an interim executive board?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--m"
                   }
+                },
+                items: [
+                  {
+                    value: "No",
+                    text: "No",
+                    checked: data['interim-executive-board'] == "No"
+                  },
+                  {
+                    value: "Yes",
+                    text: "Yes",
+                    checked: data['interim-executive-board'] == "Yes",
+                    conditional: {
+                      html: iebdetailsHtml
+                    }
+                  }
+                ],
+                errorMessage: {
+                  text: "You must select whether or not an interim executive board has been created"
                 }
-              ]
-            }) }}
-                  
+              }) }}
       
 
         
@@ -130,9 +144,7 @@
           Confirm and continue
           </button>
 
-          {% if (data['engagement-concern-2'] == NULL) %}
-          <a class="govuk-link" href="engagement-concerns">Cancel</a>
-          {% endif %}
+        <a class="govuk-link" href="engagement-concerns">Cancel</a>
         
          </div>
 
