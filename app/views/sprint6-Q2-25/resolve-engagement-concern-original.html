@@ -40,7 +40,7 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Has this engagement concern been resolved?
+        Mark engagement concern as resolved
       </h1>
 
       <!--
@@ -86,19 +86,14 @@
             }) }}
             {% endset -%}
             
-            {{ govukRadios({
+            {{ govukCheckboxes({
               name: "resolved",
               id: "resolved",
               items: [
                 {
-                  value: "No",
-                  text: "No",
-                  checked: data['resolved'] == "No"
-                },
-                {
                   value: "Yes",
-                  text: "Yes",
                   checked: data['resolved'] == "Yes",
+                  text: "Mark engagement concern with this school as resolved",
                   conditional: {
                     html: resolveddetailsHtml
                   }
