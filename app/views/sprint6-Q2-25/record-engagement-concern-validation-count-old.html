@@ -48,7 +48,7 @@
               href: "#"
             },
             {
-              text: "You must enter details",
+              text: "You must enter details of your concern",
               href: "#"
             }
           ]
@@ -108,7 +108,7 @@
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
       
-      
+      {% set reasonHtml %}
 
       {{ govukCharacterCount({
         name: "engagement-concern-summary",
@@ -125,7 +125,7 @@
           isPageHeading: true
           },
         hint: {
-        text: "Enter a summary"
+        text: "Enter a short summary of your concern"
         }
       }) }}
 
@@ -137,7 +137,7 @@
         id: "engagement-concern-reasons",
         value: data["engagement-concern-reasons"],
         errorMessage: {
-          text: "You must enter details"
+          text: "You must enter details of your concern"
         },
         label: {
           text: "Concern details",
@@ -145,10 +145,25 @@
           isPageHeading: true 
         },
         hint: {
-          text: "Enter details"
+          text: "Enter details about your concern"
         }
       }) }}
-     
+      {% endset -%}
+      
+      {{ govukCheckboxes({
+        name: "engagement-concern",
+        id: "engagement-concern",
+        items: [
+          {
+            value: "Yes",
+            checked: true,
+            text: "Record engagement concern with this school",
+            conditional: {
+              html: reasonHtml
+            }
+          }
+        ]
+      }) }}
       
 
       
