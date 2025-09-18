@@ -62,10 +62,10 @@
 
           {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern-2" }) }}
 
-          {% if (data['engagement-concern-summary-2'] == NULL) %}
+          {% if (data['information-powers-details'] == NULL) or (data['information-powers-details'] != NULL) and (data['stop-info-powers'] == 'stopped') %}
           {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
           {% endif %}
-          {% if (data['engagement-concern-summary-2'] != NULL) %}
+          {% if (data['engagement-concern-summary-2'] != NULL) and (data['stop-info-powers'] != 'stopped') %}
           {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "select-information-powers-concern" }) }}
           {% endif %}
           
@@ -212,61 +212,6 @@
         </div>
   
         {% endif %}
-
-
-
-        {% if (data['ip2-concern'] == "Concern-2") and ((data['information-powers-2'] == "Yes") or (data['information-powers-2-details'] != NULL)) %}
-
-        <div class="govuk-summary-card">
-                <div class="govuk-summary-card__title-wrapper">
-                  <h2 class="govuk-summary-card__title">
-                    Information powers
-                  </h2>
-                  <ul class="govuk-summary-card__actions">
-                    <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
-                        Change<span class="govuk-visually-hidden"> information powers</span>
-                      </a>
-                    </li>
-                    &nbsp;|
-                    <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
-                    Assign <span class="govuk-visually-hidden">information powers </span>to different concern
-                    </a>
-                  </ul>
-                </div>
-                <div class="govuk-summary-card__content">
-                  <dl class="govuk-summary-list">
-      
-      
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">
-                        Date used
-                      </dt>
-                      <dd class="govuk-summary-list__value">
-                        {{ data | isoDateFromDateInput("information-powers-2-date") | govukDate }}
-                      </dd>
-                    </div>
-                    
-                    <div class="govuk-summary-list__row">
-                      <dt class="govuk-summary-list__key">
-                        Details
-                      </dt>
-                      <dd class="govuk-summary-list__value">
-                        {{ data['information-powers-2-details']}}
-                      </dd>
-                     
-                    </div>
-                
-        
-                  </dl>
-                </div>
-              </div>
-        
-              {% endif %}
-
-
-
-
-
 
 
         {% if (data['ieb-concern'] == "Concern-2") and (data['interim-executive-board'] == "Yes") %}
@@ -457,7 +402,8 @@
 
       <!-- engagement concern 1 - Information powers used -->
 
-      {% if (data['ip-concern'] == "Concern-1") and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) or (data['ip-concern'] == NULL) and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) %}
+      {% if (data['ip-concern'] == "Concern-1") and 
+      ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) or (data['ip-concern'] == NULL) and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) %}
 
       <div class="govuk-summary-card">
               <div class="govuk-summary-card__title-wrapper">
@@ -497,62 +443,6 @@
                     </dt>
                     <dd class="govuk-summary-list__value">
                       {{ data['information-powers-details']}}
-                    </dd>
-                   
-                  </div>
-              
-      
-                </dl>
-              </div>
-            </div>
-      
-            {% endif %}
-
-
-
-
-
-
-            {% if (data['ip2-concern'] == "Concern-1") and ((data['information-powers-2'] == "Yes") or (data['information-powers-2-details'] != NULL)) or (data['ip-concern'] == NULL) and ((data['information-powers-2'] == "Yes") or (data['information-powers-2-details'] != NULL)) %}
-
-      <div class="govuk-summary-card">
-              <div class="govuk-summary-card__title-wrapper">
-                <h2 class="govuk-summary-card__title">
-                  Information powers
-                </h2>
-                <ul class="govuk-summary-card__actions">
-                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
-                      Change<span class="govuk-visually-hidden"> information powers</span>
-                    </a>
-                  </li>
-                  {% if (data['engagement-concern-summary-2'] != NULL) %}
-                  &nbsp;|
-                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
-                    Assign <span class="govuk-visually-hidden">information powers </span>to different concern
-                  </a>
-                </li>
-                {% endif %}
-                </ul>
-              </div>
-              <div class="govuk-summary-card__content">
-                <dl class="govuk-summary-list">
-
-
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Date used
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      {{ data | isoDateFromDateInput("information-powers-2-date") | govukDate }}
-                    </dd>
-                  </div>
-                  
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Details
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      {{ data['information-powers-2-details']}}
                     </dd>
                    
                   </div>

@@ -65,7 +65,7 @@
 
      
 
-      <form class="form" action="information-powers-date" method="post">
+      <form class="form" action="engagement-concerns" method="post">
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
@@ -73,52 +73,169 @@
           {% from "govuk/components/radios/macro.njk" import govukRadios %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
-            {% set ipdetailsHtml %}
+
+
+            {% if (data['information-powers-details'] == NULL) %}
+          
             {{ govukTextarea({
               name: "information-powers-details",
               id: "information-powers-details",
-              value: data["information-powers-details"],
               label: {
-                text: "Enter details about why and how the powers have been used. Describe what information you used the powers to get."
+                text: "Enter details",
+                classes: "govuk-label--m",
+                isPageHeading: true
+              },
+              value: data["information-powers-details"],
+              hint: {
+                text: "Describe why and how the powers have been used."
               }
             }) }}
-            {% endset -%}
-            
-            
 
-{{ govukRadios({
-  name: "information-powers",
-  id: "information-powers",
+            {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "information-powers-date",
+          namePrefix: "information-powers-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the school was informed of the use of information powers",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["information-powers-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["information-powers-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["information-powers-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+         
+            
+            
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "stop-info-powers",
   fieldset: {
     legend: {
-      text: "Do you need to use information powers?",
+      text: "End this use of information powers",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--m"
     }
   },
   items: [
     {
-      value: "No",
-      text: "No",
-      checked: data['information-powers'] == "No"
-    },
-    {
-      value: "Yes",
-      text: "Yes",
-      checked: data['information-powers'] == "Yes",
-      conditional: {
-        html: ipdetailsHtml
-      }
+      value: "stopped",
+      text: "Information powers are no longer in use"
     }
   ]
 }) }}
+
+{% endif %}
+
+
+
+
+{% if (data['information-powers-details'] != NULL) %}
+          
+            {{ govukTextarea({
+              name: "information-powers-2-details",
+              id: "information-powers-2-details",
+              label: {
+                text: "Enter details",
+                classes: "govuk-label--m",
+                isPageHeading: true
+              },
+              value: data["information-powers-2-details"],
+              hint: {
+                text: "Describe why and how the powers have been used."
+              }
+            }) }}
+
+            {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "information-powers-2-date",
+          namePrefix: "information-powers-2-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the school was informed of the use of information powers",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["information-powers-2-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["information-powers-2-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["information-powers-2-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+         
+            
+            
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "stop-info-powers",
+  fieldset: {
+    legend: {
+      text: "End this use of information powers",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "stopped",
+      text: "Information powers are no longer in use"
+    }
+  ]
+}) }}
+
+{% endif %}
       
 
         
         <div class="govuk-button-group">
 
           <button type="submit" class="govuk-button" data-module="govuk-button">
-          Confirm and continue
+          Save and return
           </button>
 
           {% if (data['engagement-concern-2'] == NULL) %}

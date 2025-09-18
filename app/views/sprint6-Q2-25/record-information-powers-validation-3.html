@@ -44,9 +44,13 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Select information powers in use",
+              text: "Enter details",
               href: "#"
-            }
+            },
+            {
+                text: "Enter a date",
+                href: "#"
+              }
           ]
         }) }}
 
@@ -77,56 +81,104 @@
 
      
 
-      <form class="form" action="information-powers-date" method="post">
+      <form class="form" action="engagement-concerns" method="post">
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
           
-            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
-            {% set ipdetailsHtml %}
+          
             {{ govukTextarea({
               name: "information-powers-details",
               id: "information-powers-details",
-              value: data["information-powers-details"],
-              errorMessage: {
-                text: "You must enter details"
-                },
               label: {
-                text: "Enter details about why and how the powers have been used. Describe what information you used the powers to get."
-              }
+                text: "Enter details",
+                classes: "govuk-label--m",
+                isPageHeading: true
+              },
+              value: data["information-powers-details"],
+              hint: {
+                text: "Describe why and how the powers have been used."
+              },
+    errorMessage: {
+    text: "Enter details"
+  }
             }) }}
-            {% endset -%}
+
+            {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "information-powers-date",
+          namePrefix: "information-powers-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the school was informed of the use of information powers",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          errorMessage: {
+          text: "Enter a date"
+        },
+          items: [
+            {
+              name: "day",
+              value: data["information-powers-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["information-powers-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["information-powers-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+         
             
-            {{ govukCheckboxes({
-              name: "information-powers",
-              id: "information-powers",
-               errorMessage: {
-                text: "Select information powers in use"
-                },
-              items: [
-                {
-                  value: "Yes",
-                  checked: data['information-powers'] == "Yes",
-                  text: "Information powers in use",
-                  conditional: {
-                    html: ipdetailsHtml
-                  }
-                }
-              ]
-            }) }}
+            
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "stop-info-powers",
+  fieldset: {
+    legend: {
+      text: "End this use of information powers",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "stopped",
+      text: "Information powers are no longer in use"
+    }
+  ]
+}) }}
       
 
         
         <div class="govuk-button-group">
 
           <button type="submit" class="govuk-button" data-module="govuk-button">
-          Confirm and continue
+          Save and return
           </button>
 
-        <a class="govuk-link" href="engagement-concerns">Cancel</a>
-        
+          {% if (data['engagement-concern-2'] == NULL) %}
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% endif %}
          </div>
 
       </form>
