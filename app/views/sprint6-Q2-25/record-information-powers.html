@@ -75,7 +75,7 @@
             
 
 
-            {% if (data['information-powers-details'] == NULL) %}
+           
           
             {{ govukTextarea({
               name: "information-powers-details",
@@ -143,92 +143,22 @@
   },
   items: [
     {
-      value: "stopped",
-      text: "Information powers are no longer in use"
+      value: "ended",
+      text: "Information powers are no longer in use",
+      checked: data['stop-info-powers'] == "ended"
     }
   ]
 }) }}
 
-{% endif %}
 
 
 
 
-{% if (data['information-powers-details'] != NULL) %}
-          
-            {{ govukTextarea({
-              name: "information-powers-2-details",
-              id: "information-powers-2-details",
-              label: {
-                text: "Enter details",
-                classes: "govuk-label--m",
-                isPageHeading: true
-              },
-              value: data["information-powers-2-details"],
-              hint: {
-                text: "Describe why and how the powers have been used."
-              }
-            }) }}
 
-            {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
-        {{ govukDateInput({
-          id: "information-powers-2-date",
-          namePrefix: "information-powers-2-date",
-          fieldset: {
-            legend: {
-              text: "Enter date the school was informed of the use of information powers",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: "For example, 1 7 2024."
-          },
-          items: [
-            {
-              name: "day",
-              value: data["information-powers-2-date-day"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },
-            {
-              name: "month",
-              value: data["information-powers-2-date-month"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },                
-            {
-              name: "year",
-              value: data["information-powers-2-date-year"],
-              allowEmpty: false,
-              classes: "govuk-input--width-4"
-            }
-          ]
-        }) }}
-         
-            
-            
-        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
-{{ govukCheckboxes({
-  name: "stop-info-powers",
-  fieldset: {
-    legend: {
-      text: "End this use of information powers",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "stopped",
-      text: "Information powers are no longer in use"
-    }
-  ]
-}) }}
 
-{% endif %}
+
       
 
         

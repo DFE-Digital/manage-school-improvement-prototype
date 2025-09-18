@@ -125,6 +125,41 @@
           text: "Enter details about your concern"
         }
       }) }}
+
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+      {% set resolveddetailsHtml %}
+            {{ govukTextarea({
+              name: "resolved-details",
+              id: "resolved-details",
+              value: data["resolved-details"],
+              hint: {
+                text: "Enter details about how this concern was resolved."
+              }
+            }) }}
+            {% endset -%}
+
+{{ govukCheckboxes({
+  name: "resolved",
+  fieldset: {
+    legend: {
+      text: "Resolve concern",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "This engagement concern has been resolved",
+      checked: data['resolved'] == "yes",
+      conditional: {
+        html: resolveddetailsHtml
+      }
+    }
+  ]
+}) }}
       
       
 
