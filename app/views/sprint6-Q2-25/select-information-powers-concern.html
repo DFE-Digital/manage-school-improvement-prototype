@@ -49,7 +49,7 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
         
-    
+        {% if (data['information-powers-details'] == NULL) %}
           {{ govukRadios({
             idPrefix: "ip-concern",
             name: "ip-concern",
@@ -72,6 +72,33 @@
             }
             ]
           }) }}
+          {% endif %}
+
+
+          {% if (data['information-powers-details'] != NULL) %}
+          {{ govukRadios({
+            idPrefix: "ip2-concern",
+            name: "ip2-concern",
+            items: [
+            {
+                value: "Concern-1",
+                hint: {
+                    text: "Recorded on 1 March 2025."
+                },
+                checked: data['ip2-concern'] === "Concern-1",
+                text: data['engagement-concern-summary']
+            },
+            {
+                value: "Concern-2",
+                hint: {
+                  text: "Recorded on 12 November 2025."
+                },
+                checked:  data['ip2-concern'] === "Concern-2",
+                text: data['engagement-concern-summary-2']
+            }
+            ]
+          }) }}
+          {% endif %}
 
         <div class="govuk-button-group">
 
