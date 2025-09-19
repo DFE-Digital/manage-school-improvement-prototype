@@ -38,21 +38,19 @@
    <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+         {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
         {{ govukErrorSummary({
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter details",
+              text: "You must select Interim executive board created",
               href: "#"
-            },
-            {
-                text: "Enter a date",
-                href: "#"
-              }
+            }
           ]
         }) }}
+
+        You must select Interim executive board created
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
@@ -86,120 +84,56 @@
 
 
 
+
      
 
-      <form class="form" action="engagement-concerns" method="post">
+      <form class="form" action="interim-executive-board-date" method="post">
       
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
           
-          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
             {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
             
-
-
-   
-          
+            {% set iebdetailsHtml %}
             {{ govukTextarea({
               name: "interim-executive-board-details",
               id: "interim-executive-board-details",
-              label: {
-                text: "Enter details",
-                classes: "govuk-label--m",
-                isPageHeading: true
-              },
               value: data["interim-executive-board-details"],
-              hint: {
+              label: {
                 text: "Give details of the IEB, who is on it and why it is necessary."
-              },
-              errorMessage: {
-              text: "Enter details"
-            }
+              }
             }) }}
-
-            {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-
-        {{ govukDateInput({
-          id: "interim-executive-board-date",
-          namePrefix: "interim-executive-board-date",
-          fieldset: {
-            legend: {
-              text: "Enter date of regional director's decision to create an interim executive board",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          errorMessage: {
-          text: "Enter a date"
-        },
-          hint: {
-            text: "For example, 1 7 2024."
-          },
-          items: [
-            {
-              name: "day",
-              value: data["interim-executive-board-date-day"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },
-            {
-              name: "month",
-              value: data["interim-executive-board-date-month"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },                
-            {
-              name: "year",
-              value: data["interim-executive-board-date-year"],
-              allowEmpty: false,
-              classes: "govuk-input--width-4"
-            }
-          ]
-        }) }}
-         
+            {% endset -%}
             
-            
-        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-
-{{ govukCheckboxes({
-  name: "stop-ieb",
-  fieldset: {
-    legend: {
-      text: "Remove interim executive board",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "ended",
-      text: "Interim executive board no longer in place",
-      checked: data['stop-ieb'] == "ended"
-    }
-  ]
-}) }}
-
-
-
-
-
-
-
-
-
-
+            {{ govukCheckboxes({
+              name: "interim-executive-board",
+              id: "interim-executive-board",
+              errorMessage: {
+                text: "You must select Interim executive board created"
+                },
+              items: [
+                {
+                  value: "Yes",
+                  checked: data['interim-executive-board'] == "Yes",
+                  text: "Interim executive board created",
+                  conditional: {
+                    html: iebdetailsHtml
+                  }
+                }
+              ]
+            }) }}
       
 
         
         <div class="govuk-button-group">
 
           <button type="submit" class="govuk-button" data-module="govuk-button">
-          Save and return
+          Confirm and continue
           </button>
 
-          {% if (data['engagement-concern-2'] == NULL) %}
-          <a class="govuk-link" href="engagement-concerns">Cancel</a>
-          {% endif %}
+        <a class="govuk-link" href="engagement-concerns">Cancel</a>
+        
          </div>
 
       </form>

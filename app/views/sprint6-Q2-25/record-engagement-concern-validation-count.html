@@ -46,10 +46,6 @@
             {
               text: "Concern summary must be 200 characters or less",
               href: "#"
-            },
-            {
-              text: "You must enter details",
-              href: "#"
             }
           ]
         }) }}
@@ -136,9 +132,6 @@
         name: "engagement-concern-reasons",
         id: "engagement-concern-reasons",
         value: data["engagement-concern-reasons"],
-        errorMessage: {
-          text: "You must enter details"
-        },
         label: {
           text: "Concern details",
           classes: "govuk-label--m",
@@ -147,6 +140,28 @@
         hint: {
           text: "Enter details"
         }
+      }) }}
+
+
+      {{ govukCheckboxes({
+        name: "resolved",
+        fieldset: {
+          legend: {
+            text: "Resolve concern",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "This engagement concern has been resolved",
+            checked: data['resolved'] == "yes",
+            conditional: {
+              html: resolveddetailsHtml
+            }
+          }
+        ]
       }) }}
      
       
