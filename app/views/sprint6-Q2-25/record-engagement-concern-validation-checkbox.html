@@ -44,11 +44,7 @@
           titleText: "There is a problem",
           errorList: [
             {
-              text: "Enter a summary",
-              href: "#"
-            },
-            {
-              text: "Enter details",
+              text: "You must select Record engagement concern with this school",
               href: "#"
             }
           ]
@@ -108,68 +104,34 @@
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
       {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
       
-      
-
-      {{ govukCharacterCount({
-        name: "engagement-concern-summary",
-        id: "engagement-concern-summary",
-        value: data["engagement-concern-summary"],
-        maxlength: 200,
-        rows: 3,
-        errorMessage: {
-          text: "Enter a summary"
-        },
-        label: {
-          text: "Concern summary",
-          classes: "govuk-label--m",
-          isPageHeading: true
-          },
-        hint: {
-        text: "Enter a summary"
-        }
-      }) }}
-
-
-
-
+      {% set reasonHtml %}
       {{ govukTextarea({
         name: "engagement-concern-reasons",
         id: "engagement-concern-reasons",
         value: data["engagement-concern-reasons"],
-        errorMessage: {
-          text: "Enter details"
-        },
         label: {
-          text: "Concern details",
-          classes: "govuk-label--m",
-          isPageHeading: true 
-        },
-        hint: {
-          text: "Enter details"
+          text: "Enter details about your engagement concern"
         }
       }) }}
-
+      {% endset -%}
+      
       {{ govukCheckboxes({
-        name: "resolved",
-        fieldset: {
-          legend: {
-            text: "Resolve concern",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
+        name: "engagement-concern",
+        id: "engagement-concern",
+        errorMessage: {
+      text: "You must select Record engagement concern with this school"
+      },
         items: [
           {
-            value: "yes",
-            text: "This engagement concern has been resolved",
-            checked: data['resolved'] == "yes",
+            value: "Yes",
+            checked: data['engagement-concern'] == "Yes",
+            text: "Record engagement concern with this school",
             conditional: {
-              html: resolveddetailsHtml
+              html: reasonHtml
             }
           }
         ]
       }) }}
-     
       
 
       
