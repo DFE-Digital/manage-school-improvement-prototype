@@ -1,0 +1,126 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Enter today's date or a date in the past",
+              href: "#"
+            }
+          ]
+        }) }}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Enter date of regional director's approval to mandate
+      </h1>
+
+     
+
+      
+
+      <form class="form" action="escalation-recorded" method="post">
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "escalation-decision-date",
+          namePrefix: "escalation-decision-date",
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          errorMessage: {
+         text: "Enter today's date or a date in the past"
+        },
+          items: [
+            {
+              name: "day",
+              value: data["escalation-decision-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2 govuk-input--error"
+            },
+            {
+              name: "month",
+              value: data["escalation-decision-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2 govuk-input--error"
+            },                
+            {
+              name: "year",
+              value: data["escalation-decision-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4 govuk-input--error"
+            }
+          ]
+        }) }}
+
+
+      
+     
+
+      
+      
+     
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save
+          </button>
+
+      
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
