@@ -1,0 +1,228 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Request improvement grant offer letter
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">Email the grant team at <a href="mailto:rise.grant@education.gov.uk">rise.grant@education.gov.uk</a> and ask them to send the improvement grant offer letter to the school.</p>
+
+
+
+      <form class="form" action="../task-list" method="post">
+
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+        <div class="govuk-checkboxes__item margin-bottom-minus-15">
+          <input class="govuk-checkboxes__input" id="required-contacts-2" name="required-contacts-2" type="checkbox" value="done" {{checked("required-contacts-2", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="required-contacts-2">
+            Include the required contact details in the email
+          </label>
+          <div id="required-contacts-2-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            Make sure you add the contacts the grant team need to this project.
+            <details class="govuk-details margin-top-15">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Contacts needed
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <h2 class="govuk-heading-m">School</h2>
+                <p>You must add the contact details for the school's chief accounting officer, or equivalent.</p>
+                <p>For academies this is usually the CEO of the trust. For local authority maintained schools, this is usually the headteacher.</p>
+                <p>You must include their:</p>
+                <ul>
+                  <li>name</li>
+                  <li>email address</li>
+                  <li>postal address</li>
+                </ul>
+                <p>Contact the grant team if you're not sure who the chief accounting officer is.</p>
+                <h2 class="govuk-heading-m">Supporting organisation</h2>
+                <p>You must also include the contact details of the supporting organisation's responsible body.</p>
+                <p>If the supporting organisation is an academy trust, you must include the name and email address of its chief accounting officer. This is usually its CEO.<p>
+                <p>If the supporting organisation is a local authority maintained school, you must include the name and email address of the headteacher.</p>
+                
+              </div>
+            </details>
+
+          </div>
+          
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="attach-sip-template" name="attach-sip-template" type="checkbox" value="done" {{checked("attach-sip-template", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="attach-sip-template">
+            Attach the school improvement plan Excel template including the expenditure plan
+          </label>
+          <div id="confirm-amount-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            The RISE grant team will use this to check the costed activities.
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="copy-in-rd-2" name="copy-in-rd-2" type="checkbox" value="done" {{checked("copy-in-rd-2", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="copy-in-rd-2">
+            Copy the regional director in to the email
+          </label>
+          <div id="copy-in-rd-2-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            You may need to copy in the regional director's office rather than them personally.
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-20">
+          <input class="govuk-checkboxes__input" id="send-to-gmfu-2" name="send-to-gmfu-2" type="checkbox" value="done" {{checked("send-to-gmfu-2", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="send-to-gmfu-2">
+            Send email to the RISE grant team
+          <!--
+          <div id="send-to-gmfu-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            Check this box if the there are concerns with the level of engagement from this school, for example if they have stopped responding to emails. 
+          </div>
+          -->
+        </div>
+
+       
+       
+        </div>
+
+        </fieldset>
+        </div>
+       
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "improvement-grant-letter-requested-date",
+          namePrefix: "improvement-grant-letter-requested-date",
+          fieldset: {
+            legend: {
+              text: "Enter date grant team contacted",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["improvement-grant-letter-requested-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["improvement-grant-letter-requested-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["improvement-grant-letter-requested-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+
+        
+       
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+    
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
