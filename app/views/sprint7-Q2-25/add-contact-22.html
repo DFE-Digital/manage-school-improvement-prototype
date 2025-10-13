@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add contact
+      </h1>
+      
+      <form class="form" action='add-contact-answer' method="post">
+
+        
+     
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        
+     
+       
+       
+
+        {{ govukRadios({
+          name: "contact-2",
+          fieldset: {
+            legend: {
+              text: "Which organisation does this person represent?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select one option"
+          },
+          items: [
+          {
+            value: "School",
+            text: "School 2",
+            checked:  data['contact-2'] === "School",
+            conditional: {
+              html: doeHtml
+            }
+          },
+          {
+            value: "Trust",
+            text: "Trust 2",
+            checked:  data['contact-2'] === "Trust",
+            conditional: {
+              html: headHtml
+            }
+          },
+          {
+            value: "Local authority",
+            text: "Local authority 2",
+            checked:  data['contact-2'] === "Local authority",
+            conditional: {
+              html: chairHtml
+            }
+          },
+          {
+            value: "Diocese",
+            text: "Diocese 2",
+            checked:  data['contact-2'] === "Diocese",
+            conditional: {
+              html: trmHtml
+            }
+          },
+          {
+            value: "Federation",
+            text: "Federation 2",
+            checked:  data['contact-2'] === "Federation",
+            conditional: {
+              html: trustceoHtml
+            }
+          },
+          {
+            value: "other-role",
+            text: "Other role 2",
+            checked: false,
+            conditional: {
+            html: otherHtml
+              }
+            } 
+          ]
+        }) }}
+
+   
+    
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

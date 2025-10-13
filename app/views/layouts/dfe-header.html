@@ -20,15 +20,17 @@
      </div>
 
      <div class="govuk-header__content">
-    
-      
       <a href="/" class="govuk-header__link govuk-header__service-name ">
-        Manage school improvement
-      </a>
-      
-    
-    
-    </div>
-
+        
+      </a> 
+      </div>
    </div>
  </header>
+
+
+ {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ govukServiceNavigation({
+  serviceName: "Manage school improvement",
+  serviceUrl: "/"
+}) }}

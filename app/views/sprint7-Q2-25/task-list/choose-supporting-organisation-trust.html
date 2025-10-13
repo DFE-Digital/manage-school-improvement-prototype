@@ -1,0 +1,87 @@
+{% extends "../includes/form-template.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  
+  <!--
+  <div class="govuk-breadcrumbs"
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+
+    <!--<span class="govuk-caption-l">Cheltenham Spa Primary School</span>-->
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Enter the name of the trust
+      </h1>
+
+      <form action="confirm-so-trust-contact-details" method="post" novalidate>
+
+      {% block formQuestions %}
+        
+      {{ xGovukAutocomplete({
+        id: "supporting-organisation-name",
+        name: "supporting-organisation-name",
+        value: data['supporting-organisation-name'],
+        allowEmpty: false,
+        hint: {
+          text: "Search by trust name or UKPRN (UK Provider Reference Number)."
+        },
+        items: [
+          { text: "Galston New Academies Trust (17642365)" },
+          { text: "Gloucestershire Academies Trust (12874387)" },
+          { text: "Greater Manchester Trust (1864299)" },
+          { text: "Guildford Schools and Academies Trust (1544421)" }
+        ]
+       }) }}
+
+      <div class="govuk-button-group">
+ 
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+       <!-- or&nbsp;&nbsp;<a class="govuk-link" href="">Unassign</a> -->
+
+      </div>
+
+    </form>
+ 
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

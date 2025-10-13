@@ -1,0 +1,367 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "/layouts/summary-section.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "/layouts/sub-nav-tabs-ofsted-reports.html" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+  
+    <h2 class="govuk-heading-l">Ofsted reports</h2>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Most recent Ofsted report
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of last inspection
+              </dt>
+              <dd class="govuk-summary-list__value">
+                15 November 2024
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Quality of education
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--yellow" id="">Requires improvement</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Behaviour and attitudes
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--green" id="">Good</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+              
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Personal development
+              </dt>
+              <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--green" id="">Good</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+              
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Leadership and management
+              </dt>
+              <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--orange" id="">Inadequate</strong>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                
+              </dd>
+            </div>
+
+          </dl>
+        </div>
+    </div>
+
+
+        <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">
+                Previous Ofsted report
+              </h2>
+            </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Date of previous inspection
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                4 March 2022
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Overall rating
+                    
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                        <strong class="govuk-tag govuk-tag--yellow" id="">Requires improvement</strong>
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    
+                  </dd>
+
+                  
+                </div>
+
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Quality of education
+                    
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                        <strong class="govuk-tag govuk-tag--yellow" id="">Requires improvement</strong>
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Behaviour and attitudes
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--green" id="">Outstanding</strong>
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                  
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Personal development
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--green" id="">Good</strong>
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                  
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Leadership and management
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--yellow" id="">Requires improvement</strong>
+                  </dd>
+                  <dd class="govuk-summary-list__actions">
+                    
+                  </dd>
+                </div>
+    
+              </dl>
+            </div>
+        </div>
+
+        <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Where this information came from
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p>Information taken from Ofsted on 25 February 2025.</p>
+              <p>You can <a href="https://reports.ofsted.gov.uk" target="_blank">read this school's inspection reports in full (opens in new tab)</a> on the Ofsted website.</p>
+            </div>
+          </details>
+
+
+      <!--
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Contact details
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Headteacher
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Jamie Jamieson
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> headteacher</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Chair of governors
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Janet Planet
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> chair of governors</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Director of children's services
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Sushil Goyal
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> director of children's services</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                CEO (Chief executive officer)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Kris Akabusi
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> CEO (Chief executive officer)</span></a>
+              </dd>
+            </div>
+
+          </dl>
+        </div>
+      </div>
+
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Latest OFSTED inspection
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of last inspection
+              </dt>
+              <dd class="govuk-summary-list__value">
+                30 May 2024
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> date of last inspection</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Quality of education
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Requires improvement
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> quality of education</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Behaviour and attitudes
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Outstanding
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> behavious and attitudes</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Personal development
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Good
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> personal development</span></a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Leadership and management
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Inadequate
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> leadership and management</span></a>
+              </dd>
+            </div>
+
+          </dl>
+        </div>
+      </div>
+      -->
+      
+
+    
+      <!--
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Apply", href: "#" }) }}
+      </div>
+      -->
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
