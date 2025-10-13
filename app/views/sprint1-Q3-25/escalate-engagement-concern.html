@@ -1,0 +1,209 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Escalate an engagement concern
+      </h1>
+
+      <p>This will record that the school has been issued a NEIA (notice to enter into arrangements).</p>
+      <p>Only use these notices as a last resort.</p>
+
+     <form class="form" action="escalation-reason" method="post">
+      
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="before-using-notice-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Before you consider using a notice
+      </h2>
+    </legend>
+    <div id="before-using-notice-hint" class="govuk-hint">
+      You must complete the following steps before you can use a notice to mandate engagement.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="existing-relationships" name="existing-relationships" type="checkbox" value="done" {{checked("existing-relationships", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="existing-relationships">
+                  Use existing relationships to encourage voluntary engagement
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="mediation-process" name="mediation-process" type="checkbox" value="done" {{checked("mediation-process", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="mediation-process">
+                  Follow the mediation process to resolve issues informally
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="use-information-powers" name="use-information-powers" type="checkbox" value="done" {{checked("use-information-powers", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="use-information-powers">
+                  Consider the use of information powers if mediation fails
+                </label>
+              </div>
+    </div>
+  </fieldset>
+</div>
+     
+      
+
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="notice-approval-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Get approval to use a notice
+      </h2>
+    </legend>
+    <div id="notice-approval-hint" class="govuk-hint">
+      You must gather evidence and get approval before using a notice.
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="gather-evidence" name="gather-evidence" type="checkbox" value="done" {{checked("gather-evidence", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="gather-evidence">
+                  Gather evidence to show mandation is necessary
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="get-approval" name="get-approval" type="checkbox" value="done" {{checked("get-approval", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="get-approval">
+                  Get approval to mandate from a regional director
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="complete-moderation" name="complete-moderation" type="checkbox" value="done" {{checked("complete-moderation", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="complete-moderation">
+                  Complete the mandation moderation process
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="draft-notice" name="draft-notice" type="checkbox" value="done" {{checked("draft-notice", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="draft-notice">
+                  Draft the notice
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="consult-la" name="consult-la" type="checkbox" value="done" {{checked("consult-la", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="consult-la">
+                   Consult the local authority lead about the actions in the notice, the notification letter and any contextual information that may help
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="carry-out-assessment" name="carry-out-assessment" type="checkbox" value="done" {{checked("carry-out-assessment", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="carry-out-assessment">
+                  Carry out the Public Sector Equality Duty assessment and save it in SharePoint
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="submit-notice" name="submit-notice" type="checkbox" value="done" {{checked("submit-notice", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="submit-notice">
+                  Submit the draft notice to SOPU for Legal Advisers Office clearance using the <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/Resources/Request%20for%20advice%20from%20the%20AOPU.aspx">SOPU commissioning form</a>
+                </label>
+              </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="before-using-notice-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Issuing a notice
+      </h2>
+    </legend>
+    <div id="before-using-notice-hint" class="govuk-hint">
+      Before issuing a notice you must:
+    </div>
+    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="notify-responsible-body" name="notify-responsible-body" type="checkbox" value="done" {{checked("notify-responsible-body", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="notify-responsible-body">
+                  Notify the school's responsible body, and diocese or foundation governors if applicable
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="send-notice" name="send-notice" type="checkbox" value="done" {{checked("send-notice", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="send-notice">
+                  Send the NEIA to the school and responsible body from the regional director's mailbox
+                </label>
+              </div>
+
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="complete-form" name="complete-form" type="checkbox" value="done" {{checked("complete-form", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="complete-form">
+                  <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/Commissioning%20Form.aspx">Complete the SOPU commissioning form</a> to request they record the notice in the Warning Notice Tracker
+                </label>
+              </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and continue
+          </button>
+
+        <a class="govuk-link" href="engagement-concerns">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
