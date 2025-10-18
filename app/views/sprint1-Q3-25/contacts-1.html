@@ -830,9 +830,9 @@
 
     <!-- Additional manually added local authority contacts-->
      
+Organisation: {{ data['organisation']}}
 
-
- {% if (data['contact'] == 'Local authority') %}
+ {% if (data['organisation'] == 'Local authority') %}
 
 
  <div class="govuk-summary-card">
@@ -1000,7 +1000,7 @@
                 01242 098765
               </dd>
             </div>
-           
+            <!--
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Source
@@ -1009,6 +1009,7 @@
                 Somewhere else
               </dd>
             </div>
+            -->
           </dl>
         </div>
       </div>
@@ -1018,7 +1019,7 @@
 
  <!-- Additional manually added federation contacts-->
      
-{% if (data['contact'] == 'Federation') %}
+{% if (data['organisation'] == 'Federation') %}
 
 
 <div class="govuk-summary-card">
@@ -1200,7 +1201,7 @@
 
  
      
- {% if (data['contact'] == 'Diocese') %}
+ {% if (data['organisation'] == 'Diocese') %}
 
 
  <div class="govuk-summary-card">
