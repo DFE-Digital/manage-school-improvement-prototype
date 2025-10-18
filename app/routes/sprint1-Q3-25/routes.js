@@ -114,6 +114,40 @@ router.post('/' + version + '/address-routes-1', function(req, res) {
   }
 })
 
+ // Run this code when a form is submitted to 'engagement-answer'
+ router.post('/' + version + '/task-list-tewkesbury/so-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the checkbox on the index page  
+  const supportingOrganisationAnswer = req.body["so-type"];
+
+  // Check whether the variable matches a condition
+  if (supportingOrganisationAnswer == "School") {
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-tewkesbury/choose-supporting-organisation-school')
+  }   
+  else { 
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-tewkesbury/choose-supporting-organisation-trust')
+  }
+})
+
+ // Run this code when a form is submitted to 'engagement-answer'
+ router.post('/' + version + '/task-list-cirencester/so-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the checkbox on the index page  
+  const supportingOrganisationAnswer = req.body["so-type"];
+
+  // Check whether the variable matches a condition
+  if (supportingOrganisationAnswer == "School") {
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-cirencester/choose-supporting-organisation-school')
+  }   
+  else { 
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-cirencester/choose-supporting-organisation-trust')
+  }
+})
+
 
 
 
@@ -135,6 +169,337 @@ router.post('/' + version + '/address-routes-1', function(req, res) {
     res.redirect('/' + version + '/record-engagement-concern-validation-2')
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-schools-1a', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-schools-1a')
+  }   
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-schools-1a')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-schools-1a')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-schools-1a')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-schools-1a')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-schools-1a')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-schools-1a')
+  }
+})
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-academies-1a', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-academies-1a')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-academies-1a')
+  } 
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-academies-1a')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-academies-1a')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-academies-1a')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-academies-1a')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-academies-1a')
+  }
+})
+
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-schools-1b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-schools-1b')
+  }   
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-schools-1b')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-schools-1b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-schools-1b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-schools-1b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-schools-1b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-schools-1b')
+  }
+})
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-academies-1b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-academies-1b')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-academies-1b')
+  } 
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-academies-1b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-academies-1b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-academies-1b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-academies-1b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-academies-1b')
+  }
+})
+
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-schools-2a', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-schools-2a')
+  }   
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-schools-2a')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-schools-2a')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-schools-2a')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-schools-2a')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-schools-2a')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-schools-2a')
+  }
+})
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-academies-2a', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-academies-2a')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-academies-2a')
+  } 
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-academies-2a')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-academies-2a')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-academies-2a')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-academies-2a')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-academies-2a')
+  }
+})
+
+
+
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-schools-2b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-schools-2b')
+  }   
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-schools-2b')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-schools-2b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-schools-2b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-schools-2b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-schools-2b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-schools-2b')
+  }
+})
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-academies-2b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-academies-2b')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-academies-2b')
+  } 
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-academies-2b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-academies-2b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-academies-2b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-academies-2b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-academies-2b')
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  // Run this code when a form is submitted to 'add-contact-answer'
@@ -266,7 +631,7 @@ router.post('/' + version + '/add-contact-answer-2', function(req, res) {
 
 
 // Run this code when a form is submitted to 'add-contact-answer'
-router.post('/' + version + '/add-contact-answer-3', function(req, res) {
+router.post('/' + version + '/add-contact-answer-3a', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
   const contactAnswer = req.body["organisation"];
@@ -274,41 +639,84 @@ router.post('/' + version + '/add-contact-answer-3', function(req, res) {
   // Check whether the variable matches a condition
   if (contactAnswer == "School") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-school-3')
+    res.redirect('/' + version + '/add-role-school-3a')
   }   
   else if (contactAnswer == "Trust") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-trust-3')
+    res.redirect('/' + version + '/add-role-trust-3a')
   } 
   else if (contactAnswer == "Local authority") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-la-3')
+    res.redirect('/' + version + '/add-role-la-3a')
   }
   else if (contactAnswer == "Supporting organisation") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-supporting-organisation-3')
+    res.redirect('/' + version + '/add-role-supporting-organisation-3a')
   }
   else if (contactAnswer == "Diocese") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-diocese-3')
+    res.redirect('/' + version + '/add-role-diocese-3a')
   }
   else if (contactAnswer == "Federation") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-federation-3')
+    res.redirect('/' + version + '/add-role-federation-3a')
   }
   else if (contactAnswer == "DfE") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-dfe-3')
+    res.redirect('/' + version + '/add-role-dfe-3a')
   }
   else {
     // Send user to ineligible page
-    res.redirect('/' + version + '/add-role-other-3')
+    res.redirect('/' + version + '/add-role-other-3a')
+  }
+})
+
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-3b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-3b')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-3b')
+  } 
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-3b')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-3b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-3b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-3b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-3b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-3b')
   }
 })
 
 
 // Run this code when a form is submitted to 'add-contact-answer'
-router.post('/' + version + '/add-contact-answer-4', function(req, res) {
+router.post('/' + version + '/add-contact-answer-4a', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
   const contactAnswer = req.body["organisation"];
@@ -316,35 +724,77 @@ router.post('/' + version + '/add-contact-answer-4', function(req, res) {
   // Check whether the variable matches a condition
   if (contactAnswer == "School") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-school-4')
+    res.redirect('/' + version + '/add-role-school-4a')
   }   
   else if (contactAnswer == "Trust") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-trust-4')
+    res.redirect('/' + version + '/add-role-trust-4a')
   } 
   else if (contactAnswer == "Local authority") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-la-4')
+    res.redirect('/' + version + '/add-role-la-4a')
   }
   else if (contactAnswer == "Supporting organisation") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-supporting-organisation-4')
+    res.redirect('/' + version + '/add-role-supporting-organisation-4a')
   }
   else if (contactAnswer == "Diocese") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-diocese-4')
+    res.redirect('/' + version + '/add-role-diocese-4a')
   }
   else if (contactAnswer == "Federation") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-federation-4')
+    res.redirect('/' + version + '/add-role-federation-4a')
   }
   else if (contactAnswer == "DfE") { 
     // Send user to next page 
-    res.redirect('/' + version + '/add-role-dfe-4')
+    res.redirect('/' + version + '/add-role-dfe-4a')
   }
   else {
     // Send user to ineligible page
-    res.redirect('/' + version + '/add-role-other-4')
+    res.redirect('/' + version + '/add-role-other-4a')
+  }
+})
+
+
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-4b', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-4b')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-4b')
+  } 
+  else if (contactAnswer == "Local authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-la-4b')
+  }
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-4b')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-4b')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-4b')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-4b')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-4b')
   }
 })
 
@@ -451,7 +901,42 @@ router.post('/' + version + '/add-contact-answer-4', function(req, res) {
   }   
   else {
     // Send user to ineligible page
-    res.redirect('/' + version + '/task-list')
+    res.redirect('/' + version + '/task-list-task-updated')
+  }
+})
+
+// Run this code when a form is submitted to 'funding-answer'
+router.post('/' + version + '/task-list-tewkesbury/funding-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const fundingAnswer = req.body["received-funding"];
+
+  // Check whether the variable matches a condition
+  if (fundingAnswer == "Yes") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-tewkesbury/add-funding')
+  }   
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/task-list-tewkesbury-updated')
+  }
+})
+
+
+// Run this code when a form is submitted to 'funding-answer'
+router.post('/' + version + '/task-list-cirencester/funding-answer', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const fundingAnswer = req.body["received-funding"];
+
+  // Check whether the variable matches a condition
+  if (fundingAnswer == "Yes") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/task-list-cirencester/add-funding')
+  }   
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/task-list-cirencester-updated')
   }
 })
 

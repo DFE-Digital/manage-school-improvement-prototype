@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add trust role
+      </h1>
+      
+      <form class="form" action='add-contact-details-schools-1b' method="post">
+
+        
+
+    
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        
+        {% set othertrustHtml %}
+        {{ govukInput({
+          id: "other-role-trust-title",
+          name: "other-role-trust-title",
+          value: data["other-role-trust-title"],
+          spellcheck: false,
+          classes: "govuk-!-width-one-half"
+        }) }}
+        {% endset -%}
+        
+        
+        
+       
+        
+        {{ govukRadios({
+          name: "job-title",
+          fieldset: {
+            legend: {
+              text: "Role",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select one option"
+          },
+          items: [
+          {
+            value: "Trust CEO",
+            text: "Trust CEO",
+            checked:  data['contact'] === "Trust CEO"
+          },
+          {
+            value: "Chair of trustees",
+            text: "Chair of trustees",
+            checked:  data['contact'] === "Chair of trustees"
+          },
+          {
+            value: "Accounting officer for trust",
+            text: "Accounting officer for trust",
+            checked:  data['contact'] === "Accounting officer for trust"
+          },
+          {
+            value: "other-role-trust",
+            text: "Other role",
+            checked: false,
+            conditional: {
+            html: othertrustHtml
+              }
+            } 
+          ]
+        }) }}
+    
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
