@@ -147,12 +147,9 @@ vertical-align: text-bottom;
 .moj-filter__tag {
     margin-right:-15px !important;
 }
-
-
-
-.fiat-top {
+.top-section {
     background-color:#ebf2f6;
-  }
+}
 
 
 @media (max-width: 40.0625em) {
