@@ -1,4 +1,33 @@
-<span class="govuk-caption-xl">URN 100006</span>
+
+
+<div class="caption-section">
+  <div class="caption-left">
+    
+     URN 100006
+  
+  </div>
+  <div class="tag-right">
+
+    {% if (data['project-status'] == "Paused") %}
+    <strong class="govuk-tag govuk-tag--orange ">
+      {{ data['project-status']}}
+    </strong>
+    {% elif (data['project-status'] == "Stopped") %}
+    <strong class="govuk-tag govuk-tag--red ">
+      {{ data['project-status']}}
+    </strong>
+    {% else %}
+    <strong class="govuk-tag govuk-tag--green ">
+      In progress
+    </strong>
+    {% endif %}
+
+  </div>
+</div>
+
+
+
+
 <h1 class="govuk-heading-xl">Cheltenham Spa Primary School</h1>
 
 

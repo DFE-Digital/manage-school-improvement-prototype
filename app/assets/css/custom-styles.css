@@ -63,6 +63,9 @@
 .margin-top-10 {
     margin-top:10px;
 }
+.margin-top-minus-10 {
+    margin-top:-50px;
+}
 .margin-top-7 {
     margin-top:6px;
 }
@@ -133,6 +136,7 @@
 }
 .redbg {
     background-color: #b12e31;
+ 
 }
 .text-align-right {
     text-align:right;
@@ -140,6 +144,9 @@
 .text-align-bottom {
 vertical-align: text-bottom;
 }
+.tag-align {
+    vertical-align:auto;
+    }
 .text-align-bottom-right {
     text-align:right;
     vertical-align: text-bottom;
@@ -150,6 +157,51 @@ vertical-align: text-bottom;
 .top-section {
     background-color:#ebf2f6;
 }
+
+
+.caption-section {
+    display:block;
+    height:51px;
+}
+.caption-left {
+    display:table-cell;
+    font-weight: 400;
+    font-size: 28px;
+    padding-right:15px;
+    padding-top:13px;
+    height:48px;
+    vertical-align:top;
+    color: #505a5f;
+}
+.tag-right {
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.caption-custom {
+    font-family: "Inter", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+font-weight: 400;
+font-size: 16px;
+line-height: 2.125;
+display: block;
+margin-bottom: 5px;
+color: #505a5f;
+background-color: #b12e31;
+}
+
+.caption-custom-2 {
+    font-family: "Inter", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+font-weight: 400;
+font-size: 24px;
+line-height: 48px;
+    background-color: #b12e31;
+}
+
+
 
 
 @media (max-width: 40.0625em) {
