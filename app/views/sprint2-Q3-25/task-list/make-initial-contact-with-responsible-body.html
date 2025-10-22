@@ -1,0 +1,229 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+   
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Make initial contact with the responsible body
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">Let the local authority or trust know the school is eligible for trageted intervention and explain the process. You should also inform the diocese if this is a faith school.</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            When to contact the diocese for faith schools
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>If it is a Catholic school, you must inform the diocese before the local authority or trust.</p>
+          <p>For other faith schools, tell the diocese at the same time as the local authority or trust.</p>
+        </div>
+      </details>
+
+      <p class="govuk-body">You should decide in your RISE team who is best placed to contact the responsible body about this school.</p>
+      
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Who should make initial contact
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>The person who should contact the responsible depends on the circumstances of the school and responsible body, and their relationship with DfE.</p>
+
+          <p>Depending on the type of school, it would be one of the trust relationship manager, the local authorty lead or a member of the RISE team.</p>
+
+          <p>Discuss what the best approach is for this responsible body as a team and make your decision based on your collective knowledge.</p>
+        </div>
+      </details>
+
+      <form class="form" action="../task-list-task-updated" method="post">
+
+        
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="nationality-hint">
+           
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="call-responsible-body" name="call-responsible-body" type="checkbox" value="done" aria-describedby="call-responsible-body-hint" {{checked("call-responsible-body", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="call-responsible-body">
+                  Contact the responsible body
+                </label>
+                <div id="call-responsible-body-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                  There is <a href="https://educationgovuk.sharepoint.com/:u:/r/sites/lvewp00030/SitePages/2-Intervention/RISE/RISE-Targeted-Intervention-Guidance.aspx?csf=1&web=1&e=DKm7Q3" target="_blank">guidance on SharePoint (opens in new tab)</a> that contains links to a call script 
+                  and answers to commonly asked questions that can help you.
+                  
+                  <details class="govuk-details margin-top-15 margin-bottom-minus-10">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        What to say when you notify the responsible body
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      <p>You should reassure the responsible body that RISE targeted intervention is a collaborative process.</p>
+
+                      <p>Explain that the RISE team and adviser will work together with the responsible body and school and their experience, plans and views will be taken into account.</p>
+
+                     <!-- <p class="govuk-body">You should also explain that the school is eligible for targeted intervention and that the responsible body should contact the RISE team to discuss the next steps.</p> -->
+                    </div>
+                  </details>
+                
+                </div>
+              </div>
+
+             
+
+              
+
+              
+
+             
+             
+            </div>
+          </fieldset>
+        </div>
+  
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "initial-contact-date",
+          namePrefix: "initial-contact-date",
+          fieldset: {
+            legend: {
+              text: "Enter the date of initial contact",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m margin-top-minus-15"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["initial-contact-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2 readonly"
+            },
+            {
+              name: "month",
+              value: data["initial-contact-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["initial-contact-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+
+
+        
+        
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+       
+     
+
+
+
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+
+
+    </div>
+    -->
+
+
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

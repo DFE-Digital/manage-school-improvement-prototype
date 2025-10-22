@@ -1,0 +1,134 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Record use of interim executive board
+      </h1>
+
+        <p>Interim executive boards (IEBs) are temporary boards who replace the existing governors at a local authority maintained school.</p>
+        
+        <p>An IEB should only be used if all other attempts to engage with the governors have failed.</p>
+
+        <p>You must read the latest <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/Interim-Executive-Boards(IEB).aspx?" target="_blank">guidance on how to create an IEB (opens in new tab)</a>.</p>
+
+      <details class="govuk-details margin-top-15">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How to create an interim executive board
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+         
+          <p>An IEB is a small group of experienced people who temporarily take over the role of a school's governing body.</p>
+          <p>Their job is to improve how the school is run and help raise educational standards.</p> 
+          <p>DfE can only create an IEB after a period of formal consultation with the local authority and governing body. The diocese or foundation trust must also be consluted if it is a faith school or part of a foundation.</p>
+          <p>After the consultation, a regional director must decide if an IEB is needed.</p>
+          <p>An IEB can only be created with a regional director's approval.</p>
+
+        </div>
+      </details>
+
+
+
+
+
+
+     
+
+      <form class="form" action="interim-executive-board-date" method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
+          
+            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+            {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+            
+            {% set iebdetailsHtml %}
+            {{ govukTextarea({
+              name: "interim-executive-board-details",
+              id: "interim-executive-board-details",
+              value: data["interim-executive-board-details"],
+              label: {
+                text: "Give details of the IEB, who is on it and why it is necessary."
+              }
+            }) }}
+            {% endset -%}
+            
+            {{ govukCheckboxes({
+              name: "interim-executive-board",
+              id: "interim-executive-board",
+              items: [
+                {
+                  value: "Yes",
+                  checked: data['interim-executive-board'] == "Yes",
+                  text: "Interim executive board created",
+                  conditional: {
+                    html: iebdetailsHtml
+                  }
+                }
+              ]
+            }) }}
+      
+
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and continue
+          </button>
+
+          {% if (data['engagement-concern-2'] == NULL) %}
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          {% endif %}
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
