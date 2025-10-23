@@ -52,8 +52,39 @@
                     <label class="govuk-label govuk-label--m" for="projects">
                         Find a school
                     </label>
-                    <span class="govuk-hint">You can filter by school name or URN (unique reference number)</span>
+                    <span class="govuk-hint">You can filter by school name or URN (unique reference number), or by entering a range of dates that schools were added</span>
                     <input id="Title" name="Title" type="text" class="govuk-input margin-top-15" aria-describedby="filter-project-title-hint" data-cy="select-projectlist-filter-title" value="">
+                    <br><br>
+                    {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+                    {{ govukDateInput({
+                        id: "passport-issued",
+                        namePrefix: "passport-issued",
+                        fieldset: {
+                            legend: {
+                                text: "Schools added between",
+                                isPageHeading: true,
+                                classes: "govuk-fieldset__legend--s"
+                            }
+                        },
+                        hint: {
+                            text: "For example, 27 3 2007"
+                        }
+                    }) }}
+
+                    {{ govukDateInput({
+                        id: "passport-issued",
+                        namePrefix: "passport-issued",
+                        fieldset: {
+                            legend: {
+                                text: "and",
+                                isPageHeading: true,
+                                classes: "govuk-fieldset__legend--s"
+                            }
+                        }
+                    }) }}
+
+
 
                 </div>
 
@@ -61,9 +92,6 @@
 
                     <fieldset class="govuk-fieldset">
                         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-
-
-
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
@@ -74,109 +102,6 @@
                                 </div>
                                 <div class="govuk-accordion__section-content" aria-labelledby="accordion-officer-heading">
                                <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter officers...">
-                                    <div class="govuk-checkboxes">
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-alex-james" name="selectedOfficers" type="checkbox" value="Alex James" data-cy="select-projectlist-filter-officer-Alex-James" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Alex-James">
-                                                    Alex James
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-amanda-king" name="selectedOfficers" type="checkbox" value="Amanda King" data-cy="select-projectlist-filter-officer-Amanda-King" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Amanda-King">
-                                                    Amanda King
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-ayaz-akram" name="selectedOfficers" type="checkbox" value="Ayaz Akram" data-cy="select-projectlist-filter-officer-Ayaz-Akram" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Ayaz-Akram">
-                                                    Ayaz Akram
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-bob-roberts" name="selectedOfficers" type="checkbox" value="Bob Roberts" data-cy="select-projectlist-filter-officer-Bob-Roberts" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Bob-Roberts">
-                                                    Bob Roberts
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-iain-macdonald" name="selectedOfficers" type="checkbox" value="Iain MacDonald" data-cy="select-projectlist-filter-officer-iain-MacDonald" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Iain-MacDonald">
-                                                    Iain MacDonald
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-jon-moore" name="selectedOfficers" type="checkbox" value="Jon Moore" data-cy="select-projectlist-filter-officer-Jon-Moore" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Jon-Moore">
-                                                    Jon Moore
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-justin-richards" name="selectedOfficers" type="checkbox" value="Justin Richards" data-cy="select-projectlist-filter-officer-Justin-Richards" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Justin-Richards">
-                                                    Justin Richards
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-linzi-carlin" name="selectedOfficers" type="checkbox" value="Linzi Carlin" data-cy="select-projectlist-filter-officer-Linzi-Carlin" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Linzi-Carlin">
-                                                    Linzi Carlin
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-mike-morant" name="selectedOfficers" type="checkbox" value="Mike Morant" data-cy="select-projectlist-filter-officer-Mike-Morant" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Mike-Morant">
-                                                    Mike Morant
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-paul-lockwood" name="selectedOfficers" type="checkbox" value="Paul Lockwood" data-cy="select-projectlist-filter-officer-Paul-Lockwood" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Paul-Lockwood">
-                                                    Paul Lockwood
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-rachel-winter" name="selectedOfficers" type="checkbox" value="Rachel Winter" data-cy="select-projectlist-filter-officer-Rachel-Winter" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Rachel-Winter">
-                                                    Rachel Winter
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-richika-dogra" name="selectedOfficers" type="checkbox" value="Richika Dogra" data-cy="select-projectlist-filter-officer-Richika-Dogra" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Richika-Dogra">
-                                                    Richika Dogra
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-sam-evans" name="selectedOfficers" type="checkbox" value="Sam Evans" data-cy="select-projectlist-filter-officer-Sam-Evans" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Sam-Evans">
-                                                    Sam Evans
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-steve-milnes" name="selectedOfficers" type="checkbox" value="Steve Milnes" data-cy="select-projectlist-filter-officer-Steve-Milnes" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Steve-Milnes">
-                                                    Steve Milnes
-                                                </label>
-                                            </div>
-                                            
-                                            
-                                            
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="govuk-accordion__section">
-                                <div class="govuk-accordion__section-header">
-                                    <h2 class="govuk-accordion__section-heading">
-                                        <span class="govuk-accordion__section-button" id="accordion-officer-heading" data-cy="select-projectlist-filter-officer">
-                                            Advised by
-                                        </span>
-                                    </h2>
-                                </div>
-                                <div class="govuk-accordion__section-content" aria-labelledby="accordion-officer-heading">
-                               <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter advisers...">
                                     <div class="govuk-checkboxes">
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-officer-alex-james" name="selectedOfficers" type="checkbox" value="Alex James" data-cy="select-projectlist-filter-officer-Alex-James" />

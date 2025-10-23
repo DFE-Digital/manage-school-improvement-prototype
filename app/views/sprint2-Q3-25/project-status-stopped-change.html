@@ -47,6 +47,33 @@
     <form class="form" action='project-status-stopped-answer' method="post">
 
     {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      
+    {% set improvedHtml %}
+
+      {{ govukTextarea({
+        name: "improved-details",
+        id: "improved-details",
+        title: "Improved details",
+        value: data["improved-details"],
+        label: {
+          text: "Give details about the new Ofsted judgement."
+        }
+      }) }}
+    {% endset -%}
+
+    {% set approvedHtml %}
+
+      {{ govukTextarea({
+        name: "approved-details",
+        id: "approved-details",
+        title: "Approved details",
+        value: data["approved-details"],
+        label: {
+          text: "Give details about the approved changes."
+        }
+      }) }}
+    {% endset -%}
 
     {{ govukRadios({
     name: "project-status-stopped",
@@ -57,6 +84,9 @@
       checked:  data['project-status-stopped'] === "Improved Ofsted judgement published",
       hint: {
         text: "Ofsted have inspected the school. The school has sufficently improved and the inspection report is available on the Ofsted website"
+      },
+      conditional: {
+        html: improvedHtml
       }
     },
     {
@@ -65,6 +95,9 @@
       checked:  data['project-status-stopped'] === "Structural or governance change approved",
       hint: {
         text: "A regional director has approved a decision for the school to convert to an academy, transfer to a different trust or undergo another change to its governance structure"
+      },
+      conditional: {
+        html: approvedHtml
       }
     }
   ]

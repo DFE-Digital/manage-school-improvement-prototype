@@ -41,42 +41,26 @@
 
 
     <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
-    <h2 class="govuk-heading-l">Enter decision maker's role</h2>
-    <!--<p>Change the status of a project if targeted intervention work pauses or stops.</p>-->
+    <h2 class="govuk-heading-l">Additional information</h2>
+    <p>Enter any additional notes about why this project has been paused.</p>
       
-    <form class="form" action='project-status-stopped-notes' method="post">
+    <form class="form" action='project-status-answers' method="post">
 
-       
+        {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        
-
-{{ govukRadios({
-  name: "stopped-decision-maker-role",
-  items: [
-    {
-      value: "Director general",
-      text: "Director general",
-      checked:  data['stopped-decision-maker-role'] === "Director general"
-    },
-    {
-      value: "Regional director",
-      text: "Regional director",
-      checked:  data['stopped-decision-maker-role'] === "Regional director"
-    },
-    {
-      value: "Deputy director",
-      text: "Deputy director",
-      checked:  data['stopped-decision-maker-role'] === "Deputy director"
-    },
-    {
-      value: "Grade 6",
-      text: "Grade 6",
-      checked:  data['stopped-decision-maker-role'] === "Grade 6"
-    }
-  ]
-}) }}
+        {{ govukTextarea({
+          name: "paused-notes",
+          id: "paused-notes",
+          value: data["paused-notes"],
+          label: {
+            text: "Enter details",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Provide any additional context about why the project has been paused, or details about any next steps required."
+          }
+        }) }}
 
 {{ govukButton({
   text: "Save and continue"

@@ -7,68 +7,18 @@
 {% block header %}
 {% include "/layouts/dfe-header.html" %}
 
-<div class="top-section">
-    <div class="govuk-width-container">
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-                {{ govukBackLink({
-                    text: "Back",
-                    href: "javascript:window.history.back()"
-                }) }}
-                <br><br>
 
-
-                {% if (data['project-status'] == "Paused") %}
-                <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-                  <div class="govuk-notification-banner__header">
-                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                      Important
-                    </h2>
-                  </div>
-                  <div class="govuk-notification-banner__content">
-                    <p class="govuk-notification-banner__heading">
-                      Intervention paused.
-                    </p>
-                    <p>Targeted intervention at this school is paused while Ofsted write a new inspection report.</p>
-                  </div>
-                </div>
-                {% endif %}
-
-                {% if (data['project-status'] == "Stopped") %}
-                <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-                  <div class="govuk-notification-banner__header">
-                    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                      Important
-                    </h2>
-                  </div>
-                  <div class="govuk-notification-banner__content">
-                    <p class="govuk-notification-banner__heading">
-                      Intervention stopped.
-                    </p>
-                    <p>This school is no longer eligible because it has received an improved Ofsted inspection.</p>
-                    <p>You cannot make changes to this project.</p>
-                    <p>If the school becomes eligible again in the future you must create a new project.</p>
-                  </div>
-                </div>
-                {% endif %}
-
-
-                {% include "/layouts/summary-section-with-break.html" %}
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock %}
 
 {% block beforeContent %}
   
-<!--
+
 {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
 }) }}
--->
+
 
 <!--
   <div class="govuk-breadcrumbs">
@@ -90,6 +40,14 @@
 
 {% block content %}
 
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    {% include "/layouts/summary-section.html" %}
+    </div>
+</div>
+
+<br>
 
 <div class="govuk-grid-row">
 
