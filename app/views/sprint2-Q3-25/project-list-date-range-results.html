@@ -39,6 +39,22 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            Filters applied
+          </h3>
+          <p>3 schools found on 1 page of results</p>
+        </div>
+      </div>
+
+
   <h1 class="govuk-heading-xl">
     Schools identified for targeted intervention
   </h1>
@@ -53,104 +69,21 @@
 
     <div class="govuk-grid-column-one-third">
     {% block filters %}
-        {% include "/layouts/project-list-filters.html" %}
+        {% include "/layouts/project-list-filters-date-range.html" %}
     {% endblock %}
     </div>
 
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-m">
-        7 schools found
+        3 schools found
       </h1>
 
       <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 7 </caption>
-      
-        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
-          <td class="govuk-table__cell">
-             <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
-                <strong>
-          <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="">Tewkesbury Secondary School</a>
-                </strong>
-             </div>
-              <div class="govuk-!-margin-top-1">
-                  <span id="urn-0"><strong>URN:</strong> 102307</span>
-              </div>
-              <div id="localauthority-26" class="govuk-!-margin-top-1">
-                  <strong>Local authority:</strong>
-                      <span>Gloucestershire</span>
-              </div>
-             <div id="region-26" class="govuk-!-margin-top-1">
-                 <strong>Region:</strong>
-                     <span>South West</span>
-             </div>
-          </td>
-      </tr>
-      
-      
-      <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
-        <td class="govuk-table__cell">
-           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
-              <strong>
-        <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="">Cirencester Academy</a>
-              </strong>
-           </div>
-            <div class="govuk-!-margin-top-1">
-                <span id="urn-0"><strong>URN:</strong> 103649</span>
-            </div>
-            <div id="localauthority-26" class="govuk-!-margin-top-1">
-                <strong>Local authority:</strong>
-                    <span>Gloucestershire</span>
-            </div>
-           <div id="region-26" class="govuk-!-margin-top-1">
-               <strong>Region:</strong>
-                   <span>South West</span>
-           </div>
-        </td>
-    </tr>
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 3 </caption>
 
 
-
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
-        <td class="govuk-table__cell">
-           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
-              <strong>
-        <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="">Sacred Heart Roman Catholic Junior School Manchester</a>
-              </strong>
-           </div>
-            <div class="govuk-!-margin-top-1">
-                <span id="urn-0"><strong>URN:</strong> 105517</span>
-            </div>
-            <div id="localauthority-26" class="govuk-!-margin-top-1">
-                <strong>Local authority:</strong>
-                    <span >Manchester</span>
-            </div>
-           <div id="region-26" class="govuk-!-margin-top-1">
-               <strong>Region:</strong>
-                   <span >North West</span>
-           </div>
-        </td>
-    </tr>
-    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
-        <td class="govuk-table__cell">
-           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
-              <strong>
-        <a id="school-name-1" class="govuk-link" data-cy="trust-name-1" href="">Kendrick School</a>
-              </strong>
-           </div>
-            <div class="govuk-!-margin-top-1">
-                <span id="urn-1"><strong>URN:</strong> 110042</span>
-            </div>
-            <div id="localauthority-25" class="govuk-!-margin-top-1">
-                <strong>Local authority:</strong>
-                    <span >Reading</span>
-            </div>
-           <div id="region-25" class="govuk-!-margin-top-1">
-               <strong>Region:</strong>
-                   <span >South East</span>
-           </div>
-        </td>
-    </tr>
+      
     <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
         <td class="govuk-table__cell">
            <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">

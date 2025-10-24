@@ -83,14 +83,10 @@
       Assigned to
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if (data['assigned-to'] != NULL) %}
-      {{ data['assigned-to']}}
-      {% else %}
-      <span data-id="assigned-user" class="empty">Empty</span>
-      {% endif %}
+      <a class="govuk-link" href="./assign/assign-project">Assign project</a>
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="./assign/assign-project">Change<span class="govuk-visually-hidden"> assign project</span></a>
+      
     </dd>
   </div>
   <div class="govuk-summary-list__row">
@@ -98,14 +94,10 @@
       Advised by
     </dt>
     <dd class="govuk-summary-list__value">
-      {% if (data['allocated-adviser-email'] != NULL) %}
-      {{ data['allocated-adviser-email']}}
-      {% else %}
-      <span data-id="allocated-adviser" class="empty">Empty</span>
-      {% endif %}
+      <a class="govuk-link" href="./task-list/allocate-an-adviser">Allocated an adviser</a>
     </dd>
     <dd class="govuk-summary-list__actions">
-      <a class="govuk-link" href="./task-list/allocate-an-adviser">Change<span class="govuk-visually-hidden"> allocated an adviser</span></a>
+  
     </dd>
   </div>
 

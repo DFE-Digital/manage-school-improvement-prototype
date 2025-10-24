@@ -42,10 +42,10 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Add trust role
+        Select federation role
       </h1>
       
-      <form class="form" action='add-contact-details-academies-2a' method="post">
+      <form class="form" action='add-contact-details-academies-2c' method="post">
 
         
 
@@ -53,11 +53,11 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
         
-        {% set othertrustHtml %}
+        {% set otherfederationHtml %}
         {{ govukInput({
-          id: "other-role-trust-title",
-          name: "other-role-trust-title",
-          value: data["other-role-trust-title"],
+          id: "other-role-federation-title",
+          name: "other-role-federation-title",
+          value: data["other-role-federation-title"],
           spellcheck: false,
           classes: "govuk-!-width-one-half"
         }) }}
@@ -81,26 +81,16 @@
           },
           items: [
           {
-            value: "Trust CEO",
-            text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO"
+            value: "Chair of federation",
+            text: "Chair of federation",
+            checked:  data['contact'] === "Chair of federation"
           },
           {
-            value: "Chair of trustees",
-            text: "Chair of trustees",
-            checked:  data['contact'] === "Chair of trustees"
-          },
-          {
-            value: "Accounting officer for trust",
-            text: "Accounting officer for trust",
-            checked:  data['contact'] === "Accounting officer for trust"
-          },
-          {
-            value: "other-role-trust",
+            value: "other-role-federation",
             text: "Other role",
             checked: false,
             conditional: {
-            html: othertrustHtml
+            html: otherfederationHtml
               }
             } 
           ]
