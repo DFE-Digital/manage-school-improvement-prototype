@@ -529,6 +529,44 @@ router.post('/' + version + '/add-contact-answer-academies-2b', function(req, re
 
 
 
+// Run this code when a form is submitted to 'add-contact-answer'
+router.post('/' + version + '/add-contact-answer-academies-2c', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const contactAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (contactAnswer == "School") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-school-academies-2c')
+  }   
+  else if (contactAnswer == "Trust") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-trust-academies-2c')
+  } 
+  else if (contactAnswer == "Supporting organisation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-supporting-organisation-academies-2c')
+  }
+  else if (contactAnswer == "Diocese") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-diocese-academies-2c')
+  }
+  else if (contactAnswer == "Federation") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-federation-academies-2c')
+  }
+  else if (contactAnswer == "DfE") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/add-role-dfe-academies-2c')
+  }
+  else {
+    // Send user to ineligible page
+    res.redirect('/' + version + '/add-role-other-academies-2c')
+  }
+})
+
+
 
 
 

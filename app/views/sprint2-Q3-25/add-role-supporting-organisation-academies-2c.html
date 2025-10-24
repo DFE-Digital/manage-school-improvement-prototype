@@ -42,10 +42,10 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Add trust role
+        Add supporting organisation role
       </h1>
       
-      <form class="form" action='add-contact-details-academies-2a' method="post">
+      <form class="form" action='add-contact-details-academies-2c' method="post">
 
         
 
@@ -53,11 +53,11 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
         
-        {% set othertrustHtml %}
+        {% set othersoHtml %}
         {{ govukInput({
-          id: "other-role-trust-title",
-          name: "other-role-trust-title",
-          value: data["other-role-trust-title"],
+          id: "other-role-so-title",
+          name: "other-role-so-title",
+          value: data["other-role-so-title"],
           spellcheck: false,
           classes: "govuk-!-width-one-half"
         }) }}
@@ -68,7 +68,7 @@
        
         
         {{ govukRadios({
-          name: "job-title",
+          name: "contact",
           fieldset: {
             legend: {
               text: "Role",
@@ -81,26 +81,16 @@
           },
           items: [
           {
-            value: "Trust CEO",
-            text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO"
+            value: "Accounting officer for supporting organisation",
+            text: "Accounting officer for supporting organisation",
+            checked:  data['contact'] === "Accounting officer for supporting organisation"
           },
           {
-            value: "Chair of trustees",
-            text: "Chair of trustees",
-            checked:  data['contact'] === "Chair of trustees"
-          },
-          {
-            value: "Accounting officer for trust",
-            text: "Accounting officer for trust",
-            checked:  data['contact'] === "Accounting officer for trust"
-          },
-          {
-            value: "other-role-trust",
+            value: "other-role-so",
             text: "Other role",
             checked: false,
             conditional: {
-            html: othertrustHtml
+            html: othersoHtml
               }
             } 
           ]

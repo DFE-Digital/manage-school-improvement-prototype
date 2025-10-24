@@ -42,10 +42,10 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Add trust role
+        Select diocese role
       </h1>
       
-      <form class="form" action='add-contact-details-academies-2a' method="post">
+      <form class="form" action='add-contact-details-academies-2c' method="post">
 
         
 
@@ -53,11 +53,11 @@
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
         
-        {% set othertrustHtml %}
+        {% set otherdioceseHtml %}
         {{ govukInput({
-          id: "other-role-trust-title",
-          name: "other-role-trust-title",
-          value: data["other-role-trust-title"],
+          id: "other-role-diocese-title",
+          name: "other-role-diocese-title",
+          value: data["other-role-diocese-title"],
           spellcheck: false,
           classes: "govuk-!-width-one-half"
         }) }}
@@ -81,26 +81,19 @@
           },
           items: [
           {
-            value: "Trust CEO",
-            text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO"
+            value: "Diocese representative",
+            text: "Diocese representative",
+            checked:  data['contact'] === "Diocese representative",
+            conditional: {
+              html: doeHtml
+            }
           },
           {
-            value: "Chair of trustees",
-            text: "Chair of trustees",
-            checked:  data['contact'] === "Chair of trustees"
-          },
-          {
-            value: "Accounting officer for trust",
-            text: "Accounting officer for trust",
-            checked:  data['contact'] === "Accounting officer for trust"
-          },
-          {
-            value: "other-role-trust",
+            value: "other-role-diocese",
             text: "Other role",
             checked: false,
             conditional: {
-            html: othertrustHtml
+            html: otherdioceseHtml
               }
             } 
           ]

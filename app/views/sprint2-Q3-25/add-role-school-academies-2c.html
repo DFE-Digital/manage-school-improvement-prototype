@@ -40,32 +40,31 @@
 
      
 
-      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <span class="govuk-caption-l">Cirencester Academy</span>
       <h1 class="govuk-heading-l">
-        Add trust role
+       Select school role
       </h1>
       
-      <form class="form" action='add-contact-details-academies-2a' method="post">
+      <form class="form" action='add-contact-details-academies-2c' method="post">
 
         
 
     
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+    
+       
         
-        {% set othertrustHtml %}
+        {% set otherschoolHtml %}
         {{ govukInput({
-          id: "other-role-trust-title",
-          name: "other-role-trust-title",
-          value: data["other-role-trust-title"],
+          id: "other-role-school-title",
+          name: "other-role-school-title",
           spellcheck: false,
           classes: "govuk-!-width-one-half"
         }) }}
         {% endset -%}
-        
-        
-        
-       
         
         {{ govukRadios({
           name: "job-title",
@@ -81,26 +80,25 @@
           },
           items: [
           {
-            value: "Trust CEO",
-            text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO"
+            value: "Headteacher",
+            text: "Headteacher",
+            checked:  data['job-title'] === "Headteacher"
           },
           {
-            value: "Chair of trustees",
-            text: "Chair of trustees",
-            checked:  data['contact'] === "Chair of trustees"
+            value: "Chair of governors",
+            text: "Chair of governors",
+            checked:  data['job-title'] === "Chair of governors"
           },
           {
-            value: "Accounting officer for trust",
-            text: "Accounting officer for trust",
-            checked:  data['contact'] === "Accounting officer for trust"
+            value: "Accounting officer for school",
+            text: "Accounting officer for school",
+            checked:  data['job-title'] === "Accounting officer for school"
           },
           {
-            value: "other-role-trust",
             text: "Other role",
             checked: false,
             conditional: {
-            html: othertrustHtml
+            html: otherschoolHtml
               }
             } 
           ]

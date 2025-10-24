@@ -40,75 +40,72 @@
 
      
 
-      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <span class="govuk-caption-l">Cirencester Academy</span>
       <h1 class="govuk-heading-l">
-        Add trust role
+        About this contact
       </h1>
+
+
+      <p>Provide some information about why this contact is being added.</p>
       
-      <form class="form" action='add-contact-details-academies-2a' method="post">
+      <form class="form" action='add-contact-academies-2c' method="post">
 
         
-
-    
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {% from "govuk/components/input/macro.njk" import govukInput %}
-        
-        {% set othertrustHtml %}
-        {{ govukInput({
-          id: "other-role-trust-title",
-          name: "other-role-trust-title",
-          value: data["other-role-trust-title"],
-          spellcheck: false,
-          classes: "govuk-!-width-one-half"
-        }) }}
-        {% endset -%}
-        
-        
-        
-       
+
         
         {{ govukRadios({
-          name: "job-title",
+          name: "contact-type",
           fieldset: {
             legend: {
-              text: "Role",
-              isPageHeading: true,
+              text: "Which of the following best describes this contact?",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             }
           },
-          hint: {
-            text: "Select one option"
-          },
           items: [
           {
-            value: "Trust CEO",
-            text: "Trust CEO",
-            checked:  data['contact'] === "Trust CEO"
+            value: "Interim or temporary contact",
+            text: "Interim or temporary contact",
+            checked: data['contact-type'] === "Interim or temporary contact"
           },
           {
-            value: "Chair of trustees",
-            text: "Chair of trustees",
-            checked:  data['contact'] === "Chair of trustees"
+            value: "Part time or job share with another contact",
+            text: "Part time or job share with another contact",
+            checked: data['contact-type'] === "Part time or job share with another contact"
           },
           {
-            value: "Accounting officer for trust",
-            text: "Accounting officer for trust",
-            checked:  data['contact'] === "Accounting officer for trust"
+            value: "Best contact",
+            text: "Best contact",
+            checked: data['contact-type'] === "Best contact"
           },
           {
-            value: "other-role-trust",
-            text: "Other role",
-            checked: false,
-            conditional: {
-            html: othertrustHtml
-              }
-            } 
+            value: "Other useful contact",
+            text: "Other useful contact",
+            checked: data['contact-type'] === "Other useful contact"
+          }
           ]
         }) }}
+
+   
+  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+  name: "contact-note",
+  id: "contact-note",
+  value: data["contact-note"],
+  label: {
+    text: "Details",
+    classes: "govuk-label--m"
+  }
+}) }}
+
+
+
     
 
 {{ govukButton({
-  text: "Continue"
+  text: "Add contact"
 }) }}
       
 
