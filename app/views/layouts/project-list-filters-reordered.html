@@ -58,6 +58,81 @@
                     <fieldset class="govuk-fieldset">
                         <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
 
+                            <!-- Filter by region -->
+                            <div class="govuk-accordion__section">
+                                <div class="govuk-accordion__section-header">
+                                    <h2 class="govuk-accordion__section-heading">
+                                        <span class="govuk-accordion__section-button" id="accordion-regions-heading" data-cy="select-projectlist-filter-region">
+                                            Region
+                                        </span>
+                                    </h2>
+                                </div>
+                                <div class="govuk-accordion__section-content" aria-labelledby="accordion-regions-heading">
+                            <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter regions...">
+                                    <div class="govuk-checkboxes">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-east-midlands" name="selectedRegions" type="checkbox" value="East Midlands" data-cy="select-projectlist-filter-region-East Midlands"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-east-midlands">
+                                                    East Midlands
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-london" name="selectedRegions" type="checkbox" value="London" data-cy="select-projectlist-filter-region-London"/>
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-london">
+                                                    London
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-north-east" name="selectedRegions" type="checkbox" value="North East" data-cy="select-projectlist-filter-region-North East"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-north-east">
+                                                    North East
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-north-west" name="selectedRegions" type="checkbox" value="North West" data-cy="select-projectlist-filter-region-North West"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-north-west">
+                                                    North West
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-south-east" name="selectedRegions" type="checkbox" value="South East" data-cy="select-projectlist-filter-region-South East"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-south-east">
+                                                    South East
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-south-west" name="selectedRegions" type="checkbox" value="South West" data-cy="select-projectlist-filter-region-South West"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-south-west">
+                                                    South West
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-west-midlands" name="selectedRegions" type="checkbox" value="West Midlands" data-cy="select-projectlist-filter-region-West Midlands"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-west-midlands">
+                                                    West Midlands
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="filter-project-region-yorkshire-and-the-humber" name="selectedRegions" type="checkbox" value="Yorkshire and the Humber" data-cy="select-projectlist-filter-region-Yorkshire and the Humber"
+                                                />
+                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-yorkshire-and-the-humber">
+                                                    Yorkshire and the Humber
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <!-- Date school added to MSI -->
                             <div class="govuk-accordion__section">
 
@@ -672,81 +747,6 @@
                                                     Wise Owl Trust
                                                 </label>
                                             </div>   
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Filter by region -->
-                            <div class="govuk-accordion__section">
-                                <div class="govuk-accordion__section-header">
-                                    <h2 class="govuk-accordion__section-heading">
-                                        <span class="govuk-accordion__section-button" id="accordion-regions-heading" data-cy="select-projectlist-filter-region">
-                                            Region
-                                        </span>
-                                    </h2>
-                                </div>
-                                <div class="govuk-accordion__section-content" aria-labelledby="accordion-regions-heading">
-                               <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter regions...">
-                                    <div class="govuk-checkboxes">
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-east-midlands" name="selectedRegions" type="checkbox" value="East Midlands" data-cy="select-projectlist-filter-region-East Midlands"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-east-midlands">
-                                                    East Midlands
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-london" name="selectedRegions" type="checkbox" value="London" data-cy="select-projectlist-filter-region-London"/>
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-london">
-                                                    London
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-north-east" name="selectedRegions" type="checkbox" value="North East" data-cy="select-projectlist-filter-region-North East"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-north-east">
-                                                    North East
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-north-west" name="selectedRegions" type="checkbox" value="North West" data-cy="select-projectlist-filter-region-North West"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-north-west">
-                                                    North West
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-south-east" name="selectedRegions" type="checkbox" value="South East" data-cy="select-projectlist-filter-region-South East"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-south-east">
-                                                    South East
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-south-west" name="selectedRegions" type="checkbox" value="South West" data-cy="select-projectlist-filter-region-South West"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-south-west">
-                                                    South West
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-west-midlands" name="selectedRegions" type="checkbox" value="West Midlands" data-cy="select-projectlist-filter-region-West Midlands"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-west-midlands">
-                                                    West Midlands
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-region-yorkshire-and-the-humber" name="selectedRegions" type="checkbox" value="Yorkshire and the Humber" data-cy="select-projectlist-filter-region-Yorkshire and the Humber"
-                                                 />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-region-yorkshire-and-the-humber">
-                                                    Yorkshire and the Humber
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                
-                                                
-                                            </div>
                                     </div>
                                 </div>
                             </div>
