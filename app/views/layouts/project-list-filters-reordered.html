@@ -44,14 +44,13 @@
         <div class="moj-filter__options">
             <form method="get" action="project-list-date-filters-2-results" class="form">
                
-
+                <!-- Filter by finding a school name or URN -->
                 <div class="govuk-form-group">
                     <label class="govuk-label govuk-label--m" for="projects">
                         Find a school
                     </label>
                     <span class="govuk-hint">You can filter by school name or URN (unique reference number)</span>
                     <input id="Title" name="Title" type="text" class="govuk-input margin-top-15" aria-describedby="filter-project-title-hint" data-cy="select-projectlist-filter-title" value="">
-
                 </div>
 
                 <div class="govuk-form-group">
@@ -63,24 +62,25 @@
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
                                         <span class="govuk-accordion__section-button" id="accordion-date-heading" data-cy="select-projectlist-filter-date">
-                                            Date school added
+                                            Date school added to MSI
                                         </span>
                                     </h2>
                                 </div>
                                 <div class="govuk-accordion__section-content" aria-labelledby="accordion-date-heading">
                                <!--<input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter years...">-->
 
-
                                <div class="govuk-form-group">
                                 <fieldset class="govuk-fieldset" aria-describedby="date-hint">
-                                  
                                   <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+                                    <!-- Year: 2025 -->
                                     <div class="govuk-checkboxes__item">
                                       <input class="govuk-checkboxes__input" id="2025" name="date" type="checkbox" value="2025" data-aria-controls="conditional-date">
                                       <label class="govuk-label govuk-checkboxes__label" for="cdate">
                                         2025
                                       </label>
                                     </div>
+                                    <!-- Months -->
                                     <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date">
                                         <div class="govuk-form-group">
                                             <div class="govuk-checkboxes__item">
@@ -157,287 +157,267 @@
                                             </div>
                                         </div>
                                     </div>
-            
-            
-            
-            
+
+                                    <!-- Year: 2024 -->
                                     <div class="govuk-checkboxes__item">
                                         <input class="govuk-checkboxes__input" id="2024" name="date" type="checkbox" value="2024" data-aria-controls="conditional-date-2">
                                         <label class="govuk-label govuk-checkboxes__label" for="2024">
                                           2024
                                         </label>
-                                      </div>
-                                      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-2">
-                                          <div class="govuk-form-group">
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  January
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  February
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  March
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  April
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  May
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  June
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  July
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  August
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  September
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  October
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  November
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2024-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-2">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  December
-                                                  </label>
-                                              </div>
-                                          </div>
-                                      </div>
+                                    </div>
+                                    <!-- Months -->
+                                    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-2">
+                                        <div class="govuk-form-group">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                January
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                February
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                March
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                April
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                May
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                June
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                July
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                August
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                September
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                October
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                November
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2024-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-2">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                December
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
             
-            
-            
-                                      <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="2023" name="date" type="checkbox" value="2023" data-aria-controls="conditional-date-3">
-                                        <label class="govuk-label govuk-checkboxes__label" for="2023">
-                                          2023
-                                        </label>
-                                      </div>
-                                      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-3">
-                                          <div class="govuk-form-group">
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  January
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  February
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  March
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  April
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  May
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  June
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  July
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  August
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  September
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  October
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  November
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2023-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-3">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  December
-                                                  </label>
-                                              </div>
-                                          </div>
-                                      </div>
-            
-            
-            
-                                      <div class="govuk-checkboxes__item">
-                                        <input class="govuk-checkboxes__input" id="2022" name="date" type="checkbox" value="2022" data-aria-controls="conditional-date-4">
-                                        <label class="govuk-label govuk-checkboxes__label" for="2022">
-                                          2022
-                                        </label>
-                                      </div>
-                                      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-4">
-                                          <div class="govuk-form-group">
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  January
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  February
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  March
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  April
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  May
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  June
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  July
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  August
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  September
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  October
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  November
-                                                  </label>
-                                              </div>
-                                              <div class="govuk-checkboxes__item">
-                                                  <input class="govuk-checkboxes__input" id="2022-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-4">
-                                                  <label class="govuk-label govuk-checkboxes__label" for="date">
-                                                  December
-                                                  </label>
-                                              </div>
-                                          </div>
-                                      </div>
-            
-            
-                                      
-            
-            
-                                      
-            
-            
-            
-                                    
+                                    <!-- Year: 2023 -->
+                                    <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="2023" name="date" type="checkbox" value="2023" data-aria-controls="conditional-date-3">
+                                    <label class="govuk-label govuk-checkboxes__label" for="2023">
+                                        2023
+                                    </label>
+                                    </div>
+                                    <!-- Months -->
+                                    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-3">
+                                        <div class="govuk-form-group">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                January
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                February
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                March
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                April
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                May
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                June
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                July
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                August
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                September
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                October
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                November
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2023-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-3">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                December
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <!-- Year: 2022 -->
+                                    <div class="govuk-checkboxes__item">
+                                    <input class="govuk-checkboxes__input" id="2022" name="date" type="checkbox" value="2022" data-aria-controls="conditional-date-4">
+                                    <label class="govuk-label govuk-checkboxes__label" for="2022">
+                                        2022
+                                    </label>
+                                    </div>
+                                    <!-- Months -->
+                                    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-date-4">
+                                        <div class="govuk-form-group">
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022" name="date" type="checkbox" value="january" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                January
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-2" name="date" type="checkbox" value="february" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                February
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-3" name="date" type="checkbox" value="march" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                March
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-4" name="date" type="checkbox" value="april" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                April
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-5" name="date" type="checkbox" value="may" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                May
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-6" name="date" type="checkbox" value="june" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                June
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-7" name="date" type="checkbox" value="july" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                July
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-8" name="date" type="checkbox" value="august" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                August
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-9" name="date" type="checkbox" value="september" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                September
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-10" name="date" type="checkbox" value="october" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                October
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-11" name="date" type="checkbox" value="november" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                November
+                                                </label>
+                                            </div>
+                                            <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="2022-12" name="date" type="checkbox" value="december" data-aria-controls="conditional-date-4">
+                                                <label class="govuk-label govuk-checkboxes__label" for="date">
+                                                December
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </fieldset>
-                              </div>
-                                    
-                               
+                              </div> 
                             </div>
 
-
-
-
-
-
-
-
-                            
-
+                            <!-- Filter by assigned to -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
@@ -449,100 +429,95 @@
                                 <div class="govuk-accordion__section-content" aria-labelledby="accordion-officer-heading">
                                <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter officers...">
                                     <div class="govuk-checkboxes">
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-alex-james" name="selectedOfficers" type="checkbox" value="Alex James" data-cy="select-projectlist-filter-officer-Alex-James" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Alex-James">
-                                                    Alex James
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-amanda-king" name="selectedOfficers" type="checkbox" value="Amanda King" data-cy="select-projectlist-filter-officer-Amanda-King" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Amanda-King">
-                                                    Amanda King
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-ayaz-akram" name="selectedOfficers" type="checkbox" value="Ayaz Akram" data-cy="select-projectlist-filter-officer-Ayaz-Akram" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Ayaz-Akram">
-                                                    Ayaz Akram
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-bob-roberts" name="selectedOfficers" type="checkbox" value="Bob Roberts" data-cy="select-projectlist-filter-officer-Bob-Roberts" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Bob-Roberts">
-                                                    Bob Roberts
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-iain-macdonald" name="selectedOfficers" type="checkbox" value="Iain MacDonald" data-cy="select-projectlist-filter-officer-iain-MacDonald" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Iain-MacDonald">
-                                                    Iain MacDonald
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-jon-moore" name="selectedOfficers" type="checkbox" value="Jon Moore" data-cy="select-projectlist-filter-officer-Jon-Moore" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Jon-Moore">
-                                                    Jon Moore
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-justin-richards" name="selectedOfficers" type="checkbox" value="Justin Richards" data-cy="select-projectlist-filter-officer-Justin-Richards" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Justin-Richards">
-                                                    Justin Richards
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-linzi-carlin" name="selectedOfficers" type="checkbox" value="Linzi Carlin" data-cy="select-projectlist-filter-officer-Linzi-Carlin" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Linzi-Carlin">
-                                                    Linzi Carlin
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-mike-morant" name="selectedOfficers" type="checkbox" value="Mike Morant" data-cy="select-projectlist-filter-officer-Mike-Morant" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Mike-Morant">
-                                                    Mike Morant
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-paul-lockwood" name="selectedOfficers" type="checkbox" value="Paul Lockwood" data-cy="select-projectlist-filter-officer-Paul-Lockwood" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Paul-Lockwood">
-                                                    Paul Lockwood
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-rachel-winter" name="selectedOfficers" type="checkbox" value="Rachel Winter" data-cy="select-projectlist-filter-officer-Rachel-Winter" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Rachel-Winter">
-                                                    Rachel Winter
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-richika-dogra" name="selectedOfficers" type="checkbox" value="Richika Dogra" data-cy="select-projectlist-filter-officer-Richika-Dogra" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Richika-Dogra">
-                                                    Richika Dogra
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-sam-evans" name="selectedOfficers" type="checkbox" value="Sam Evans" data-cy="select-projectlist-filter-officer-Sam-Evans" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Sam-Evans">
-                                                    Sam Evans
-                                                </label>
-                                            </div>
-                                            <div class="govuk-checkboxes__item">
-                                                <input class="govuk-checkboxes__input" id="filter-project-officer-steve-milnes" name="selectedOfficers" type="checkbox" value="Steve Milnes" data-cy="select-projectlist-filter-officer-Steve-Milnes" />
-                                                <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Steve-Milnes">
-                                                    Steve Milnes
-                                                </label>
-                                            </div>
-                                            
-                                            
-                                            
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-alex-james" name="selectedOfficers" type="checkbox" value="Alex James" data-cy="select-projectlist-filter-officer-Alex-James" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Alex-James">
+                                                Alex James
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-amanda-king" name="selectedOfficers" type="checkbox" value="Amanda King" data-cy="select-projectlist-filter-officer-Amanda-King" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Amanda-King">
+                                                Amanda King
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-ayaz-akram" name="selectedOfficers" type="checkbox" value="Ayaz Akram" data-cy="select-projectlist-filter-officer-Ayaz-Akram" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Ayaz-Akram">
+                                                Ayaz Akram
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-bob-roberts" name="selectedOfficers" type="checkbox" value="Bob Roberts" data-cy="select-projectlist-filter-officer-Bob-Roberts" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Bob-Roberts">
+                                                Bob Roberts
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-iain-macdonald" name="selectedOfficers" type="checkbox" value="Iain MacDonald" data-cy="select-projectlist-filter-officer-iain-MacDonald" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Iain-MacDonald">
+                                                Iain MacDonald
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-jon-moore" name="selectedOfficers" type="checkbox" value="Jon Moore" data-cy="select-projectlist-filter-officer-Jon-Moore" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Jon-Moore">
+                                                Jon Moore
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-justin-richards" name="selectedOfficers" type="checkbox" value="Justin Richards" data-cy="select-projectlist-filter-officer-Justin-Richards" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Justin-Richards">
+                                                Justin Richards
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-linzi-carlin" name="selectedOfficers" type="checkbox" value="Linzi Carlin" data-cy="select-projectlist-filter-officer-Linzi-Carlin" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Linzi-Carlin">
+                                                Linzi Carlin
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-mike-morant" name="selectedOfficers" type="checkbox" value="Mike Morant" data-cy="select-projectlist-filter-officer-Mike-Morant" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Mike-Morant">
+                                                Mike Morant
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-paul-lockwood" name="selectedOfficers" type="checkbox" value="Paul Lockwood" data-cy="select-projectlist-filter-officer-Paul-Lockwood" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Paul-Lockwood">
+                                                Paul Lockwood
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-rachel-winter" name="selectedOfficers" type="checkbox" value="Rachel Winter" data-cy="select-projectlist-filter-officer-Rachel-Winter" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Rachel-Winter">
+                                                Rachel Winter
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-richika-dogra" name="selectedOfficers" type="checkbox" value="Richika Dogra" data-cy="select-projectlist-filter-officer-Richika-Dogra" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Richika-Dogra">
+                                                Richika Dogra
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-sam-evans" name="selectedOfficers" type="checkbox" value="Sam Evans" data-cy="select-projectlist-filter-officer-Sam-Evans" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Sam-Evans">
+                                                Sam Evans
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-officer-steve-milnes" name="selectedOfficers" type="checkbox" value="Steve Milnes" data-cy="select-projectlist-filter-officer-Steve-Milnes" />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-officer-Steve-Milnes">
+                                                Steve Milnes
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
-
+                            <!-- Filter by Advisor -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
@@ -552,7 +527,7 @@
                                     </h2>
                                 </div>
                                 <div class="govuk-accordion__section-content" aria-labelledby="accordion-officer-heading">
-                               <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter advisers...">
+                                <input type="text" class="govuk-input govuk-!-margin-bottom-2" id="filter-searches" placeholder="Type to filter advisers...">
                                     <div class="govuk-checkboxes">
                                             <div class="govuk-checkboxes__item">
                                                 <input class="govuk-checkboxes__input" id="filter-project-officer-alex-james" name="selectedOfficers" type="checkbox" value="Alex James" data-cy="select-projectlist-filter-officer-Alex-James" />
@@ -638,16 +613,11 @@
                                                     Steve Milnes
                                                 </label>
                                             </div>
-                                            
-                                            
-                                            
+                                        </div>
                                     </div>
-                                </div>
                             </div>
 
-
-
-
+                            <!-- Filter by Trust -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
@@ -699,7 +669,7 @@
                                 </div>
                             </div>
 
-
+                            <!-- Filter by region -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
@@ -773,6 +743,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Filter by LA -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">
                                     <h2 class="govuk-accordion__section-heading">
