@@ -17,24 +17,15 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% endblock %}
 
-
 {% block stylesheets %}
   {{ super() }}
-  <link href="/public/css/moj.css" rel="stylesheet" type="text/css" />
-  <link href="/public/css/custom-styles.css" rel="stylesheet" type="text/css" />
-  <link href="/app/assets/css/accessible-autocomplete.min.css" el="stylesheet" type="text/css" />
-
+  <link href="/public/stylesheets/moj-frontend.min.css" rel="stylesheet" type="text/css" />
+  <link href="/public/stylesheets/custom-styles.css" rel="stylesheet" type="text/css" />
+  <link href="/public/stylesheets/accessible-autocomplete.min.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
-
-
-<a href="
-
-{# LAST BIT OF CODE - FOR DFE FRONTEND JS
 
 {% block scripts %}
   {{ super() }}
-  <script src="/assets/js/dfefrontend.min.js"></script>
+  <script src="/public/javascripts/dfefrontend.min.js"></script>
 {% endblock %}
-
-#}

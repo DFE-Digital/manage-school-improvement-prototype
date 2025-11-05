@@ -13,6 +13,22 @@
 
 .govuk-width-container { @include govuk-width-container; }
 
+.govuk-header__link .govuk-header__logotype{
+    height: 30px;
+  }
+  
+  .govuk-header__link:focus .govuk-header__logotype{
+    content: url(/public/images/department-for-education_black.png);
+    height: 30px;
+  }
+
 .tableNumbers{
     font-feature-settings: 'tnum' 1, 'ss01' 1, 'zero' 1;
 }
+
+.moj-filter__tag::after {
+    background-image: url(/public/images/icon-tag-remove-cross.svg);
+}
+.moj-filter__tag:hover:after {
+    background-image: url(/public/images/icon-tag-remove-cross-white.svg);
+}   
