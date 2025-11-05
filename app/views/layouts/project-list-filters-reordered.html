@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="moj-filter__heading-action">
-                    <p><a class="govuk-link govuk-link--no-visited-state" data-cy="clear-filter" href="../sprint2-Q3-25/project-list-date-filters-reordered-results">Clear filters</a></p>
+                    <p><a class="govuk-link govuk-link--no-visited-state" data-cy="clear-filter" href="../sprint2-Q3-25/project-list-filters-reordered-results">Clear filters</a></p>
                 </div>
             </div>
             
@@ -33,11 +33,9 @@
             <div class="moj-filter__heading-title">
                 <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Date school added to MSI</h3>
                 <ul class="moj-filter-tags">
-
-                        {% for month in months %} 
-                            <li class="filter-tags"><a class="moj-filter__tag"><span class="govuk-visually-hidden">Remove this filter</span> {{ month }}</a></li>
-                        {% endfor %}
-        
+                    {% for month in months %} 
+                        <li class="filter-tags"><a class="moj-filter__tag"><span class="govuk-visually-hidden">Remove this filter</span> {{ month }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             {% else %}
@@ -49,7 +47,7 @@
         </div>
 
         <div class="moj-filter__options">
-            <form method="get" action="project-list-date-filters-2-results" class="form">
+            <form method="get" action="project-list-filters-reordered-results" class="form">
                
                 <!-- Filter by finding a school name or URN -->
                 <div class="govuk-form-group">
