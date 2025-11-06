@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% set NavActive = "engagement-concerns" %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -15,17 +17,13 @@
     href: "javascript:window.history.back()"
   }) }}
 
- 
-
 {% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
         
-{{ data['information-powers']}}
-
+      {{ data['information-powers']}}
 
       {% include "/layouts/summary-section.html" %}
 
@@ -35,7 +33,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "/layouts/sub-nav-tabs-engagement-concern.html" %}
+      {% include "/layouts/sub-nav-tabs-all.html" %}
 
       </div>
     </div>
@@ -45,11 +43,6 @@
 
       <h2 class="govuk-heading-l">Engagement concerns</h2>
 
-
-  
-
-     
-
       {% if (data['engagement-concern-summary'] == NULL) and (data['engagement-concern-summary-2'] == NULL)%}
       <p>Enter details about situations where a school or responsible body do not respond to you.</p> 
        <div class="govuk-!-margin-top-5">
@@ -57,38 +50,34 @@
        </div>
        {% endif %}
       
-      
-      
-       {% if (data['engagement-concern-summary'] != NULL) %} 
-     <div class="govuk-button-group">
-        <div class="govuk-!-margin-top-5">
+      {% if (data['engagement-concern-summary'] != NULL) %} 
+        <div class="govuk-button-group">
+          <div class="govuk-!-margin-top-5">
 
-          {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern-2" }) }}
+            {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern-2" }) }}
 
-          {% if (data['engagement-concern-summary-2'] == NULL) %}
-          {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
-          {% endif %}
-          {% if (data['engagement-concern-summary-2'] != NULL) %}
-          {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "select-information-powers-concern" }) }}
-          {% endif %}
-          
-          {% if (data['engagement-concern-summary-2'] == NULL) %}
-          {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "record-interim-executive-board" }) }}
-          {% endif %}
-          {% if (data['engagement-concern-summary-2'] != NULL) %}
-          {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "select-interim-executive-board-concern" }) }}
-          
-          {% endif %}
+            {% if (data['engagement-concern-summary-2'] == NULL) %}
+            {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
+            {% endif %}
+            {% if (data['engagement-concern-summary-2'] != NULL) %}
+            {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "select-information-powers-concern" }) }}
+            {% endif %}
+            
+            {% if (data['engagement-concern-summary-2'] == NULL) %}
+            {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "record-interim-executive-board" }) }}
+            {% endif %}
+            {% if (data['engagement-concern-summary-2'] != NULL) %}
+            {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "select-interim-executive-board-concern" }) }}
+            
+            {% endif %}
+          </div>
         </div>
-      </div>
       {% endif %}
 
       </div>
 
       </div>
       
-
-
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
 

@@ -1,4 +1,5 @@
-<nav class="app-sub-navigation" aria-label="sub menu">
+{# Out with the old #}
+{# <nav class="app-sub-navigation" aria-label="sub menu">
 
   <ul class="app-sub-navigation__list govuk-!-margin-top-6">
 
@@ -33,4 +34,43 @@
         </li>
   </ul>
 
-</nav>
+</nav> #}
+
+
+{{ mojSubNavigation({
+  label: "Sub navigation",
+  classes: "govuk-!-margin-top-6",
+  items: [{
+    text: "Task list",
+    href: "task-list",
+    active: true if NavActive == "task-list"
+  }, {
+    text: "About the school",
+    href: "about-the-school",
+    active: true if NavActive == "about-the-school"
+  }, {
+    text: "Ofsted reports",
+    href: "ofsted-reports",
+    active: true if NavActive == "ofsted-reports"
+  }, {
+    text: "Improvement plan",
+    href: "improvement-plan",
+    active: true if NavActive == "improvement-plan"
+  }, {
+    text: "Contacts",
+    href: "contacts",
+    active: true if NavActive == "contacts"
+  }, {
+    text: "Case study",
+    href: "case-study",
+    active: true if NavActive == "case-study"
+  }, {
+    text: "Engagement concerns",
+    href: "engagement-concerns",
+    active: true if NavActive == "engagement-concerns"
+  }, {
+    text: "Notes",
+    href: "project-notes",
+    active: true if NavActive == "project-notes"
+  }]
+}) }}
