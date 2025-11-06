@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% set NavActive = "project-notes" %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -37,10 +39,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-        
-
-
-
       {% include "/layouts/summary-section.html" %}
 
     </div>
@@ -49,7 +47,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "/layouts/sub-nav-tabs-case-study.html" %}
+      {% include "/layouts/sub-nav-tabs-all.html" %}
 
       </div>
     </div>
@@ -57,42 +55,50 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Case study</h2>
-
-
-      {% if (data['case-study-candidate'] == NULL) %}
-
-      <p>DfE want to identify schools that have had particularly good or bad experiences of the RISE intervention.</p>
-      <p>If you think this school is a useful example, enter details about its progress.</p>
-      <p>This will be used by the department to understand how to improve the process.</p>
+      <h2 class="govuk-heading-l">Notes</h2>
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Enter case study details", href: "flag-as-case-study" }) }}
+        {{ govukButton({ text: "Add note", href: "add-note" }) }}
       </div>
 
-     
-      {% else %}
+      {% if (data['task-note'] != NULL) %}
 
-     
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      
 
-
-      <div class="govuk-inset-text">
-       
+      <p> 10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <strong class="govuk-tag govuk-tag--yellow">
+          Task note
+        </strong>
         
-        <p>This school might be used as a case study.</p>
-      </div>
-      
-      <h2 class="govuk-heading-m">Details</h2>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      {% endif %}
 
-      <p>{{ data['case-study-reasons']}}</p>
-
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Update details", href: "flag-as-case-study" }) }}
-      </div>
-      
+      {% if (data['project-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>1 March 2025
+        <strong class="govuk-tag govuk-tag--blue">
+          Project note
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['project-note']}}</p>
+      <p>
+        <a href="add-note">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
       {% endif %}
 
 
+      
      
 
         </div>

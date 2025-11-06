@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 
+{% set NavActive = "about-the-school" %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -45,7 +47,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "/layouts/sub-nav-tabs-about-the-school.html" %}
+      {% include "/layouts/sub-nav-tabs-all.html" %}
 
       </div>
     </div>
