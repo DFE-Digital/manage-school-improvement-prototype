@@ -1,0 +1,118 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+    <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+    <h2 class="govuk-heading-l">Select reason the intervention has stopped</h2>
+    <!--<p>Change the status of a project if targeted intervention work pauses or stops.</p>-->
+      
+    <form class="form" action='project-status-stopped-answer' method="post">
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      
+    {% set improvedHtml %}
+
+      {{ govukTextarea({
+        name: "improved-details",
+        id: "improved-details",
+        title: "Improved details",
+        value: data["improved-details"],
+        label: {
+          text: "Give details about the new Ofsted judgement."
+        }
+      }) }}
+    {% endset -%}
+
+    {% set approvedHtml %}
+
+      {{ govukTextarea({
+        name: "approved-details",
+        id: "approved-details",
+        title: "Approved details",
+        value: data["approved-details"],
+        label: {
+          text: "Give details about the approved changes."
+        }
+      }) }}
+    {% endset -%}
+
+    {{ govukRadios({
+    name: "project-status-stopped",
+    items: [
+    {
+      value: "Improved Ofsted judgement published",
+      text: "Improved Ofsted judgement published",
+      checked:  data['project-status-stopped'] === "Improved Ofsted judgement published",
+      hint: {
+        text: "Ofsted have inspected the school. The school has sufficently improved and the inspection report is available on the Ofsted website"
+      },
+      conditional: {
+        html: improvedHtml
+      }
+    },
+    {
+      value: "Structural or governance change approved",
+      text: "Structural or governance change approved",
+      checked:  data['project-status-stopped'] === "Structural or governance change approved",
+      hint: {
+        text: "A regional director has approved a decision for the school to convert to an academy, transfer to a different trust or undergo another change to its governance structure"
+      },
+      conditional: {
+        html: approvedHtml
+      }
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Save and continue"
+}) }}
+
+</form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

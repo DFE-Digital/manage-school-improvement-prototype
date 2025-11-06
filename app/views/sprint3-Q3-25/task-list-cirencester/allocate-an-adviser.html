@@ -1,0 +1,219 @@
+{% extends "../includes/form-template.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  
+  <!--
+  <div class="govuk-breadcrumbs"
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    
+
+      <span class="govuk-caption-l">Cirencester Academy</span>
+      <h1 class="govuk-heading-l">
+        Allocate an adviser
+      </h1>
+     
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <p>Enter the name of the adviser and the date they were allocated to this school.</p>
+
+        <!--
+        {% if (data['allocated-adviser-email'] == NULL) %}
+        <form class="form" action="../task-list-allocated" method="post">
+        {% else %}
+        <form class="form" action="../task-list" method="post">
+        {% endif %}
+        -->
+
+        <form class="form" action="../task-list-cirencester-updated" method="post">
+
+        <!--
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "adviser-email",
+            name: "adviser-email",
+            value: data["adviser-email"],
+            hint: {
+                text: "It will be formatted like rise.firstname.lastname@education.gov.uk."
+              }
+          }) }}
+         -->
+
+
+          <!--
+          {{ xGovukAutocomplete({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "allocated-adviser-email",
+            name: "allocated-adviser-email",
+            value: data['allocated-adviser-email'],
+            allowEmpty: false,
+            hint: {
+              text: "It will be formatted like firstname.lastname-rise@education.gov.uk."
+            },
+            items: [
+              { text: "alan.smith-rise@education.gov.uk" },
+              { text: "alex.alexander-rise@education.gov.uk" },
+              { text: "alex.james-rise@education.gov.uk" },
+              { text: "alice.cooper-rise@education.gov.uk" }
+            ]
+           }) }}
+          -->
+
+
+
+
+
+{% block formQuestions %}
+        
+      {{ xGovukAutocomplete({
+        id: "aallocated-adviser-email",
+        name: "allocated-adviser-email",
+        value: data['allocated-adviser-email'],
+        label: {
+          text: "Enter the name of the adviser",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        allowEmpty: false,
+        items: [
+          { text: "Alex James (alex.james-RISE@education.gov.uk)" },
+          { text: "Alex Smith (alex.smith-RISE@education.gov.uk)" },
+          { text: "Alexander McTavish (alexander.mctavish-RISE@education.gov.uk)" },
+          { text: "Alexandria Taylor (alexandria.taylor-RISE@education.gov.uk)" }
+        ]
+       }) }}
+
+  
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "adviser-allocated-date",
+          namePrefix: "adviser-allocated-date",
+          fieldset: {
+            legend: {
+              text: "Enter the date the adviser was allocated",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["adviser-allocated-date-day"],
+              allowEmpty: true,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["adviser-allocated-date-month"],
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["adviser-allocated-date-year"],
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+
+       
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+        
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-the-school.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != "") %}
+      <p>4 March 2025<br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      {% endif %}
+
+
+
+    </div>
+    -->
+
+
+
+  </div>
+
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

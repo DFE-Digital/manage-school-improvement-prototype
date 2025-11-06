@@ -1,0 +1,144 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  
+
+      <span class="govuk-caption-l">Cirencester Academy</span>
+      <h1 class="govuk-heading-l">
+        Send the agreed improvement plan for approval
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">Save a copy of the plan in the school's SharePoint folder, then send it to the relevant regional director for approval.</p>
+
+
+
+      <form class="form" action="../task-list-cirencester-updated" method="post">
+
+        
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <!--
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h2 class="govuk-fieldset__heading padding-bottom-15">
+                Save the school’s response in SharePoint
+              </h1>
+            </legend>
+          -->
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="save-plan-in-sharepoint" name="save-plan-in-sharepoint" type="checkbox" value="done" {{checked("save-plan-in-sharepoint", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="save-plan-in-sharepoint">
+                  Save agreed improvement plan in SharePoint
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="email-plan-for-approval" name="email-plan-for-approval" type="checkbox" value="done" {{checked("email-plan-for-approval", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="email-plan-for-approval">
+                  Email agreed plan to regional director for approval
+                </label>
+              </div>
+              
+             
+        
+            </div>
+          </fieldset>
+        </div>
+
+
+      
+
+       
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+    
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

@@ -23,27 +23,27 @@
                     <p><a class="govuk-link govuk-link--no-visited-state" data-cy="clear-filter" href="../sprint2-Q3-25/project-list-filters-reordered-results" id="reset-checkboxes">Clear filters</a></p>
                 </div>
             </div>
-            
+              
             <!-- Example filter tags but works with year and months only -->
             <!-- The only ones working are Jan/Feb/March 2024 and same for 2025  -->
             <!-- {% set years = data['date-year'] %} -->
             {% set months = data['month'] %}
 
             {% if (months != NULL) %}
-            <div class="moj-filter__heading-title">
-                <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Date school added to MSI</h3>
-                <ul class="moj-filter-tags">
-                    {% for month in months %} 
-                        <li class="filter-tags"><a class="moj-filter__tag"><span class="govuk-visually-hidden">Remove this filter</span> {{ month }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Date school added to MSI</h3>
+            <ul class="moj-filter-tags">
+                {% for month in months %} 
+                    <li>
+                        <a class="moj-filter__tag">
+                            <span class="govuk-visually-hidden">Remove this filter</span> 
+                             {{ month }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
             {% else %}
-            <div class="moj-filter__heading-title">
                 <p class="govuk-body govuk-!-margin-bottom-2">No filters selected.</p>               
-            </div>
             {% endif %}
-
         </div>
 
         <div class="moj-filter__options">
