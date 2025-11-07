@@ -11,26 +11,10 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block content %}
@@ -38,25 +22,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-     
-
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Choose preferred supporting organisation
       </h1>
 
-
       <p>The support organisation is not confirmed until the school and regional director both agree to the choice.</p>
-
 
       {% if (data['complete-at2'] == 'done') and (data['so-type'] == "Trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
+
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
             Supporting organisation
           </h2>
         </div>
+
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
@@ -85,31 +67,26 @@
             </div>
           </dl>
         </div>
+
       </div>
 
 
       <div class="govuk-button-group">
- 
-
         {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
-
-       
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-
         <a class="govuk-link" href="../contacts">View contacts</a>
-       
-     
-    </div>
-
+      </div>
 
       {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "School") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
+
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
             Supporting organisation
           </h2>
         </div>
+
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
@@ -138,38 +115,18 @@
             </div>
           </dl>
         </div>
+
       </div>
-
-
-     
-
-
-
 
       <div class="govuk-button-group">
- 
-
-          {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
-
-         
-          {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-
-          <a class="govuk-link" href="../contacts">View contacts</a>
-         
-       
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
       </div>
 
-
-      
-
       {% else %}
-      
 
-
-      
       <form class="form" action='so-answer' method="post">
-
-
 
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
           <div class="govuk-checkboxes__item padding-bottom-15">
@@ -184,13 +141,9 @@
 
         <br>
 
-        
-      
-
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {% from "govuk/components/input/macro.njk" import govukInput %}
         
-       
         {{ govukRadios({
           name: "so-type",
           fieldset: {
@@ -217,17 +170,13 @@
           ]
         }) }}
 
-
-{{ govukButton({
-  text: "Continue"
-}) }}
-      
-
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
       </form>
 
       {% endif %}
- 
 
     </div>
   </div>
@@ -235,5 +184,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}

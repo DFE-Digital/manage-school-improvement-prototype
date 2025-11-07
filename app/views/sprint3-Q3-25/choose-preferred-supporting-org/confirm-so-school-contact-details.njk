@@ -1,0 +1,278 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Confirm supporting organisation
+      </h1>
+
+    </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Supporting organisation
+            </h2>
+
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action"> 
+                <a class="govuk-link" href="change-preferred-supporting-organisation">
+                  Change<span class="govuk-visually-hidden"> supporting organisation</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  School
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Cheltenham New Academy
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  URN
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  109172
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  55 Alstone Lane<br>
+                  Cheltenham<br>
+                  Gloucestershire<br>
+                  GL51 9XY
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Source
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Get information about schools
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <h2 class="govuk-heading-m">
+          Contact details
+        </h2>
+           
+        <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p>
+        
+        <form class="form" action="../task-list-task-updated" method="post">
+       
+          <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">
+                Accounting officer for supporting organisation
+              </h2>
+            </div>
+
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Name
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Ailsa Barnes
+                  </dd> 
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Email
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <a href="mailto:{{ data['contact-phone']}}">ailsa.barnes@cheltenhamnewacademy.co.uk</a>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Phone
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    01242 123123
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Source
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Get information about schools
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+
+        {% if (data['alt-so-contact-name'] != NULL) %}
+    
+        <div class="govuk-summary-card">
+
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              {{ data['alt-so-job-title']}}
+            </h2>
+
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <a class="govuk-link" href="change-alt-so-contact-details">
+                  Change<span class="govuk-visually-hidden"> main contact</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['alt-so-contact-name']}}
+                </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="mailto:{{ data['contact-email']}}">{{ data['alt-so-contact-email']}}</a>
+                </dd>
+              </div>
+             
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Phone
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['alt-so-contact-phone']%}
+                  {{ data['alt-so-contact-phone']}}
+                  {% else %}
+                  <span data-id="contact-phone" class="empty">Empty</span>
+                  {% endif %}
+                </dd>
+              </div>
+         
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['alt-so-contact-address']%}
+                  {{ data['alt-so-contact-address']}}
+                  {% else %}
+                  <span data-id="contact-address" class="empty">Empty</span>
+                  {% endif %}
+                </dd>
+              </div>
+       
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Source
+                </dt>
+                <dd class="govuk-summary-list__value">
+                Manually added
+                </dd>
+             </div>
+       
+            </dl>
+          </div>
+        </div>
+       
+        {% endif %}
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "so-contact-added-date",
+          namePrefix: "so-contact-added-date",
+          allowEmpty: false,
+          fieldset: {
+            legend: {
+              text: "Enter date the supporting organisation contact details were confirmed",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["so-contact-added-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["so-contact-added-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["so-contact-added-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
