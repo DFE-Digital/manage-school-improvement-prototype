@@ -70,7 +70,6 @@
 
       </div>
 
-
       <div class="govuk-button-group">
         {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
@@ -165,12 +164,12 @@
             checked:  data['so-type'] === "Trust"
           },
           {
-            value: "local-authority",
+            value: "Local-authority",
             text: "Local authority",
             checked:  data['so-type'] === "local-authority"
           },
           {
-            value: "local-authority-service",
+            value: "Local-authority-service",
             text: "Local authority traded service",
             checked:  data['so-type'] === "local-authority-service"
           }
