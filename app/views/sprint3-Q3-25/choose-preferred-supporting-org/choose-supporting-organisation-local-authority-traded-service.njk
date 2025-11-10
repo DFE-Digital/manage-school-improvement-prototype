@@ -7,32 +7,14 @@
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block beforeContent %}
-  
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-  
-  <!--
-  <div class="govuk-breadcrumbs"
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block content %}
@@ -40,11 +22,9 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">  
 
-    <!--<span class="govuk-caption-l">Cheltenham Spa Primary School</span>-->
-  
-      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <span class="govuk-caption-l">Enter supporting organisation details</span>
       <h1 class="govuk-heading-l">
-        Enter the name of the trust
+        Enter the name of the local authority's traded service
       </h1>
 
       <form action="confirm-so-trust-contact-details" method="post" novalidate>
@@ -56,24 +36,18 @@
         name: "supporting-organisation-name",
         value: data['supporting-organisation-name'],
         allowEmpty: false,
-        hint: {
-          text: "Search by trust name or UKPRN (UK Provider Reference Number)."
-        },
         items: [
-          { text: "Brighton and Hove Academies Trust (17642365)" },
-          { text: "Bristol and Avon Trust (12874387)" },
-          { text: "Bristol City Trust (1864299)" },
-          { text: "Brockhampton Academies Trust (1544421)" }
+          { text: "An example LA traded service (17642365)" },
+          { text: "Another LA traded service (12874387)" },
+          { text: "Again another LA traded service (1864299)" },
+          { text: "Another another another LA traded service (1544421)" }
         ]
        }) }}
 
       <div class="govuk-button-group">
- 
         <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
         </button>
-       <!-- or&nbsp;&nbsp;<a class="govuk-link" href="">Unassign</a> -->
-
       </div>
 
     </form>
@@ -83,5 +57,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
