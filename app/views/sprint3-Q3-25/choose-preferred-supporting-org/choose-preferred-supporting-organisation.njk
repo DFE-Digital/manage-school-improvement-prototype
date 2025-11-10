@@ -1,0 +1,302 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+
+      <p>The supporting organisation is not confirmed until the school and regional director both agree to the choice.</p>
+
+      {# 
+      FOR A TRUST 
+      #}
+      
+      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Trust
+              </dt>
+              <dd class="govuk-summary-list__value">
+               Gloucestershire Academies Trust
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                UKPRN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                12874387
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {# 
+      FOR A SCHOOL 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                School
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Cheltenham New Academy
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                URN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                109172
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {# 
+      FOR A LOCAL AUTHORITY 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Local authority
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Bath and North East Somerset
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LA Code
+              </dt>
+              <dd class="govuk-summary-list__value">
+                800
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {# 
+      FOR A LOCAL AUTHORITY TRADED SERVICE 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Local authority's traded service
+              </dt>
+              <dd class="govuk-summary-list__value">
+                An example LA traded service (17642365)
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                URN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                TO COMPLETE WITH DUMMY DATA
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {% else %}
+
+      <form class="form" action='so-answer' method="post">
+
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item padding-bottom-15">
+            <input class="govuk-checkboxes__input" id="complete-at2" name="complete-at2" type="checkbox" value="done" {{checked("complete-at2", "done")}}>
+            <label class="govuk-label govuk-checkboxes__label" for="complete-at2">
+              Complete assessment tool 2: Selecting a supporting organisation<br>
+              You must download a <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/RISE-Assessment-Tool-2---Match---Selecting-a-Supporting-Organisation.aspx?CID=a01adb5e-2364-4eaf-a2a8-87eb547584bd" target="_blank">copy of the assessment tool (opens in new tab)</a>.<br>
+              When complete <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00299/WorkplaceDocuments/Forms/AllItems.aspx?csf=1&web=1&e=q4hcRV&CID=39552771%2D6946%2D4db5%2D930c%2D5e7a590eb440&FolderCTID=0x012000E7C2FE72052A5344AB3AC158ED8C78A7&id=%2Fsites%2Flvewp00299%2FWorkplaceDocuments%2FRISE%20documents%2FRISE%20Targeted%20Programme%2FAssessments%20%28RISE%20Targeted%29" target="_blank">upload it to the relevant region's assessment folder in SharePoint (opens in new tab)</a>.
+            </label>
+          </div>
+        </div>
+
+        <br>
+        
+        {{ govukRadios({
+          name: "so-type",
+          fieldset: {
+            legend: {
+              text: "Choose the type of supporting organisation",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select one option"
+          },
+          items: [
+          {
+            value: "school",
+            text: "School",
+            checked: data['so-type'] === "school"
+          },
+          {
+            value: "trust",
+            text: "Trust",
+            checked: data['so-type'] === "trust"
+          },
+          {
+            value: "local-authority",
+            text: "Local authority",
+            checked: data['so-type'] === "local-authority"
+          },
+          {
+            value: "local-authority-traded-service",
+            text: "Local authority traded service",
+            checked: data['so-type'] === "local-authority-traded-service"
+          }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
