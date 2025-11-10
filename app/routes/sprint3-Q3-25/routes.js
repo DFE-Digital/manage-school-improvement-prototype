@@ -142,15 +142,25 @@ router.post('/' + version + '/address-routes-1', function(req, res) {
   const supportingOrganisationAnswer = req.body["so-type"];
 
   // Check whether the variable matches a condition
-  if (supportingOrganisationAnswer == "School") {
+  if (supportingOrganisationAnswer == "school") {
     // Send user to next page 
     res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-school')
   }   
-  else { 
+  else if (supportingOrganisationAnswer == "trust") { 
     // Send user to next page 
     res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-trust')
   }
+  else if (supportingOrganisationAnswer == "local-authority") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-local-authority')
+  }
+  else { 
+    // Send user to next page 
+    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-local-authority-traded-service')
+  }
 })
+
+
 
  // Run this code when a form is submitted to 'engagement-answer'
  router.post('/' + version + '/task-list-tewkesbury/so-answer', function(req, res) {

@@ -27,7 +27,11 @@
 
       <p>The supporting organisation is not confirmed until the school and regional director both agree to the choice.</p>
 
-      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "Trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
+      {# 
+      FOR A TRUST 
+      #}
+      
+      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -74,7 +78,11 @@
         <a class="govuk-link" href="../contacts">View contacts</a>
       </div>
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "School") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {# 
+      FOR A SCHOOL 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -100,6 +108,108 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 109172
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {# 
+      FOR A LOCAL AUTHORITY 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Local authority
+              </dt>
+              <dd class="govuk-summary-list__value">
+                TO COMPLETE WITH DUMMY DATA
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                URN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                TO COMPLETE WITH DUMMY DATA
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date contact details were confirmed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
+        <a class="govuk-link" href="../contacts">View contacts</a>
+      </div>
+
+      {# 
+      FOR A LOCAL AUTHORITY TRADED SERVICE 
+      #}
+
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+    
+      <div class="govuk-summary-card">
+
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Supporting organisation
+          </h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Local authority
+              </dt>
+              <dd class="govuk-summary-list__value">
+                TO COMPLETE WITH DUMMY DATA
+              </dd> 
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                URN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                TO COMPLETE WITH DUMMY DATA
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -152,24 +262,24 @@
           },
           items: [
           {
-            value: "School",
+            value: "school",
             text: "School",
-            checked:  data['so-type'] === "School"
+            checked: data['so-type'] === "school"
           },
           {
-            value: "Trust",
+            value: "trust",
             text: "Trust",
-            checked:  data['so-type'] === "Trust"
+            checked: data['so-type'] === "trust"
           },
           {
-            value: "Local-authority",
+            value: "local-authority",
             text: "Local authority",
-            checked:  data['so-type'] === "local-authority"
+            checked: data['so-type'] === "local-authority"
           },
           {
-            value: "Local-authority-service",
+            value: "local-authority-service",
             text: "Local authority traded service",
-            checked:  data['so-type'] === "local-authority-service"
+            checked: data['so-type'] === "local-authority-traded-service"
           }
           ]
         }) }}
