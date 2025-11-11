@@ -5,32 +5,14 @@
 {% endblock %}
 
 {% block beforeContent %}
-  
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block content %}
@@ -38,111 +20,109 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-     
-
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Add contact
       </h1>
 
-     
-      
       <form class="form" action='add-contact-answer' method="post">
-
-
-      
-       
+        
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
                 Organisation
               </h2>
             </legend>
+
             <div id="contact-hint" class="govuk-hint">
               Select one option
             </div>
+
             <div class="govuk-radios" data-module="govuk-radios">
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="School">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="School" {{ checked('organisation','School') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation">
                   School
                 </label>
               </div>
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-2" name="organisation" type="radio" value="Trust">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Trust" {{ checked('organisation','Trust') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-2">
                   Trust
                 </label>
               </div>
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-3" name="organisation" type="radio" value="Local authority">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Local authority" {{ checked('organisation','Local authority') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-3">
                   Local authority
                 </label>
               </div>
+
               {% if (data['supporting-organisation-name'] != NULL) %}
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-4" name="organisation" type="radio" value="Supporting organisation">
-                <label class="govuk-label govuk-radios__label" for="organisation-4">
-                  Supporting organisation
-                </label>
-              </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Supporting organisation" {{ checked('organisation','Supporting organisation') }}>
+                  <label class="govuk-label govuk-radios__label" for="organisation-4">
+                    Supporting organisation
+                  </label>
+                </div>
+
               {% endif %}
+              
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-5" name="organisation" type="radio" value="Diocese">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Diocese" {{ checked('organisation','Diocese') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-5">
                   Diocese
                 </label>
               </div>
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-6" name="organisation" type="radio" value="Federation">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Federation" {{ checked('organisation','Federation') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-6">
                   Federation
                 </label>
               </div>
+
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-7" name="organisation" type="radio" value="DfE">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="DfE" {{ checked('organisation','DfE') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-7">
                   DfE
                 </label>
               </div>
 
-
-             
+              {# Conditional #}
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation-8" name="organisation" type="radio" value="text" data-aria-controls="conditional-organisation">
+                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="conditional-organisation" {{ checked('organisation','conditional-organisation') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-8">
                   Other
                 </label>
               </div>
+
+              {# Text box for conditional #}
               <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-organisation">
                 <div class="govuk-form-group">
                   <input class="govuk-input govuk-!-width-two-thirds" id="other-organisation-name" name="other-organisation-name" type="text" autocomplete="organisation">
                 </div>
               </div>
+
             </div>
+
           </fieldset>
         </div>
 
-
-       
-
-    
-        
-    
         <div class="govuk-button-group">
-{{ govukButton({
-  text: "Continue"
-}) }}
+          {{ govukButton({
+            text: "Continue"
+          }) }}
 
-<a class="govuk-link" href="contacts">Cancel</a>
-
-</div>
+          <a class="govuk-link" href="contacts">Cancel</a>
+        </div>
       
-
-
       </form>
 
     </div>
@@ -151,5 +131,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
