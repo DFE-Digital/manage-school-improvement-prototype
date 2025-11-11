@@ -56,7 +56,8 @@
   <div class="govuk-grid-column-two-thirds">
 
     {# SCHOOL OPENER #}
-    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+
+    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
         <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">School</h2>
         <p class="govuk-body">
@@ -67,7 +68,20 @@
         GL51 1AA
         </p>
       </section>
-    </article>
+    </article> #}
+
+    <h3 class="govuk-heading-m">School</h3>
+
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Cheltenham Spa Primary School<br>
+        123 Alstone Lane<br>
+        Cheltenham<br>
+        Glocestershire<br>
+        GL51 1AA
+        </p>"
+    }) }}
 
     {# SCHOOL WHERE THIS INFO IS #}
     <details class="govuk-details">
@@ -627,7 +641,7 @@
     {% endif %}
 
     {# RESPONSIBLE BODY / LOCAL AUTHORITY OPENER #}
-    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
         <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Responsible body</h2>
         <p class="govuk-body">
@@ -638,7 +652,20 @@
         GL5 5HF
         </p>
       </section>
-    </article>
+    </article> #}
+
+    <h3 class="govuk-heading-m">Responsible body</h3>
+    
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Gloucestershire County Council<br>
+        73 Cheltenham Road<br>
+        Gloucester<br>
+        Glocestershire<br>
+        GL5 5HF
+        </p>"
+    }) }}
 
     {# RESPONSIBLE BODY / LOCAL AUTHORITY WHERE THIS INFO IS #}
     <details class="govuk-details">
@@ -775,14 +802,23 @@
     {% endif %}
 
     {# FEDERATION OPENER #}
-    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
         <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Federation</h2>
         <p class="govuk-body">
         Gloucestershire Schools Federation
         </p>
       </section>
-    </article>
+    </article> #}
+
+    <h3 class="govuk-heading-m">Federation</h3>
+    
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Gloucestershire Schools Federation
+        </p>"
+    }) }}
 
     {# FEDERATION WHERE THIS INFO IS #}
     <details class="govuk-details">
@@ -905,13 +941,22 @@
     {% endif %}
 
     {# DIOCESE OPENER #}
-    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
         <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Diocese</h2>
         <p class="govuk-body">
         Diocese of Gloucestershire
       </section>
-    </article>
+    </article> #}
+
+    <h3 class="govuk-heading-m">Diocese</h3>
+    
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Diocese of Gloucestershire
+        </p>"
+    }) }}
 
     {# DIOCESE WHERE THIS INFO IS #}
     <details class="govuk-details">
