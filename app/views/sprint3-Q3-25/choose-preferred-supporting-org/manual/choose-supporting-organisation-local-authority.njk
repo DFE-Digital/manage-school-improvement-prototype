@@ -1,0 +1,66 @@
+{% extends "../../includes/form-template.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Enter the name of the local authority
+      </h1>
+
+      <form action="confirm-so-la-contact-details" method="post" novalidate>
+
+      {% block formQuestions %}
+        
+      {{ xGovukAutocomplete({
+        id: "supporting-organisation-name",
+        name: "supporting-organisation-name",
+        value: data['supporting-organisation-name'],
+        allowEmpty: false,
+        hint: {
+          text: "Search by local authority name or LA (Local Authority) code."
+        },
+        items: [
+          { text: "Barking and Dagenham (301)" },
+          { text: "Barnet (302)" },
+          { text: "Barnsley (370)" },
+          { text: "Bath and North East Somerset (800)" }
+        ]
+       }) }}
+
+      <div class="govuk-button-group">
+ 
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+            Continue
+        </button>
+
+      </div>
+
+    </form>
+ 
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
