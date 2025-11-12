@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/main.html" %}
 
 {% block pageTitle %}
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -95,7 +95,7 @@
            
         <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p>
         
-        <form class="form" action="../task-list-task-updated" method="post">
+        <form class="form" action="../../task-list-task-updated" method="post">
        
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -119,7 +119,7 @@
                     Email
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    <a href="mailto:{{ data['contact-phone']}}">ailsa.barnes@cheltenhamnewacademy.co.uk</a>
+                    <a href="#">ailsa.barnes@cheltenhamnewacademy.co.uk</a>
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -186,9 +186,9 @@
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {% if data['alt-so-contact-phone']%}
-                  {{ data['alt-so-contact-phone']}}
+                    {{ data['alt-so-contact-phone']}}
                   {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
+                    <span data-id="contact-phone" class="empty">Empty</span>
                   {% endif %}
                 </dd>
               </div>
@@ -199,9 +199,9 @@
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {% if data['alt-so-contact-address']%}
-                  {{ data['alt-so-contact-address']}}
+                    {{ data['alt-so-contact-address']}}
                   {% else %}
-                  <span data-id="contact-address" class="empty">Empty</span>
+                    <span data-id="contact-address" class="empty">Empty</span>
                   {% endif %}
                 </dd>
               </div>
@@ -211,7 +211,7 @@
                   Source
                 </dt>
                 <dd class="govuk-summary-list__value">
-                Manually added
+                  Manually added
                 </dd>
              </div>
        

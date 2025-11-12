@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/main.html" %}
 
 {% block pageTitle %}
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -73,9 +73,9 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
@@ -124,9 +124,9 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
@@ -175,9 +175,9 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
@@ -226,9 +226,9 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {% else %}

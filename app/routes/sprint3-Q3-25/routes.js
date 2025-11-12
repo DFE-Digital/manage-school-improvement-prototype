@@ -136,7 +136,7 @@ router.post('/' + version + '/address-routes-1', function(req, res) {
 
 
  // Run this code when a form is submitted to 'engagement-answer'
- router.post('/' + version + '/choose-preferred-supporting-org/so-answer', function(req, res) {
+ router.post('/' + version + '/choose-preferred-supporting-org/auto-complete/so-answer', function(req, res) {
     
   // Make a variable to give it the value from the checkbox on the index page  
   const supportingOrganisationAnswer = req.body["so-type"];
@@ -144,19 +144,19 @@ router.post('/' + version + '/address-routes-1', function(req, res) {
   // Check whether the variable matches a condition
   if (supportingOrganisationAnswer == "school") {
     // Send user to next page 
-    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-school')
+    res.redirect('/' + version + '/choose-preferred-supporting-org/auto-complete/choose-supporting-organisation-school')
   }   
   else if (supportingOrganisationAnswer == "trust") { 
     // Send user to next page 
-    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-trust')
+    res.redirect('/' + version + '/choose-preferred-supporting-org/auto-complete/choose-supporting-organisation-trust')
   }
   else if (supportingOrganisationAnswer == "local-authority") { 
     // Send user to next page 
-    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-local-authority')
+    res.redirect('/' + version + '/choose-preferred-supporting-org/auto-complete/choose-supporting-organisation-local-authority')
   }
   else { 
     // Send user to next page 
-    res.redirect('/' + version + '/choose-preferred-supporting-org/choose-supporting-organisation-local-authority-traded-service')
+    res.redirect('/' + version + '/choose-preferred-supporting-org/auto-complete/choose-supporting-organisation-local-authority-traded-service')
   }
 })
 
