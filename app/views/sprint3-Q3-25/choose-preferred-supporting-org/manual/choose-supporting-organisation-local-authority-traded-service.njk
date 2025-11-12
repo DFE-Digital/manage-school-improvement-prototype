@@ -21,42 +21,94 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">  
-
-      <span class="govuk-caption-l">Enter supporting organisation details</span>
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter the name of the local authority's traded service
+        Enter supporting organisation details
       </h1>
 
-      <form action="confirm-so-la-traded-service-contact-details" method="post" novalidate>
+      <form action="confirm-so-la-traded-service-details" method="post" novalidate>
+        {% block formQuestions %}
 
-      {% block formQuestions %}
-        
-      {{ xGovukAutocomplete({
-        id: "supporting-organisation-name",
-        name: "supporting-organisation-name",
-        value: data['supporting-organisation-name'],
-        allowEmpty: false,
-        hint: {
-          text: "Search by the local authority's traded service name or WHATEVER CODE THEY USE HERE."
-        },
-        items: [
-          { text: "An example LA traded service (17642365)" },
-          { text: "Another LA traded service (12874387)" },
-          { text: "Again another LA traded service (1864299)" },
-          { text: "Another another another LA traded service (1544421)" }
-        ]
-       }) }}
+          {# Organisation name #}
+          {{ govukInput({
+            label: {
+              text: "Organisation name",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the name of the local authority traded service that will be the supporting organisation"
+            },
+            id: "so-name",
+            name: "so-name",
+            value: data['so-name'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
 
-      <div class="govuk-button-group">
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
-        </button>
-      </div>
+          {# URN #}
+          {{ govukInput({
+            label: {
+              text: "Companies House number",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the Companies House number of the local authority traded service that will be the supporting organisation"
+            },
+            id: "so-urn",
+            name: "so-urn",
+            value: data['so-urn'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
 
-    </form>
- 
-  {% endblock %}
+          {# Date confirmed #}
+          {{ govukDateInput({
+            fieldset: {
+              legend: {
+                text: "Enter date supporting organisation confirmed",
+                classes: "govuk-fieldset__legend--m",
+                isPageHeading: false
+              }
+            },
+            hint: {
+              text: "For example, 1 7 2024"
+            },
+            items: [
+              {
+                name: "Day",
+                value: data["so-added-date-day"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "Month",
+                value: data["so-added-date-month"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },                
+              {
+                name: "Year",
+                value: data["so-added-date-year"],
+                allowEmpty: false,
+                classes: "govuk-input--width-4"
+              }
+            ],
+            id: "so-date",
+            namePrefix: "so-date"
+          }) }}
 
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+          </div>
+
+        {% endblock %}
+      </form>
+
+    </div>
+  </div>
 {% endblock %}
 
 {% block footer %}

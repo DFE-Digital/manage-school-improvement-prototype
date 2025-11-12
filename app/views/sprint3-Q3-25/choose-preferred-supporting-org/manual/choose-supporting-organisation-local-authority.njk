@@ -24,41 +24,91 @@
   
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter the name of the local authority
+        Enter supporting organisation details
       </h1>
 
-      <form action="confirm-so-la-contact-details" method="post" novalidate>
+      <form action="confirm-so-la-details" method="post" novalidate>
+        {% block formQuestions %}
 
-      {% block formQuestions %}
-        
-      {{ xGovukAutocomplete({
-        id: "supporting-organisation-name",
-        name: "supporting-organisation-name",
-        value: data['supporting-organisation-name'],
-        allowEmpty: false,
-        hint: {
-          text: "Search by local authority name or LA (Local Authority) code."
-        },
-        items: [
-          { text: "Barking and Dagenham (301)" },
-          { text: "Barnet (302)" },
-          { text: "Barnsley (370)" },
-          { text: "Bath and North East Somerset (800)" }
-        ]
-       }) }}
+          {# Organisation name #}
+          {{ govukInput({
+            label: {
+              text: "Organisation name",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the name of the local authority that will be the supporting organisation"
+            },
+            id: "so-name",
+            name: "so-name",
+            value: data['so-name'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
 
-      <div class="govuk-button-group">
- 
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-            Continue
-        </button>
+          {# URN #}
+          {{ govukInput({
+            label: {
+              text: "LAESTAB (local authority establishment) number",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the LAESTAB number of the local authority that will be the supporting organisation"
+            },
+            id: "so-urn",
+            name: "so-urn",
+            value: data['so-urn'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
 
-      </div>
+          {# Date confirmed #}
+          {{ govukDateInput({
+            fieldset: {
+              legend: {
+                text: "Enter date supporting organisation confirmed",
+                classes: "govuk-fieldset__legend--m",
+                isPageHeading: false
+              }
+            },
+            hint: {
+              text: "For example, 1 7 2024"
+            },
+            items: [
+              {
+                name: "Day",
+                value: data["so-added-date-day"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "Month",
+                value: data["so-added-date-month"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },                
+              {
+                name: "Year",
+                value: data["so-added-date-year"],
+                allowEmpty: false,
+                classes: "govuk-input--width-4"
+              }
+            ],
+            id: "so-date",
+            namePrefix: "so-date"
+          }) }}
 
-    </form>
- 
-  {% endblock %}
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+          </div>
 
+        {% endblock %}
+      </form>
+
+    </div>
+  </div>
 {% endblock %}
 
 {% block footer %}
