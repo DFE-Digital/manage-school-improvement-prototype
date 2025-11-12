@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/main.html" %}
 
 {% block pageTitle %}
   Question page template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -30,8 +30,8 @@
       {# 
       FOR A TRUST 
       #}
-      
-      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
+
+      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['so-name'] != NULL) and (data['so-urn'] != NULL) and (data["so-added-date-day"] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -48,7 +48,7 @@
                 Trust
               </dt>
               <dd class="govuk-summary-list__value">
-               Gloucestershire Academies Trust
+               {{ data['so-type'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -56,7 +56,7 @@
                 UKPRN
               </dt>
               <dd class="govuk-summary-list__value">
-                12874387
+                {{ data['so-urn'] }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -64,7 +64,7 @@
                 Date contact details were confirmed
               </dt>
               <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+                {{ data | isoDateFromDateInput("so-date") | govukDate }}  
               </dd>
             </div>
           </dl>
@@ -73,16 +73,16 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
       FOR A SCHOOL 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['so-name'] != NULL) and (data['so-urn'] != NULL) and (data["so-added-date-day"] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -99,7 +99,7 @@
                 School
               </dt>
               <dd class="govuk-summary-list__value">
-                Cheltenham New Academy
+                {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -107,15 +107,15 @@
                 URN
               </dt>
               <dd class="govuk-summary-list__value">
-                109172
+                {{ data['so-urn'] }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date contact details were confirmed
+                Date confirmed
               </dt>
               <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+                {{ data | isoDateFromDateInput("so-date") | govukDate }}
               </dd>
             </div>
           </dl>
@@ -124,16 +124,16 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
       FOR A LOCAL AUTHORITY 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['so-name'] != NULL) and (data['so-urn'] != NULL) and (data["so-added-date-day"] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -150,23 +150,23 @@
                 Local authority
               </dt>
               <dd class="govuk-summary-list__value">
-                Bath and North East Somerset
+                {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                LA Code
+                LAESTAB
               </dt>
               <dd class="govuk-summary-list__value">
-                800
+                {{ data['so-urn'] }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date contact details were confirmed
+                Date confirmed
               </dt>
               <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+                {{ data | isoDateFromDateInput("so-date") | govukDate }}
               </dd>
             </div>
           </dl>
@@ -175,16 +175,16 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {# 
       FOR A LOCAL AUTHORITY TRADED SERVICE 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['so-name'] != NULL) and (data['so-urn'] != NULL) and (data["so-added-date-day"] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -198,26 +198,26 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Local authority's traded service
+                Local authority
               </dt>
               <dd class="govuk-summary-list__value">
-                An example LA traded service (17642365)
+                {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                URN
+                Companies house number
               </dt>
               <dd class="govuk-summary-list__value">
-                TO COMPLETE WITH DUMMY DATA
+                {{ data['so-urn'] }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date contact details were confirmed
+                Date confirmed
               </dt>
               <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
+                {{ data | isoDateFromDateInput("so-date") | govukDate }}
               </dd>
             </div>
           </dl>
@@ -226,9 +226,9 @@
       </div>
 
       <div class="govuk-button-group">
-        {{ govukButton({ text: "Return to task list", href: "../task-list" }) }}
+        {{ govukButton({ text: "Return to task list", href: "../../task-list" }) }}
         {{ govukButton({ text: "Change supporting organisation", classes: "govuk-button--secondary", href: "change-preferred-supporting-organisation" }) }}
-        <a class="govuk-link" href="../contacts">View contacts</a>
+        <a class="govuk-link" href="../../contacts">View contacts</a>
       </div>
 
       {% else %}

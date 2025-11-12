@@ -1,4 +1,4 @@
-{% extends "../includes/form-template.html" %}
+{% extends "../../includes/form-template.html" %}
 
 {% extends "layouts/main.html" %}
 
@@ -21,13 +21,13 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">  
-
-      <span class="govuk-caption-l">Enter supporting organisation details</span>
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter the name of the local authority's traded service
+        Enter the name of the trust
       </h1>
 
-      <form action="confirm-so-la-traded-service-contact-details" method="post" novalidate>
+      <form action="confirm-so-trust-contact-details" method="post" novalidate>
 
       {% block formQuestions %}
         
@@ -37,13 +37,13 @@
         value: data['supporting-organisation-name'],
         allowEmpty: false,
         hint: {
-          text: "Search by the local authority's traded service name or WHATEVER CODE THEY USE HERE."
+          text: "Search by trust name or UKPRN (UK Provider Reference Number)."
         },
         items: [
-          { text: "An example LA traded service (17642365)" },
-          { text: "Another LA traded service (12874387)" },
-          { text: "Again another LA traded service (1864299)" },
-          { text: "Another another another LA traded service (1544421)" }
+          { text: "Brighton and Hove Academies Trust (17642365)" },
+          { text: "Bristol and Avon Trust (12874387)" },
+          { text: "Bristol City Trust (1864299)" },
+          { text: "Brockhampton Academies Trust (1544421)" }
         ]
        }) }}
 

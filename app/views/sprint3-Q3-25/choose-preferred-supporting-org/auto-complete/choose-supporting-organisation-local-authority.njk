@@ -1,4 +1,4 @@
-{% extends "../includes/form-template.html" %}
+{% extends "../../includes/form-template.html" %}
 
 {% extends "layouts/main.html" %}
 
@@ -24,10 +24,10 @@
   
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Enter the name of the trust
+        Enter the name of the local authority
       </h1>
 
-      <form action="confirm-so-trust-contact-details" method="post" novalidate>
+      <form action="confirm-so-la-contact-details" method="post" novalidate>
 
       {% block formQuestions %}
         
@@ -37,20 +37,22 @@
         value: data['supporting-organisation-name'],
         allowEmpty: false,
         hint: {
-          text: "Search by trust name or UKPRN (UK Provider Reference Number)."
+          text: "Search by local authority name or LAESTAB (local authority establishment) number."
         },
         items: [
-          { text: "Brighton and Hove Academies Trust (17642365)" },
-          { text: "Bristol and Avon Trust (12874387)" },
-          { text: "Bristol City Trust (1864299)" },
-          { text: "Brockhampton Academies Trust (1544421)" }
+          { text: "Barking and Dagenham" },
+          { text: "Barnet" },
+          { text: "Barnsley" },
+          { text: "Bath and North East Somerset" }
         ]
        }) }}
 
       <div class="govuk-button-group">
+ 
         <button type="submit" class="govuk-button" data-module="govuk-button">
             Continue
         </button>
+
       </div>
 
     </form>
