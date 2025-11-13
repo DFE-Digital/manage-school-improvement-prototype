@@ -100,7 +100,10 @@
         <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p>
         
         <form class="form" action="../../task-list-task-updated" method="post">
-       
+
+        
+       {% if (data['supporting-organisation-name'] == "Cheltenham Secondary School (100329)") or (data['supporting-organisation-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+          
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
               <h2 class="govuk-summary-card__title">
@@ -158,6 +161,76 @@
               </dl>
             </div>
           </div>
+        
+        {% else %}
+
+        <div class="govuk-summary-card">
+            
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">
+                Accounting officer for supporting organisation
+              </h2>
+            </div>
+
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Name
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Levi Crombie
+                  </dd> 
+                </div>
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Email
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <a href="#">levi.crombie@bristolandavontrust.co.uk</a>
+                  </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Phone
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    01452 890098
+                  </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Postal address
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <ul class="govuk-list">
+                      <li>10 Cheltenham way</li>
+                      <li>Skyhorpe</li>
+                      <li>Cheltenham</li>
+                      <li>CHE34 TE24</li>
+                    </ul>
+                  </dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Source
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Get information about schools
+                  </dd>
+                </div>
+
+              </dl>
+            </div>
+
+          </div>
+
+        {% endif %}
 
         {% if (data['alt-so-contact-name'] != NULL) %}
     
