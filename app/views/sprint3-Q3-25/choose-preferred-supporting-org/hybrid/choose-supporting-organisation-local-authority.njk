@@ -49,18 +49,19 @@
           {# URN #}
           {{ govukInput({
             label: {
-              text: "LAESTAB (local authority establishment) number",
+              text: "LA name code",
               classes: "govuk-label--m",
               isPageHeading: false
             },
             hint: {
-              text: "Enter the LAESTAB number of the local authority that will be the supporting organisation"
+              html: 'Enter the 3 digit LA name code of the local authority that will be the supporting organisation. You can <a href="https://get-information-schools.service.gov.uk/Guidance/LaNameCodes" target="_blank" rel="noopener noreferrer">find an LA\'s name code in Get information about schools (opens in new tab)</a>.'
             },
             id: "so-urn",
             name: "so-urn",
-            value: data['so-urn'],
-            classes: "govuk-!-width-three-quarters"          
+            value: data["so-urn"],
+            classes: "govuk-!-width-three-quarters"
           }) }}
+
 
           {# Date confirmed #}
           {{ govukDateInput({
