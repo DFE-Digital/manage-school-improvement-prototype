@@ -11,7 +11,6 @@
 {% endblock %}
 
 {% block beforeContent %}
-
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -50,7 +49,6 @@
       </div>
     </div>
   {% endif %}
-
 {% endblock %}
 
 {% block content %}
@@ -214,6 +212,7 @@
                 </strong>
               </dd>
             </div>
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Reason
@@ -222,6 +221,59 @@
                 {{ data['project-status-paused']}}
               </dd>
             </div>
+
+            {% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details of new Ofsted judgement
+                </dt>
+                {% if (data['new-report-details'] != '') %}
+                  <dd class="govuk-summary-list__value">
+                    {{ data['new-report-details'] }}
+                  </dd>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details of appeal
+                </dt>
+                {% if (data['appeal-details'] != '') %}
+                  <dd class="govuk-summary-list__value">
+                    {{ data['appeal-details'] }}
+                  </dd>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if (data['project-status-paused'] == 'Considering structural or governance change') %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details of proposed change
+                </dt>
+                {% if (data['proposed-change-details'] != '') %}
+                  <dd class="govuk-summary-list__value">
+                    {{ data['proposed-change-details'] }}
+                  </dd>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details of proposed change
+                </dt>
+                {% if (data['protection-details'] != '') %}
+                  <dd class="govuk-summary-list__value">
+                    {{ data['protection-details'] }}
+                  </dd>
+                {% endif %}
+              </div>
+            {% endif %}
+
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Date of decision
@@ -230,7 +282,19 @@
                 {{ data | isoDateFromDateInput("intervention-paused-date") | govukDate }}
               </dd>
             </div>
-            </dl>
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Additional details
+                </dt>
+                {% if (data['paused-notes'] != '') %}
+                  <dd class="govuk-summary-list__value">
+                    {{ data['paused-notes'] }}
+                  </dd>
+                {% endif %}
+              </div>
+
+          </dl>
         </div>
       </div>
 
@@ -262,19 +326,9 @@
 
       {% endif %}
 
-      {# <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Where this information came from
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          School information taken from Get information about schools on 25 February 2025.
-        </div>
-      </details> #}
-        
     </div>
   </div>
+
 
 {% endblock %}
 
