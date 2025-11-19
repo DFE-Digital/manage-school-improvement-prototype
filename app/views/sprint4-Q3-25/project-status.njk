@@ -77,7 +77,10 @@
       {% endif %}
 
       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Change project status", href: "change-project-status" }) }}
+        {{ govukButton({ 
+          text: "Change project status", 
+          href: "project-status/change-project-status" }) 
+        }}
       </div>
 
       {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Improved Ofsted judgement published") %}

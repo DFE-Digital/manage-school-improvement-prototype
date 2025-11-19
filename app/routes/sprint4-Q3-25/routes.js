@@ -8,8 +8,8 @@ module.exports = function (router) {
 
   var version = "sprint4-Q3-25";
 
- // Run this code when a form is submitted to 'add-contact-answer'
- router.post('/' + version + '/project-status-stopped-answer', function(req, res) {
+ // Run this code when a form is submitted to 'change-project-status'
+ router.post('/' + version + '/project-status/project-status-stopped-answer', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
   const stoppedstatusAnswer = req.body["project-status-stopped"];
@@ -17,16 +17,16 @@ module.exports = function (router) {
   // Check whether the variable matches a condition
   if (stoppedstatusAnswer == "Improved Ofsted judgement published") { 
     // Send user to next page 
-    res.redirect('/' + version + '/new-inspection-report-date')
+    res.redirect('/' + version + '/project-status/new-inspection-report-date')
   }   
   else if (stoppedstatusAnswer == "Structural or governance change approved") { 
     // Send user to next page 
-    res.redirect('/' + version + '/project-status-stopped-date')
+    res.redirect('/' + version + '/project-status/project-status-stopped-date')
   } 
 })
 
- // Run this code when a form is submitted to 'add-contact-answer'
- router.post('/' + version + '/project-status-answer', function(req, res) {
+ // Run this code when a form is submitted to 'change-project-status'
+ router.post('/' + version + '/project-status/project-status-answer', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
   const statusAnswer = req.body["project-status"];
@@ -34,15 +34,15 @@ module.exports = function (router) {
   // Check whether the variable matches a condition
   if (statusAnswer == "Paused") { 
     // Send user to next page 
-    res.redirect('/' + version + '/project-status-paused')
+    res.redirect('/' + version + '/project-status/project-status-paused')
   }   
   else if (statusAnswer == "Stopped") { 
     // Send user to next page 
-    res.redirect('/' + version + '/project-status-stopped')
+    res.redirect('/' + version + '/project-status/project-status-stopped')
   } 
   else {
     // Send user to ineligible page
-    res.redirect('/' + version + '/project-status-answers')
+    res.redirect('/' + version + '/project-status/project-status-answers')
   }
 })
 
