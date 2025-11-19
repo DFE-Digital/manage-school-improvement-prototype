@@ -5,48 +5,26 @@
 {% endblock %}
 
 {% block beforeContent %}
-  
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-
-    <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
-    <h2 class="govuk-heading-l">Enter date the intervention paused</h2>
-    <p>This must be the date that DfE found out that an new Ofsted inspection had taken place, a judgement was being appealed, or that a conversions, transfer or other governance change was being proposed.</p>
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h2 class="govuk-heading-l">Enter date the intervention paused</h2>
+      <p>This must be the date that DfE found out about the reason for pausing the intervention.</p>
       
-    <form class="form" action='project-status-paused-notes' method="post">
-
-    {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+      <form class="form" action='project-status-paused-notes' method="post">
 
         {{ govukDateInput({
           id: "intervention-paused-date",
@@ -83,16 +61,17 @@
           ]
         }) }}
 
-{{ govukButton({
-  text: "Save and continue"
-}) }}
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
 
-</form>
+      </form>
 
+    </div>
   </div>
-</div>
+
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
