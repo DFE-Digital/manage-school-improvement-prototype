@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <!--<span class="govuk-caption-l">Cheltenham Primary School</span>-->
+    <h1 class="govuk-heading-xl">Check funding details</h1>
+
+    <h2 class="govuk-heading-l">Funding</h1>
+
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Funding type
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <p>{{ data['funding-name']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Funding amount
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <p>&pound;{{ data['funding-amount']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date funding paid
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>{{ data | isoDateFromDateInput("funding-paid-date") | govukDate }} </p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Comments
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <p>{{ data['funding-comments']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+       
+      
+
+      </dl>
+    
+
+        
+
+
+        <div class="govuk-button-group">
+          <a href="add-more-funding" role="button" draggable="false" class="govuk-button govuk-button">
+            Add more funding
+          </a>
+          <a href="../project-list-school-added-v3" role="button" draggable="false" data-module="govuk-button" class="govuk-button govuk-button--secondary">
+            Continue
+          </a>
+          &nbsp;&nbsp;<a class="govuk-link" href="add-funding">Change funding details</a>
+        </div>
+         
+  
+        </div>
+
+      </form>
+
+    </main>
+  </main>   
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

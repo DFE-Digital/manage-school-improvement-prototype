@@ -1,0 +1,117 @@
+{% extends "../../includes/form-template.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Enter supporting organisation details
+      </h1>
+
+      <form action="confirm-so-la-details" method="post" novalidate>
+        {% block formQuestions %}
+
+          {# Organisation name #}
+          {{ govukInput({
+            label: {
+              text: "Organisation name",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the name of the local authority that will be the supporting organisation"
+            },
+            id: "so-name",
+            name: "so-name",
+            value: data['so-name'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
+
+          {# URN #}
+          {{ govukInput({
+            label: {
+              text: "LAESTAB (local authority establishment) number",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the LAESTAB number of the local authority that will be the supporting organisation"
+            },
+            id: "so-urn",
+            name: "so-urn",
+            value: data['so-urn'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
+
+          {# Date confirmed #}
+          {{ govukDateInput({
+          id: "so-contact-added-date",
+          namePrefix: "so-contact-added-date",
+          allowEmpty: false,
+          fieldset: {
+            legend: {
+              text: "Enter date supporting organisation confirmed",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["so-contact-added-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["so-contact-added-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["so-contact-added-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+          </div>
+
+        {% endblock %}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
