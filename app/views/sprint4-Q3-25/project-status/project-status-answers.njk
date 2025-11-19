@@ -11,26 +11,10 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block content %}
@@ -38,27 +22,23 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-
     <span class="govuk-caption-l">Project status</span>
     <h2 class="govuk-heading-l">Check your answers</h2>
-    <!--<p>This must be the date that DfE found out that an new Ofsted inspection had taken place.</p>-->
-      
   
     <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Project status 
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['project-status']}}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="change-project-status">Change<span class="govuk-visually-hidden"> project status</span></a>
-          </dd>
-        </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Project status 
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['project-status']}}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="change-project-status">Change<span class="govuk-visually-hidden"> project status</span></a>
+        </dd>
+      </div>
 
-        {% if (data['project-status'] == "Paused")%}
+      {% if (data['project-status'] == "Paused")%}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Reason
@@ -76,13 +56,15 @@
           <dt class="govuk-summary-list__key">
             Details of new Ofsted judgement
           </dt>
+
           <dd class="govuk-summary-list__value">
             {% if (data['new-report-details'] != '') %}
-            {{ data['new-report-details']}}
+              {{ data['new-report-details']}}
             {% else %}
-            <span data-id="new-report-details" class="empty">Empty</span>
+              <span data-id="new-report-details" class="empty">Empty</span>
             {% endif %}
           </dd>
+
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="project-status-paused-change">Change<span class="govuk-visually-hidden"> reason intervention was paused</span></a>
           </dd>
@@ -90,39 +72,43 @@
         {% endif %}
 
         {% if (data['project-status-paused'] == 'Ofsted judgement being appealed') %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Details of appeal
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if (data['appeal-details'] != '') %}
-            {{ data['appeal-details']}}
-            {% else %}
-            <span data-id="appeal-details" class="empty">Empty</span>
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="project-status-paused-change">Change<span class="govuk-visually-hidden"> reason intervention was paused</span></a>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Details of appeal
+            </dt>
+
+            <dd class="govuk-summary-list__value">
+              {% if (data['appeal-details'] != '') %}
+                {{ data['appeal-details']}}
+              {% else %}
+                <span data-id="appeal-details" class="empty">Empty</span>
+              {% endif %}
+            </dd>
+
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="project-status-paused-change">Change<span class="govuk-visually-hidden"> reason intervention was paused</span></a>
+            </dd>
+          </div>
         {% endif %}
 
         {% if (data['project-status-paused'] == 'Structural or governance change proposed') %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Details of proposed change
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if (data['proposed-change-details'] != '') %}
-            {{ data['proposed-change-details']}}
-            {% else %}
-            <span data-id="proposed-change-details" class="empty">Empty</span>
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="project-status-paused-change">Change<span class="govuk-visually-hidden"> reason intervention was paused</span></a>
-          </dd>
-        </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Details of proposed change
+            </dt>
+
+            <dd class="govuk-summary-list__value">
+              {% if (data['proposed-change-details'] != '') %}
+                {{ data['proposed-change-details']}}
+              {% else %}
+                <span data-id="proposed-change-details" class="empty">Empty</span>
+              {% endif %}
+            </dd>
+
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="project-status-paused-change">Change<span class="govuk-visually-hidden"> reason intervention was paused</span></a>
+            </dd>
+          </div>
         {% endif %}
 
         <div class="govuk-summary-list__row">
@@ -143,174 +129,170 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {% if (data['paused-notes'] != '') %}
-            {{ data['paused-notes']}}
+              {{ data['paused-notes']}}
             {% else %}
-            <span data-id="paused-notes" class="empty">Empty</span>
+              <span data-id="paused-notes" class="empty">Empty</span>
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="project-status-paused-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
           </dd>
         </div>
-        {% endif %}
+      {% endif %}
 
 
-        {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Improved Ofsted judgement published") %}
+      {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Improved Ofsted judgement published") %}
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reason
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['project-status-stopped']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
-            </dd>
-          </div>
+          <dt class="govuk-summary-list__key">
+            Reason
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['project-status-stopped']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
+          </dd>
+        </div>
 
-
-          
-          <div class="govuk-summary-list__row">
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Details of new Ofsted judgement
           </dt>
           <dd class="govuk-summary-list__value">
             {% if (data['improved-details'] != '') %}
-            {{ data['improved-details']}}
+              {{ data['improved-details']}}
             {% else %}
-            <span data-id="improved-details" class="empty">Empty</span>
+              <span data-id="improved-details" class="empty">Empty</span>
             {% endif %}  
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
           </dd>
-          </div>
+        </div>
         
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date of new inspection report
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data | isoDateFromDateInput("new-inspection-report-date") | govukDate }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="new-inspection-report-date-change">Change<span class="govuk-visually-hidden"> date of report</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Additional information
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% if (data['stopped-notes'] != '') %}
-              {{ data['stopped-notes']}}
-              {% else %}
-              <span data-id="stopped-notes" class="empty">Empty</span>
-              {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
-            </dd>
-          </div>
-          {% endif %}
-
-          {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Structural or governance change approved") %}
         <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reason
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['project-status-stopped']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
-            </dd>
-          </div>
+          <dt class="govuk-summary-list__key">
+            Date of new inspection report
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data | isoDateFromDateInput("new-inspection-report-date") | govukDate }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="new-inspection-report-date-change">Change<span class="govuk-visually-hidden"> date of report</span></a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Additional information
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if (data['stopped-notes'] != '') %}
+              {{ data['stopped-notes']}}
+            {% else %}
+              <span data-id="stopped-notes" class="empty">Empty</span>
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Structural or governance change approved") %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['project-status-stopped']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
+          </dd>
+        </div>
           
-          <div class="govuk-summary-list__row">
+        <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Details of approved change
           </dt>
           <dd class="govuk-summary-list__value">
             {% if (data['approved-details'] != '') %}
-            {{ data['approved-details']}}
+              {{ data['approved-details']}}
             {% else %}
-            <span data-id="approved-details" class="empty">Empty</span>
+              <span data-id="approved-details" class="empty">Empty</span>
             {% endif %}  
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="project-status-stopped-change">Change<span class="govuk-visually-hidden"> reason intervention was stopped</span></a>
           </dd>
-          </div>
+        </div>
           
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date of decision
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-date-change">Change<span class="govuk-visually-hidden"> date of decision</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Decision maker's name
-            </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['stopped-decision-maker']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-decision-maker-change">Change<span class="govuk-visually-hidden"> decision maker's name</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Decision maker's role
-            </dt>
-            <dd class="govuk-summary-list__value">
-                {{ data['stopped-decision-maker-role']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-decision-maker-role-change">Change<span class="govuk-visually-hidden"> decision maker's role</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Additional information
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% if (data['stopped-notes'] != '') %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date of decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-date-change">Change<span class="govuk-visually-hidden"> date of decision</span></a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision maker's name
+          </dt>
+          <dd class="govuk-summary-list__value">
+              {{ data['stopped-decision-maker']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-decision-maker-change">Change<span class="govuk-visually-hidden"> decision maker's name</span></a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision maker's role
+          </dt>
+          <dd class="govuk-summary-list__value">
+              {{ data['stopped-decision-maker-role']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-decision-maker-role-change">Change<span class="govuk-visually-hidden"> decision maker's role</span></a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Additional information
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if (data['stopped-notes'] != '') %}
               {{ data['stopped-notes']}}
-              {% else %}
+            {% else %}
               <span data-id="stopped-notes" class="empty">Empty</span>
-              {% endif %}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="project-status-stopped-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
-            </dd>
-          </div>
-          {% endif %}
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="project-status-stopped-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
+          </dd>
+        </div>
+      {% endif %}
 
-
-
-      </dl>
+    </dl>
     
+    {{ govukButton({ 
+      text: "Save", 
+      href: "../project-status" }) 
+    }}
 
-
-      {{ govukButton({ text: "Save", href: "project-status-vertical-nav" }) }}
-
-
-
-
-
-   
   </div>
 </div>
+
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
