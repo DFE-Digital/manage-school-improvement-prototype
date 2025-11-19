@@ -8,22 +8,22 @@ module.exports = function (router) {
 
   var version = "sprint4-Q3-25";
 
- // Run this code when a form is submitted to 'change-project-status'
- router.post('/' + version + '/project-status/project-status-stopped-answer', function(req, res) {
+//  // Run this code when a form is submitted to 'change-project-status'
+//  router.post('/' + version + '/project-status/project-status-stopped-answer', function(req, res) {
     
-  // Make a variable to give it the value from the radio buttons on the index page  
-  const stoppedstatusAnswer = req.body["project-status-stopped"];
+//   // Make a variable to give it the value from the radio buttons on the index page  
+//   const stoppedstatusAnswer = req.body["project-status-stopped"];
 
-  // Check whether the variable matches a condition
-  if (stoppedstatusAnswer == "Improved Ofsted judgement published") { 
-    // Send user to next page 
-    res.redirect('/' + version + '/project-status/new-inspection-report-date')
-  }   
-  else if (stoppedstatusAnswer == "Structural or governance change approved") { 
-    // Send user to next page 
-    res.redirect('/' + version + '/project-status/project-status-stopped-date')
-  } 
-})
+//   // Check whether the variable matches a condition
+//   if (stoppedstatusAnswer == "Publication of improved Ofsted judgement") { 
+//     // Send user to next page 
+//     res.redirect('/' + version + '/project-status/new-inspection-report-date')
+//   }   
+//   else if (stoppedstatusAnswer == "Approval of structural or governance change") { 
+//     // Send user to next page 
+//     res.redirect('/' + version + '/project-status/project-status-stopped-date')
+//   } 
+// })
 
  // Run this code when a form is submitted to 'change-project-status'
  router.post('/' + version + '/project-status/project-status-answer', function(req, res) {
