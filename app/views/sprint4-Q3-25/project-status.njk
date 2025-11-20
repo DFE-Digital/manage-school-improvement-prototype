@@ -2,6 +2,41 @@
 
 {% set NavActive = "project-status" %}
 
+{% set inProgress %}
+  <strong class="govuk-tag govuk-tag--green">
+    In progress
+  </strong>
+{% endset %}
+
+{% set paused %}
+  <strong class="govuk-tag govuk-tag--orange">
+    Paused
+  </strong>
+{% endset %}
+
+{% set stopped %}
+  <strong class="govuk-tag govuk-tag--red">
+    Stopped
+  </strong>
+{% endset %}
+
+{% set pausedReason = "" %}
+  {% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+    {% set pausedReason = data['new-report-details'] %}
+  {% endif %}
+
+  {% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+    {% set pausedReason = data['appeal-details'] %}
+  {% endif %}
+
+  {% if (data['project-status-paused'] == 'Considering structural or governance change') %}
+    {% set pausedReason = data['proposed-change-details'] %}
+  {% endif %}
+
+  {% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+    {% set pausedReason = data['protection-details'] %}
+  {% endif %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -82,279 +117,121 @@
         <p>Change the status of a project if targeted intervention work pauses or stops.</p>
       {% endif %}
 
-      <div class="govuk-!-margin-top-5">
-        {{ govukButton({ 
-          text: "Change project status", 
-          href: "project-status/change-project-status" }) 
-        }}
-      </div>
-
-      {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Publication of improved Ofsted judgement") %}
+      {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Publication of improved Ofsted judgement") or (data['project-status-stopped'] == "Approval of structural or governance change") %}
         
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">
-              Status details
-            </h2>
-          </div>
-
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list">
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Current status
-                </dt>
-
-                <dd class="govuk-summary-list__value">
-                  <strong class="govuk-tag govuk-tag--red">
-                    {{ data['project-status']}}
-                  </strong>
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Reason
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['project-status-stopped']}}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Details
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['improved-details']}}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Date of decision
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Additional details
-                </dt>
-                {% if (data['stopped-notes'] != '') %}
-                  <dd class="govuk-summary-list__value">
-                    {{ data['stopped-notes'] }}
-                  </dd>
-                {% endif %}
-              </div>
-
-            </dl>
-          </div>
-        </div>
-
-      {% elif (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Approval of structural or governance change") %}
-      
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            Status details
-          </h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Current status
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <strong class="govuk-tag govuk-tag--red">
-                  {{ data['project-status']}}
-                </strong>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Reason
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['project-status-stopped']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Details
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['approved-details']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Date of decision
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Additional details
-              </dt>
-              {% if (data['stopped-notes'] != '') %}
-                <dd class="govuk-summary-list__value">
-                  {{ data['stopped-notes'] }}
-                </dd>
-              {% endif %}
-            </div>
-
-          </dl>
-        </div>
-      </div>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Current status"
+              },
+              value: {
+                html: stopped
+              }
+            },
+            {
+              key: {
+                text: "Reason"
+              },
+              value: {
+                html: data['project-status-stopped']
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: data['improved-details']
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-stopped-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Additional details"
+              },
+              value: {
+                html: data['stopped-notes']
+              }
+            }
+          ]
+        }) }}
 
       {% elif (data['project-status'] == "Paused") %}
 
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">
-              Status details
-            </h2>
-          </div>
-
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list">
-              
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Current status
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  <strong class="govuk-tag govuk-tag--orange">
-                    {{ data['project-status']}}
-                  </strong>
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Reason
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['project-status-paused'] }}
-                </dd>
-              </div>
-
-              {% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Details
-                  </dt>
-                  {% if (data['new-report-details'] != '') %}
-                    <dd class="govuk-summary-list__value">
-                      {{ data['new-report-details'] }}
-                    </dd>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              {% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Details
-                  </dt>
-                  {% if (data['appeal-details'] != '') %}
-                    <dd class="govuk-summary-list__value">
-                      {{ data['appeal-details'] }}
-                    </dd>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              {% if (data['project-status-paused'] == 'Considering structural or governance change') %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Details
-                  </dt>
-                  {% if (data['proposed-change-details'] != '') %}
-                    <dd class="govuk-summary-list__value">
-                      {{ data['proposed-change-details'] }}
-                    </dd>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              {% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Details
-                  </dt>
-                  {% if (data['protection-details'] != '') %}
-                    <dd class="govuk-summary-list__value">
-                      {{ data['protection-details'] }}
-                    </dd>
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Date of decision
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data | isoDateFromDateInput("intervention-paused-date") | govukDate }}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Additional details
-                </dt>
-                {% if (data['paused-notes'] != '') %}
-                  <dd class="govuk-summary-list__value">
-                    {{ data['paused-notes'] }}
-                  </dd>
-                {% endif %}
-              </div>
-
-            </dl>
-          </div>
-        </div>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Current status"
+              },
+              value: {
+                html: paused
+              }
+            },
+            {
+              key: {
+                text: "Reason"
+              },
+              value: {
+                html: data['project-status-paused']
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: pausedReason
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-paused-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Additional details"
+              },
+              value: {
+                html: data['paused-notes']
+              }
+            }
+          ]
+        }) }}
 
       {% else %}
 
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            Status details
-          </h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Current status
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <strong class="govuk-tag govuk-tag--green">
-                  In progress
-                </strong>
-              </dd>
-            </div>
-            </dl>
-        </div>
-      </div>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Current status"
+              },
+              value: {
+                html: inProgress
+              }
+            }
+          ]
+        }) }}
 
       {% endif %}
+
+      {{ govukButton({ 
+        text: "Change project status", 
+        href: "project-status/change-project-status" }) 
+      }}
 
     </div>
   </div>
