@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set paused %}
-  <strong class="govuk-tag govuk-tag--orange">
+  <strong class="govuk-tag govuk-tag--yellow">
     Paused
   </strong>
 {% endset %}
@@ -112,6 +112,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-l">Project status</h2>
+      
+      <h3 class="govuk-heading-m">Current status</h3>
+
+      {{ govukButton({ 
+        text: "Change project status", 
+        href: "project-status/change-project-status" }) 
+      }}
 
       {% if (data['project-status'] != "Paused") and (data['project-status'] != "Stopped") %}
         <p>Change the status of a project if targeted intervention work pauses or stops.</p>
@@ -123,7 +130,7 @@
           rows: [
             {
               key: {
-                text: "Current status"
+                text: "Status"
               },
               value: {
                 html: stopped
@@ -170,7 +177,7 @@
           rows: [
             {
               key: {
-                text: "Current status"
+                text: "Status"
               },
               value: {
                 html: paused
@@ -217,7 +224,7 @@
           rows: [
             {
               key: {
-                text: "Current status"
+                text: "Status"
               },
               value: {
                 html: inProgress
@@ -228,10 +235,68 @@
 
       {% endif %}
 
-      {{ govukButton({ 
-        text: "Change project status", 
-        href: "project-status/change-project-status" }) 
-      }}
+      <hr class="govuk-section-break govuk-section-break--m">
+
+
+      <h3 class="govuk-heading-m">Status history</h3>
+
+      <div class="moj-timeline">
+
+        {# Paused #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Paused
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">7 September 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Awaiting new Ofsted judgement</p>
+            <p>Details about the school waiting for their new judgement.</p>
+            <p>This decision was made on 5th September 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# In progress #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--green">
+              In progress
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">2nd June 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">In progress</p>
+          </div>
+        </div>
+
+        {# Stopped #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--red">
+              Stopped
+            </strong>
+            <p class="moj-timeline__byline">by Iain MacDonald</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Approval of structural or governance change</p>
+            <p>Details about the structural change the school is undergoing.</p>
+            <p>This decision was made on 22nd March 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+      </div>
 
     </div>
   </div>
