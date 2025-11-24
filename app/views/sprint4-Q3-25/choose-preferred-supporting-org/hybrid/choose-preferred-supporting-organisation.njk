@@ -150,7 +150,7 @@
                 Local authority
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['so-name'] }}
+                {{ data['supporting-organisation-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -158,12 +158,12 @@
                 LA name code
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['so-urn'] }}
+                109172
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date confirmed
+                Date contact details were confirmed
               </dt>
               <dd class="govuk-summary-list__value">
                   {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
