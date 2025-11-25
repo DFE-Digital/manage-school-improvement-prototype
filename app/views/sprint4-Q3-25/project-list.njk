@@ -5,47 +5,22 @@
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+    {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
-{% block beforeContent %}
-  
-  <!--
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-  -->
+{# {% block beforeContent %}
 
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-  <h1 class="govuk-heading-xl">
-    Schools identified for targeted intervention
-  </h1>
-  <p>This list may include schools that are no longer eligible due to a recent inspection result.</p>
-  <p>You can add more schools to this list as you need to.</p>
-  <br>
-  <a href="start-new-project/select-school" role="button" draggable="false" class="govuk-button <!--govuk-button--start-->" data-module="govuk-button">Add a school</a>
+    <h1 class="govuk-heading-xl">Schools identified for targeted intervention</h1>
+    <p>This list may include schools that are no longer eligible due to a recent inspection result.</p>
+    <p>You can add more schools to this list as you need to.</p>
+    <br>
+    <a href="start-new-project/select-school" role="button" draggable="false" class="govuk-button <!--govuk-button--start-->" data-module="govuk-button">Add a school</a>
   </div>
 </div>
 
@@ -66,7 +41,6 @@
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 7 </caption>
       
-
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
                <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
@@ -79,18 +53,17 @@
                 </div>
                 <div id="region-26" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >South West</span>
+                    <span >South West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 28 February 2025</span>
                 </div>
                 <div id="localauthority-26" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Gloucestershire</span>
+                    <span >Gloucestershire</span>
                 </div>
             </td>
         </tr> 
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -104,18 +77,17 @@
                 </div>
                 <div id="region-26" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span>South West</span>
+                    <span>South West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 15 October 2024</span>
                 </div>
                 <div id="localauthority-26" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span>Gloucestershire</span>
+                    <span>Gloucestershire</span>
                 </div>
             </td>
         </tr>
-      
       
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -129,18 +101,17 @@
                 </div>
                 <div id="region-26" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span>South West</span>
+                    <span>South West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 12 October 2024</span>
                 </div>
                 <div id="localauthority-26" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span>Gloucestershire</span>
+                    <span>Gloucestershire</span>
                 </div>
             </td>
         </tr>
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -154,18 +125,17 @@
                 </div>
                 <div id="region-26" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >North West</span>
+                    <span >North West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 8 October 2024</span>
                 </div>
                 <div id="localauthority-26" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Manchester</span>
+                    <span >Manchester</span>
                 </div>
             </td>
         </tr>
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -179,18 +149,17 @@
                 </div>
                 <div id="region-25" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >South East</span>
+                    <span >South East</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 11 October 2024</span>
                 </div>
                 <div id="localauthority-25" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Reading</span>
+                    <span >Reading</span>
                 </div>
             </td>
         </tr>
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -204,18 +173,17 @@
                 </div>
                 <div id="region-24" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >South West</span>
+                    <span >South West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 12 October 2024</span>
                 </div>
                 <div id="localauthority-24" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Devon</span>
+                    <span >Devon</span>
                 </div>
             </td>
         </tr>
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -229,18 +197,17 @@
                 </div>
                 <div id="region-23" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >North West</span>
+                    <span >North West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 18 October 2024</span>
                 </div>
                 <div id="localauthority-23" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Warrington</span>
+                    <span >Warrington</span>
                 </div>
             </td>
         </tr>
-
 
         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
             <td class="govuk-table__cell">
@@ -254,19 +221,17 @@
                 </div>
                 <div id="region-22" class="govuk-!-margin-top-1">
                     <strong>Region:</strong>
-                        <span >South West</span>
+                    <span >South West</span>
                 </div>
                 <div class="govuk-!-margin-top-1">
                     <span id="urn-0"><strong>Date added to MSI:</strong> 16 October 2024</span>
                 </div>
                 <div id="localauthority-22" class="govuk-!-margin-top-1">
                     <strong>Local authority:</strong>
-                        <span >Gloucestershire</span>
+                    <span >Gloucestershire</span>
                 </div>
             </td>
         </tr>
-
-    </tbody>
     </table>
 
     </div>
@@ -275,5 +240,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+    {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
