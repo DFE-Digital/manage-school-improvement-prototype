@@ -1,0 +1,139 @@
+{% set currentStatus= "" %}
+
+{% set inProgress %}
+  <strong class="govuk-tag govuk-tag--green">
+    In progress
+  </strong>
+{% endset %}
+
+{% set paused %}
+  <strong class="govuk-tag govuk-tag--yellow">
+    Paused
+  </strong>
+{% endset %}
+
+{% set stopped %}
+  <strong class="govuk-tag govuk-tag--red">
+    Stopped
+  </strong>
+{% endset %}
+
+{% set assignedTo = "" %}
+{% if (data['assigned-to'] != NULL) %}
+  {% set assignedTo = data['assigned-to'] %}
+{% else %}
+  {% set assignedTo = '<span data-id="assigned-user" class="empty">Empty</span>' %}
+{% endif %}
+
+{% set adviser = "" %}
+{% if (data['allocated-adviser-email'] != NULL) %}
+  {% set adviser = data['allocated-adviser-email'] %}
+{% else %}
+  {% set adviser = '<span data-id="allocated-adviser" class="empty">Empty</span>' %}
+{% endif %}
+
+{% set engagementConcern = "" %}
+{% if (data['engagement-concern'] == 'Yes') %}
+  {% set engagementConcern = "Yes" %}
+{% else %}
+  {% set engagementConcern = "No" %}
+{% endif %}
+
+<span class="govuk-caption-xl">URN 100006</span>
+<h1 class="govuk-heading-xl">Cheltenham Spa Primary School</h1>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Current status"
+      },
+      value: {
+        html: currentStatus
+      }
+    },
+    {
+      key: {
+        text: "Date added to MSI"
+      },
+      value: {
+        text: "28 February 2025"
+      }
+    },
+    {
+      key: {
+        text: "Date of last Ofsted inspection"
+      },
+      value: {
+        text: "15 November 2024"
+      }
+    },
+    {
+      key: {
+        text: "Quality of education"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--yellow'>Requires improvement</strong>"
+      }
+    },
+    {
+      key: {
+        text: "Leadership and management"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--orange'>Inadequate</strong>"
+      }
+    },
+    {
+      key: {
+        text: "Assigned to"
+      },
+      value: {
+        html: assignedTo
+      },
+      actions: {
+        items: [
+          {
+            href: "./assign/assign-project",
+            text: "Change",
+            visuallyHiddenText: "assigned to"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Advised by"
+      },
+      value: {
+        html: adviser
+      },
+      actions: {
+        items: [
+          {
+            href: "./task-list/allocate-an-adviser",
+            text: "Change",
+            visuallyHiddenText: "advised by"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Engagement concern"
+      },
+      value: {
+        html: engagementConcern
+      },
+      actions: {
+        items: [
+          {
+            href: "./record-engagement-concern",
+            text: "Change",
+            visuallyHiddenText: "engagement concern"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
