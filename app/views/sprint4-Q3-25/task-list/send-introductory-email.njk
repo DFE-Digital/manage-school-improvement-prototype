@@ -11,44 +11,21 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  <!--
-  <div class="govuk-breadcrumbs">
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
-
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-     
-
-
-     
-
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
         Send introductory email
       </h1>
-
-   </div>
+    </div>
    </div>
 
    <div class="govuk-grid-row">
@@ -56,31 +33,20 @@
 
       <p class="padding-bottom-15">The adviser should email the school to introduce themselves to the school's responsible body.</p>
 
-
-
       <form class="form" action="../task-list-task-updated" method="post">
-
-        
-        
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
- 
          
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
-            <!--
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <h2 class="govuk-fieldset__heading padding-bottom-15">
-                Save the school’s response in SharePoint
-              </h1>
-            </legend>
-          -->
+           
             <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-              <div class="govuk-checkboxes__item padding-bottom-15">
+
+              {# <div class="govuk-checkboxes__item padding-bottom-15">
                 <input class="govuk-checkboxes__input" id="share-email-template" name="share-email-template" type="checkbox" value="done" {{checked("share-email-template", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="share-email-template">
                   Share email template with adviser
                 </label>
-              </div>
+              </div> #}
+
               <div class="govuk-checkboxes__item padding-bottom-15">
                 <input class="govuk-checkboxes__input" id="remind-the-adviser" name="remind-the-adviser" type="checkbox" value="done" {{checked("remind-the-adviser", "done")}}>
                 <label class="govuk-label govuk-checkboxes__label" for="remind-the-adviser">
@@ -88,14 +54,10 @@
                 </label>
               </div>
               
-             
-        
             </div>
+
           </fieldset>
         </div>
-
-
-        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
         {{ govukDateInput({
           id: "introductory-email-date",
@@ -137,46 +99,11 @@
         text: "Save and return"
         }) }}
      
-
       </form>
-
     </div>
-
-    <!--
-    <div class="govuk-grid-column-one-third">
-
-      <h2 class="govuk-heading-m">
-      Task notes
-      </h2>
-
-     
-      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
-      Add a new task note
-      </a>
-      
-      {% if (data['task-note'] != NULL) %}   
-      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      <p>10 March 2025
-        <strong class="govuk-tag govuk-tag--green">
-          New
-        </strong>
-        <br>
-      <strong>Bob Roberts</strong></p>
-      <p>{{ data['task-note']}}</p>
-      <p>
-        <a href="../task-notes/contact-the-school.html">Edit note</a>
-      </p>
-      <hr class="govuk-section-break govuk-section-break--visible">
-      {% endif %}
-
-    </div>
-    -->
-
   </div>
-
-
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}
