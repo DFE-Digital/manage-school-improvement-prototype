@@ -1,23 +1,14 @@
-{% set currentStatus= "" %}
+{# SET CURRENT STATUS #}
+{% set currentStatus = "" %}
+{% if (data['project-status'] == "Paused") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% else %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% endif %}
 
-{% set inProgress %}
-  <strong class="govuk-tag govuk-tag--green">
-    In progress
-  </strong>
-{% endset %}
-
-{% set paused %}
-  <strong class="govuk-tag govuk-tag--yellow">
-    Paused
-  </strong>
-{% endset %}
-
-{% set stopped %}
-  <strong class="govuk-tag govuk-tag--red">
-    Stopped
-  </strong>
-{% endset %}
-
+{# SET ASSIGNED TO #}
 {% set assignedTo = "" %}
 {% if (data['assigned-to'] != NULL) %}
   {% set assignedTo = data['assigned-to'] %}
@@ -25,6 +16,7 @@
   {% set assignedTo = '<span data-id="assigned-user" class="empty">Empty</span>' %}
 {% endif %}
 
+{# SET ADVISER #}
 {% set adviser = "" %}
 {% if (data['allocated-adviser-email'] != NULL) %}
   {% set adviser = data['allocated-adviser-email'] %}
@@ -32,6 +24,7 @@
   {% set adviser = '<span data-id="allocated-adviser" class="empty">Empty</span>' %}
 {% endif %}
 
+{# SET ENGAGEMENT CONCERN ANSWER #}
 {% set engagementConcern = "" %}
 {% if (data['engagement-concern'] == 'Yes') %}
   {% set engagementConcern = "Yes" %}
