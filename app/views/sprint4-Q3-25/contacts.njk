@@ -175,7 +175,58 @@
     {{ contactCard(role='Head teacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
     
     {# Manually added #}
-    {{ contactCard(role=roleVar, name=nameVar, email=emailVar, phone=phoneVar, sourceType="Added manually", source="today's date", dateType="", date="") }}
+    {% if (roleVAR != "") and (nameVAR != "") %}
+      {{ contactCard(role=roleVar, name=nameVar, email=emailVar, phone=phoneVar, sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+    {% endif %}
+
+    {# SUPPORTING ORGANISATION CONTACTS #}
+    <h3 class="govuk-heading-m">Supporting organisation contacts</h3>
+
+    {# SUPPORTING ORGANISATION ADDRESS #}
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Brighton and Hove Academies Trust<br>
+        88 Stroud Street<br>
+        Bristol<br>
+        BS1 9AA
+        </p>"
+    }) }}
+
+    {# USE MACRO #}
+    {{ contactCard(role='Accounting officer for supporting organisation', name="Levi Crombie", email="Not available", phone="01452 890098") }}
+    {{ contactCard(role='Trust CEO', name="Barry Fishcakes", email="b.fishcakes@b-hove-academies-trust.edu.uk", phone="01452 890098") }}
+    {{ contactCard(role='Business development manager', name="Harry Flange", email="h.flange@b-hove-academies-trust.edu.uk", phone="Not available") }}
+    {{ contactCard(role='School improvement lead', name="Larry Goggins", email="l.goggins@b-hove-academies-trust.edu.uk", phone="01234 567891") }}
+
+    {# GOVERNANCE BODIES CONTACTS #}
+    <h3 class="govuk-heading-m">Governance bodies contacts</h3>
+
+    {# GOVERNANCE BODIES ADDRESS #}
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Brighton and Hove City Council<br>
+        Hove Town Hall<br>
+        Norton Road<br>
+        BN3 3BQ
+        </p>"
+    }) }}
+
+    <h3 class="govuk-heading-m">Local authority</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Director of childrens services', name="Heather Golden", email="heather@b-hove-cc.gov.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+
+    <h3 class="govuk-heading-m">Foundation</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Foundation chair', name="Jason Ham", email="hammy@useful-foundation.gov.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+
+    <h3 class="govuk-heading-m">Diocese</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
 
   </div> {# End column #}
 </div> {# End row #}
