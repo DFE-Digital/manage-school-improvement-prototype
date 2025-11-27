@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add contact
+      </h1>
+
+      <form class="form" action='add-contact-answer' method="post">
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                School role
+              </h2>
+            </legend>
+
+            <div id="contact-hint" class="govuk-hint">
+              Select one option
+            </div>
+
+            <div class="govuk-radios" data-module="govuk-radios">
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-school-role-headTeacherPerm" name="role" type="radio" value="Headteacher (permanent)" {{ checked('role','Headteacher (permanent)') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-school-role-headTeacherPerm">
+                  Headteacher (permanent)
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-school-role-headTeacherTemp" name="role" type="radio" value="Headteacher (interim)" {{ checked('role','Headteacher (interim)') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-school-role-headTeacherTemp">
+                  Headteacher (interim)
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-school-role-chairOfGov" name="role" type="radio" value="Chair of governors" {{ checked('role','Chair of governors') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-school-role-chairOfGov">
+                  Chair of governors
+                </label>
+              </div>
+
+              {# Conditional #}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-school-role-other" name="role" type="radio" value="Other role" data-aria-controls="contacts-school-role-otherConditional" {{ checked('role','Other role') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-school-role-other">
+                  Other role
+                </label>
+              </div>
+
+              {# Text box for conditional #}
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="contacts-school-role-otherConditional">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="contacts-school-role-otherAnswer">
+                    Name of role
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="contacts-school-role-otherAnswer" name="contacts-school-role-otherAnswer" {{value['contacts-school-role-otherAnswer']}}>
+                </div>
+              </div>
+
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+          <a class="govuk-link" href="contacts">Cancel</a>
+        </div>
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
