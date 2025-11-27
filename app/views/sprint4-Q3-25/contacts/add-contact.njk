@@ -43,27 +43,27 @@
             <div class="govuk-radios" data-module="govuk-radios">
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="School" {{ checked('organisation','School') }}>
+                <input class="govuk-radios__input" id="contacts-school" name="organisation" type="radio" value="School" {{ checked('organisation','School') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation">
                   School
                 </label>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Trust" {{ checked('organisation','Trust') }}>
+                <input class="govuk-radios__input" id="contacts-supporting-organisation" name="organisation" type="radio" value="Supporting organisation" {{ checked('organisation','Supporting organisation') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-2">
-                  Trust
+                  Supporting organisation
                 </label>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Local authority" {{ checked('organisation','Local authority') }}>
+                <input class="govuk-radios__input" id="contacts-governance-bodies" name="organisation" type="radio" value="Local authority" {{ checked('organisation','Local authority') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-3">
                   Local authority
                 </label>
               </div>
 
-              {% if (data['supporting-organisation-name'] != NULL) %}
+              {# {% if (data['supporting-organisation-name'] != NULL) %}
 
                 <div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Supporting organisation" {{ checked('organisation','Supporting organisation') }}>
@@ -72,43 +72,22 @@
                   </label>
                 </div>
 
-              {% endif %}
-              
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Diocese" {{ checked('organisation','Diocese') }}>
-                <label class="govuk-label govuk-radios__label" for="organisation-5">
-                  Diocese
-                </label>
-              </div>
-
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="Federation" {{ checked('organisation','Federation') }}>
-                <label class="govuk-label govuk-radios__label" for="organisation-6">
-                  Federation
-                </label>
-              </div>
-
-              <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="DfE" {{ checked('organisation','DfE') }}>
-                <label class="govuk-label govuk-radios__label" for="organisation-7">
-                  DfE
-                </label>
-              </div>
-
+              {% endif %} #}
+            
               {# Conditional #}
-              <div class="govuk-radios__item">
+              {# <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="organisation" name="organisation" type="radio" value="conditional-organisation" {{ checked('organisation','conditional-organisation') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-8">
                   Other
                 </label>
-              </div>
+              </div> #}
 
               {# Text box for conditional #}
-              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-organisation">
+              {# <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-organisation">
                 <div class="govuk-form-group">
                   <input class="govuk-input govuk-!-width-two-thirds" id="other-organisation-name" name="other-organisation-name" type="text" autocomplete="organisation">
                 </div>
-              </div>
+              </div> #}
 
             </div>
 
