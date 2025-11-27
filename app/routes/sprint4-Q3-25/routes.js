@@ -26,7 +26,7 @@ module.exports = function (router) {
 // })
 
 // Run this code when a form is submitted to 'change-project-status'
-router.post('/' + version + '/contacts/add-contact-answer', function(req, res) {
+router.post('/' + version + '/contacts/add-contact-organisation', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
   const statusAnswer = req.body["organisation"];
