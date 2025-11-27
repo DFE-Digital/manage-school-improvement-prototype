@@ -25,7 +25,28 @@ module.exports = function (router) {
 //   } 
 // })
 
- // Run this code when a form is submitted to 'change-project-status'
+// Run this code when a form is submitted to 'change-project-status'
+router.post('/' + version + '/contacts/add-contact-organisation', function(req, res) {
+    
+  // Make a variable to give it the value from the radio buttons on the index page  
+  const statusAnswer = req.body["organisation"];
+
+  // Check whether the variable matches a condition
+  if (statusAnswer == "School") { 
+    // Send user page with School roles
+    res.redirect('/' + version + '/contacts/school')
+  }   
+  else if (statusAnswer == "Supporting organisation") { 
+    // Send user page with Supporting org roles
+    res.redirect('/' + version + '/contacts/supporting-organsiation')
+  } 
+  else {
+    // Send user page with Governance bodies roles
+    res.redirect('/' + version + '/contacts/governance-bodies')
+  }
+})
+
+// Run this code when a form is submitted to 'change-project-status'
  router.post('/' + version + '/project-status/project-status-answer', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  

@@ -505,6 +505,42 @@
                                 </div>
                             </div>
 
+                            <!-- Current status -->
+                            <div class="govuk-accordion__section">
+                                <div class="govuk-accordion__section-header">
+                                    <h2 class="govuk-accordion__section-heading">
+                                        <span class="govuk-accordion__section-button" id="accordion-status-heading" data-cy="select-projectlist-filter-status">
+                                            Current status
+                                        </span>
+                                    </h2>
+                                </div>
+                                <div class="govuk-accordion__section-content" aria-labelledby="accordion-status-heading">
+                                    <div class="govuk-checkboxes">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-status-in-progress" name="selectedStatus" type="checkbox" value="in-progress" data-cy="select-projectlist-filter-status-in-progress"
+                                            />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-status-in-progress">
+                                                In progress
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-status-paused" name="selectedStatus" type="checkbox" value="paused" data-cy="select-projectlist-filter-status-paused"
+                                            />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-status-paused">
+                                                Paused
+                                            </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="filter-project-status-stopped" name="selectedStatus" type="checkbox" value="stopped" data-cy="select-projectlist-filter-status-stopped"
+                                            />
+                                            <label class="govuk-label govuk-checkboxes__label" for="filter-project-status-stopped">
+                                                Stopped
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Filter by assigned to -->
                             <div class="govuk-accordion__section">
                                 <div class="govuk-accordion__section-header">

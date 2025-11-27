@@ -2,6 +2,109 @@
 
 {% set NavActive = "contacts" %}
 
+{# SET DATA FROM ADD A CONTACT JOURNEY #}
+
+{# Role #}
+{% set roleVar = "" %}
+{% if (data["otherRoleAnswer"] != "") %}
+  {% set roleVar = (data["otherRoleAnswer"]) %}  
+{% else %}
+  {% set roleVar = (data["role"]) %}
+{% endif %}
+
+{# Name #}
+{# {% set nameVar = (data["contact-details-fullName"]) %}
+
+{# Email #}
+{# {% set emailVar = (data["contact-details-email"]) %} #}
+
+{# Phone #}
+{# {% set phoneVar = (data["contact-details-phoneNumber"]) %} #}
+
+{# SET UP MACRO #}
+{% macro contactCard(role="'role'", name="'name'", nameChange="no", email='#', emailChange="no", phone="#", phoneChange="no", sourceType="Last imported", source="Get information about schools", dateType="Imported on", date="15 October 2025", change="no") %} 
+
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        {{ role }}
+      </h2>
+      
+      {% if change == "yes" %}
+      <ul class="govuk-summary-card__actions">
+        <li class="govuk-summary-card__action">
+          <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> contact details</span></a>
+        </li>
+        <li class="govuk-summary-card__action">
+          <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact card</span></a>
+        </li>
+      </ul>
+      {% endif %}
+
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ name }}
+          </dd>
+         {# {% if nameChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#">{{ email }}</a>
+          </dd>
+          {# {% if emailChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> email</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Phone
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ phone }}
+          </dd>
+          {# {% if phoneChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> phone</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ sourceType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ source }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ dateType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ date }}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+{% endmacro %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -48,30 +151,17 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-l">Contacts</h2>
-    {{ govukButton({ text: "Add contact", href: "add-contact" }) }}
+    {{ govukButton({ text: "Add contact", href: "contacts/add-contact" }) }}
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
 
-    {# SCHOOL OPENER #}
+    {# SCHOOL CONTACTS #}
+    <h3 class="govuk-heading-m">School contacts</h3>
 
-    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">School</h2>
-        <p class="govuk-body">
-        Cheltenham Spa Primary School<br>
-        123 Alstone Lane<br>
-        Cheltenham<br>
-        Glocestershire<br>
-        GL51 1AA
-        </p>
-      </section>
-    </article> #}
-
-    <h3 class="govuk-heading-m">RISE School</h3>
-
+    {# SCHOOL ADDRESS #}
     {{ govukInsetText({
       classes: "govuk-!-margin-top-0",
       html: "<p class='govuk-body'>
@@ -83,1131 +173,62 @@
         </p>"
     }) }}
 
-    {# SCHOOL WHERE THIS INFO IS #}
-    {# <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          Where this information came from
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        School information taken from Get information about schools on {{ "today" | govukDate }}.
-      </div>
-    </details> #}
-
-    {# SCHOOL CONTACTS #}
-    <!-- School contacts which are pulled through automatically -->
+    {# USE MACRO #}
+    {{ contactCard(role='Head teacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
     
-    <!-- HEADTEACHER -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Headteacher
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Claudia Bourne
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#">claudia.bourne@cheltenhamprimaryschool.co.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01242 555555
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Source
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Get information about schools
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Last imported
-            </dt>
-            <dd class="govuk-summary-list__value">
-              7 November 2025
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </div>
-
-    <!-- INTERIM HEADTEACHER -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Headteacher - Interim or temporary
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Bob Jam
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#">bob.jam@cheltenhamprimaryschool.co.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              04362 436745
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Best described as
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Interim or temporary contact
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Source
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Get information about schools
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Date added
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ "today" | govukDate }}
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </div>
-
-    <!-- CHAIR OF GOVERNORS -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Chair of governors
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Julian Alsop
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#">julian.alsop@cheltenhamprimaryschool.co.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01242 123456
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Source
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Get information about schools
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Last imported
-            </dt>
-            <dd class="govuk-summary-list__value">
-              7 November 2025
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </div>
-
-    <!-- ACCOUNTING OFFICER -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Accounting officer for school
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Charles Brookman
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="mailto:{{ data['contact-phone']}}">charles.brookman@cheltenhamprimaryschool.co.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01242 321321
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Source
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Get information about schools
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Last imported
-            </dt>
-            <dd class="govuk-summary-list__value">
-              7 November 2025
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-
-    <!-- ADDITIONALLY MANUALLY ADDED SCHOOL CONTACTS -->
-    {% if (data['organisation'] == 'School') %}
-      <div class="govuk-summary-card">
-
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {% if (data['job-title'] != NULL) %}
-              {{ data['job-title']}}
-            {% elif (data['job-title'] == NULL) %}
-              {{ data['other-role-school-title']}}
-            {% endif %}
-          </h2>
-
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action"> 
-              <a class="govuk-link" href="add-contact">
-              Change<span class="govuk-visually-hidden"> main contact</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-name']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="#">{{ data['contact-email']}}</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-phone']%}
-                  {{ data['contact-phone']}}
-                {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Contact type
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-type']%}
-                  {{ data['contact-type']}}
-                {% else %}
-              <span data-id="contact-address" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Note
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-note']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Source
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Manually added
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Date added
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ "today" | govukDate }}
-              </dd>
-            </div>
-
-          </dl>
-        </div>
-      </div>
+    {# Manually added #}
+    {% if (roleVAR != "") and (nameVAR != "") %}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], nameChange="yes", email=data["contact-details-email"], emailChange="yes", phone=data["contact-details-phoneNumber"], phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="", change="yes") }}
     {% endif %}
 
     {# SUPPORTING ORGANISATION CONTACTS #}
-    <!-- Should only appear after the supporting organisation has been added in task -->
-    <!-- Supporting organisation contacts which are pulled through automatically from task -->
+    <h3 class="govuk-heading-m">Supporting organisation contacts</h3>
 
-    {% if (data['supporting-organisation-name']== "Gloucestershire Academies Trust (12874387)") %}
-      <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-        <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-          <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Supporting organisation</h2>
-          <p class="govuk-body">
-            Gloucestershire Academies Trust<br>
-            123 Cheltenham Road<br>
-            Gloucester<br>
-            Glocestershire<br>
-            GL11 2AB
-          </p>
-        </section>
-      </article>
-
-      {# SUPPORTING ORG WHERE THIS INFO IS #}
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Where this information came from
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          School information taken from Get information about schools on {{ "today" | govukDate }}.
-        </div>
-      </details>
-
-      <!-- ACCOUNTING OFFICER -->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            Accounting officer for supporting organisation
-          </h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-
-              <dd class="govuk-summary-list__value">
-                Levi Crombie
-              </dd> 
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="#">levi.crombie@gloucestershireacademiestrust.co.uk</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                01452 890098
-              </dd>
-            </div>
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Source
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Get information about schools
-              </dd>
-            </div>
-
-          </dl>
-        </div>
-      </div>
-
-      <!-- ADDITIONALLY MANUALLY ADDED SUPPORTING ORG CONTACTS -->
-      {% if (data['organisation'] == 'Supporting organisation') %}
-        <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['job-title']}}
-          </h2>
-
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <a class="govuk-link" href="add-contact">Change<span class="govuk-visually-hidden"> main contact</span></a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-name']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-
-              <dd class="govuk-summary-list__value">
-                <a href="#">{{ data['contact-email']}}</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-phone']%}
-                  {{ data['contact-phone']}}
-                {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-            
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Contact type
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-type']%}
-                  {{ data['contact-type']}}
-                {% else %}
-                  <span data-id="contact-address" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Note
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-note']}}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Source
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Manually added
-              </dd>
-            </div>
-
-          </dl>
-        </div>
-      {% endif %}
-  
-    {% endif %}
-
-    {% if (data['supporting-organisation-name']== "Cheltenham New Academy (109172)") %}
-
-      <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-        <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-          <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Supporting organisation</h2>
-          <p class="govuk-body">
-            Cheltenham New Academy<br>
-            55 Alstone Lane<br>
-            Cheltenham<br>
-            Glocestershire<br>
-            GL51 9XY
-          </p>
-        </section>
-      </article>
-    
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Where this information came from
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          Supporting organisation information taken from Get information about schools on {{ "today" | govukDate }}.
-        </div>
-      </details>
-     
-      <div class="govuk-summary-card">
-        
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            Accounting officer for supporting organisation
-          </h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Ailsa Barnes
-              </dd> 
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="#">lailsa.barnes@cheltenhamnewacademy.co.uk</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                01242 123123
-              </dd>
-            </div>
-            
-          </dl>
-        </div>
-      </div>
-
-      {% if (data['organisation'] == 'Supporting organisation') %}
-    
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">
-              {{ data['job-title']}}
-            </h2>
-            <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action">
-                <a class="govuk-link" href="add-contact">Change<span class="govuk-visually-hidden"> main contact</span></a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list">
-              
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Name
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['contact-name']}}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Email
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  <a href="#">{{ data['contact-email']}}</a>
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Phone
-                </dt>
-
-                <dd class="govuk-summary-list__value">
-                  {% if data['contact-phone']%}
-                    {{ data['contact-phone']}}
-                  {% else %}
-                    <span data-id="contact-phone" class="empty">Empty</span>
-                  {% endif %}
-                </dd>
-              </div>
-              
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Contact type
-                </dt>
-
-                <dd class="govuk-summary-list__value">
-                  {% if data['contact-type']%}
-                    {{ data['contact-type']}}
-                  {% else %}
-                    <span data-id="contact-address" class="empty">Empty</span>
-                  {% endif %}
-                </dd>
-              </div>
-
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Note
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{ data['contact-note']}}
-                </dd>
-              </div>
-            </dl>
-
-          </div>
-
-      {% endif %}
-
-    {% endif %}
-
-    {# RESPONSIBLE BODY / LOCAL AUTHORITY OPENER #}
-    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Responsible body</h2>
-        <p class="govuk-body">
-        Gloucestershire County Council<br>
-        73 Cheltenham Road<br>
-        Gloucester<br>
-        Glocestershire<br>
-        GL5 5HF
-        </p>
-      </section>
-    </article> #}
-
-    <h3 class="govuk-heading-m">Responsible body</h3>
-    
+    {# SUPPORTING ORGANISATION ADDRESS #}
     {{ govukInsetText({
       classes: "govuk-!-margin-top-0",
       html: "<p class='govuk-body'>
-        Gloucestershire County Council<br>
-        73 Cheltenham Road<br>
-        Gloucester<br>
-        Glocestershire<br>
-        GL5 5HF
+        Brighton and Hove Academies Trust<br>
+        88 Stroud Street<br>
+        Bristol<br>
+        BS1 9AA
         </p>"
     }) }}
 
-    {# RESPONSIBLE BODY / LOCAL AUTHORITY WHERE THIS INFO IS #}
-    {# <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          Where this information came from
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        Responsible body information taken from Complete conversions, transfers and changes / ADCS on {{ "today" | govukDate }}.
-      </div>
-    </details> #}
+    {# USE MACRO #}
+    {{ contactCard(role='Accounting officer for supporting organisation', name="Levi Crombie", email="Not available", phone="01452 890098") }}
+    {{ contactCard(role='Trust CEO', name="Barry Fishcakes", email="b.fishcakes@b-hove-academies-trust.edu.uk", phone="01452 890098") }}
+    {{ contactCard(role='Business development manager', name="Harry Flange", email="h.flange@b-hove-academies-trust.edu.uk", phone="Not available") }}
+    {{ contactCard(role='School improvement lead', name="Larry Goggins", email="l.goggins@b-hove-academies-trust.edu.uk", phone="01234 567891") }}
 
-    {# RESPONSIBLE BODY / LOCAL AUTHORITY CONTACTS #}
-    <!-- Local authority contacts which are pulled through automatically -->
+    {# GOVERNANCE BODIES CONTACTS #}
+    <h3 class="govuk-heading-m">Governance bodies contacts</h3>
 
-    <!-- DIRECTOR OF CHILDREN'S SERVICES -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Director of Children's Services
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              William Badgery
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#">william.badgery@gloucestershire.gov.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01452 321321
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </div>
-
-    <!-- ADDITIONALLY MANUALLY ADDED RESPONSIBLE BODY / LOCAL AUTHORITY CONTACTS -->
-    {{ data['contact'] }}
-    {% if (data['contact'] == 'Local authority') %}
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['job-title']}}
-          </h2>
-      
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action"> <a class="govuk-link" href="add-contact">
-                Change<span class="govuk-visually-hidden"> main contact</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-name']}}
-              </dd>
-            </div>
-        
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="mailto:{{ data['contact-email']}}">{{ data['contact-email']}}</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-phone']%}
-                  {{ data['contact-phone']}}
-                {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-    
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Address
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-address']%}
-                  {{ data['contact-address']}}
-                {% else %}
-                  <span data-id="contact-address" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Source
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Manually added
-              </dd>
-            </div>
-
-          </dl>
-        </div>
-      </div>
-    {% endif %}
-
-    {# FEDERATION OPENER #}
-    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Federation</h2>
-        <p class="govuk-body">
-        Gloucestershire Schools Federation
-        </p>
-      </section>
-    </article> #}
-
-    <h3 class="govuk-heading-m">Federation</h3>
-    
-    {{ govukInsetText({
+    {# GOVERNANCE BODIES ADDRESS #}
+    {# {{ govukInsetText({
       classes: "govuk-!-margin-top-0",
       html: "<p class='govuk-body'>
-        Gloucestershire Schools Federation
+        Brighton and Hove City Council<br>
+        Hove Town Hall<br>
+        Norton Road<br>
+        BN3 3BQ
         </p>"
-    }) }}
+    }) }} #}
 
-    {# FEDERATION WHERE THIS INFO IS #}
-    {# <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          Where this information came from
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        Federationl information taken from somewhere else on {{ "today" | govukDate }}.
-      </div>
-    </details> #}
-
-    {# FEDERATION CONTACTS #}
-    <!-- Federation contacts which are pulled through automatically -->
-
-    <!-- CHAIR OF FEDERATION -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Chair of federation
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Nathan Bannan
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#">nathan.bannan@gloucestershireschoolsfederation.co.uk</a>
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01242 098765
-            </dd>
-          </div>
-          
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Source
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Somewhere else
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </div>
-
-    <!-- ADDITIONALLY MANUALLY ADDED FEDERATION CONTACTS -->
-    {% if (data['contact'] == 'Chair of federation') %}
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['job-title']}}
-          </h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action"> 
-              <a class="govuk-link" href="add-contact">
-                Change<span class="govuk-visually-hidden"> main contact</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-name']}}
-              </dd>
-            </div>
-          
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="mailto:{{ data['contact-email']}}">{{ data['contact-email']}}</a>
-              </dd>
-            </div>
-        
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-phone']%}
-                  {{ data['contact-phone']}}
-                {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
+    <h3 class="govuk-heading-m">Local authority</h3>
     
-          </dl>
-        </div>
-      </div>
-    {% endif %}
+    {# USE MACRO #}
+    {{ contactCard(role='Director of childrens services', name="Heather Golden", nameChange="yes", email="heather@b-hove-cc.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="", change="yes") }}
 
-    {# DIOCESE OPENER #}
-    {# <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-summary-card__title govuk-!-margin-bottom-2">Diocese</h2>
-        <p class="govuk-body">
-        Diocese of Gloucestershire
-      </section>
-    </article> #}
+    <h3 class="govuk-heading-m">Foundation</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Foundation chair', name="Jason Ham", nameChange="yes", email="hammy@useful-foundation.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="", change="yes") }}
 
     <h3 class="govuk-heading-m">Diocese</h3>
     
-    {{ govukInsetText({
-      classes: "govuk-!-margin-top-0",
-      html: "<p class='govuk-body'>
-        Diocese of Gloucestershire
-        </p>"
-    }) }}
-
-    {# DIOCESE WHERE THIS INFO IS #}
-    {# <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          Where this information came from
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        Diocese information taken from somewhere else on {{ "today" | govukDate }}.
-      </div>
-    </details> #}
-
-    {# DIOCESE CONTACTS #}
-    <!-- Diocese contacts which are pulled through automatically -->
-
-    <!-- DIOCESE REPRESENTATIVE -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">
-          Diocese representative
-        </h2>
-      </div>
-
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Name
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Jessica Healy
-            </dd> 
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Email
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {# <a href="#">jessica.healy@gloucesterdiocese.co.uk</a> #}
-              There is no email address available in GIAS for this contact. 
-            </dd>
-          </div>
-
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Phone
-            </dt>
-            <dd class="govuk-summary-list__value">
-              01242 112233
-            </dd>
-          </div>
-          
-        </dl>
-      </div>
-    </div>
-
-    <!-- ADDITIONALLY MANUALLY ADDED DIOCESE CONTACTS -->
-    {% if (data['contact'] == 'Diocese') %}
-
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">
-            {{ data['job-title']}}
-          </h2>
-
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action"> 
-              <a class="govuk-link" href="add-contact">
-                Change<span class="govuk-visually-hidden"> main contact</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{ data['contact-name']}}
-              </dd>
-            </div>
-          
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Email
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="mailto:{{ data['contact-email']}}">{{ data['contact-email']}}</a>
-              </dd>
-            </div>
-
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Phone
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-phone']%}
-                  {{ data['contact-phone']}}
-                {% else %}
-                  <span data-id="contact-phone" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-      
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Address
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['contact-address']%}
-                  {{ data['contact-address']}}
-                {% else %}
-                  <span data-id="contact-address" class="empty">Empty</span>
-                {% endif %}
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-
-    {% endif %}
+    {# USE MACRO #}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", nameChange="yes", email="father@christchurch-brighton.co.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="", change="yes") }}
 
   </div> {# End column #}
 </div> {# End row #}

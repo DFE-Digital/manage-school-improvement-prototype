@@ -21,21 +21,21 @@
 {% endset %}
 
 {% set pausedReason = "" %}
-  {% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
-    {% set pausedReason = data['new-report-details'] %}
-  {% endif %}
+{% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+  {% set pausedReason = data['new-report-details'] %}
+{% endif %}
 
-  {% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
-    {% set pausedReason = data['appeal-details'] %}
-  {% endif %}
+{% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+  {% set pausedReason = data['appeal-details'] %}
+{% endif %}
 
-  {% if (data['project-status-paused'] == 'Considering structural or governance change') %}
-    {% set pausedReason = data['proposed-change-details'] %}
-  {% endif %}
+{% if (data['project-status-paused'] == 'Considering structural or governance change') %}
+  {% set pausedReason = data['proposed-change-details'] %}
+{% endif %}
 
-  {% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
-    {% set pausedReason = data['protection-details'] %}
-  {% endif %}
+{% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+  {% set pausedReason = data['protection-details'] %}
+{% endif %}
 
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
