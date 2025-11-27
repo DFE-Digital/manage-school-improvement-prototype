@@ -2,6 +2,107 @@
 
 {% set NavActive = "contacts" %}
 
+{# SET DATA FROM ADD A CONTACT JOURNEY #}
+
+{# Role #}
+{% set roleVar = "" %}
+{% if (data["otherRoleAnswer"] != "") %}
+  {% set roleVar = (data["otherRoleAnswer"]) %}  
+{% else %}
+  {% set roleVar = (data["role"]) %}
+{% endif %}
+
+{# Name #}
+{% set nameVar = (data["contact-details-fullName"]) %}
+
+{# Email #}
+{% set emailVar = (data["contact-details-email"]) %}
+
+{# Phone #}
+{% set phoneVar = (data["contact-details-phoneNumber"]) %}
+
+{# SET UP MACRO #}
+{% macro contactCard(role="'role'", name="'name'", email='#', phone="#", sourceType="Last imported", source="Get information about schools", dateType="Imported on", date="15 October 2025") %} 
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        html: role
+      }
+    },
+    rows: [
+      {
+        key: {
+          text: "Name"
+        },
+        value: {
+          html: name
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Email"
+        },
+        value: {
+          html: '<a href="#">' + email + '</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "email"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Phone"
+        },
+        value: {
+          text: phone
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "phone number"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: sourceType
+        },
+        value: {
+          text: source
+        }
+      },
+      {
+        key: {
+          html: dateType
+        },
+        value: {
+          text: date
+        }
+      }
+    ]
+  }) }}
+
+{% endmacro %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -55,8 +156,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
 
+    {# SCHOOL CONTACTS #}
     <h3 class="govuk-heading-m">School contacts</h3>
 
+    {# SCHOOL ADDRESS #}
     {{ govukInsetText({
       classes: "govuk-!-margin-top-0",
       html: "<p class='govuk-body'>
@@ -68,119 +171,11 @@
         </p>"
     }) }}
 
-    {# SCHOOL CONTACTS #}
-    
-    {# SET DATA FROM ADD A CONTACT JOURNEY #}
-    {% set roleVar = "" %}
-    {% if (data["otherRoleAnswer"] != "") %}
-      {% set roleVar = (data["otherRoleAnswer"] | lower) %}  
-    {% else %}
-      {% set roleVar = (data["role"] | lower) %}
-    {% endif %}
-
-    {# SET UP MACRO #}
-    {% macro contactCard(role="'role'", name="'name'", email='#', phone="'phone'", source="''", date="''") %} 
-
-      {{ govukSummaryList({
-        card: {
-          title: {
-            html: role
-          }
-        },
-        rows: [
-          {
-            key: {
-              text: "Name"
-            },
-            value: {
-              html: name
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "age"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email"
-            },
-            value: {
-              html: '<a href="#">' + email + '</a>'
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "nationality"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Phone"
-            },
-            value: {
-              text: phone
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "working situation"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Last imported from"
-            },
-            value: {
-              text: source
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "working situation"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Last imported on"
-            },
-            value: {
-              text: date
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "working situation"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-    {% endmacro %}
-
     {# USE MACRO #}
-    {{ contactCard(role='Head teacher', name="Claudia Bourne",email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555", source="Get information about schools", date="today" | govukDate) }}
-    {{ contactCard(role=roleVar, name="alex's name",email="google.com", phone="12345", source="alex's brain", date="today's date") }}
+    {{ contactCard(role='Head teacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
+    
+    {# Manually added #}
+    {{ contactCard(role=roleVar, name=nameVar, email=emailVar, phone=phoneVar, sourceType="Added manually", source="today's date", dateType="", date="") }}
 
   </div> {# End column #}
 </div> {# End row #}
