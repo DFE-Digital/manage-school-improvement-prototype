@@ -13,93 +13,83 @@
 {% endif %}
 
 {# Name #}
-{% set nameVar = (data["contact-details-fullName"]) %}
+{# {% set nameVar = (data["contact-details-fullName"]) %}
 
 {# Email #}
-{% set emailVar = (data["contact-details-email"]) %}
+{# {% set emailVar = (data["contact-details-email"]) %} #}
 
 {# Phone #}
-{% set phoneVar = (data["contact-details-phoneNumber"]) %}
+{# {% set phoneVar = (data["contact-details-phoneNumber"]) %} #}
 
 {# SET UP MACRO #}
-{% macro contactCard(role="'role'", name="'name'", email='#', phone="#", sourceType="Last imported", source="Get information about schools", dateType="Imported on", date="15 October 2025") %} 
+{% macro contactCard(role="'role'", name="'name'", nameChange="no", email='#', emailChange="no", phone="#", phoneChange="no", sourceType="Last imported", source="Get information about schools", dateType="Imported on", date="15 October 2025") %} 
 
-  {{ govukSummaryList({
-    card: {
-      title: {
-        html: role
-      }
-    },
-    rows: [
-      {
-        key: {
-          text: "Name"
-        },
-        value: {
-          html: name
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "name"
-            }
-          ]
-        }
-      },
-      {
-        key: {
-          text: "Email"
-        },
-        value: {
-          html: '<a href="#">' + email + '</a>'
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "email"
-            }
-          ]
-        }
-      },
-      {
-        key: {
-          text: "Phone"
-        },
-        value: {
-          text: phone
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "phone number"
-            }
-          ]
-        }
-      },
-      {
-        key: {
-          text: sourceType
-        },
-        value: {
-          text: source
-        }
-      },
-      {
-        key: {
-          html: dateType
-        },
-        value: {
-          text: date
-        }
-      }
-    ]
-  }) }}
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        {{ role }}
+      </h2>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ name }}
+          </dd>
+         {% if nameChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          {% endif %}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#">{{ email }}</a>
+          </dd>
+          {% if emailChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> email</span></a>
+            </dd>
+          {% endif %}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Phone
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ phone }}
+          </dd>
+          {% if phoneChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> phone</span></a>
+            </dd>
+          {% endif %}
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ sourceType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ source }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ dateType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ date }}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 
 {% endmacro %}
 
@@ -176,7 +166,7 @@
     
     {# Manually added #}
     {% if (roleVAR != "") and (nameVAR != "") %}
-      {{ contactCard(role=roleVar, name=nameVar, email=emailVar, phone=phoneVar, sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], nameChange="yes", email=data["contact-details-email"], emailChange="yes", phone=data["contact-details-phoneNumber"], phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
     {% endif %}
 
     {# SUPPORTING ORGANISATION CONTACTS #}
@@ -203,7 +193,7 @@
     <h3 class="govuk-heading-m">Governance bodies contacts</h3>
 
     {# GOVERNANCE BODIES ADDRESS #}
-    {{ govukInsetText({
+    {# {{ govukInsetText({
       classes: "govuk-!-margin-top-0",
       html: "<p class='govuk-body'>
         Brighton and Hove City Council<br>
@@ -211,22 +201,22 @@
         Norton Road<br>
         BN3 3BQ
         </p>"
-    }) }}
+    }) }} #}
 
     <h3 class="govuk-heading-m">Local authority</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Director of childrens services', name="Heather Golden", email="heather@b-hove-cc.gov.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+    {{ contactCard(role='Director of childrens services', name="Heather Golden", nameChange="yes", email="heather@b-hove-cc.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
 
     <h3 class="govuk-heading-m">Foundation</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Foundation chair', name="Jason Ham", email="hammy@useful-foundation.gov.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+    {{ contactCard(role='Foundation chair', name="Jason Ham", nameChange="yes", email="hammy@useful-foundation.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
 
     <h3 class="govuk-heading-m">Diocese</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", nameChange="yes", email="father@christchurch-brighton.co.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="") }}
 
   </div> {# End column #}
 </div> {# End row #}
