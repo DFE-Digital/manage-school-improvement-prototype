@@ -13,7 +13,7 @@
 {% endif %}
 
 {# Name #}
-{# {% set nameVar = (data["contact-details-fullName"]) %}
+{# {% set data["contact-details-fullName"] = (data["contact-details-fullName"]) %}
 
 {# Email #}
 {# {% set emailVar = (data["contact-details-email"]) %} #}
@@ -35,15 +35,16 @@
         <li class="govuk-summary-card__action">
           <a class="govuk-link" href="contacts/add-contact">Change<span class="govuk-visually-hidden"> contact details</span></a>
         </li>
-        <li class="govuk-summary-card__action">
+        {# <li class="govuk-summary-card__action">
           <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact card</span></a>
-        </li>
+        </li> #}
       </ul>
       {% endif %}
 
     </div>
     <div class="govuk-summary-card__content">
       <dl class="govuk-summary-list">
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Name
@@ -57,6 +58,7 @@
             </dd>
           {% endif %} #}
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email
@@ -71,6 +73,7 @@
             </dd>
           {% endif %} #}
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Phone
@@ -84,6 +87,7 @@
             </dd>
           {% endif %} #}
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             {{ sourceType }}
@@ -92,6 +96,7 @@
             {{ source }}
           </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             {{ dateType }}
@@ -100,6 +105,7 @@
             {{ date }}
           </dd>
         </div>
+
       </dl>
     </div>
   </div>
@@ -178,8 +184,8 @@
     {{ contactCard(role='Head teacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
     
     {# Manually added #}
-    {% if (roleVAR != "") and (nameVAR != "") %}
-      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], nameChange="yes", email=data["contact-details-email"], emailChange="yes", phone=data["contact-details-phoneNumber"], phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {% if (data["organisation"] == "School") and (data["contact-details-fullName"] != "") and (data["contact-details-email"] != "") %}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], email=data["contact-details-email"], phone=data["contact-details-phoneNumber"], sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
     {% endif %}
 
     {# SUPPORTING ORGANISATION CONTACTS #}
@@ -230,6 +236,77 @@
     
     {# USE MACRO #}
     {{ contactCard(role='Religious ethos officer', name="Father Gerry", nameChange="yes", email="father@christchurch-brighton.co.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    {# IF "OTHER" IS CHOSEN FOR ROLE WITHIN GOVERNING BODIES #}
+    {% if (data["organisation"] == "Governance bodies") and (data["otherBodyAnswer"] != "") and (data["contact-details-jobTitle"] != "") %}
+      <h3 class="govuk-heading-m">
+        {{ data["otherBodyAnswer"] }}
+      </h3>
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: data["contact-details-jobTitle"] | capitalize
+          },
+          actions: {
+            items: [
+              {
+                href: "contacts/add-contact",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              },
+              {
+                href: "#",
+                text: "Delete",
+                visuallyHiddenText: "contact card"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data["contact-details-fullName"]
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              html: data["contact-details-email"]
+            }
+          },
+          {
+            key: {
+              text: "Phone"
+            },
+            value: {
+              html: data["contact-details-phoneNumber"]
+            }
+          },
+          {
+            key: {
+              text: "Taken from"
+            },
+            value: {
+              text: "Added manually"
+            }
+          },
+          {
+            key: {
+              text: "Date added"
+            },
+            value: {
+              html: "today" | govukDate
+            }
+          }
+        ]
+      }) }}
+    {% endif %}
 
   </div> {# End column #}
 </div> {# End row #}

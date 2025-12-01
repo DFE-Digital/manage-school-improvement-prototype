@@ -15,16 +15,17 @@
   {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
-{% set otherRole %}
+{% set otherBody %}
   {% from "govuk/components/input/macro.njk" import govukInput %}
   {{ govukInput ({
-    id: "otherRoleAnswer",
-    name: "otherRoleAnswer",
+    id: "otherBodyAnswer",
+    name: "otherBodyAnswer",
     type: "text",
+    value: data['otherBodyAnswer'],
     spellcheck: false,
     classes: "govuk-!-width-one-third",
     label: {
-      text: "Name of role"
+      text: "Name of governance body"
     }
   }) }}
 {% endset %}
@@ -57,10 +58,10 @@
             <div class="govuk-radios" data-module="govuk-radios">
 
               {{ govukRadios({
-                name: "role",
+                name: "governance-body",
                 fieldset: {
                   legend: {
-                    text: "Supporting organsiation",
+                    text: "Governance bodies",
                     isPageHeading: false,
                     classes: "govuk-fieldset__legend--m"
                   }
@@ -70,21 +71,39 @@
                 },
                 items: [
                   {
-                    value: "Accounting officer",
-                    text: "Accounting officer"
+                    value: "Trust",
+                    text: "Trust",
+                    checked: true if data['governance-body'] == "Trust"
                   },
                   {
-                    value: "Head teacher",
-                    text: "Head teacher"
+                    value: "Local authority",
+                    text: "Local authority",
+                    checked: true if data['governance-body'] == "Local authority"
+                  },
+                  {
+                    value: "Diocese",
+                    text: "Diocese",
+                    checked: true if data['governance-body'] == "Diocese"
+                  },
+                  {
+                    value: "Foundation",
+                    text: "Foundation",
+                    checked: true if data['governance-body'] == "Foundation"
+                  },
+                  {
+                    value: "Federation",
+                    text: "Federation",
+                    checked: true if data['governance-body'] == "Federation"
                   },
                   {
                     divider: "or"
                   },
                   {
-                    value: otherRoleAnswer,
-                    text: "Other role",
+                    value: otherBodyAnswer,
+                    text: "Other body",
+                    checked: true if data['otherBodyAnswer'] != "",
                     conditional: {
-                      html: otherRole
+                      html: otherBody
                     }
                   }
                 ]

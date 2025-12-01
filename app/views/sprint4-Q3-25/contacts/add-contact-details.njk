@@ -62,6 +62,21 @@
                 spellcheck: false
               }) }}
 
+              {% if data["organisation"] == "Governance bodies" %}
+                {# Job title #}
+                {{ govukInput({
+                  label: {
+                  text: "Job title"
+                },
+                  id: "contact-details-jobTitle",
+                  classes: "govuk-!-width-three-quarters",
+                  name: "contact-details-jobTitle",
+                  autocomplete: "name",
+                  value: data['contact-details-jobTitle'],
+                  spellcheck: false
+                }) }}
+              {% endif %}
+
               {# Email address #}
               {# <div class="govuk-form-group">
                 <label class="govuk-label" for="email">
