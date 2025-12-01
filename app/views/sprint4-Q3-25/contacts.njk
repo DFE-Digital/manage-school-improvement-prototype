@@ -22,7 +22,7 @@
 {# {% set phoneVar = (data["contact-details-phoneNumber"]) %} #}
 
 {# SET UP MACRO #}
-{% macro contactCard(role="'role'", name="'name'", nameChange="no", email='#', emailChange="no", phone="#", phoneChange="no", sourceType="Last imported", source="Get information about schools", dateType="Imported on", date="15 October 2025", change="no") %} 
+{% macro contactCard(role="'role'", name="'name'", nameChange="no", email='#', emailChange="no", phone="#", phoneChange="no", sourceType="Taken from", source="Get information about schools", dateType="Date taken", date="15 October 2025", change="no") %} 
 
   <div class="govuk-summary-card">
     <div class="govuk-summary-card__title-wrapper">
@@ -33,7 +33,7 @@
       {% if change == "yes" %}
       <ul class="govuk-summary-card__actions">
         <li class="govuk-summary-card__action">
-          <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> contact details</span></a>
+          <a class="govuk-link" href="contacts/add-contact">Change<span class="govuk-visually-hidden"> contact details</span></a>
         </li>
         <li class="govuk-summary-card__action">
           <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact card</span></a>
@@ -178,7 +178,7 @@
     
     {# Manually added #}
     {% if (roleVAR != "") and (nameVAR != "") %}
-      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], nameChange="yes", email=data["contact-details-email"], emailChange="yes", phone=data["contact-details-phoneNumber"], phoneChange="yes", sourceType="Added manually", source='today' | govukDate, dateType="", date="", change="yes") }}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], nameChange="yes", email=data["contact-details-email"], emailChange="yes", phone=data["contact-details-phoneNumber"], phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
     {% endif %}
 
     {# SUPPORTING ORGANISATION CONTACTS #}
