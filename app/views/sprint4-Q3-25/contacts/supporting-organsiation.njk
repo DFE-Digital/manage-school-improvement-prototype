@@ -25,7 +25,7 @@
     spellcheck: false,
     classes: "govuk-!-width-one-third",
     label: {
-      text: "Name of role"
+      text: "Name of job title"
     }
   }) }}
 {% endset %}
@@ -84,7 +84,7 @@
                     divider: "or"
                   },
                   {
-                    text: "Other role",
+                    text: "Other job title",
                     checked: true if data['otherRoleAnswer'],
                     conditional: {
                       html: otherRole

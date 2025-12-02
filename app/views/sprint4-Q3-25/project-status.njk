@@ -51,7 +51,7 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  {% if (data['project-status'] == "Paused") %}
+  {# {% if (data['project-status'] == "Paused") %} #}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
@@ -69,9 +69,9 @@
         </div>
       </div>
     </div>
-  {% endif %}
+  {# {% endif %} #}
 
-  {% if (data['project-status'] == "Stopped") %}
+  {# {% if (data['project-status'] == "Stopped") %} #}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
@@ -91,7 +91,8 @@
         </div>
       </div>
     </div>
-  {% endif %}
+  {# {% endif %} #}
+  
 {% endblock %}
 
 {% block content %}
