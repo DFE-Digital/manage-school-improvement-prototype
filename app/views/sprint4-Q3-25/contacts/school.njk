@@ -21,6 +21,7 @@
     id: "otherRoleAnswer",
     name: "otherRoleAnswer",
     type: "text",
+    value: data['otherRoleAnswer'],
     spellcheck: false,
     classes: "govuk-!-width-one-third",
     label: {
@@ -71,15 +72,18 @@
                 items: [
                   {
                     value: "Headteacher (permanent)",
-                    text: "Headteacher (permanent)"
+                    text: "Headteacher (permanent)",
+                    checked: true if data['role'] == "Headteacher (permanent)"
                   },
                   {
                     value: "Headteacher (interim)",
-                    text: "Headteacher (interim)"
+                    text: "Headteacher (interim)",
+                    checked: true if data['role'] == "Headteacher (interim)"
                   },
                   {
                     value: "Chair of governors",
-                    text: "Chair of governors"
+                    text: "Chair of governors",
+                    checked: true if data['role'] == "Chair of governors"
                   },
                   {
                     divider: "or"
@@ -87,6 +91,7 @@
                   {
                     value: otherRoleAnswer,
                     text: "Other role",
+                    checked: true if data['otherRoleAnswer'] != "",
                     conditional: {
                       html: otherRole
                     }

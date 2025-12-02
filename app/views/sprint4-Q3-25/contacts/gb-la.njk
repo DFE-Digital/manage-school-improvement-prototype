@@ -21,6 +21,7 @@
     id: "otherRoleAnswer",
     name: "otherRoleAnswer",
     type: "text",
+    value: data['otherRoleAnswer'],
     spellcheck: false,
     classes: "govuk-!-width-one-third",
     label: {
@@ -71,7 +72,8 @@
                 items: [
                   {
                     value: "Director of children's services",
-                    text: "Director of children's services"
+                    text: "Director of children's services",
+                    checked: true if data['role'] == "Director of children's services"
                   },
                   {
                     divider: "or"
@@ -79,6 +81,7 @@
                   {
                     value: otherRoleAnswer,
                     text: "Other role",
+                    checked: true if data['otherRoleAnswer'] != "",
                     conditional: {
                       html: otherRole
                     }

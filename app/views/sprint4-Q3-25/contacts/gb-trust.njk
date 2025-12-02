@@ -21,6 +21,7 @@
     id: "otherRoleAnswer",
     name: "otherRoleAnswer",
     type: "text",
+    value: data['otherRoleAnswer'],
     spellcheck: false,
     classes: "govuk-!-width-one-third",
     label: {
@@ -71,11 +72,13 @@
                 items: [
                   {
                     value: "Trust CEO",
-                    text: "Trust CEO"
+                    text: "Trust CEO",
+                    checked: true if data['role'] == "Trust CEO"
                   },
                   {
-                    value: "Accounting office",
-                    text: "Accounting office"
+                    value: "Accounting officer",
+                    text: "Accounting officer",
+                    checked: true if data['role'] == "Accounting officer"
                   },
                   {
                     divider: "or"
@@ -83,6 +86,7 @@
                   {
                     value: otherRoleAnswer,
                     text: "Other role",
+                    checked: true if data['otherRoleAnswer'] != "",
                     conditional: {
                       html: otherRole
                     }
