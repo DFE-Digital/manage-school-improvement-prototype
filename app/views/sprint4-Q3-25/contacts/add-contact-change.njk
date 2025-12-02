@@ -22,7 +22,7 @@
 
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       <h1 class="govuk-heading-l">
-        Add contact
+        Change contact
       </h1>
 
       <form class="form" action='add-contact-organisation' method="post">
@@ -43,21 +43,21 @@
             <div class="govuk-radios" data-module="govuk-radios">
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contacts-school" name="organisation" type="radio" value="School">
+                <input class="govuk-radios__input" id="contacts-school" name="organisation" type="radio" value="School" {{ checked('organisation','School') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation">
                   School
                 </label>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contacts-supporting-organisation" name="organisation" type="radio" value="Supporting organisation">
+                <input class="govuk-radios__input" id="contacts-supporting-organisation" name="organisation" type="radio" value="Supporting organisation" {{ checked('organisation','Supporting organisation') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-2">
                   Supporting organisation
                 </label>
               </div>
 
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="contacts-governance-bodies" name="organisation" type="radio" value="Governance bodies">
+                <input class="govuk-radios__input" id="contacts-governance-bodies" name="organisation" type="radio" value="Governance bodies" {{ checked('organisation','Governance bodies') }}>
                 <label class="govuk-label govuk-radios__label" for="organisation-3">
                   Governance bodies
                 </label>
