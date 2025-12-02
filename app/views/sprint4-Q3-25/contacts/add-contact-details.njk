@@ -33,7 +33,9 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
                 Details of the 
-                {% if data["otherRoleAnswer"] != "" %}
+                {% if data["otherBodyAnswer"] != "" %}
+                  {{ data["otherBodyAnswer"] }}  
+                {% elif data["otherRoleAnswer"] != "" %}
                   {{ data["otherRoleAnswer"] | lower }}  
                 {% else %}
                   {{ data["role"] | lower }}
@@ -61,6 +63,21 @@
                 value: data['contact-details-fullName'],
                 spellcheck: false
               }) }}
+
+              {% if data["organisation"] == "Governance bodies" %}
+                {# Job title #}
+                {{ govukInput({
+                  label: {
+                  text: "Job title"
+                },
+                  id: "contact-details-jobTitle",
+                  classes: "govuk-!-width-three-quarters",
+                  name: "contact-details-jobTitle",
+                  autocomplete: "name",
+                  value: data['contact-details-jobTitle'],
+                  spellcheck: false
+                }) }}
+              {% endif %}
 
               {# Email address #}
               {# <div class="govuk-form-group">

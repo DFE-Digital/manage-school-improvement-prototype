@@ -61,7 +61,7 @@
                 name: "role",
                 fieldset: {
                   legend: {
-                    text: "School role",
+                    text: "Local authority role",
                     isPageHeading: false,
                     classes: "govuk-fieldset__legend--m"
                   }
@@ -71,19 +71,9 @@
                 },
                 items: [
                   {
-                    value: "Headteacher (permanent)",
-                    text: "Headteacher (permanent)",
-                    checked: true if data['role'] == "Headteacher (permanent)"
-                  },
-                  {
-                    value: "Headteacher (interim)",
-                    text: "Headteacher (interim)",
-                    checked: true if data['role'] == "Headteacher (interim)"
-                  },
-                  {
-                    value: "Chair of governors",
-                    text: "Chair of governors",
-                    checked: true if data['role'] == "Chair of governors"
+                    value: "Director of children's services",
+                    text: "Director of children's services",
+                    checked: true if data['role'] == "Director of children's services"
                   },
                   {
                     divider: "or"
