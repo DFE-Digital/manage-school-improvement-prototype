@@ -1,0 +1,198 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <span class="govuk-caption-l">{{ data['area-of-improvement-3']}}</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        {{ data['plan-objective-3']}}
+      </h1>
+
+      <form class="form" action="./review-progress" method="post">
+
+
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No termly reviews added</h2>
+              <p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>
+              <!--<a class="govuk-button govuk-!-margin-bottom-1" data-module="govuk-button">
+                Add review
+              </a>-->
+            
+            </section>
+          
+          </article>
+        
+          <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
+
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
+
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue ticket-height" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15 ">
+                    <!-- 
+                    <div class="govuk-summary-list__row no-border">
+                      
+                      <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
+                        {{ data['review-term-1']}}
+                      </dt>
+                      
+                      <dd class="govuk-summary-list__value text-align-right">
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+                      </dd>
+                    </div>
+                    -->
+                    <div class="govuk-summary-list__row no-border ">
+                      <dt class="govuk-summary-list__key govuk-!-width-one-half ">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
+                        by <span class="govuk-body">Alex James</span>
+                      </dt>
+                     
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+
+          
+
+
+          <h2 class="govuk-heading-m margin-bottom-20">
+            How is the school progressing with this objective?
+          </h2>
+
+          {% from "govuk/components/radios/macro.njk" import govukRadios %}
+         
+          {{ govukRadios({
+          idPrefix: "progress-objective-3",
+          name: "progress-objective-3",
+          items: [
+          {
+              value: "Complete",
+              checked:  data['progress-objective-3'] === "Complete",
+              text: "Complete"
+          },
+          {
+              value: "Ahead of schedule",
+              checked:  data['progress-objective-3'] === "Ahead of schedule",
+              text: "Ahead of schedule"
+          },
+          {
+              value: "On schedule",
+              checked:  data['progress-objective-3'] === "On schedule",
+              text: "On schedule"
+          },
+          {
+              value: "Behind schedule",
+              checked:  data['progress-objective-3'] === "Behind schedule",
+              text: "Behind schedule"
+          },
+          {
+              value: "Not started",
+              checked:  data['progress-objective-3'] === "Not started",
+              text: "Not started"
+          }
+          ]
+          }) }}
+
+
+
+          {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+          {{ govukTextarea({
+          name: "progress-objective-3-details",
+          id: "progress-objective-3-details",
+          rows: 5,
+          value: data["progress-objective-3-details"],
+          label: {
+          text: "Details",
+          classes: "govuk-label--m",
+          
+          isPageHeading: true
+          }
+          }) }}
+
+          {% endif %}
+
+       
+
+        
+        
+        <div class="govuk-button-group margin-top-15">
+
+       
+            {% from "govuk/components/button/macro.njk" import govukButton %}
+
+            {{ govukButton({
+                type: "submit",
+              html: "Save and return"
+            }) }}
+     
+
+      
+
+             
+        
+         </div>
+
+      </form>
+
+      
+    
+   
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

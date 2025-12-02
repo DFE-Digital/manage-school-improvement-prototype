@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  <!--
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  -->
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+   
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          School added
+        </h3>
+      </div>
+    </div>
+
+
+
+    <h1 class="govuk-heading-xl">
+      Schools identified for targeted intervention
+    </h1>
+    <p>This is a list of all schools identified for targeted intervention.</p>
+    <p>It may include some schools that have been reinspected since being identified and are no longer eligible for targeted intervention.</p>
+    <p>You can add more schools to this list as you need to.</p>
+  <br>
+  <a href="start-new-project/search-for-a-school" role="button" draggable="false" class="govuk-button <!--govuk-button--start-->" data-module="govuk-button">Add a school</a>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-third">
+    {% block filters %}
+        {% include "/layouts/project-list-filters.html" %}
+    {% endblock %}
+    </div>
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-m">
+        8 schools found
+      </h1>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Schools 8 </caption>
+      
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+            <td class="govuk-table__cell">
+               <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+                  <strong>
+            <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="task-list.html">Cheltenham Spa Primary School</a>
+                  </strong>
+               </div>
+                <div class="govuk-!-margin-top-1">
+                    <span id="urn-0"><strong>URN:</strong> 100006</span>
+                </div>
+                <div id="localauthority-26" class="govuk-!-margin-top-1">
+                    <strong>Local authority:</strong>
+                        <span >Gloucestershire</span>
+                </div>
+               <div id="region-26" class="govuk-!-margin-top-1">
+                   <strong>Region:</strong>
+                       <span >South West</span>
+               </div>
+            </td>
+        </tr> 
+
+
+       
+        
+          <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+            <td class="govuk-table__cell">
+               <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+                  <strong>
+            <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="task-list-tewkesbury.html">Tewkesbury Secondary School</a>
+                  </strong>
+               </div>
+                <div class="govuk-!-margin-top-1">
+                    <span id="urn-0"><strong>URN:</strong> 102307</span>
+                </div>
+                <div id="localauthority-26" class="govuk-!-margin-top-1">
+                    <strong>Local authority:</strong>
+                        <span>Gloucestershire</span>
+                </div>
+               <div id="region-26" class="govuk-!-margin-top-1">
+                   <strong>Region:</strong>
+                       <span>South West</span>
+               </div>
+            </td>
+        </tr>
+        
+        
+        <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+          <td class="govuk-table__cell">
+             <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+                <strong>
+          <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="task-list-cirencester.html">Cirencester Academy</a>
+                </strong>
+             </div>
+              <div class="govuk-!-margin-top-1">
+                  <span id="urn-0"><strong>URN:</strong> 103649</span>
+              </div>
+              <div id="localauthority-26" class="govuk-!-margin-top-1">
+                  <strong>Local authority:</strong>
+                      <span>Gloucestershire</span>
+              </div>
+             <div id="region-26" class="govuk-!-margin-top-1">
+                 <strong>Region:</strong>
+                     <span>South West</span>
+             </div>
+          </td>
+      </tr>
+
+
+
+
+         <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <td class="govuk-table__cell">
+           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+              <strong>
+        <a id="school-name-4" class="govuk-link" data-cy="trust-name-4" href="task-list-unlocked.html">Nicolson Institute</a>
+              </strong>
+           </div>
+            <div class="govuk-!-margin-top-1">
+                <span id="urn-4"><strong>URN:</strong> 136448</span>
+            </div>
+            <div id="localauthority-22" class="govuk-!-margin-top-1">
+                <strong>Local authority:</strong>
+                    <span >Gloucestershire</span>
+            </div>
+           <div id="region-22" class="govuk-!-margin-top-1">
+               <strong>Region:</strong>
+                   <span >South West</span>
+           </div>
+        </td>
+    </tr>      
+    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <td class="govuk-table__cell">
+           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+              <strong>
+        <a id="school-name-0" class="govuk-link" data-cy="trust-name-0" href="">Sacred Heart Roman Catholic Junior School Manchester</a>
+              </strong>
+           </div>
+            <div class="govuk-!-margin-top-1">
+                <span id="urn-0"><strong>URN:</strong> 105517</span>
+            </div>
+            <div id="localauthority-26" class="govuk-!-margin-top-1">
+                <strong>Local authority:</strong>
+                    <span >Manchester</span>
+            </div>
+           <div id="region-26" class="govuk-!-margin-top-1">
+               <strong>Region:</strong>
+                   <span >North West</span>
+           </div>
+        </td>
+    </tr>
+    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <td class="govuk-table__cell">
+           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+              <strong>
+        <a id="school-name-1" class="govuk-link" data-cy="trust-name-1" href="">Kendrick School</a>
+              </strong>
+           </div>
+            <div class="govuk-!-margin-top-1">
+                <span id="urn-1"><strong>URN:</strong> 110042</span>
+            </div>
+            <div id="localauthority-25" class="govuk-!-margin-top-1">
+                <strong>Local authority:</strong>
+                    <span >Reading</span>
+            </div>
+           <div id="region-25" class="govuk-!-margin-top-1">
+               <strong>Region:</strong>
+                   <span >South East</span>
+           </div>
+        </td>
+    </tr>
+    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <td class="govuk-table__cell">
+           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+              <strong>
+        <a id="school-name-2" class="govuk-link" data-cy="trust-name-2" href="">Chestnut Lane School</a>
+              </strong>
+           </div>
+            <div class="govuk-!-margin-top-1">
+                <span id="urn-2"><strong>URN:</strong> 110294</span>
+            </div>
+            <div id="localauthority-24" class="govuk-!-margin-top-1">
+                <strong>Local authority:</strong>
+                    <span >Devon</span>
+            </div>
+           <div id="region-24" class="govuk-!-margin-top-1">
+               <strong>Region:</strong>
+                   <span >South West</span>
+           </div>
+        </td>
+    </tr>
+    <tr class="govuk-table__row" data-cy="select-projectlist-filter-row">
+        <td class="govuk-table__cell">
+           <div class="govuk-!-margin-top-1 govuk-!-margin-bottom-2">
+              <strong>
+        <a id="school-name-3" class="govuk-link" data-cy="trust-name-3" href="">Locking Stumps Community Primary School</a>
+              </strong>
+           </div>
+            <div class="govuk-!-margin-top-1">
+                <span id="urn-3"><strong>URN:</strong> 111204</span>
+            </div>
+            <div id="localauthority-23" class="govuk-!-margin-top-1">
+                <strong>Local authority:</strong>
+                    <span >Warrington</span>
+            </div>
+           <div id="region-23" class="govuk-!-margin-top-1">
+               <strong>Region:</strong>
+                   <span >North West</span>
+           </div>
+        </td>
+    </tr>
+   
+    </tbody>
+    </table>
+
+    </div>
+
+    
+
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

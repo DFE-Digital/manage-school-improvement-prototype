@@ -9,6 +9,11 @@ const router = govukPrototypeKit.requests.setupRouter()
 // Add your routes here
 
 //********************
+//* SPRINT 5 - Q3 - 25
+//********************
+require('./routes/sprint5-Q3-25/routes.js')(router);
+
+//********************
 //* SPRINT 4 - Q3 - 25
 //********************
 require('./routes/sprint4-Q3-25/routes.js')(router);

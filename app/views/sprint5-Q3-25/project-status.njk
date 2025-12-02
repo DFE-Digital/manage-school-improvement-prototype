@@ -1,0 +1,309 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "project-status" %}
+
+{% set inProgress %}
+  <strong class="govuk-tag govuk-tag--green">
+    In progress
+  </strong>
+{% endset %}
+
+{% set paused %}
+  <strong class="govuk-tag govuk-tag--yellow">
+    Paused
+  </strong>
+{% endset %}
+
+{% set stopped %}
+  <strong class="govuk-tag govuk-tag--red">
+    Stopped
+  </strong>
+{% endset %}
+
+{% set pausedReason = "" %}
+{% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+  {% set pausedReason = data['new-report-details'] %}
+{% endif %}
+
+{% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+  {% set pausedReason = data['appeal-details'] %}
+{% endif %}
+
+{% if (data['project-status-paused'] == 'Considering structural or governance change') %}
+  {% set pausedReason = data['proposed-change-details'] %}
+{% endif %}
+
+{% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+  {% set pausedReason = data['protection-details'] %}
+{% endif %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  {# {% if (data['project-status'] == "Paused") %} #}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              Intervention paused.
+            </p>
+            <p>Targeted intervention at this school is paused while Ofsted write a new inspection report.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {# {% endif %} #}
+
+  {# {% if (data['project-status'] == "Stopped") %} #}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              Intervention stopped.
+            </p>
+            <p class="govuk-body">Targeted intervention at this school has stopped.</p>
+            <p class="govuk-body">The school to will convert, transfer or undergo another type of governance change.</p>
+            <p class="govuk-body">You cannot make changes to this project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {# {% endif %} #}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "/layouts/summary-section.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include "/layouts/sub-nav-tabs-all.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Project status</h2>
+      
+      <h3 class="govuk-heading-m">Current status</h3>
+
+      {{ govukButton({ 
+        text: "Change project status", 
+        href: "project-status/change-project-status" }) 
+      }}
+
+      {% if (data['project-status'] != "Paused") and (data['project-status'] != "Stopped") %}
+        <p>Change the status of a project if targeted intervention work pauses or stops.</p>
+      {% endif %}
+
+      {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Publication of improved Ofsted judgement") or (data['project-status-stopped'] == "Approval of structural or governance change") %}
+        
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: stopped
+              }
+            },
+            {
+              key: {
+                text: "Reason"
+              },
+              value: {
+                html: data['project-status-stopped']
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: data['improved-details']
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-stopped-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Additional details"
+              },
+              value: {
+                html: data['stopped-notes']
+              }
+            }
+          ]
+        }) }}
+
+      {% elif (data['project-status'] == "Paused") %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: paused
+              }
+            },
+            {
+              key: {
+                text: "Reason"
+              },
+              value: {
+                html: data['project-status-paused']
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: pausedReason
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-paused-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Additional details"
+              },
+              value: {
+                html: data['paused-notes']
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: inProgress
+              }
+            }
+          ]
+        }) }}
+
+      {% endif %}
+
+      <hr class="govuk-section-break govuk-section-break--m">
+
+
+      <h3 class="govuk-heading-m">Status history</h3>
+
+      <div class="moj-timeline">
+
+        {# Paused #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Paused
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">7 September 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Awaiting new Ofsted judgement</p>
+            <p>Details about the school waiting for their new judgement.</p>
+            <p>This decision was made on 5th September 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# In progress #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--green">
+              In progress
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">2nd June 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">In progress</p>
+          </div>
+        </div>
+
+        {# Stopped #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--red">
+              Stopped
+            </strong>
+            <p class="moj-timeline__byline">by Iain MacDonald</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Approval of structural or governance change</p>
+            <p>Details about the structural change the school is undergoing.</p>
+            <p>This decision was made on 22nd March 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

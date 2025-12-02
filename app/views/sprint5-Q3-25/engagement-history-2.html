@@ -1,0 +1,220 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back to task list",
+    href: "task-list-engagement"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-xl">
+        Engagement history
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>It is important to monitor and record the level of engagement from the school.</p>
+      <p>You can record when changes are observed, and view the past levels of engagement here.</p>
+
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Update engagement level", href: "add-engagement-note-2" }) }}
+      </div>
+
+
+      {% if (data['engagement-level'] != NULL) %} 
+
+      <div class="moj-timeline">
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--green" id="">{{ data['engagement-level']}}</strong>
+          </div>
+      
+         
+      
+          <div class="moj-timeline__description">
+            <p>{{ data['engagement-note']}}</p>
+          </div>
+
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019</time>
+          </p>
+<br>
+          <p>
+            <a href="edit-engagement-note">Edit note</a>
+          </p>
+      
+        </div>
+      
+        <!--
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Application review in progress</h2>
+      
+            <p class="moj-timeline__byline">by Caseworker 1</p>
+      
+          </div>
+      
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-07T12:32:00.000Z">7 June 2019 at 12:32pm</time>
+          </p>
+      
+          <div class="moj-timeline__description">Your application is being reviewed by one of our case workers.</div>
+      
+        </div>
+      
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Application received</h2>
+      
+            <p class="moj-timeline__byline">by Caseworker 1</p>
+      
+          </div>
+      
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-06T09:12:00.000Z">6 June 2019 at 9:12am</time>
+          </p>
+      
+          <div class="moj-timeline__description">Your application has been received – reference MOJ-1234-5678</div>
+      
+        </div>
+      
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Application submitted</h2>
+      
+            <p class="moj-timeline__byline">by Joe Bloggs</p>
+      
+          </div>
+      
+          <p class="moj-timeline__date">
+            <time datetime="2019-05-28T10:45:00.000Z">28 May 2019 at 10:45am</time>
+          </p>
+      
+          <div class="moj-timeline__description">
+            <details class="govuk-details govuk-!-margin-bottom-0">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Application details
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                Ut quam nunc, vulputate ac metus pharetra, posuere maximus velit. <a class="govuk-link" href="#">Etiam nec interdum velit.</a> Suspendisse molestie lectus in eros ornare
+              </div>
+            </details>
+          </div>
+      
+        </div>
+      
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Documents uploaded</h2>
+      
+            <p class="moj-timeline__byline">by Joe Bloggs</p>
+      
+          </div>
+      
+          <p class="moj-timeline__date">
+            <time datetime="2019-05-28T10:15:00.000Z">28 May 2019 at 10:15am</time>
+          </p>
+      
+          <div class="moj-timeline__description">
+            <ul class="moj-timeline__documents">
+              <li class="moj-timeline__document-item">
+                <a class="govuk-link" href="#">
+                  <svg class="moj-timeline__document-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 20" width="20" height="16">
+                    <path d="M9 7V1.5L14.5 7H9zM2 0C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6l-6-6H2z" />
+                  </svg>
+                  Document 1
+                </a>
+              </li>
+              <li class="moj-timeline__document-item">
+                <a class="govuk-link" href="#">
+                  <svg class="moj-timeline__document-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 20" width="20" height="16">
+                    <path d="M9 7V1.5L14.5 7H9zM2 0C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6l-6-6H2z" />
+                  </svg>
+                  Document 2
+                </a>
+              </li>
+            </ul>
+          </div>
+      
+        </div>
+      
+        <div class="moj-timeline__item">
+      
+          <div class="moj-timeline__header">
+            <h2 class="moj-timeline__title">Application started</h2>
+      
+            <p class="moj-timeline__byline">by Joe Bloggs</p>
+      
+          </div>
+      
+          <p class="moj-timeline__date">
+            <time datetime="2019-05-21T13:15:00.000Z">21 May 2019 at 1:15pm</time>
+          </p>
+      
+          <div class="moj-timeline__description">
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a class="govuk-link" href="#">Item 1</a></li>
+              <li><a class="govuk-link" href="#">Item 2</a></li>
+            </ul>
+          </div>
+      
+        </div>
+        -->
+
+      </div>
+      {% endif %}
+     
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

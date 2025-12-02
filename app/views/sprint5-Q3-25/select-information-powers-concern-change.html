@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Information powers</span>
+      <h1 class="govuk-heading-l">
+        Select the relevant concern
+      </h1>
+
+      <form class="form" action="./engagement-concerns" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+        
+        
+          {{ govukRadios({
+            idPrefix: "ip-concern",
+            name: "ip-concern",
+            items: [
+            {
+                value: "Concern-1",
+                hint: {
+                    text: "Recorded on 1 March 2025."
+                },
+                checked: data['ip-concern'] === "Concern-1",
+                text: data['engagement-concern-summary']
+            },
+            {
+                value: "Concern-2",
+                hint: {
+                  text: "Recorded on 12 November 2025."
+                },
+                checked:  data['ip-concern'] === "Concern-2",
+                text: data['engagement-concern-summary-2']
+            }
+            ]
+          }) }}
+          
+
+
+          
+
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and return
+          </button>
+
+          
+          <a class="govuk-link" href="engagement-concerns">Cancel</a>
+          
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
