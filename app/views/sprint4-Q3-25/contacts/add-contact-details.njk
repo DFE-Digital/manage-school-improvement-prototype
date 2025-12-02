@@ -33,7 +33,9 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h2 class="govuk-fieldset__heading">
                 Details of the 
-                {% if data["otherRoleAnswer"] != "" %}
+                {% if data["otherBodyAnswer"] != "" %}
+                  {{ data["otherBodyAnswer"] }}  
+                {% elif data["otherRoleAnswer"] != "" %}
                   {{ data["otherRoleAnswer"] | lower }}  
                 {% else %}
                   {{ data["role"] | lower }}
