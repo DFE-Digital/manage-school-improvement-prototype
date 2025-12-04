@@ -23,80 +23,26 @@
 {% set pausedReason = "" %}
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
   {% set pausedReason = data['new-report-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention paused
-    </h3>
-    <p class="govuk-body">
-      Targeted intervention at this school is paused while Ofsted write a new inspection report.
-    </p>
-  {% endset %}
 {% endif %}
 
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
   {% set pausedReason = data['appeal-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention paused
-    </h3>
-    <p class="govuk-body">
-      Targeted intervention at this school is paused while the latest Ofsted judgement is appealled.
-    </p>
-  {% endset %}
 {% endif %}
 
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Considering structural or governance change') %}
   {% set pausedReason = data['proposed-change-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention paused
-    </h3>
-    <p class="govuk-body">
-      Targeted intervention at this school is paused while a decision is made about a conversion, transfer or governance change.
-    </p>
-  {% endset %}
 {% endif %}
 
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
   {% set pausedReason = data['protection-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention paused
-    </h3>
-    <p class="govuk-body">
-      Targeted intervention at this school is paused to protect the health and wellbeing of a member of school staff.
-    </p>
-  {% endset %}
 {% endif %}
 
 {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Publication of improved Ofsted judgement') %}
   {% set pausedReason = data['protection-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention stopped
-    </h3>
-    <p class="govuk-body">
-      You cannot make changes to this project.
-    </p>
-    <p class="govuk-body">
-      Intervention stopped on <strong>{{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}</strong> because the school got an improved Ofsted inspection.
-    </p>
-  {% endset %}
 {% endif %}
 
 {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Approval of structural or governance change') %}
   {% set pausedReason = data['protection-details'] %}
-  {% set statusNotificationBannerContent %}
-    <h3 class="govuk-notification-banner__heading">
-      Intervention stopped
-    </h3>
-    <p class="govuk-body">
-      You cannot make changes to this project.
-    </p>
-    <p class="govuk-body">
-      Intervention stopped on <strong>{{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}</strong>. The school will convert, transfer or undergo another type of governance change.      
-    </p>
-  {% endset %}
 {% endif %}
 
 {% block pageTitle %}
@@ -115,12 +61,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if statusNotificationBannerContent %}
-        {{ govukNotificationBanner({
-          html: statusNotificationBannerContent,
-          type: "notification"
-        }) }}
-      {% endif %}
+      {% include "sprint5-Q3-25/includes/status-notification-banner.njk" %}
     </div>
   </div>
   
