@@ -25,6 +25,19 @@ module.exports = function (router) {
 //   } 
 // })
 
+// GET URLs - useful for relative templates
+router.use('/', (req, res, next) => {
+  res.locals.currentURL = req.originalUrl;
+  res.locals.prevURL = req.get('Referrer') ?? "";
+  res.locals.uriFragments = res.locals.prevURL.split('/');
+  res.locals.uriLastPart = res.locals.uriFragments.slice(-1)[0];
+  
+  req.folder = res.locals.uriFragments[1] ?? "";
+  req.subfolder = res.locals.uriFragments[2] ?? "";
+
+  next();
+})
+
 // Run this code when a form is submitted to 'change-project-status'
 router.post('/' + version + '/contacts/add-contact-organisation', function(req, res) {
     

@@ -1,3 +1,4 @@
+{# Banner for all pages #}
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -9,6 +10,7 @@
   {% endset %}
 {% endif %}
 
+{# Banner for all pages #}
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -20,6 +22,7 @@
   {% endset %}
 {% endif %}
 
+{# Banner for all pages #}
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Considering structural or governance change') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -31,6 +34,7 @@
   {% endset %}
 {% endif %}
 
+{# Banner for all pages #}
 {% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -42,6 +46,7 @@
   {% endset %}
 {% endif %}
 
+{# Banner for all pages #}
 {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Publication of improved Ofsted judgement') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -56,6 +61,7 @@
   {% endset %}
 {% endif %}
 
+{# Banner for all pages #}
 {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Approval of structural or governance change') %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
@@ -70,6 +76,130 @@
   {% endset %}
 {% endif %}
 
+{# Banner for conflicts-of-interest page #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "conflicts-of-interest") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for record-matching-decision pages #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "record-matching-decision") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['school-matched'] == NULL) and ((data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for share-improvement-plan-template pages #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "share-improvement-plan-template") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['indicative-funding-band'] == NULL) and (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['indicative-funding-band'] != NULL) and (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Actually show the content in the banner #}
 {% if statusNotificationBannerContent %}
     {{ govukNotificationBanner({
         html: statusNotificationBannerContent,
