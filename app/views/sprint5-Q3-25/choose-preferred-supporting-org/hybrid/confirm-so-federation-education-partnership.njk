@@ -54,7 +54,7 @@
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Local authority
+                  Organisation name
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{ data['so-name'] }}
@@ -62,10 +62,10 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  LA name code
+                  Identifying number
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  301
+                  {{ data['so-urn'] }}
                 </dd>
               </div>
               {# <div class="govuk-summary-list__row">
@@ -79,56 +79,18 @@
                   GL51 9XY
                 </dd>
               </div> #}
-
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Source
+                  Date confirmed
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  Get information about schools
+                  {{ data | isoDateFromDateInput("so-contact-added-date") | govukDate }}
                 </dd>
               </div>
-
             </dl>
           </div>
           
         </div>
-
-        {{ govukDateInput({
-          id: "so-contact-added-date",
-          namePrefix: "so-contact-added-date",
-          allowEmpty: false,
-          fieldset: {
-            legend: {
-              text: "Enter date supporting organisation confirmed",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: "For example, 1 7 2024."
-          },
-          items: [
-            {
-              name: "day",
-              value: data["so-contact-added-date-day"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },
-            {
-              name: "month",
-              value: data["so-contact-added-date-month"],
-              allowEmpty: false,
-              classes: "govuk-input--width-2"
-            },                
-            {
-              name: "year",
-              value: data["so-contact-added-date-year"],
-              allowEmpty: false,
-              classes: "govuk-input--width-4"
-            }
-          ]
-        }) }}
 
         <div class="govuk-button-group">
           {{ govukButton({

@@ -52,14 +52,14 @@
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  {% if (data['supporting-organisation-name'] == "Cheltenham Secondary School (100329)") or (data['supporting-organisation-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+                  {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
                     School
                   {% else %}
                     Academy
                   {% endif %}
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{ data['supporting-organisation-name'] }}
+                  {{ data['so-name'] }}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -102,7 +102,7 @@
         <form class="form" action="../../task-list-task-updated" method="post">
 
         
-       {% if (data['supporting-organisation-name'] == "Cheltenham Secondary School (100329)") or (data['supporting-organisation-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+       {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
           
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
