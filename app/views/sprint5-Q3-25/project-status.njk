@@ -21,19 +21,27 @@
 {% endset %}
 
 {% set pausedReason = "" %}
-{% if (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
   {% set pausedReason = data['new-report-details'] %}
 {% endif %}
 
-{% if (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
   {% set pausedReason = data['appeal-details'] %}
 {% endif %}
 
-{% if (data['project-status-paused'] == 'Considering structural or governance change') %}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Considering structural or governance change') %}
   {% set pausedReason = data['proposed-change-details'] %}
 {% endif %}
 
-{% if (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+  {% set pausedReason = data['protection-details'] %}
+{% endif %}
+
+{% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Publication of improved Ofsted judgement') %}
+  {% set pausedReason = data['protection-details'] %}
+{% endif %}
+
+{% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Approval of structural or governance change') %}
   {% set pausedReason = data['protection-details'] %}
 {% endif %}
 
@@ -51,48 +59,11 @@
     href: "javascript:window.history.back()"
   }) }}
 
-  {# {% if (data['project-status'] == "Paused") %} #}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__header">
-            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-              Important
-            </h2>
-          </div>
-          <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-              Intervention paused.
-            </p>
-            <p>Targeted intervention at this school is paused while Ofsted write a new inspection report.</p>
-          </div>
-        </div>
-      </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint5-Q3-25/includes/status-notification-banner.njk" %}
     </div>
-  {# {% endif %} #}
-
-  {# {% if (data['project-status'] == "Stopped") %} #}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <div class="govuk-notification-banner govuk-!-margin-bottom-3" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__header">
-            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-              Important
-            </h2>
-          </div>
-          <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-              Intervention stopped.
-            </p>
-            <p class="govuk-body">Targeted intervention at this school has stopped.</p>
-            <p class="govuk-body">The school to will convert, transfer or undergo another type of governance change.</p>
-            <p class="govuk-body">You cannot make changes to this project.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  {# {% endif %} #}
-  
+  </div>
 {% endblock %}
 
 {% block content %}
