@@ -38,7 +38,7 @@ router.use('/', (req, res, next) => {
   next();
 })
 
-// Run this code when a form is submitted to 'change-project-status'
+// Run this code when a form is submitted to 'XX'
 router.post('/' + version + '/contacts/add-contact-organisation', function(req, res) {
     
   // Make a variable to give it the value from the radio buttons on the index page  
@@ -237,6 +237,10 @@ router.post('/' + version + '/choose-preferred-supporting-org/hybrid/so-answer',
   else if (supportingOrganisationAnswer == "local-authority") { 
     // Send user to next page 
     res.redirect('/' + version + '/choose-preferred-supporting-org/hybrid/choose-supporting-organisation-local-authority')
+  }
+  else if (supportingOrganisationAnswer == "federation-education-partnership") { 
+    // Send user to next page 
+    res.redirect('/' + version + '/choose-preferred-supporting-org/hybrid/choose-supporting-organisation-federation-education-partnership')
   }
   else { 
     // Send user to next page 

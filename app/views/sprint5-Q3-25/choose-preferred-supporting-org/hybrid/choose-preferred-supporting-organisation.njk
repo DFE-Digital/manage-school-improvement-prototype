@@ -31,7 +31,7 @@
       FOR A TRUST 
       #}
       
-      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['supporting-organisation-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
+      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['so-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -48,7 +48,7 @@
                 Trust
               </dt>
               <dd class="govuk-summary-list__value">
-               {{ data['supporting-organisation-name'] }}
+               {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -82,7 +82,7 @@
       FOR A SCHOOL 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -99,7 +99,7 @@
                 School
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['supporting-organisation-name'] }}
+                {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -133,7 +133,7 @@
       FOR A LOCAL AUTHORITY 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -150,7 +150,7 @@
                 Local authority
               </dt>
               <dd class="govuk-summary-list__value">
-                {{ data['supporting-organisation-name'] }}
+                {{ data['so-name'] }}
               </dd> 
             </div>
             <div class="govuk-summary-list__row">
@@ -184,7 +184,7 @@
       FOR A LOCAL AUTHORITY TRADED SERVICE 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
       <div class="govuk-summary-card">
 
@@ -280,6 +280,11 @@
             value: "local-authority-traded-service",
             text: "Local authority traded service",
             checked: data['so-type'] === "local-authority-traded-service"
+          },
+          {
+            value: "federation-education-partnership",
+            text: "Federation or education partnership",
+            checked: data['so-type'] === "federation-education-partnership"
           }
           ]
         }) }}
