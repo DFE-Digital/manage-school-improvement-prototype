@@ -85,16 +85,16 @@
 
       <h2 class="govuk-heading-l">Project status</h2>
       
-      <h3 class="govuk-heading-m">Current status</h3>
+      {# <h3 class="govuk-heading-m">Current status</h3> #}
+
+      {% if (data['project-status'] != "Paused") and (data['project-status'] != "Stopped") %}
+        <p>Change the status of a project if targeted intervention work pauses or stops.</p>
+      {% endif %}
 
       {{ govukButton({ 
         text: "Change project status", 
         href: "project-status/change-project-status" }) 
       }}
-
-      {% if (data['project-status'] != "Paused") and (data['project-status'] != "Stopped") %}
-        <p>Change the status of a project if targeted intervention work pauses or stops.</p>
-      {% endif %}
 
       {% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == "Publication of improved Ofsted judgement") or (data['project-status-stopped'] == "Approval of structural or governance change") %}
         
