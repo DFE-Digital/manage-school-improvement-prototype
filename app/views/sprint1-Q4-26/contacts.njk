@@ -238,17 +238,25 @@
     <h3 class="govuk-heading-m contacts-customBody">Local authority</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Director of childrens services', name="Heather Golden", nameChange="yes", email="heather@b-hove-cc.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {{ contactCard(role='Director of childrens services', name="Heather Golden", email="heather@b-hove-cc.gov.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
 
     <h3 class="govuk-heading-m contacts-customBody">Foundation</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Foundation chair', name="Jason Ham", nameChange="yes", email="hammy@useful-foundation.gov.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {{ contactCard(role='Foundation chair', name="Jason Ham", email="hammy@useful-foundation.gov.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
 
     <h3 class="govuk-heading-m contacts-customBody">Diocese</h3>
     
     {# USE MACRO #}
-    {{ contactCard(role='Religious ethos officer', name="Father Gerry", nameChange="yes", email="father@christchurch-brighton.co.uk", emailChange="yes", phone="01234 567891", phoneChange="yes", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    <h3 class="govuk-heading-m contacts-customBody">Contacts without an organisation</h3>
+    <p class="govuk-body">Change these contacts' details to add the organisation they work for.</p>
+    <p class="govuk-body">They will then be grouped on this page according to their organisation type.</p>
+    
+    {# USE CONTACTS WITHOUT AN ORGANISATION  #}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {{ contactCard(role='King of Spain', name="Sir William Large-Governor", email="billy@bossland.com", phone="Not available", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
 
     {# IF "OTHER" IS CHOSEN FOR ROLE WITHIN GOVERNING BODIES #}
     {% if (data["organisation"] == "Governance bodies") and (data["otherBodyAnswer"] != "") and (data["contact-details-jobTitle"] != "") %}
