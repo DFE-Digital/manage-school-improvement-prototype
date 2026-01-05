@@ -1,0 +1,249 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint5-Q3-25/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Share indicative funding band and the improvement plan template
+      </h1>
+
+   </div>
+  </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>Use <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%203%20-%20Diagnose%20&%20Plan/RISE-Assessment-Tool-3---deciding-levels-of-funding.aspx?CID=71e0bb56-c84a-4ee7-af80-5bf314936f37" target="_blank">Assessment Tool 3: Deciding Levels of Funding (opens in new tab)</a> to get an indicative funding band for this school.</p>
+
+      <p class="padding-bottom-15">Then share the funding band and the improvement plan template with them.</p>
+
+      <details class="govuk-details margin-top-minus-15">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How to use the assessment tool
+          </span>
+        </summary>
+        
+        <div class="govuk-details__text">
+          <p>You only need to complete stage 1 of the assessment tool to work out the indicative funding.</p>
+
+          <p>This is only an indicative funding band. The funding band may change later on.</p>
+
+          <p>You can <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Diagnose-and-Plan-–-Assessment-tool-3,-deciding-levels-of-funding-and-ensuring-collective-agreement.aspx?csf=1&web=1&e=sr2IdS&CID=15b64e2c-6b4b-4be1-bf24-8d1c9250ddcc" target="_blank">read guidance on how to complete the assessment tool on SharePoint (opens in new tab)</a>.</p>
+        </div>
+      </details>
+
+      {% if (data['project-status'] == "Stopped") %}
+
+        {# Check answer 1 #}
+        {% if (data['send-template-to-so'] == 'done') %}
+            {% set answer1='Complete' %}
+          {% else %}
+            {% set answer1='Incomplete' %}
+        {% endif %}
+        
+        {# Check answer 2 #}
+        {% if (data['indicative-funding-band']) %}
+            {% set answer2=data['indicative-funding-band'] %}
+          {% else %}
+            {% set answer2='Incomplete' %}
+        {% endif %}
+
+        {# Check answer 3 #}
+        {% if (data['send-template-to-rb'] == 'done') %}
+            {% set answer3='Complete' %}
+          {% else %}
+            {% set answer3='Incomplete' %}
+        {% endif %}
+
+        {# Check answer 4 #}
+        {% if (data['templates-sent-date-day']) and (data['templates-sent-date-month']) and (data['templates-sent-date-year']) %}
+            {% set answer4 = data | isoDateFromDateInput("templates-sent-date") | govukDate %}
+          {% else %}
+            {% set answer4='Incomplete' %}
+        {% endif %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Calculate the indicative funding band"
+              },
+              value: {
+                html: answer1
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Choose indicative funding band"
+              },
+              value: {
+                html: answer2
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Send the improvement and expenditure plan template, with the indicative funding band selected, to the supporting organisation and the school's responsible body"
+              },
+              value: {
+                html: answer3
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Enter date templates and indicative funding band sent"
+              },
+              value: {
+                html: answer4
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        <form class="form" action="../task-list-task-updated" method="post">
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item padding-bottom-15">
+                  <input class="govuk-checkboxes__input" id="send-template-to-so" name="send-template-to-so" type="checkbox" value="done" {{checked("send-template-to-so", "done")}}>
+                  <label class="govuk-label govuk-checkboxes__label" for="send-template-to-so">
+                    Calculate the indicative funding band
+                  </label>
+                  <div id="add-attachments-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                    Use stage 1 of <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%203%20-%20Diagnose%20%26%20Plan/RISE-Assessment-Tool-3---deciding-levels-of-funding.aspx?CID=71e0bb56-c84a-4ee7-af80-5bf314936f37" target="_blank">Assessment Tool 3: Deciding Levels of Funding (opens in new tab)</a> to work out the funding band for this school.
+                  </div>
+                </div>
+
+                <br>
+
+                {{ govukRadios({
+                  idPrefix: "indicative-funding-band",
+                  name: "indicative-funding-band",
+                  fieldset: {
+                    legend: {
+                      text: "Choose indicative funding band",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--m"
+                    }
+                  },
+                  items: [
+                  {
+                      value: "Reserves exceed funding level",
+                      checked:  data['indicative-funding-band'] === "Reserves exceed funding level",
+                      text: "Reserves exceed funding level"
+                  },
+                  {
+                      value: "Up to £40,000",
+                      checked:  data['indicative-funding-band'] === "Up to £40,000",
+                      text: "Up to £40,000"
+                  },
+                  {
+                      value: "Up to £80,000",
+                      checked:  data['indicative-funding-band'] === "Up to £80,000",
+                      text: "Up to £80,000"
+                  },
+                  {
+                    value: "Up to £120,000",
+                    checked:  data['indicative-funding-band'] === "Up to £120,000",
+                    text: "Up to £120,000"
+                }
+                  ]
+                }) }}
+
+                <div class="govuk-checkboxes__item padding-bottom-15">
+                  <input class="govuk-checkboxes__input" id="send-template-to-rb" name="send-template-to-rb" type="checkbox" value="done" {{checked("send-template-to-rb", "done")}}>
+                  <label class="govuk-label govuk-checkboxes__label" for="send-template-to-rb">
+                    Send the improvement and expenditure plan template, with the indicative funding band selected, to the supporting organisation and the school's responsible body
+                  </label>
+                  <div id="add-attachments-item-hint" class="govuk-hint govuk-checkboxes__hint">
+                    You can <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%203%20-%20Diagnose%20%26%20Plan/RISE-Assessment-Tool-3---deciding-levels-of-funding.aspx?CID=71e0bb56-c84a-4ee7-af80-5bf314936f37" target="_blank">download the improvement and expenditure plan template from (opens in new tab)</a>.
+                  </div>
+                </div>
+              
+              </div>
+            </fieldset>
+          </div>
+
+          {{ govukDateInput({
+            id: "templates-sent-date",
+            namePrefix: "templates-sent-date",
+            fieldset: {
+              legend: {
+                text: "Enter date templates and indicative funding band sent",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "For example, 1 7 2024."
+            },
+            items: [
+              {
+                name: "day",
+                value: data["templates-sent-date-day"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "month",
+                value: data["templates-sent-date-month"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },                
+              {
+                name: "year",
+                value: data["templates-sent-date-year"],
+                allowEmpty: false,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+      
+          {{ govukButton({
+          text: "Save and return"
+          }) }}
+        
+        </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['eligible'] == NULL) %}  
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Has the school received any funding in the last 2 financial years?
+      </h1>
+
+    <p>Use the <a href="https://educationgovuk.sharepoint.com.mcas.ms/:x:/r/sites/RISERegionalTeamsChannel/_layouts/15/Doc.aspx?sourcedoc=%7B1F756210-43B4-4100-8F6C-28B9B3D52A0A%7D&file=RISE%20Previous%20funding%20check.xlsx&action=default&mobileredirect=true" target="_blank">previous funding checks spreadsheet (opens in new tab)</a> to find out what funding a school has received.</p>
+
+      <form class="form" action="funding-answer-locked" method="post">
+      
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+    
+         
+          {{ govukRadios({
+            idPrefix: "received-funding",
+            name: "received-funding",
+            items: [
+            {
+                value: "Yes",
+                checked:  data['received-funding'] === "Yes",
+                text: "Yes, school has received funding"
+            },
+            {
+                value: "No",
+                checked:  data['received-funding'] === "No",
+                text: "No, school has not received funding"
+            }
+            ]
+          }) }}
+
+
+      {% if (data['eligible'] != NULL) %}
+      {{ govukButton({
+      text: "Save"
+      }) }}
+      {% endif %}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

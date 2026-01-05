@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+
+    <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+    <h2 class="govuk-heading-l">Date of new inspection report</h2>
+    <p>Enter the date Ofsted published the inspection report on their website.</p>
+      
+    <form class="form" action='project-status-stopped-notes' method="post">
+
+    {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "new-inspection-report-date",
+          namePrefix: "new-inspection-report-date",
+          fieldset: {
+            legend: {
+              text: "Enter date report published",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["new-inspection-report-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["new-inspection-report-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["new-inspection-report-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+{{ govukButton({
+  text: "Save and continue"
+}) }}
+
+</form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

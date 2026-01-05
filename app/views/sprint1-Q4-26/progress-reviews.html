@@ -1,0 +1,295 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Plan progress</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        Progress reviews
+      </h1>
+
+      <!--
+      Summary - {{ data['progress-summary']}}<br>
+      1 - {{ data['progress-objective-1']}}<br>
+      2 - {{ data['progress-objective-2']}}<br>
+      3 - {{ data['progress-objective-3']}}<br>
+      4 - {{ data['progress-objective-4']}}<br>
+      -->
+
+
+      {% if (data['next-review-day'] != NULL) %}
+
+      <div class="govuk-inset-text">
+      {% if (data['another-review'] == 'Yes') %}
+      The next review should happen on or around <b>{{ data | isoDateFromDateInput("next-review") | govukDate }}</b>.
+      <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p>
+      {% elif (data['another-review'] == 'No') %}
+      <b>No more reviews needed</b>
+      <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p> 
+      {% endif %} 
+      </div>
+
+      
+
+
+
+      
+      {% endif %}
+
+      <form class="form" action="./add-an-objective" method="post">
+
+
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews recorded</h2>
+              <p class="govuk-body">You must enter details of a progress review first.</p>
+              <!--<a class="govuk-button govuk-!-margin-bottom-1" data-module="govuk-button">
+                Add review
+              </a>-->
+            
+            </section>
+          
+          </article>
+
+          {% if (data['allocated-adviser-email'] == NULL) %}
+          <div class="govuk-inset-text">
+          Before you can add a progress review, you must allocate an adviser.
+          </div>
+          {% endif %}
+        
+          <!--<p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>-->
+
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
+
+
+        <article class="moj-ticket-panel margin-bottom-30 padding-bottom-0" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15">
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
+                        First review
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-right">
+                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+
+                           {% elif (data['progress-summary'] == NULL) or (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                          <strong class="govuk-tag govuk-tag--orange ">
+                            Progress partly recorded
+                          </strong>
+                         
+                          {% elif (data['progress-summary'] != NULL) and (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          <strong class="govuk-tag govuk-tag--green ">
+                            Progress recorded
+                          </strong>
+                          {% endif %}
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key margin-bottom-minus-20">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
+                        by <span class="govuk-body">Alex James<br><br>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
+
+                        {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                        <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
+                        {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                        <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
+                        {% endif %}
+
+                      </dd>
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+
+          {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] != NULL) %}
+
+
+
+
+          <article class="moj-ticket-panel margin-bottom-30 padding-bottom-0" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15">
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
+                        Second review
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-right">
+                     
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key margin-bottom-minus-20">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-2") | govukDate }}<br>
+                        by <span class="govuk-body">Bob Roberts<br><br>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
+
+                        
+                        <a href="#" class="govuk-link margin-top-15">Record progress</a>
+                        
+
+                      </dd>
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+
+        <article class="moj-ticket-panel margin-bottom-30 padding-bottom-0" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15">
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key govuk-heading-m govuk-!-width-one-half margin-bottom-minus-20">
+                        First review
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-right">
+                        {% if (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                        <strong class="govuk-tag ">
+                            Progress not recorded
+                          </strong>
+
+                           {% elif (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                          <strong class="govuk-tag govuk-tag--orange ">
+                            Progress partly recorded
+                          </strong>
+                         
+                          {% elif (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                          <strong class="govuk-tag govuk-tag--green ">
+                            Progress recorded
+                          </strong>
+                          {% endif %}
+                      </dd>
+                    </div>
+                    <div class="govuk-summary-list__row no-border">
+                      <dt class="govuk-summary-list__key margin-bottom-minus-20">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
+                        by <span class="govuk-body">Alex James<br><br>
+                        <a href="./review-details-edit.html">Edit review details</a></span>
+                      </dt>
+                      <dd class="govuk-summary-list__value text-align-bottom-right padding-top-15">
+
+                         {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                        <a href="progress-summary" class="govuk-link margin-top-15">Record progress</a>
+                        {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                        <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
+                        {% endif %}
+
+                      </dd>
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+
+
+          
+
+
+
+
+       
+
+        {% endif %}
+
+        
+        
+        <div class="govuk-button-group margin-top-15">
+
+       
+            {% from "govuk/components/button/macro.njk" import govukButton %}
+
+            {% if (data['allocated-adviser-email'] != NULL) %}
+
+            {{ govukButton({
+              html: "Add review",
+              href: "review-details"
+            }) }}
+
+            {% elif (data['allocated-adviser-email'] == NULL) %}
+
+            {{ govukButton({
+              html: "Allocate an adviser",
+              href: "task-list/allocate-an-adviser"
+            }) }}
+
+            {% endif %}
+     
+            <a class="govuk-link" href="improvement-plan">Return to improvement plan</a>
+       
+        
+        
+         </div>
+
+      </form>
+
+      
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
