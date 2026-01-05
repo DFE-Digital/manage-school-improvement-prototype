@@ -128,7 +128,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "sprint5-Q3-25/includes/status-notification-banner.njk" %}
+      {% include "sprint1-Q4-26/includes/status-notification-banner.njk" %}
     </div>
   </div>
 {% endblock %}
@@ -189,9 +189,16 @@
     {# USE MACRO #}
     {{ contactCard(role='Headteacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
     
+    {# IF OPTIONAL PHONE NUMBER IS NOT ADDED #}
+    {% if (data["contact-details-phoneNumber"]) %}
+      {% set phoneContent = data["contact-details-phoneNumber"] %}
+    {% else %}
+      {% set phoneContent = "Not available" %}
+    {% endif %}
+
     {# Manually added #}
     {% if (data["organisation"] == "School") and (data["contact-details-fullName"] != "") and (data["contact-details-email"] != "") %}
-      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], email=data["contact-details-email"], phone=data["contact-details-phoneNumber"], sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], email=data["contact-details-email"], phone=phoneContent, sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
     {% endif %}
 
     {# SUPPORTING ORGANISATION CONTACTS #}
@@ -286,7 +293,7 @@
               text: "Phone"
             },
             value: {
-              html: data["contact-details-phoneNumber"]
+              html: data["contact-details-phoneNumber"] | default("Not available")
             }
           },
           {
