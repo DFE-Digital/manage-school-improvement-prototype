@@ -1,0 +1,617 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "engagement-concerns" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint5-Q3-25/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        
+      {{ data['information-powers']}}
+
+      {% include "/layouts/summary-section.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "/layouts/sub-nav-tabs-all.html" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-l">Engagement concerns</h2>
+
+      {% if (data['engagement-concern-summary'] == NULL) and (data['engagement-concern-summary-2'] == NULL)%}
+      <p>Enter details about situations where a school or responsible body do not respond to you.</p> 
+       <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Record engagement concern here", href: "record-engagement-concern" }) }}
+       </div>
+       {% endif %}
+      
+      {% if (data['engagement-concern-summary'] != NULL) %} 
+        <div class="govuk-button-group">
+          <div class="govuk-!-margin-top-5">
+
+            {{ govukButton({ text: "Record engagement concern", href: "record-engagement-concern-2" }) }}
+
+            {% if (data['engagement-concern-summary-2'] == NULL) %}
+            {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
+            {% endif %}
+            {% if (data['engagement-concern-summary-2'] != NULL) %}
+            {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "select-information-powers-concern" }) }}
+            {% endif %}
+            
+            {% if (data['engagement-concern-summary-2'] == NULL) %}
+            {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "record-interim-executive-board" }) }}
+            {% endif %}
+            {% if (data['engagement-concern-summary-2'] != NULL) %}
+            {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "select-interim-executive-board-concern" }) }}
+            
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      </div>
+
+      </div>
+      
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['engagement-concern-summary-2'] != NULL) %}
+      <h3 class="govuk-heading-m">Concern raised 12 November 2025</h3>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Engagement concern
+          </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action"> 
+              <a class="govuk-link" href="record-engagement-concern-2">
+                Change<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+
+              
+              {% if (data['escalation-primary-reason-2'] == NULL) %}
+               &nbsp;|
+              <a class="govuk-link" href="#">
+                Escalate<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+              {% endif %}
+              <!--
+               &nbsp;|
+              <a class="govuk-link" href="#">
+                Resolve<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+              -->
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Summary of the concern
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['engagement-concern-summary-2']}}
+              </dd>
+            </div>
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of the concern
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['engagement-concern-reasons-2']}}
+              </dd>
+            </div>
+
+           
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Escalated
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+            </div>
+          
+ 
+            {% if (data['resolved-2'] == NULL) %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Resolved
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Resolved
+              </dt>
+              <dd class="govuk-summary-list__value">
+                18 October 2025
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of resolution
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['resolved-details-2']}}
+              </dd>
+            </div>
+            {% endif %}
+           
+          </dl>
+        </div>
+      </div>
+  {% endif %}
+
+  
+
+ {% if (data['ip-concern'] == "Concern-2") and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) %}
+
+  <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Information powers
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
+                  Change<span class="govuk-visually-hidden"> information powers</span>
+                </a>
+              </li>
+              &nbsp;|
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
+              Assign <span class="govuk-visually-hidden">information powers </span>to different concern
+              </a>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date used
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("information-powers-date") | govukDate }}
+                </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['information-powers-details']}}
+                </dd>
+               
+              </div>
+          
+  
+            </dl>
+          </div>
+        </div>
+  
+        {% endif %}
+
+
+
+   
+
+
+
+
+
+
+
+      
+
+    
+
+        {% if (data['ieb-concern'] == "Concern-2") and ((data['interim-executive-board'] == "Yes") or (data['interim-executive-board-details'] != NULL)) %}
+       
+
+  <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">
+              Interim executive board
+            </h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-interim-executive-board">
+                  Change<span class="govuk-visually-hidden"> interim executive board</span>
+                </a>
+              </li>
+              &nbsp;|
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-interim-executive-board-concern-change">
+              Assign <span class="govuk-visually-hidden">interim executive board </span>to different concern
+              </a>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date created
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data | isoDateFromDateInput("interim-executive-board-date") | govukDate }}
+                </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['interim-executive-board-details']}}
+                </dd>
+               
+              </div>
+          
+  
+            </dl>
+          </div>
+        </div>
+  
+        
+
+  {% endif %}
+
+
+<!-- engagement concern 1 -->
+
+<!-- engagement concern 1 summary card -->
+
+{% if (data['engagement-concern-summary'] != NULL) %}
+       <h3 class="govuk-heading-m">Concern raised 1 March 2025</h3>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Engagement concern
+          </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action"> 
+              <a class="govuk-link" href="record-engagement-concern">
+                Change<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+              {% if (data['escalation-primary-reason'] == NULL) %}
+               &nbsp;|
+              <a class="govuk-link" href="escalate-engagement-concern">
+                Escalate<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+              {% endif %}
+              <!--
+               &nbsp;|
+              <a class="govuk-link" href="resolve-engagement-concern">
+                Resolve<span class="govuk-visually-hidden"> engagement concern</span>
+              </a>
+              -->
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Summary of the concern
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['engagement-concern-summary']}}
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of the concern
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['engagement-concern-reasons']}}
+              </dd>
+            </div>
+
+            {% if (data['escalation-primary-reason'] == NULL) %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Escalated
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Escalated
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data | isoDateFromDateInput("escalation-decision-date") | govukDate }}
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Primary reason for escalation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['escalation-primary-reason']}}
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of escalation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['escalation-reason-details']}}
+              </dd>
+            </div>
+            {% endif %}
+
+
+
+
+            {% if (data['resolved'] == NULL) %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Resolved
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Resolved
+              </dt>
+              <dd class="govuk-summary-list__value">
+                18 September 2025
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details of resolution
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['resolved-details']}}
+              </dd>
+            </div>
+            {% endif %}
+ 
+
+          </dl>
+        </div>
+      </div>
+
+      
+
+      {% endif %}
+
+
+
+
+      <!-- engagement concern 1 - Information powers used -->
+
+      {% if (data['ip-concern'] == "Concern-1") and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) or (data['ip-concern'] == NULL) and ((data['information-powers'] == "Yes") or (data['information-powers-details'] != NULL)) %}
+
+      <div class="govuk-summary-card">
+              <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">
+                  Information powers
+                </h2>
+                <ul class="govuk-summary-card__actions">
+                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-information-powers">
+                      Change<span class="govuk-visually-hidden"> information powers</span>
+                    </a>
+                  </li>
+                  {% if (data['engagement-concern-summary-2'] != NULL) %}
+                  &nbsp;|
+                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-information-powers-concern-change">
+                    Assign <span class="govuk-visually-hidden">information powers </span>to different concern
+                  </a>
+                </li>
+                {% endif %}
+                </ul>
+              </div>
+              <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Date used
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data | isoDateFromDateInput("information-powers-date") | govukDate }}
+                    </dd>
+                  </div>
+                  
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Details
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{ data['information-powers-details']}}
+                    </dd>
+                   
+                  </div>
+
+                  {% if (data['stop-info-powers'] == 'ended') %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Date ended
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      30 June 2025
+                    </dd>
+                  </div>
+                  {% endif %}
+      
+                </dl>
+              </div>
+            </div>
+      
+            {% endif %}
+
+
+
+
+
+
+           
+
+
+
+
+
+     
+    
+
+
+
+            
+      <!-- engagement concern 1 - IEB used -->
+
+     
+      {% if (data['ieb-concern'] == "Concern-1") and ((data['interim-executive-board'] == "Yes") or (data['interim-executive-board-details'] != NULL)) or (data['ieb-concern'] == NULL) and ((data['interim-executive-board'] == "Yes") or (data['interim-executive-board-details'] != NULL)) %}
+      
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Interim executive board
+          </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action"> <a class="govuk-link" href="record-interim-executive-board">
+                Change<span class="govuk-visually-hidden"> interim executive board</span>
+              </a>
+            </li>
+            {% if (data['engagement-concern-summary-2'] != NULL) %}
+            &nbsp;|
+            <li class="govuk-summary-card__action"> <a class="govuk-link" href="select-interim-executive-board-concern-change">
+            Assign <span class="govuk-visually-hidden">interim executive board </span>to different concern
+            </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date created
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data | isoDateFromDateInput("interim-executive-board-date") | govukDate }}
+              </dd>
+            </div>
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['interim-executive-board-details']}}
+              </dd>
+             
+            </div>
+
+            {% if (data['stop-ieb'] == 'ended') %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Date ended
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      18 September 2025
+                    </dd>
+                  </div>
+                  {% endif %}
+        
+
+          </dl>
+        </div>
+      </div>
+
+      {% endif %}
+
+
+    
+
+            <!--
+            {% if (data['engagement-concern'] != NULL) %}
+            <div class="govuk-button-group">
+
+            {% if (data['information-powers'] != "Yes") %}
+              {{ govukButton({ text: "Record use of information powers", classes: "govuk-button--secondary", href: "record-information-powers" }) }}
+            {% endif %}
+
+            {% if (data['interim-executive-board'] != "Yes") %}
+              {{ govukButton({ text: "Record use of interim executive board", classes: "govuk-button--secondary", href: "record-interim-executive-board" }) }}
+            {% endif %}
+            -->
+
+            </div>
+            {% endif %}
+
+
+        </div>
+      </div>
+      
+
+    
+      <!--
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Add note", href: "#" }) }}
+      </div>
+      -->
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

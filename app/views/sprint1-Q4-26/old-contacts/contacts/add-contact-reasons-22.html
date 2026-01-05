@@ -1,0 +1,163 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        About this contact
+      </h1>
+
+
+      <p>Provide some additional information about why this contact is being added.</p>
+      
+      <form class="form" action='contacts' method="post">
+
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {% if (data['contact-type'] == NULL) %}
+
+        {{ govukRadios({
+          name: "contact-type",
+          fieldset: {
+            legend: {
+              text: "Which of the following best describes this contact?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Current contact",
+              text: "Current contact",
+              checked: data['contact-type'] === "Current contact"
+            },
+            {
+              value: "Best contact",
+              text: "Best contact",
+              checked: data['contact-type'] === "Best contact"
+            },
+            {
+              value: "Other useful contact",
+              text: "Other useful contact",
+              checked: data['contact-type'] === "Other useful contact"            }
+          ]
+        }) }}
+
+   
+  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+  name: "contact-details",
+  id: "contact-details",
+  value: data["contact-details"],
+  label: {
+    text: "Details",
+    classes: "govuk-label--m"
+  }
+}) }}
+
+
+
+
+{% elif (data['contact'] != NULL) %}
+
+
+
+{{ govukRadios({
+    name: "contact-type-2",
+    fieldset: {
+      legend: {
+        text: "Which of the following best describes this contact?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    items: [
+      {
+        value: "Current contact",
+        text: "Current contact",
+        checked: data['contact-type-2'] === "Current contact"
+      },
+      {
+        value: "Best contact",
+        text: "Best contact",
+        checked: data['contact-type-2'] === "Best contact"
+      },
+      {
+        value: "Other useful contact",
+        text: "Other useful contact",
+        checked: data['contact-type-2'] === "Other useful contact"            }
+    ]
+  }) }}
+
+
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{{ govukTextarea({
+name: "contact-details-2",
+id: "contact-details-2",
+value: data["contact-details-2"],
+label: {
+text: "Details",
+classes: "govuk-label--m"
+}
+}) }}
+
+{% endif %}
+    
+
+{{ govukButton({
+  text: "Add contact"
+}) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
