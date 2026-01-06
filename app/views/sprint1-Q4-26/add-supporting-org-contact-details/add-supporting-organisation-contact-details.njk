@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% if (data['so-type'] === "school") %}
+  {% set soContactName = "Ailsa Barnes" %}
+  {% set soContactEmail = "ailsa.barnes@cheltenhamnewacademy.co.uk" %}
+  {% set soContactPhone = "" %}
+{% elif (data['so-type'] === "trust") %}
+  {% set soContactName = "Levi Crombie" %}
+  {% set soContactEmail = "" %}
+  {% set soContactPhone = "01452 890098" %}
+{% else %}
+  {% set soContactName = "" %}
+  {% set soContactEmail = "" %}
+  {% set soContactPhone = "" %}
+{% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add supporting organisation contact details
+      </h1>
+      <p class="govuk-body">
+        Enter contact details for the accounting officer at the trust, or their equivalent if the supporting organisation is not a trust.
+      </p>
+
+      <form class="form" action='../task-list' method="post">
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="">
+
+            {{ govukInput({
+              label: {
+                text: "Name",
+                classes: "govuk-label--m",
+                isPageHeading: false
+              },
+              hint: {
+                text: "Enter the person's first and last name"
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "so-contact-name",
+              name: "so-contact-name",
+              value: soContactName
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Email address",
+                classes: "govuk-label--m",
+                isPageHeading: false
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "so-contact-email",
+              name: "so-contact-email",
+              value: soContactEmail
+            }) }}
+
+            {# Phone number #}
+            {{ govukInput({
+              label: {
+                text: "UK phone number (Optional)",
+                classes: "govuk-label--m",
+                isPageHeading: false
+              },
+              id: "so-contact-phone",
+              name: "so-contact-phone",
+              type: "tel",
+              autocomplete: "tel",
+              value: soContactPhone,
+              classes: "govuk-input--width-20"
+            }) }}
+
+          </fieldset>
+        </div>
+
+        {# <div class="govuk-button-group"> #}
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+        {# </div> #}
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

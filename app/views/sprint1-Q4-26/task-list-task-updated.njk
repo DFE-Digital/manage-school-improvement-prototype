@@ -534,6 +534,36 @@
 
       </li>
 
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        
+        <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
+          <a class="govuk-link govuk-task-list__link" href="add-supporting-org-contact-details/add-supporting-organisation-contact-details" aria-describedby="">
+            Add supporting organisation contact details
+          </a>
+        </div>
+
+        <div class="govuk-task-list__status" id="">
+          {% if (data['project-status'] == "Stopped") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot progress
+            </strong>
+          {% elif (data['so-approved'] == NULL) and ((data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+          {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+          {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+          {% endif %}
+        </div>
+
+      </li>
+
     </ul>
 
 
