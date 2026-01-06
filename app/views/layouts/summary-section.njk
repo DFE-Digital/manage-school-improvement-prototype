@@ -3,7 +3,7 @@
 {% set assignedToChangeText = "Change" %}
 {% set assignedToChangeURL = "./assign/assign-project" %}
 {% set adviserChangeText = "Change" %}
-{% set adviserChangeURL = "./task-list/allocate-an-adviser" %}
+{% set adviserChangeURL = "./allocate/allocate-adviser" %}
 {% set engagementConcernChangeText = "Change" %}
 {% set engagementConcernChangeURL = "./record-engagement-concern" %}
 
@@ -31,8 +31,8 @@
 
 {# SET ADVISER #}
 {% set adviser = "" %}
-{% if (data['allocated-adviser-email'] != NULL) %}
-  {% set adviser = data['allocated-adviser-email'] %}
+{% if (data['allocated-adviser'] != NULL) %}
+  {% set adviser = data['allocated-adviser'] %}
 {% else %}
   {% set adviser = '<span data-id="allocated-adviser" class="empty">Empty</span>' %}
 {% endif %}
