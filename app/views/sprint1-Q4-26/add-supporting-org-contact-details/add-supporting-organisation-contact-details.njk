@@ -17,6 +17,43 @@
 
 {% block content %}
 
+{# Content logic for the inset text to playback the chose supporting organisation and subsequent role #}
+{% if (data['so-type'] === "school") %}
+  {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+    {% set soOrg = "School" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "Head teacher" %}
+  {% else %}
+    {% set soOrg = "Academy" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "Accounting officer for supporting organisation" %}
+  {% endif %}
+{% elif (data['so-type'] === "trust") %}
+  {% set soOrg = "Trust" %}
+  {% set soOrgName = data['so-name'] %}
+  {% set soRole = "Accounting officer for supporting organisation" %}
+{% elif (data['so-type'] === "local-authority") %}
+  {% set soOrg = "Local authority" %}
+  {% set soOrgName = "" %}
+  {% set soRole = "What do we put here?" %}
+{% elif (data['so-type'] === "local-authority-traded-service") %}
+  {% set soOrg = "Local authority traded service" %}
+  {% set soOrgName = "" %}
+  {% set soRole = "What do we put here?" %}
+{% else %}
+  {% set soOrg = "Federation or education partnership" %}
+  {% set soOrgName = "" %}
+  {% set soRole = "What do we put here?" %}
+{% endif %}
+
+{# Set the content for the inset text #}
+{% set soPlayback %}
+  <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p>
+  <p class="govuk-body"><strong>Name of supporting organisation:</strong> {{ soOrgName }}</p>
+  <p class="govuk-body"><strong>Role of contact:</strong> {{ soRole }}</p>
+{% endset %}
+
+{# Prefilled inputs if a school, academy or trust is the supporting organisation #}
 {% if (data['so-type'] === "school") %}
   {% set soContactName = "Ailsa Barnes" %}
   {% set soContactEmail = "ailsa.barnes@cheltenhamnewacademy.co.uk" %}
@@ -31,6 +68,11 @@
   {% set soContactPhone = "" %}
 {% endif %}
 
+{# Set label for "Name of ROLE" input #}
+{% set soNameLabel %}
+  Name of {{ soRole | lower }}
+{% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -39,17 +81,27 @@
         Add supporting organisation contact details
       </h1>
       <p class="govuk-body">
-        Enter contact details for the accounting officer at the trust, or their equivalent if the supporting organisation is not a trust.
+        We discussed as a team that content here telling users that the details below will be used to send the planning grant offer letter.
       </p>
+      <p class="govuk-body">
+        We also thought it would be useful to mention that people can go to the "Contacts" tab to add the details of anyone else that may be useful to capture.
+      </p>
+
+      {# Playback of supporting organisation type and role, from "Choose supporting organisation" task #}
+      {{ govukInsetText({
+        html: soPlayback
+      }) }}
 
       <form class="form" action='../task-list' method="post">
         
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" aria-describedby="">
 
+            {# <hr class="govuk-section-break govuk-section-break--m"> #}
+
             {{ govukInput({
               label: {
-                text: "Name",
+                html: soNameLabel,
                 classes: "govuk-label--m",
                 isPageHeading: false
               },
