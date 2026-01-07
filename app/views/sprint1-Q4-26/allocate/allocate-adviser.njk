@@ -16,22 +16,6 @@
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
-  
-  <!--
-  <div class="govuk-breadcrumbs"
-    <ol class="govuk-breadcrumbs__list">
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href="#">Section</a>
-      </li>
-      <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link">Subsection</a>
-      </li>
-    </ol>
-  </div>
-  -->
 
 {% endblock %}
 
@@ -47,14 +31,14 @@
         Which adviser will work with this school?
       </h1>
 
-      <form action="../task-list-allocated" method="post" novalidate>
+      <form action="../task-list" method="post" novalidate>
 
       {% block formQuestions %}
         
       {{ xGovukAutocomplete({
         id: "allocated-adviser",
         name: "allocated-adviser",
-        value: data['assigned-to'],
+        value: data['allocated-adviser'],
         allowEmpty: false,
         hint: {
           text: "Enter the person's name."
@@ -81,5 +65,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "/layouts/rsd-footer.html" %}
+  {% include "/layouts/rsd-footer.html" %}
 {% endblock %}

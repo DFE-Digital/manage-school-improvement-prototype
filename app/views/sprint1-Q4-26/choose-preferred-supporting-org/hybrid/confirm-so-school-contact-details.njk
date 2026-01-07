@@ -93,16 +93,15 @@
           </div>
         </div>
 
-        <h2 class="govuk-heading-m">
+        {# <h2 class="govuk-heading-m">
           Contact details
         </h2>
            
-        <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p>
+        <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p> #}
         
         <form class="form" action="../../task-list-task-updated" method="post">
 
-        
-       {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+        {# {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
           
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -230,9 +229,9 @@
 
           </div>
 
-        {% endif %}
+        {% endif %} #}
 
-        {% if (data['alt-so-contact-name'] != NULL) %}
+        {# {% if (data['alt-so-contact-name'] != NULL) %}
     
         <div class="govuk-summary-card">
 
@@ -309,7 +308,7 @@
           </div>
         </div>
        
-        {% endif %}
+        {% endif %} #}
 
         {{ govukDateInput({
           id: "so-contact-added-date",

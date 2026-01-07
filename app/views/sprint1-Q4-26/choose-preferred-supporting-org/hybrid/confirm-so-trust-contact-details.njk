@@ -94,98 +94,20 @@
 
       </div>
 
-      <h2 class="govuk-heading-m">
+      {# <h2 class="govuk-heading-m">
         Contact details
       </h2>
        
-        <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p>
+      <p class="margin-top-minus-10">You can add an alternative contact later on if these contact details are incorrect.</p> #}
 
-        <form class="form" action="../../task-list-task-updated" method="post">
+      <form class="form" action="../../task-list-task-updated" method="post">
+        
+        {# <div class="govuk-summary-card">
           
-          <div class="govuk-summary-card">
-            
-            <div class="govuk-summary-card__title-wrapper">
-              <h2 class="govuk-summary-card__title">
-                Accounting officer for supporting organisation
-              </h2>
-            </div>
-
-            <div class="govuk-summary-card__content">
-              <dl class="govuk-summary-list">
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Name
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    Levi Crombie
-                  </dd> 
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Email
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    Not available
-                  </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Phone
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    01452 890098
-                  </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Postal address
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    <ul class="govuk-list">
-                      <li>10 Cheltenham way</li>
-                      <li>Skyhorpe</li>
-                      <li>Cheltenham</li>
-                      <li>CHE34 TE24</li>
-                    </ul>
-                  </dd>
-                </div>
-
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Source
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    Get information about schools
-                  </dd>
-                </div>
-
-              </dl>
-            </div>
-
-          </div>
-    
-        {% if (data['alt-so-contact-name'] != NULL) %}
-    
-        <div class="govuk-summary-card">
-
           <div class="govuk-summary-card__title-wrapper">
-
             <h2 class="govuk-summary-card__title">
-              {{ data['alt-so-job-title']}}
+              Accounting officer for supporting organisation
             </h2>
-
-            <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action"> 
-                <a class="govuk-link" href="change-alt-so-contact-details">
-                  Change<span class="govuk-visually-hidden"> main contact</span>
-                </a>
-              </li>
-            </ul>
-
           </div>
 
           <div class="govuk-summary-card__content">
@@ -195,63 +117,139 @@
                 <dt class="govuk-summary-list__key">
                   Name
                 </dt>
-
                 <dd class="govuk-summary-list__value">
-                  {{ data['alt-so-contact-name']}}
-                </dd>
+                  Levi Crombie
+                </dd> 
               </div>
-              
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Email
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  <a href="mailto:{{ data['contact-email']}}">{{ data['alt-so-contact-email']}}</a>
+                  Not available
                 </dd>
               </div>
-       
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Phone
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['alt-so-contact-phone']%}
-                    {{ data['alt-so-contact-phone']}}
-                  {% else %}
-                    <span data-id="contact-phone" class="empty">Empty</span>
-                  {% endif %}
+                  01452 890098
                 </dd>
               </div>
-         
+
               <div class="govuk-summary-list__row">
-
                 <dt class="govuk-summary-list__key">
-                  Address
+                  Postal address
                 </dt>
-
                 <dd class="govuk-summary-list__value">
-                  {% if data['alt-so-contact-address']%}
-                    {{ data['alt-so-contact-address']}}
-                  {% else %}
-                    <span data-id="contact-address" class="empty">Empty</span>
-                  {% endif %}
+                  <ul class="govuk-list">
+                    <li>10 Cheltenham way</li>
+                    <li>Skyhorpe</li>
+                    <li>Cheltenham</li>
+                    <li>CHE34 TE24</li>
+                  </ul>
                 </dd>
               </div>
-       
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Source
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  Manually added
+                  Get information about schools
                 </dd>
               </div>
-       
+
             </dl>
           </div>
+
         </div>
-       
-        {% endif %}
+
+        {% if (data['alt-so-contact-name'] != NULL) %}
+          <div class="govuk-summary-card">
+
+            <div class="govuk-summary-card__title-wrapper">
+
+              <h2 class="govuk-summary-card__title">
+                {{ data['alt-so-job-title']}}
+              </h2>
+
+              <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action"> 
+                  <a class="govuk-link" href="change-alt-so-contact-details">
+                    Change<span class="govuk-visually-hidden"> main contact</span>
+                  </a>
+                </li>
+              </ul>
+
+            </div>
+
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Name
+                  </dt>
+
+                  <dd class="govuk-summary-list__value">
+                    {{ data['alt-so-contact-name']}}
+                  </dd>
+                </div>
+                
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Email
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <a href="mailto:{{ data['contact-email']}}">{{ data['alt-so-contact-email']}}</a>
+                  </dd>
+                </div>
+          
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Phone
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {% if data['alt-so-contact-phone']%}
+                      {{ data['alt-so-contact-phone']}}
+                    {% else %}
+                      <span data-id="contact-phone" class="empty">Empty</span>
+                    {% endif %}
+                  </dd>
+                </div>
+            
+                <div class="govuk-summary-list__row">
+
+                  <dt class="govuk-summary-list__key">
+                    Address
+                  </dt>
+
+                  <dd class="govuk-summary-list__value">
+                    {% if data['alt-so-contact-address']%}
+                      {{ data['alt-so-contact-address']}}
+                    {% else %}
+                      <span data-id="contact-address" class="empty">Empty</span>
+                    {% endif %}
+                  </dd>
+                </div>
+          
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Source
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Manually added
+                  </dd>
+                </div>
+          
+              </dl>
+            </div>
+          </div>
+        {% endif %} #}
 
         {{ govukDateInput({
           id: "so-contact-added-date",
@@ -290,11 +288,10 @@
         }) }}
 
         <div class="govuk-button-group">
-
           {{ govukButton({
             text: "Save and return"
             }) }}
-          </div>
+        </div>
 
       </form>
 
