@@ -26,31 +26,39 @@
   {% else %}
     {% set soOrg = "Academy" %}
     {% set soOrgName = data['so-name'] %}
-    {% set soRole = "Accounting officer for supporting organisation" %}
+    {% set soRole = "Accounting officer" %}
   {% endif %}
 {% elif (data['so-type'] === "trust") %}
   {% set soOrg = "Trust" %}
   {% set soOrgName = data['so-name'] %}
-  {% set soRole = "Accounting officer for supporting organisation" %}
+  {% set soRole = "Accounting officer" %}
 {% elif (data['so-type'] === "local-authority") %}
   {% set soOrg = "Local authority" %}
-  {% set soOrgName = "" %}
-  {% set soRole = "What do we put here?" %}
+  {% set soOrgName = data['so-name'] %}
+  {% set soRole = "" %}
 {% elif (data['so-type'] === "local-authority-traded-service") %}
   {% set soOrg = "Local authority traded service" %}
-  {% set soOrgName = "" %}
-  {% set soRole = "What do we put here?" %}
-{% else %}
+  {% set soOrgName = data['so-name'] %}
+  {% set soRole = "" %}
+{% elif (data['so-type'] === "federation-education-partnership") %}
   {% set soOrg = "Federation or education partnership" %}
+  {% set soOrgName = data['so-name'] %}
+  {% set soRole = "" %}
+{% else %}
+  {% set soOrg = "" %}
   {% set soOrgName = "" %}
-  {% set soRole = "What do we put here?" %}
+  {% set soRole = "" %}
 {% endif %}
 
 {# Set the content for the inset text #}
 {% set soPlayback %}
   <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p>
   <p class="govuk-body"><strong>Name of supporting organisation:</strong> {{ soOrgName }}</p>
-  <p class="govuk-body"><strong>Role of contact:</strong> {{ soRole }}</p>
+  
+  {# Only show a 'role of contact' if the SO is a school or trust, because those are the only two we're returning data from GIAS for #}
+  {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
+    <p class="govuk-body"><strong>Role of contact:</strong> {{ soRole }}</p>
+  {% endif %}
 {% endset %}
 
 {# Prefilled inputs if a school, academy or trust is the supporting organisation #}
@@ -69,9 +77,16 @@
 {% endif %}
 
 {# Set label for "Name of ROLE" input #}
-{% set soNameLabel %}
-  Name of {{ soRole | lower }}
-{% endset %}
+{# {% if (data['so-type'] !== NULL) %} #}
+{% if soRole !== "" %}
+  {% set soNameLabel %}
+    Name of the {{ soRole | lower }}
+  {% endset %}
+{% else %}
+  {% set soNameLabel %}
+    Name
+  {% endset %}
+{% endif %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -88,9 +103,11 @@
       </p>
 
       {# Playback of supporting organisation type and role, from "Choose supporting organisation" task #}
-      {{ govukInsetText({
-        html: soPlayback
-      }) }}
+      {% if (data['so-type'] !== NULL) %}
+        {{ govukInsetText({
+          html: soPlayback
+        }) }}
+      {% endif %}
 
       <form class="form" action='../task-list' method="post">
         
