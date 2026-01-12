@@ -41,7 +41,7 @@
 
       <p>Use this to check for any conflicts of interest they may have with this school or its responsible body.</p>
 
-      {% if (data['project-status'] == "Stopped") %}
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
 
         {# Check answer 1 #}
         {% if (data['conflicts-form-sent'] == 'done') %}
