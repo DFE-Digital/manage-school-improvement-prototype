@@ -170,11 +170,11 @@
           }) }}
         {# </div> #}
 
-        {# Todays date in a variable #}
+        {# Todays date in a variable
         {% set currentDate = "today" | govukDate %}
 
         {# Set up a bunch of source and updates content #}
-        {% set sourceUpdatesContent %}
+        {# {% set sourceUpdatesContent %}
           <p class='govuk-heading-s'>Supporting organisation contact details</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>
@@ -184,15 +184,15 @@
                 Email address came from Get information about schools on {{ currentDate }}
             </li>
           </ul>
-        {% endset %}
+        {% endset %} #}
 
-        {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
-          {# Display it all in a details component, only if the SO is a type that uses the GIAS look up #}
+        {# Display it all in a details component, only if the SO is a type that uses the GIAS look up #}
+        {# {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
           {{ govukDetails({
             summaryText: "Where this information came from",
             html: sourceUpdatesContent
           }) }}
-        {% endif %}
+        {% endif %} #}
       
       </form>
 
