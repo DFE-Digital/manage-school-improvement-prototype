@@ -57,7 +57,7 @@
         </div>
       </details>
 
-      {% if (data['project-status'] == "Stopped") %}
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
 
         {# Check answer 1 #}
         {% if (data['send-template-to-so'] == 'done') %}

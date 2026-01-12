@@ -7,10 +7,13 @@
 {% set engagementConcernChangeText = "Change" %}
 {% set engagementConcernChangeURL = "./record-engagement-concern" %}
 
-{% if (data['project-status'] == "Paused") %}
-  {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
-{% elif (data['project-status'] == "Stopped") %}
-  {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% if (data['project-status'] == "Stopped") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] == "Paused") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
   {% set assignedToChangeText = "" %}
   {% set assignedToChangeURL = "" %}
   {% set adviserChangeText = "" %}
