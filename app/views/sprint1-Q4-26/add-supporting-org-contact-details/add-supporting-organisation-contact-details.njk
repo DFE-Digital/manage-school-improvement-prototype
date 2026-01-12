@@ -55,13 +55,13 @@
 
   {# Set the content for the inset text #}
   {% set soPlayback %}
-    <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p>
+    {# <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p> #}
     <p class="govuk-body"><strong>Name of supporting organisation:</strong> {{ soOrgName }}</p>
     
     {# Only show a 'role of contact' if the SO is a school or trust, because those are the only two we're returning data from GIAS for #}
-    {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
+    {# {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
       <p class="govuk-body"><strong>Required contact:</strong> {{ soRole }}</p>
-    {% endif %}
+    {% endif %} #}
   {% endset %}
 
   {# Prefilled inputs if a school, academy or trust is the supporting organisation #}
