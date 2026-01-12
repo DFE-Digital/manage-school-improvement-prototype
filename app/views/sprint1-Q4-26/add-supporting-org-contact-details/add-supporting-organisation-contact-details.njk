@@ -112,6 +112,18 @@
         }) }}
       {% endif %}
 
+      <h2 class="govuk-heading-m">
+        Check these contact details are correct
+      </h2>
+
+      <p class="govuk-body">
+        This information came from Get information about schools.
+      </p>
+
+      <p class="govuk-body">
+        Check that it is correct, otherwise, make changes.
+      </p>
+
       <form class="form" action='../task-list' method="post">
         
         <div class="govuk-form-group">
@@ -122,7 +134,7 @@
             {{ govukInput({
               label: {
                 html: soNameLabelHTML,
-                classes: "govuk-label--m",
+                classes: "govuk-label--s",
                 isPageHeading: false
               },
               hint: {
@@ -137,7 +149,7 @@
             {{ govukInput({
               label: {
                 text: "Email address",
-                classes: "govuk-label--m",
+                classes: "govuk-label--s",
                 isPageHeading: false
               },
               classes: "govuk-!-width-two-thirds",
@@ -150,7 +162,7 @@
             {{ govukInput({
               label: {
                 text: "UK phone number (Optional)",
-                classes: "govuk-label--m",
+                classes: "govuk-label--s",
                 isPageHeading: false
               },
               id: "so-contact-phone",
