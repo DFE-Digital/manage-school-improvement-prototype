@@ -1,0 +1,978 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<!--
+      {% if (data['assigned-to'] == NULL) %}
+       <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Important
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-notification-banner__heading">
+      This school is not assigned to you. You cannot make changes to tasks.
+     
+    </p>
+  </div>
+</div>
+{% endif %}
+-->
+
+      {% include "/layouts/summary-section-cirencester.html" %}
+    
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      
+      {% include "/layouts/sub-nav-tabs-task-list-cirencester.html" %}
+      
+    </div>
+  </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <!--<h2 class="govuk-heading-l">Task list</h2>-->
+
+      <!--
+      Best approach: {{ data['discuss-best-approach']}}<br>
+      Email responsible body: {{ data['email-responsible-body']}}<br>
+      School contacted date: {{ data['school-contacted-date-day']}}<br>
+
+      {% if (data['discuss-best-approach'] == NULL) %}
+      THIS DISPLAYS IF NOT STARTED - Best approach is NULL
+      {% endif %}
+      <br>
+
+      {% if (data['email-responsible-body'] == NULL) %}
+      THIS DISPLAYS IF NOT STARTED - Email responsible body is NULL
+      {% endif %}
+      <br>
+
+      {% if ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
+      THIS DISPLAYS IF NOT STARTED - School contacted date is NULL
+      {% endif %}
+      <br>
+      -->
+
+      
+
+      <!--
+      <p>
+      Email address: {{ data['allocated-adviser-email']}}<br>
+      Date day: {{ data['adviser-allocated-date-day']}}
+      </p>
+      -->
+
+      <h2 class="govuk-heading-l">Phase 1: Identifying</h2>
+      <h3 class="govuk-heading-m">Before you start</h3>
+
+     
+  
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/eligibility-check" aria-describedby="company-details-2-status">
+              Confirm eligibility
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+            {% if (data['eligible'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            {% if (data['received-funding'] == NULL) or (data['received-funding'] == 'No') %}
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/funding-history" aria-describedby="company-details-2-status">
+              Enter the funding history
+            </a>
+            {% elif (data['received-funding'] != NULL) and (data['funding-complete'] != "done") %}
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/check-funding-details" aria-describedby="company-details-2-status">
+              Enter funding history
+            </a>
+            {% endif %}
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+           
+         
+            {% if (data['received-funding'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['received-funding'] == 'No') or ((data['received-funding'] == 'Yes') and (data['funding-name'] != NULL) and (data['funding-completed'] == 'done'))  %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+         
+          </div>
+        </li>
+      </ul>
+
+
+
+
+     
+      <h3 class="govuk-heading-m">Begin the project</h3>
+
+
+   
+
+      <ul class="govuk-task-list">
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/make-initial-contact-with-responsible-body" aria-describedby="company-details-2-status">
+              Make initial contact with the responsible body
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+           
+
+            
+            {% if (data['call-responsible-body'] == NULL) and ((data['initial-contact-date-day'] == NULL) or (data['initial-contact-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['call-responsible-body'] == 'done') and (data['initial-contact-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+
+       
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/conflicts-of-interest" aria-describedby="company-details-3-hint company-details-3-status">
+              Check potential adviser conflicts of interest
+            </a>
+            <!--
+            <div id="company-details-3-hint" class="govuk-task-list__hint">
+              Include 5 years of the company’s relevant financial information
+            </div>
+            -->
+          </div>
+          <div class="govuk-task-list__status" id="company-details-3-status">
+
+           
+            
+            
+            {% if (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+
+          </div>
+        </li>
+
+        
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/formal-letter-of-notification" aria-describedby="company-details-2-status">
+              Send the formal notification
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+
+            
+            {% if (data['draft-email'] == NULL) and (data['add-attachments'] == NULL) and (data['add-recipients'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/record-schools-response" aria-describedby="company-details-2-status">
+              Record the responsible body's response to the conflict of interest form
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+  
+            {% if (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+        </div>
+        </li>
+
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/allocate-an-adviser" aria-describedby="company-details-4-status">
+              Allocate an adviser
+            </a>
+          </div>
+
+
+
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+           
+          
+            
+            {% if (data['allocated-adviser-email'] == NULL) and ((data['adviser-allocated-date-day'] == NULL) or (data['adviser-allocated-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+            
+          </div>
+        </li>
+
+      </ul>
+
+      <h2 class="govuk-heading-l">Phase 2: Initial diagnosis and matching</h2>
+      <h3 class="govuk-heading-m">Establish support needs</h3>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/send-introductory-email" aria-describedby="company-details-2-status">
+              Send introductory email
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+            
+            
+            {% if (data['share-email-template'] == NULL) and (data['remind-the-adviser'] == NULL) and ((data['introductory-email-date-day'] == NULL ) or (data['introductory-email-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['share-email-template'] == 'done') and (data['remind-the-adviser'] == 'done') and (data['introductory-email-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/arrange-adviser-visit" aria-describedby="company-details-2-status">
+              Arrange advisor's initial visit
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+
+            
+            {% if (data['give-note-of-visit-template'] != 'done') and ((data['adviser-visit-date-day'] == NULL) or (data['adviser-visit-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['give-note-of-visit-template'] == 'done') and (data['adviser-visit-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/record-date-of-visit" aria-describedby="company-details-3-hint company-details-3-status">
+              Record date of initial visit
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-3-status">
+
+            
+
+            
+            {% if (data['adviser-visit-recorded-date-day'] == NULL) or (data['adviser-visit-recorded-date-day'] == '') %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['adviser-visit-recorded-date-day'] != '') or (data['adviser-visit-recorded-date-day'] != NULL) %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+
+          </div>
+        </li>
+        <!--
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/save-note-of-visit" aria-describedby="company-details-4-status">
+              Write and save the Note of Visit
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+            {% if (data['give-note-of-visit-template'] == NULL) and (data['ask-adviser-for-notes'] == NULL) and ((data['note-of-visit-saved-date-day'] == NULL ) or (data['note-of-visit-saved-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['give-note-of-visit-template'] == 'done') and (data['ask-adviser-for-notes'] == 'done') and (data['note-of-visit-saved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          </div>
+        </li>
+        -->
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/save-assessment-template" aria-describedby="company-details-4-status">
+              Complete and save the initial diagnosis assessment
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+            
+
+            
+            {% if (data['talk-to-adviser'] == NULL) and (data['complete-assessment-template'] == NULL) and ((data['assessment-template-saved-date-day'] == NULL ) or (data['assessment-template-saved-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['talk-to-adviser'] == 'done') and (data['complete-assessment-template'] == 'done') and (data['assessment-template-saved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/record-matching-decision" aria-describedby="company-details-4-status">
+              Record initial diagnosis decision
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+            
+
+            
+            {% if (data['school-matched'] == NULL) and ((data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif  (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+      </ul>
+
+     
+      <h3 class="govuk-heading-m">Find possible supporting organisation</h3>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/choose-preferred-supporting-organisation" aria-describedby="company-details-2-status">
+              Choose preferred supporting organisation
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+            
+          
+
+            
+            {% if (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-organisation-name'] == NULL) and ((data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['complete-at2'] == 'done') and (data['so-type'] != NULL ) and (data['supporting-organisation-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+            
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/carry-out-due-diligence" aria-describedby="company-details-2-status">
+              Carry out due diligence on preferred supporting organisation
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+
+            
+            {% if (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/record-supporting-org-appointment" aria-describedby="company-details-3-hint company-details-3-status">
+              Record supporting organisation appointment
+            </a>
+            <!--
+            <div id="company-details-3-hint" class="govuk-task-list__hint">
+              Include 5 years of the company’s relevant financial information
+            </div>
+            -->
+          </div>
+          <div class="govuk-task-list__status" id="company-details-3-status">
+
+           
+            
+            {% if (data['so-approved'] == NULL) and ((data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+
+
+
+        <!--
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list/add-so-contact-details" aria-describedby="company-details-4-status">
+              Add supporting organisation contact details
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+           
+
+            
+            {% if ((data['supporting-organisation-contact-name'] == NULL) or (data['supporting-organisation-contact-name'] == '')) and ((data['so-contact-email'] == NULL) or (data['so-contact-email'] == '')) and ((data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['supporting-organisation-contact-name'] != '') and (data['so-contact-email'] != '') and (data['so-contact-added-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+
+
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+
+            {% if (data['supporting-organisation-name'] == NULL) %}
+            Confirm supporting organisation contact details
+            {% else %}
+            <a class="govuk-link govuk-task-list__link" href="task-list/confirm-so-contact-details" aria-describedby="company-details-4-status">
+              Confirm supporting organisation contact details
+            </a>
+            {% endif %}
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+           
+
+
+            
+           
+
+
+            
+            {% if (data['supporting-organisation-name'] == NULL) and (data['so-contact-confirmed'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start
+            </strong>
+
+            {% elif (data['supporting-organisation-name'] != NULL) and (data['so-contact-confirmed'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+
+            
+            {% elif (data['so-contact-added-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+      -->
+
+
+
+      </ul>
+
+
+
+      <h2 class="govuk-heading-l">Phase 3: Diagnosis and planning</h2>
+      <h3 class="govuk-heading-m">Send planning grant offer letter</h3>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/request-planning-grant-offer-letter" aria-describedby="company-details-2-status">
+              Request planning grant offer letter
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+             
+           
+            
+            {% if (data['required-contacts'] == NULL) and (data['confirm-amount'] == NULL) and (data['copy-in-rd'] == NULL) and (data['send-to-gmfu'] == NULL) and ((data['planning-grant-letter-requested-date-day'] == NULL) or (data['planning-grant-letter-requested-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['required-contacts'] == 'done') and (data['confirm-amount'] == 'done') and (data['copy-in-rd'] == 'done') and (data['send-to-gmfu'] == 'done') and (data['planning-grant-letter-requested-date-day'] != '')  %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/planning-grant-offer-letter-sent" aria-describedby="company-details-2-status">
+              Confirm planning grant offer letter sent
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+
+            
+            {% if ((data['planning-letter-sent-date-day'] == NULL) or (data['planning-letter-sent-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['planning-letter-sent-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="govuk-heading-m">Create the improvement plan</h2>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/share-improvement-plan-template" aria-describedby="company-details-2-status">
+              Share indicative funding band and the improvement plan template
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+            
+            
+            {% if (data['indicative-funding-band'] == NULL) and (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['indicative-funding-band'] != NULL) and (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/review-improvement-plan" aria-describedby="company-details-2-status">
+              Review the improvement plan and confirm the funding band
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+         
+            
+            
+           
+
+            
+            {% if (data['indicative-funding-band'] == NULL) and (data['review-sip'] == NULL) and (data['send-draft-plans'] == NULL) and (data['confirm-plan-cleared'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL) or (data['improvement-plan-received-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['indicative-funding-band'] != NULL) and (data['review-sip'] == 'done') and (data['send-draft-plans'] == 'done') and (data['confirm-plan-cleared'] == 'done') and (data['improvement-plan-received-date-day'] != '')  %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/send-plan-for-approval" aria-describedby="company-details-3-hint company-details-3-status">
+              Send the agreed improvement plan for approval
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-3-status">
+
+           
+
+            
+            {% if (data['save-plan-in-sharepoint'] == NULL) and (data['email-plan-for-approval'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['save-plan-in-sharepoint'] == 'done') and (data['email-plan-for-approval'] == 'done') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/record-improvement-plan-decision" aria-describedby="company-details-4-status">
+              Record improvement plan decision
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+           
+
+            
+            {% if (data['plan-approved'] == NULL) and ((data['plan-approved-date-day'] == NULL) or (data['plan-approved-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+            {% elif (data['plan-approved'] != NULL) and (data['plan-approved-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+          
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+           
+
+
+            {% if (data['plan-objective-1'] == NULL) and (data['objectives-completed'] != 'done') %}
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/area-of-improvement" aria-describedby="company-details-2-status">
+              Enter improvement plan objectives
+            </a>
+            {% elif (data['plan-objective-1'] != NULL) and ((data['objectives-completed'] != 'done') or (data['objectives-completed'] == 'done')) %}
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/review-objectives" aria-describedby="company-details-2-status">
+              Enter improvement plan objectives
+            </a>
+            {% endif %}
+
+
+          </div>
+          <div class="govuk-task-list__status" id="company-details-4-status">
+
+           
+            {% if (data['plan-objective-1'] == NULL) and (data['objectives-completed'] != 'done') %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['plan-objective-1'] != NULL) and (data['objectives-completed'] != 'done') %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+
+            {% elif (data['plan-objective-1'] != NULL) and (data['objectives-completed'] == 'done') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+            {% endif %}
+          
+          
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="govuk-heading-m">Send improvement grant offer letter</h3>
+
+      <ul class="govuk-task-list">
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/request-improvement-grant-offer-letter" aria-describedby="company-details-2-status">
+              Request improvement grant offer letter
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+         
+
+            
+            {% if (data['required-contacts-2'] == NULL) and (data['attach-sip-template'] == NULL) and (data['copy-in-rd-2'] == NULL) and (data['send-to-gmfu-2'] == NULL) and ((data['improvement-grant-letter-requested-date-day'] == NULL) or (data['improvement-grant-letter-requested-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['required-contacts-2'] == 'done') and (data['attach-sip-template'] == 'done') and (data['copy-in-rd-2'] == 'done') and (data['send-to-gmfu-2'] == 'done') and (data['improvement-grant-letter-requested-date-day'] != '')  %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="task-list-cirencester/improvement-grant-offer-letter-sent" aria-describedby="company-details-2-status">
+              Confirm improvement grant offer letter sent
+            </a>
+          </div>
+          <div class="govuk-task-list__status" id="company-details-2-status">
+
+           
+
+            
+            {% if ((data['improvement-letter-sent-date-day'] == NULL) or (data['improvement-letter-sent-date-day'] == '')) %}
+            <strong class="govuk-tag govuk-tag--blue">
+              Not started
+            </strong>
+
+            {% elif (data['improvement-letter-sent-date-day'] != '') %}
+            <strong class="govuk-tag govuk-tag--turquoise">
+              Completed
+            </strong>
+         
+            {% else %}
+            <strong class="govuk-tag govuk-tag--orange">
+              In progress
+            </strong>
+            {% endif %}
+            
+          </div>
+        </li>
+      </ul>
+
+    
+      <!--
+      <div class="govuk-!-margin-top-5">
+        {{ govukButton({ text: "Apply", href: "#" }) }}
+      </div>
+      -->
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

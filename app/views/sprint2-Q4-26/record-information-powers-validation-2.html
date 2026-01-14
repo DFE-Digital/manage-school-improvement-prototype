@@ -1,0 +1,139 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You must enter details",
+              href: "#"
+            }
+          ]
+        }) }}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Record use of information powers
+      </h1>
+
+      <p>Information powers can be used to compel a school to share information the department needs.</p>
+
+      <details class="govuk-details margin-top-15">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How to use information powers
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+         
+          <p>To use information powers, you must email the school and inform them that the department is going to use the powers.</p>
+          <p>For example, use a phrase like "Under information powers, then..."</p>
+        </div>
+      </details>
+
+
+
+
+
+
+     
+
+      <form class="form" action="information-powers-date" method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="information-powers-hint">
+          
+            {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+            {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+            
+            {% set ipdetailsHtml %}
+            {{ govukTextarea({
+              name: "information-powers-details",
+              id: "information-powers-details",
+              value: data["information-powers-details"],
+              errorMessage: {
+                text: "You must enter details"
+                },
+              label: {
+                text: "Enter details about why and how the powers have been used. Describe what information you used the powers to get."
+              }
+            }) }}
+            {% endset -%}
+            
+            {{ govukCheckboxes({
+              name: "information-powers",
+              id: "information-powers",
+              items: [
+                {
+                  value: "Yes",
+                  checked: true,
+                  text: "Information powers in use",
+                  conditional: {
+                    html: ipdetailsHtml
+                  }
+                }
+              ]
+            }) }}
+      
+
+        
+        <div class="govuk-button-group">
+
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Confirm and continue
+          </button>
+
+        <a class="govuk-link" href="engagement-concerns">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

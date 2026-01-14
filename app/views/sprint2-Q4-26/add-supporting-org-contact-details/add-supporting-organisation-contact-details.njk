@@ -1,0 +1,218 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  {# Content logic for the inset text to playback the chose supporting organisation and subsequent role #}
+  {% if (data['so-type'] === "school") %}
+    {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+      {% set soOrg = "School" %}
+      {% set soOrgName = data['so-name'] %}
+      {% set soRole = "Headteacher" %}
+      {% set soNameLabel = "Headteacher" %}
+    {% else %}
+        {% set soOrg = "Academy" %}
+        {% set soOrgName = data['so-name'] %}
+        {% set soRole = "Accounting officer of the academy's trust" %}
+        {% set soNameLabel = "Accounting officer" %}
+    {% endif %}
+  {% elif (data['so-type'] === "trust") %}
+    {% set soOrg = "Trust" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "Accounting officer" %}
+    {% set soNameLabel = "Accounting officer" %}
+  {% elif (data['so-type'] === "local-authority") %}
+    {% set soOrg = "Local authority" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% elif (data['so-type'] === "local-authority-traded-service") %}
+    {% set soOrg = "Local authority traded service" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% elif (data['so-type'] === "federation-education-partnership") %}
+    {% set soOrg = "Federation or education partnership" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% else %}
+    {% set soOrg = "" %}
+    {% set soOrgName = "" %}
+    {% set soRole = "" %}
+  {% endif %}
+
+  {# Set the content for the inset text #}
+  {% set soPlayback %}
+    {# <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p> #}
+    <p class="govuk-body"><strong>Name of supporting organisation:</strong> {{ soOrgName }}</p>
+    
+    {# Only show a 'role of contact' if the SO is a school or trust, because those are the only two we're returning data from GIAS for #}
+    {# {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
+      <p class="govuk-body"><strong>Required contact:</strong> {{ soRole }}</p>
+    {% endif %} #}
+  {% endset %}
+
+  {# Prefilled inputs if a school, academy or trust is the supporting organisation #}
+  {% if (data['so-type'] === "school") %}
+    {% set soContactName = "Ailsa Barnes" %}
+    {% set soContactEmail = "ailsa.barnes@cheltenhamnewacademy.co.uk" %}
+    {% set soContactPhone = "" %}
+  {% elif (data['so-type'] === "trust") %}
+    {% set soContactName = "Levi Crombie" %}
+    {% set soContactEmail = "" %}
+    {% set soContactPhone = "01452 890098" %}
+  {% else %}
+    {% set soContactName = "" %}
+    {% set soContactEmail = "" %}
+    {% set soContactPhone = "" %}
+  {% endif %}
+
+  {# Set label for "Name of ROLE" input #}
+  {# {% if (data['so-type'] !== NULL) %} #}
+  {% if soRole !== "" %}
+    {% set soNameLabelHTML %}
+      {{ soNameLabel }} name
+    {% endset %}
+  {% else %}
+    {% set soNameLabelHTML %}
+      Name
+    {% endset %}
+  {% endif %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Confirm supporting organisation contact details
+      </h1>
+      <p class="govuk-body">
+        Enter the contact details for the supporting organisation's accounting officer. They will get the grant funding letters.
+      </p>
+      <p class="govuk-body">
+        You can add contact information for other people at the suporting organisation on the Contacts page.
+      </p>
+
+      {# Playback of supporting organisation type and role, from "Choose supporting organisation" task #}
+      {% if (data['so-type'] !== NULL) %}
+        {{ govukInsetText({
+          html: soPlayback
+        }) }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">
+        Check these contact details are correct
+      </h2>
+
+      <p class="govuk-body">
+        This information came from Get information about schools.
+      </p>
+
+      <p class="govuk-body">
+        Check it is correct. Make changes if it is wrong.
+      </p>
+
+      <form class="form" action='../task-list' method="post">
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="">
+
+            {# <hr class="govuk-section-break govuk-section-break--m"> #}
+
+            {{ govukInput({
+              label: {
+                html: soNameLabelHTML,
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              hint: {
+                text: "Enter their first and last name"
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "so-contact-name",
+              name: "so-contact-name",
+              value: soContactName
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Email address",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "so-contact-email",
+              name: "so-contact-email",
+              value: soContactEmail
+            }) }}
+
+            {# Phone number #}
+            {{ govukInput({
+              label: {
+                text: "UK phone number (Optional)",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              id: "so-contact-phone",
+              name: "so-contact-phone",
+              type: "tel",
+              autocomplete: "tel",
+              value: soContactPhone,
+              classes: "govuk-input--width-20"
+            }) }}
+
+          </fieldset>
+        </div>
+
+        {# <div class="govuk-button-group"> #}
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+        {# </div> #}
+
+        {# Todays date in a variable
+        {% set currentDate = "today" | govukDate %}
+
+        {# Set up a bunch of source and updates content #}
+        {# {% set sourceUpdatesContent %}
+          <p class='govuk-heading-s'>Supporting organisation contact details</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+                Name came from Get information about schools on {{ currentDate }}
+            </li>
+            <li>
+                Email address came from Get information about schools on {{ currentDate }}
+            </li>
+          </ul>
+        {% endset %} #}
+
+        {# Display it all in a details component, only if the SO is a type that uses the GIAS look up #}
+        {# {% if (data['so-type'] === "school") or (data['so-type'] === "trust") %}
+          {{ govukDetails({
+            summaryText: "Where this information came from",
+            html: sourceUpdatesContent
+          }) }}
+        {% endif %} #}
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

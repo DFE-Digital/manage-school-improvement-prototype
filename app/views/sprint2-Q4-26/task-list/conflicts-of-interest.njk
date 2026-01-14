@@ -1,0 +1,152 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint2-Q4-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Check potential adviser conflicts of interest
+      </h1>
+
+   </div>
+  </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>The adviser completed a conflict of interest declaration form when they began working with DfE.</p>
+
+      <p>Use this to check for any conflicts of interest they may have with this school or its responsible body.</p>
+
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
+
+        {# Check answer 1 #}
+        {% if (data['conflicts-form-sent'] == 'done') %}
+            {% set answer1='Complete' %}
+          {% else %}
+            {% set answer1='Incomplete' %}
+        {% endif %}
+
+        {# Check answer 2 #}
+        {% if (data['conflicts-of-interest-date-day'] != "") and (data['conflicts-of-interest-date-month'] != "") and (data['conflicts-of-interest-date-year'] != "") %}
+            {% set answer2 = data | isoDateFromDateInput("conflicts-of-interest-date") | govukDate %}
+          {% else %}
+            {% set answer2='Incomplete' %}
+        {% endif %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Review the adviser's conflict of interest declaration"
+              },
+              value: {
+                text: answer1
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Enter date when the adviser's conflicts of interest declaration was checked"
+              },
+              value: {
+                text: answer2
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        <form class="form" action="../task-list-task-updated" method="post">
+  
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+
+              <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div class="govuk-checkboxes__item padding-bottom-15">
+                  <input class="govuk-checkboxes__input" id="conflicts-form-sent" name="conflicts-form-sent" type="checkbox" value="done" {{checked("conflicts-form-sent", "done")}}>
+                  <label class="govuk-label govuk-checkboxes__label" for="conflicts-form-sent">
+                    Review the adviser's conflict of interest declaration
+                  </label>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+          {{ govukDateInput({
+            id: "conflicts-of-interest-date",
+            namePrefix: "conflicts-of-interest-date",
+            fieldset: {
+              legend: {
+                text: "Enter date when the adviser's conflicts of interest declaration was checked",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "For example, 1 7 2024."
+            },
+            items: [
+              {
+                name: "day",
+                value: data["conflicts-of-interest-date-day"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "month",
+                value: data["conflicts-of-interest-date-month"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },                
+              {
+                name: "year",
+                value: data["conflicts-of-interest-date-year"],
+                allowEmpty: false,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+          text: "Save and return"
+          }) }}
+        
+        </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
