@@ -200,7 +200,7 @@
 {% endif %}
 
 {# Banner for Task list page, if an Advisor has not been set #}
-{% if (data['assigned-to'] == NULL) and (uriLastPart == "task-list") or (uriLastPart == "task-list-task-updated") or (uriLastPart == "share-improvement-plan-template") or (uriLastPart == "record-matching-decision") or (uriLastPart == "conflicts-of-interest") %}
+{% if (data['assigned-to'] == NULL) %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
       Advisor required
