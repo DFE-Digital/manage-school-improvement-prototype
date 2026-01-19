@@ -1,11 +1,12 @@
-{# SET CURRENT STATUS #}
-{% set currentStatus = "" %}
-{% set assignedToChangeText = "Change" %}
-{% set assignedToChangeURL = "./assign/assign-project" %}
-{% set adviserChangeText = "Change" %}
-{% set adviserChangeURL = "./allocate/allocate-adviser" %}
-{% set engagementConcernChangeText = "Change" %}
-{% set engagementConcernChangeURL = "./record-engagement-concern" %}
+{# SET CURRENT STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
+  {% set currentStatus = "" %}
+  {% set assignedToChangeText = "Change" %}
+  {% set assignedToChangeURL = "./assign/assign-project" %}
+  
+  {% set engagementConcernChangeText = "Change" %}
+  {% set engagementConcernChangeURL = "./record-engagement-concern" %}
+{% endif %}
 
 {% if (data['project-status'] == "Stopped") %}
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
@@ -13,9 +14,7 @@
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
 {% endif %}
 
-{{ data['assigned-to'] }}
-
-{# SET VARIABLES FOR ASSIGNED TO #}
+{# SET VARIABLES IF PAUSED OR STOPPED #}
 {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
   {% set assignedToChangeText = "" %}
   {% set assignedToChangeURL = "" %}
@@ -39,12 +38,16 @@
   {% set engagementConcernChangeURL = "" %}
 {% endif %}
 
-{# SET ADVISER #}
+{# SET ADVISER ONLY IF 3X TASKS COMPLETE #}
 {% set adviser = "" %}
 {% if (data['allocated-adviser'] != NULL) %}
   {% set adviser = data['allocated-adviser'] %}
-{% else %}
+{% elif (data['allocated-adviser'] == NULL) and (checkAdviserConflictComplete === "Complete") and (sendFormalNotificationComplete === "Complete") and (recordResponsibleBodyReponseComplete === "Complete") %}
+  {% set adviserChangeText = "Change" %}
+  {% set adviserChangeURL = "./allocate/allocate-adviser" %}
   {% set adviser = '<span data-id="allocated-adviser" class="empty">Empty</span>' %}
+{% else %}
+  {% set adviser = "You cannot assign an adviser yet" %}
 {% endif %}
 
 {# SET ENGAGEMENT CONCERN ANSWER #}

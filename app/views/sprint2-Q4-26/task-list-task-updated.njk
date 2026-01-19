@@ -1,6 +1,34 @@
 {% extends "layouts/main.html" %}
 
+{# SET CURRENT STATUS #}
+{% set currentStatus = "" %}
+{% if (data['project-status'] == "Paused") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% else %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% endif %}
+
 {% set NavActive = "task-list" %}
+
+{# The three tasks - 1. Check potential adviser conflicts of interest #}
+{% set checkAdviserConflictComplete = "" %}
+{% if (data['conflicts-form-sent'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+  {% set checkAdviserConflictComplete = "Complete" %}
+{% endif %}
+
+{# The three tasks - 2. Send the formal notification #}
+{% set sendFormalNotificationComplete = "" %}
+{% if (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+  {% set sendFormalNotificationComplete = "Complete" %}
+{% endif %}
+
+{# The three tasks - 3. Record the responsible body's response to the conflict of interest form #}
+{% set recordResponsibleBodyReponseComplete = "" %}
+{% if (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+  {% set recordResponsibleBodyReponseComplete = "Complete" %}
+{% endif %}
 
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
@@ -42,7 +70,11 @@
 
 {% block content %}
   
-  {% include "/layouts/summary-section.html" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "/layouts/summary-section.html" %}
+    </div>
+  </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -169,11 +201,11 @@
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
-          {% elif (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
+          {% elif (data['conflicts-form-sent'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL )) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-          {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+          {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
@@ -229,11 +261,11 @@
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
-          {% elif (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
+          {% elif (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-          {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+          {% elif (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>

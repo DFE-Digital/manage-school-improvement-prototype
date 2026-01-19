@@ -12,6 +12,24 @@
 
 {% set NavActive = "task-list" %}
 
+{# The three tasks - 1. Check potential adviser conflicts of interest #}
+{% set checkAdviserConflictComplete = "" %}
+{% if (data['conflicts-form-sent'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+  {% set checkAdviserConflictComplete = "Complete" %}
+{% endif %}
+
+{# The three tasks - 2. Send the formal notification #}
+{% set sendFormalNotificationComplete = "" %}
+{% if (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
+  {% set sendFormalNotificationComplete = "Complete" %}
+{% endif %}
+
+{# The three tasks - 3. Record the responsible body's response to the conflict of interest form #}
+{% set recordResponsibleBodyReponseComplete = "" %}
+{% if (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+  {% set recordResponsibleBodyReponseComplete = "Complete" %}
+{% endif %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -34,6 +52,13 @@
 {% endblock %}
 
 {% block content %}
+
+test
+{{ data['allocated-adviser'] }}
+{{ checkAdviserConflictComplete }}
+{{ sendFormalNotificationComplete }}
+{{ recordResponsibleBodyReponseComplete }}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% include "/layouts/summary-section.html" %}
@@ -165,11 +190,11 @@
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
-          {% elif (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
+          {% elif (data['conflicts-form-sent'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL )) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-          {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+          {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
@@ -225,11 +250,11 @@
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
-          {% elif (data['accepted-support'] == NULL) and (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
+          {% elif (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
-          {% elif  (data['accepted-support'] != NULL) and (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
+          {% elif (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
             <strong class="govuk-tag govuk-tag--turquoise">
               Completed
             </strong>
@@ -255,7 +280,11 @@
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
-          {% elif (data['allocated-adviser-email'] == NULL) and ((data['adviser-allocated-date-day'] == NULL) or (data['adviser-allocated-date-day'] == '')) %}
+          {% elif (checkAdviserConflictComplete != "Complete") or (sendFormalNotificationComplete != "Complete") or (recordResponsibleBodyReponseComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
               Not started
             </strong>
