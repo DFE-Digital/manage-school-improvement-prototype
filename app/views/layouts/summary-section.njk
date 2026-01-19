@@ -13,6 +13,9 @@
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
 {% endif %}
 
+{{ data['assigned-to'] }}
+
+{# SET VARIABLES FOR ASSIGNED TO #}
 {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
   {% set assignedToChangeText = "" %}
   {% set assignedToChangeURL = "" %}
@@ -30,6 +33,10 @@
   {% set assignedTo = data['assigned-to'] %}
 {% else %}
   {% set assignedTo = '<span data-id="assigned-user" class="empty">Empty</span>' %}
+  {% set adviserChangeText = "" %}
+  {% set adviserChangeURL = "" %}
+  {% set engagementConcernChangeText = "" %}
+  {% set engagementConcernChangeURL = "" %}
 {% endif %}
 
 {# SET ADVISER #}

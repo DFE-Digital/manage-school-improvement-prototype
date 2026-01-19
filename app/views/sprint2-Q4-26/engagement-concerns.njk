@@ -47,12 +47,14 @@
 
       <h2 class="govuk-heading-l">Engagement concerns</h2>
 
-      {% if (data['engagement-concern-summary'] == NULL) and (data['engagement-concern-summary-2'] == NULL)%}
-      <p>Enter details about situations where a school or responsible body do not respond to you.</p> 
-       <div class="govuk-!-margin-top-5">
-        {{ govukButton({ text: "Record engagement concern here", href: "record-engagement-concern" }) }}
-       </div>
-       {% endif %}
+      {% if (data['assigned-to'] == NULL) %}
+        <p class="govuk-body">Engagement concerns cannot be added until an advisor has been assigned to the project.</p>
+      {% elif (data['engagement-concern-summary'] == NULL) and (data['engagement-concern-summary-2'] == NULL)%}
+        <p class="govuk-body">Enter details about situations where a school or responsible body do not respond to you.</p> 
+        <div class="govuk-!-margin-top-5">
+          {{ govukButton({ text: "Record engagement concern here", href: "record-engagement-concern" }) }}
+        </div>
+      {% endif %}
       
       {% if (data['engagement-concern-summary'] != NULL) %} 
         <div class="govuk-button-group">
