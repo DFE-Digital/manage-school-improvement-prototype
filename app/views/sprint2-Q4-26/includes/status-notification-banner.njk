@@ -199,15 +199,15 @@
   {% endset %}
 {% endif %}
 
-{# Banner for Task list page, if an Advisor has not been set #}
+{# Banner for Task list page, if it has not yet been assigned #}
 {% if (data['assigned-to'] == NULL) %}
   {% set statusNotificationBannerContent %}
     <h3 class="govuk-notification-banner__heading">
-      Advisor required
+      Project must be assigned
     </h3>
 
     <p class="govuk-body">
-      Tasks cannot be started until an advisor has been assigned to the project.
+      Tasks cannot be started until the project has been assigned to a delivery officer.
     </p>
   {% endset %}
 {% endif %}
