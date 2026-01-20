@@ -220,3 +220,21 @@
         classes: "govuk-!-margin-bottom-2"
     }) }}
 {% endif %}
+
+{# Banner for if DO has been assigned #}
+{% if (uriLastPart === "assign-project") and (data['assigned-to'] != NULL) %}
+  {{ govukNotificationBanner({
+    text: "Project assigned",
+    type: "success",
+    classes: "govuk-!-margin-bottom-2"
+  }) }}
+{% endif %}
+
+{# Banner for project adviser has been allocated #}
+{% if (uriLastPart === "allocate-an-adviser") and (data['allocated-adviser-email'] != NULL) %}
+  {{ govukNotificationBanner({
+    text: "Adviser allocated",
+    type: "success",
+    classes: "govuk-!-margin-bottom-2"
+  }) }}
+{% endif %}
