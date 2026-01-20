@@ -1,0 +1,157 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Add funding
+      </h1>
+      
+      <form class="form" action='funding-history' method="post">
+
+        
+
+    
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Funding type",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          id: "funding-name-2",
+          name: "funding-name-2",
+          value: data["funding-name-2"]
+        }) }}
+  
+  
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+  
+  {{ govukInput({
+    id: "funding-amount-2",
+    name: "funding-amount-2",
+    value: data["funding-amount-2"],
+    label: {
+      text: "Funding amount",
+      classes: "govuk-label--m",
+      isPageHeading: false
+    },
+    prefix: {
+      text: "£"
+    },
+    classes: "govuk-input--width-5",
+    spellcheck: false
+  }) }}
+  
+  
+  {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+  
+  {{ govukDateInput({
+    id: "funding-paid-date-2",
+    namePrefix: "funding-paid-date-2",
+    fieldset: {
+      legend: {
+        text: "Enter the date the funding was paid",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      text: "For example, 1 7 2024."
+    },
+    items: [
+      {
+        name: "day",
+        value: data["funding-paid-date-day-2"],
+        allowEmpty: false,
+        classes: "govuk-input--width-2"
+      },
+      {
+        name: "month",
+        value: data["funding-paid-date-month-2"],
+        allowEmpty: false,
+        classes: "govuk-input--width-2"
+      },                
+      {
+        name: "year",
+        value: data["funding-paid-date-year-2"],
+        allowEmpty: false,
+        classes: "govuk-input--width-4"
+      }
+    ]
+  }) }}
+  
+  {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+  
+  {{ govukTextarea({
+    name: "funding-comments-2",
+    value: data["funding-comments-2"],
+    id: "funding-comments-2",
+    label: {
+      text: "Add any comments about the funding",
+      classes: "govuk-label--m",
+      isPageHeading: false
+    },
+    hint: {
+      text: "Do not include personal or financial information."
+    }
+  }) }}
+  
+       
+  
+  
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

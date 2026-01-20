@@ -1,18 +1,13 @@
-{# SET CURRENT STATUS #}
-{% set currentStatus = "" %}
-{% set assignedToChangeText = "Change" %}
-{% set assignedToChangeURL = "./assign/assign-project" %}
-{% set adviserChangeText = "Change" %}
-{% set adviserChangeURL = "./allocate/allocate-adviser" %}
-{% set engagementConcernChangeText = "Change" %}
-{% set engagementConcernChangeURL = "./record-engagement-concern" %}
-
-{% if (data['project-status'] == "Stopped") %}
+{# SET CURRENT STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
 {% elif (data['project-status'] == "Paused") %}
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
 {% endif %}
 
+{# SET VARIABLES IF PAUSED OR STOPPED #}
 {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
   {% set assignedToChangeText = "" %}
   {% set assignedToChangeURL = "" %}
@@ -21,23 +16,48 @@
   {% set engagementConcernChangeText = "" %}
   {% set engagementConcernChangeURL = "" %}
 {% else %}
-  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+  {% set engagementConcernChangeText = "Change" %}
+  {% set engagementConcernChangeURL = "./record-engagement-concern" %}
 {% endif %}
 
 {# SET ASSIGNED TO #}
 {% set assignedTo = "" %}
 {% if (data['assigned-to'] != NULL) %}
   {% set assignedTo = data['assigned-to'] %}
+  {% set assignedToChangeText = "Change" %}
+  {% set assignedToChangeURL = "./assign/assign-project" %}
 {% else %}
-  {% set assignedTo = '<span data-id="assigned-user" class="empty">Empty</span>' %}
+  {% set assignedTo %}
+    <a href="./assign/assign-project" class="govuk-link">
+      Assign a delivery officer
+    </a>
+  {% endset %}
+  {% set adviserChangeText = "" %}
+  {% set adviserChangeURL = "" %}
+  {% set engagementConcernChangeText = "" %}
+  {% set engagementConcernChangeURL = "" %}
 {% endif %}
 
-{# SET ADVISER #}
+{# SET ADVISER ONLY IF 3X TASKS COMPLETE #}
 {% set adviser = "" %}
-{% if (data['allocated-adviser'] != NULL) %}
-  {% set adviser = data['allocated-adviser'] %}
+{% if (data['allocated-adviser-email'] != NULL) %}
+  {% set adviser = data['allocated-adviser-email'] %}
+  {% set adviserChangeText = "Change" %}
+  {% set adviserChangeURL = "task-list/allocate-an-adviser" %}
+{% elif (data['allocated-adviser-email'] == NULL) and (checkAdviserConflictComplete === "Complete") and (sendFormalNotificationComplete === "Complete") and (recordResponsibleBodyReponseComplete === "Complete") %}
+  {% set adviser %}
+    <a href="task-list/allocate-an-adviser" class="govuk-link">
+      Allocate an adviser
+    </a>
+    {% set adviserChangeText = "" %}
+    {% set adviserChangeURL = "" %}
+  {% endset %}
 {% else %}
-  {% set adviser = '<span data-id="allocated-adviser" class="empty">Empty</span>' %}
+  {% set adviser %}
+    Cannot allocate an adviser yet
+    {% set adviserChangeText = "" %}
+    {% set adviserChangeURL = "" %}
+  {% endset %}
 {% endif %}
 
 {# SET ENGAGEMENT CONCERN ANSWER #}
