@@ -99,28 +99,28 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          <a class="govuk-link govuk-task-list__link" href="task-list/eligibility-check" aria-describedby="company-details-2-status">
-            Confirm eligibility
-          </a>
+          {% if (data['assigned-to'] == NULL) %}
+            Confirm eligibility cannot start yet
+          {% else %}
+            <a class="govuk-link govuk-task-list__link" href="task-list/eligibility-check" aria-describedby="company-details-2-status">
+              Confirm eligibility
+            </a>
+          {% endif %}
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] != "Stopped") or (data['project-status'] != "Paused") and (data['eligible'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -142,25 +142,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['received-funding'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['received-funding'] == 'No') or ((data['received-funding'] == 'Yes') and (data['funding-name'] != NULL) and (data['funding-completed'] == 'done'))  %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -182,25 +177,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['call-responsible-body'] == NULL) and ((data['initial-contact-date-day'] == NULL) or (data['initial-contact-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['call-responsible-body'] == 'done') and (data['initial-contact-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -216,25 +206,20 @@
 
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}  
           {% elif (data['conflicts-form-sent'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL )) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -250,25 +235,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['draft-email'] == NULL) and (data['add-attachments'] == NULL) and (data['add-recipients'] == NULL) and (data['email-responsible-body'] == NULL) and ((data['school-contacted-date-day'] == NULL) or (data['school-contacted-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['draft-email'] == 'done') and (data['add-attachments'] == 'done') and (data['add-recipients'] == 'done') and (data['email-responsible-body'] == 'done') and (data['school-contacted-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -284,25 +264,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['response-saved'] == NULL) and ((data['school-response-date-day'] == NULL) or (data['school-response-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['response-saved'] == 'done') and (data['school-response-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
       
@@ -318,25 +293,20 @@
 
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (checkAdviserConflictComplete != "Complete") or (sendFormalNotificationComplete != "Complete") or (recordResponsibleBodyReponseComplete != "Complete") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused")%}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -360,25 +330,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['share-email-template'] == NULL) and (data['remind-the-adviser'] == NULL) and ((data['introductory-email-date-day'] == NULL ) or (data['introductory-email-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['share-email-template'] == 'done') and (data['remind-the-adviser'] == 'done') and (data['introductory-email-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -394,25 +359,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['give-note-of-visit-template'] != 'done') and ((data['adviser-visit-date-day'] == NULL) or (data['adviser-visit-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['give-note-of-visit-template'] == 'done') and (data['adviser-visit-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -428,25 +388,20 @@
 
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['adviser-visit-recorded-date-day'] == NULL) or (data['adviser-visit-recorded-date-day'] == '') %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['adviser-visit-recorded-date-day'] != '') or (data['adviser-visit-recorded-date-day'] != NULL) %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -462,25 +417,20 @@
 
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['talk-to-adviser'] == NULL) and (data['complete-assessment-template'] == NULL) and ((data['assessment-template-saved-date-day'] == NULL ) or (data['assessment-template-saved-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['talk-to-adviser'] == 'done') and (data['complete-assessment-template'] == 'done') and (data['assessment-template-saved-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -496,25 +446,20 @@
 
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['school-matched'] == NULL) and ((data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif  (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -536,25 +481,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-name'] == NULL) and ((data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['complete-at2'] == 'done') and (data['so-type'] != NULL ) and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -570,25 +510,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and ((data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -604,25 +539,20 @@
 
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['so-approved'] == NULL) and ((data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -638,25 +568,20 @@
 
         <div class="govuk-task-list__status" id="">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['so-contact-name'] == NULL) and ((data['so-contact-email'] == NULL)) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif  (data['so-contact-name'] != '') and (data['so-contact-email'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -681,25 +606,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['required-contacts'] == NULL) and (data['confirm-amount'] == NULL) and (data['copy-in-rd'] == NULL) and (data['send-to-gmfu'] == NULL) and ((data['planning-grant-letter-requested-date-day'] == NULL) and (data['planning-grant-letter-requested-date-day'] == NULL)) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['required-contacts'] == 'done') and (data['confirm-amount'] == 'done') and (data['copy-in-rd'] == 'done') and (data['send-to-gmfu'] == 'done') and (data['planning-grant-letter-requested-date-day'] != '')  %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -715,25 +635,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif ((data['planning-letter-sent-date-day'] == NULL) or (data['planning-letter-sent-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['planning-letter-sent-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -755,25 +670,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['indicative-funding-band'] == NULL) and (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['indicative-funding-band'] != NULL) and (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -789,25 +699,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['indicative-funding-band'] == NULL) and (data['review-sip'] == NULL) and (data['send-draft-plans'] == NULL) and (data['confirm-plan-cleared'] == NULL) and ((data['improvement-plan-received-date-day'] == NULL) or (data['improvement-plan-received-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['indicative-funding-band'] != NULL) and (data['review-sip'] == 'done') and (data['send-draft-plans'] == 'done') and (data['confirm-plan-cleared'] == 'done') and (data['improvement-plan-received-date-day'] != '')  %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -823,25 +728,20 @@
 
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['save-plan-in-sharepoint'] == NULL) and (data['email-plan-for-approval'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['save-plan-in-sharepoint'] == 'done') and (data['email-plan-for-approval'] == 'done') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -857,25 +757,20 @@
 
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['plan-approved'] == NULL) and ((data['plan-approved-date-day'] == NULL) or (data['plan-approved-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['plan-approved'] != NULL) and (data['plan-approved-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -897,25 +792,20 @@
 
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['plan-objective-1'] == NULL) and (data['objectives-completed'] != 'done') %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['plan-objective-1'] != NULL) and (data['objectives-completed'] != 'done') %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['plan-objective-1'] != NULL) and (data['objectives-completed'] == 'done') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -937,25 +827,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif (data['required-contacts-2'] == NULL) and (data['attach-sip-template'] == NULL) and (data['copy-in-rd-2'] == NULL) and (data['send-to-gmfu-2'] == NULL) and ((data['improvement-grant-letter-requested-date-day'] == NULL) or (data['improvement-grant-letter-requested-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['required-contacts-2'] == 'done') and (data['attach-sip-template'] == 'done') and (data['copy-in-rd-2'] == 'done') and (data['send-to-gmfu-2'] == 'done') and (data['improvement-grant-letter-requested-date-day'] != '')  %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
@@ -971,25 +856,20 @@
 
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot start yet
-            </strong>
+            {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
+            {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
           {% elif ((data['improvement-letter-sent-date-day'] == NULL) or (data['improvement-letter-sent-date-day'] == '')) %}
-            <strong class="govuk-tag govuk-tag--blue">
-              Not started
-            </strong>
+            {% set taskStatusTag = notStarted %}
+            {{ taskStatusTag | safe }}
           {% elif (data['improvement-letter-sent-date-day'] != '') %}
-            <strong class="govuk-tag govuk-tag--turquoise">
-              Completed
-            </strong>
+            {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
           {% else %}
-            <strong class="govuk-tag govuk-tag--orange">
-              In progress
-            </strong>
+            {% set taskStatusTag = inProgress %}
+            {{ taskStatusTag | safe }}
           {% endif %}
         </div>
 
