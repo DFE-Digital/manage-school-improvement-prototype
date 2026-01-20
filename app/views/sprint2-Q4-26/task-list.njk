@@ -30,6 +30,12 @@
   {% set recordResponsibleBodyReponseComplete = "Complete" %}
 {% endif %}
 
+{# Check if allocate an adviser is complete or not #}
+{% set allocateAnAdviserComplete = "" %}
+{% if (data['allocated-adviser-email'] != NULL) and (data['adviser-allocated-date-day'] != '') %}
+  {% set allocateAnAdviserComplete = "Complete" %}
+{% endif %}
+
 {% block pageTitle %}
   Task list template – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -52,12 +58,6 @@
 {% endblock %}
 
 {% block content %}
-
-test
-{{ data['allocated-adviser'] }}
-{{ checkAdviserConflictComplete }}
-{{ sendFormalNotificationComplete }}
-{{ recordResponsibleBodyReponseComplete }}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -88,7 +88,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -120,7 +124,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -156,7 +164,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -186,7 +198,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-3-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -216,7 +232,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -246,7 +266,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (data['assigned-to'] == NULL) %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -276,13 +300,13 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-4-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
-            <strong class="govuk-tag govuk-tag--grey">
-              Cannot progress
-            </strong>
-          {% elif (checkAdviserConflictComplete != "Complete") or (sendFormalNotificationComplete != "Complete") or (recordResponsibleBodyReponseComplete != "Complete") %}
+          {% if (checkAdviserConflictComplete != "Complete") or (sendFormalNotificationComplete != "Complete") or (recordResponsibleBodyReponseComplete != "Complete") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused")%}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot progress
             </strong>
           {% elif (data['allocated-adviser-email'] == NULL) and (data['adviser-allocated-date-day'] == NULL) %}
             <strong class="govuk-tag govuk-tag--blue">
@@ -318,7 +342,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -348,7 +376,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -378,7 +410,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-3-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -408,7 +444,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-4-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -438,7 +478,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-4-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -474,7 +518,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -504,7 +552,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -534,7 +586,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-3-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -564,7 +620,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -603,7 +663,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -633,7 +697,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -669,7 +737,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -699,7 +771,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -729,7 +805,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-3-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -759,7 +839,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-4-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -795,7 +879,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-4-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -831,7 +919,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
@@ -861,7 +953,11 @@ test
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+          {% if (allocateAnAdviserComplete != "Complete") %}
+            <strong class="govuk-tag govuk-tag--grey">
+              Cannot start yet
+            </strong>
+          {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             <strong class="govuk-tag govuk-tag--grey">
               Cannot progress
             </strong>
