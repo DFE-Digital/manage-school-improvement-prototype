@@ -376,7 +376,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['share-email-template'] == NULL) and (data['remind-the-adviser'] == NULL) and (data['introductory-email-date-day'] == NULL ) or (data['introductory-email-date-day'] == '')) %}
+          {% elif (data['share-email-template'] == NULL) and (data['remind-the-adviser'] == NULL) and (data['introductory-email-date-day'] == NULL ) or (data['introductory-email-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif (data['share-email-template'] == 'done') and (data['remind-the-adviser'] == 'done') and (data['introductory-email-date-day'] != '') %}
@@ -409,7 +409,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['give-note-of-visit-template'] != 'done') and (data['adviser-visit-date-day'] == NULL) or (data['adviser-visit-date-day'] == '')) %}
+          {% elif (data['give-note-of-visit-template'] != 'done') and (data['adviser-visit-date-day'] == NULL) or (data['adviser-visit-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif (data['give-note-of-visit-template'] == 'done') and (data['adviser-visit-date-day'] != '') %}
@@ -475,7 +475,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['talk-to-adviser'] == NULL) and (data['complete-assessment-template'] == NULL) and (data['assessment-template-saved-date-day'] == NULL ) or (data['assessment-template-saved-date-day'] == '')) %}
+          {% elif (data['talk-to-adviser'] == NULL) and (data['complete-assessment-template'] == NULL) and (data['assessment-template-saved-date-day'] == NULL ) or (data['assessment-template-saved-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif (data['talk-to-adviser'] == 'done') and (data['complete-assessment-template'] == 'done') and (data['assessment-template-saved-date-day'] != '') %}
@@ -508,7 +508,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['school-matched'] == NULL) and (data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
+          {% elif (data['school-matched'] == NULL) and (data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif  (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
@@ -547,7 +547,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-name'] == NULL) and (data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '')) %}
+          {% elif (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-name'] == NULL) and (data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif (data['complete-at2'] == 'done') and (data['so-type'] != NULL ) and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
@@ -580,7 +580,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and (data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '')) %}
+          {% elif (data['organisation-capacity'] == NULL) and (data['speak-to-relationship-manager'] == NULL) and (data['talk-to-grant-team'] == NULL) and (data['check-for-vendor-account'] == NULL) and (data['due-diligence-date-day'] == NULL ) or (data['due-diligence-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif (data['organisation-capacity'] == 'done') and (data['speak-to-relationship-manager'] == 'done') and (data['talk-to-grant-team'] == 'done') and (data['check-for-vendor-account'] == 'done') and (data['due-diligence-date-day'] != '') %}
@@ -613,7 +613,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['so-approved'] == NULL) and (data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '')) %}
+          {% elif (data['so-approved'] == NULL) and (data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
