@@ -92,6 +92,11 @@
         Check it is correct. Make changes if it is wrong.
       </p>
 
+      {{ govukWarningText({
+        text: "You will not be able to make changes to this information once you confirm it.",
+        iconFallbackText: "Warning"
+      }) }}
+
       <form class="form" action='../task-list' method="post">
         
         <div class="govuk-form-group">
