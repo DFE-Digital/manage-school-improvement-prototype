@@ -1,0 +1,197 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+
+      <span class="govuk-caption-l">Tewkesbury Secondary School</span>
+      <h1 class="govuk-heading-l">
+        Record the responsible body's response to the conflict of interest form
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>The responsible body should respond to the conflict of interest form with 3 working days of receiving it in the formal letter of notification.</p>
+
+      <p>This may take longer during school holidays.</p>
+
+
+
+      <form class="form" action="../task-list-tewkesbury-updated" method="post">
+
+        
+        <!--
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+         
+        {{ govukRadios({
+          idPrefix: "accepted-support",
+          name: "accepted-support",
+          fieldset: {
+            legend: {
+              text: "Responsible body's response",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+              value: "Accepted",
+              checked:  data['accepted-support'] === "Accepted",
+              text: "Acknowledged and will engage"
+          },
+          {
+              value: "Declined",
+              checked:  data['accepted-support'] === "Declined",
+              text: "Not acknowledged"
+          }
+          ]
+        }) }}
+      -->
+
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                Save the response
+              </h2>
+            </legend>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="response-saved" name="response-saved" type="checkbox" value="done" {{checked("response-saved", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="response-saved">
+                  Response saved in SharePoint
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "school-response-date",
+          namePrefix: "school-response-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the response was received",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["school-response-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["school-response-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["school-response-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+       
+       
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+     
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

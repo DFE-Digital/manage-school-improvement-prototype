@@ -1,0 +1,203 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Progress reviews</span>
+      <h1 class="govuk-heading-l">
+        Which review is this?
+      </h1>
+
+        
+      <form class="form" action="./review-details" method="post">
+      
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {% if (data['review-term-1'] == NULL) and (data['review-term-2'] == NULL) %}
+         
+        {{ govukRadios({
+          idPrefix: "review-term-1",
+          name: "review-term-1",
+          items: [
+          {
+              value: "First review",
+              checked:  data['review-term-1'] === "First review",
+              text: "First review"
+          },
+          {
+              value: "Second review",
+              checked:  data['review-term-1'] === "Second review",
+              text: "Second review"
+          },
+          {
+              value: "Third review",
+              checked:  data['review-term-1'] === "Third review",
+              text: "Third review"
+          },
+          {
+              value: "Fourth review",
+              checked:  data['review-term-1'] === "Fourth review",
+              text: "Fourth review"
+          },
+          {
+              value: "Fifth review",
+              checked:  data['review-term-1'] === "Fifth review",
+              text: "Fifth review"
+          },
+          {
+            value: "Sixth review",
+              checked:  data['review-term-1'] === "Sixth review",
+            text: "Sixth review"
+          }
+          ]
+          }) }}
+
+        {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] == NULL) %}
+
+        {{ govukRadios({
+            idPrefix: "review-term-2",
+            name: "review-term-2",
+            items: [
+            {
+                value: "First review",
+                checked:  data['review-term-2'] === "First review",
+                text: "First review"
+            },
+            {
+                value: "Second review",
+                checked:  data['review-term-2'] === "Second review",
+                text: "Second review"
+            },
+            {
+                value: "Third review",
+                checked:  data['review-term-2'] === "Third review",
+                text: "Third review"
+            },
+            {
+                value: "Fourth review",
+                checked:  data['review-term-2'] === "Fourth review",
+                text: "Fourth review"
+            },
+            {
+                value: "Fifth review",
+                checked:  data['review-term-2'] === "Fifth review",
+                text: "Fifth review"
+            },
+            {
+              value: "Sixth review",
+                checked:  data['review-term-2'] === "Sixth review",
+              text: "Sixth review"
+            }
+            ]
+            }) }}
+
+
+
+          {% elif (data['review-term-1'] != NULL) and (data['review-term-2'] != NULL) %}
+
+          {{ govukRadios({
+            idPrefix: "review-term-3",
+            name: "review-term-3",
+            items: [
+            {
+                value: "First review",
+                checked:  data['review-term-3'] === "First review",
+                text: "First review"
+            },
+            {
+                value: "Second review",
+                checked:  data['review-term-3'] === "Second review",
+                text: "Second review"
+            },
+            {
+                value: "Third review",
+                checked:  data['review-term-3'] === "Third review",
+                text: "Third review"
+            },
+            {
+                value: "Fourth review",
+                checked:  data['review-term-3'] === "Fourth review",
+                text: "Fourth review"
+            },
+            {
+                value: "Fifth review",
+                checked:  data['review-term-3'] === "Fifth review",
+                text: "Fifth review"
+            },
+            {
+              value: "Sixth review",
+                checked:  data['review-term-3'] === "Sixth review",
+              text: "Sixth review"
+            }
+            ]
+            }) }}
+
+
+
+        {% endif %}
+
+
+
+        
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue
+          </button>
+     
+
+       
+        <a class="govuk-link" href="progress-reviews">Cancel</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

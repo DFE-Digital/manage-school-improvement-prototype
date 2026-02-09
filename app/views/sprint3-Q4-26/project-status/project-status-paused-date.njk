@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h2 class="govuk-heading-l">Enter date the intervention paused</h2>
+      <p>This must be the date that DfE found out about the reason for pausing the intervention.</p>
+      
+      <form class="form" action='project-status-paused-notes' method="post">
+
+        {{ govukDateInput({
+          id: "intervention-paused-date",
+          namePrefix: "intervention-paused-date",
+          fieldset: {
+            legend: {
+              text: "Enter date paused",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["intervention-paused-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["intervention-paused-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["intervention-paused-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
