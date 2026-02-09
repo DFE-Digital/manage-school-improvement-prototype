@@ -1,0 +1,218 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint3-Q4-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Record initial diagnosis decision
+      </h1>
+
+   </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>
+        Using 
+        <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/Assessment-Tool-1---Initial-Diagnosis.aspx?csf=1&web=1&e=18li2Q&CID=8035808a-2dff-41e8-8d4e-402ce710e683" target="_blank">
+          Assessment Tool 1: Initial Diagnosis (opens in new tab)
+        </a>, 
+        confirm if this school will be matched with a supporting organisation or not. A regional director must have approved this decision.
+      </p>
+
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+
+        {# Check answer 1 #}
+        {% if (data['school-matched'] == 'Yes') %}
+            {% set answer1="Match with a supporting organisation" %}
+          {% elif (data['school-matched'] == "No") %}
+            {% set answer1 %}
+              Review school's progress:<br>
+              {{ data["review-details"] }}
+            {% endset %}
+          {% elif (data['school-matched'] == "Unable to assess") %}
+            {% set answer1 %}
+              Unable to assess:<br>
+              {{ data["not-matched-details"] }}
+            {% endset %}             
+        {% endif %}
+
+        {# Check answer 2 #}
+        {% if (data['school-matched-decision-date-day'] != "") and (data['school-matched-decision-date-month'] != "") and (data['school-matched-decision-date-year'] != "") %}
+            {% set answer2 = data | isoDateFromDateInput("school-matched-decision-date") | govukDate %}
+          {% else %}
+            {% set answer2='Incomplete' %}
+        {% endif %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Record decision"
+              },
+              value: {
+                html: answer1
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Enter date the regional director made this decision"
+              },
+              value: {
+                html: answer2
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        <form class="form" action="../task-list-task-updated" method="post">
+
+          {% set noHtml %}
+            {{ govukTextarea({
+              name: "not-matched-details",
+              hint: {
+                text: ""
+              },
+              id: "not-matched-details",
+              title: "Not matched details",
+              value: data["not-matched-details"],
+              hint: {
+                text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
+              }
+            }) }}
+          {% endset %}
+
+          {% set reviewHtml %}
+            {{ govukTextarea({
+              name: "review-details",
+              hint: {
+                text: ""
+              },
+              id: "not-matched-details",
+              title: "Not matched details",
+              value: data["review-details"],
+              hint: {
+                text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
+              }
+            }) }}
+          {% endset %}
+          
+          {{ govukRadios({
+            idPrefix: "school-matched",
+            name: "school-matched",
+            fieldset: {
+              legend: {
+                text: "Record decision",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+                text: "Enter the reasons for the decision if the school could not be assessed."
+            },
+            items: [
+            {
+                value: "Yes",
+                checked:  data['school-matched'] === "Yes",
+                text: "Match with a supporting organisation"
+            },
+            {
+                value: "No",
+                checked:  data['school-matched'] === "No",
+                text: "Review school's progress",
+                conditional: {
+                  html: reviewHtml
+                }
+            },
+            {
+              value: "Unable to assess",
+              checked:  data['school-matched'] === "Unable to assess",
+              text: "Unable to assess",
+              conditional: {
+                html: noHtml
+              }
+            }
+            ]
+          }) }}
+
+          {{ govukDateInput({
+            id: "school-matched-decision-date",
+            namePrefix: "school-matched-decision-date",
+            fieldset: {
+              legend: {
+                text: "Enter date the regional director made this decision",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            hint: {
+              text: "For example, 1 7 2024."
+            },
+            items: [
+              {
+                name: "day",
+                value: data["school-matched-decision-date-day"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },
+              {
+                name: "month",
+                value: data["school-matched-decision-date-month"],
+                allowEmpty: false,
+                classes: "govuk-input--width-2"
+              },                
+              {
+                name: "year",
+                value: data["school-matched-decision-date-year"],
+                allowEmpty: false,
+                classes: "govuk-input--width-4"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+
+        </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
