@@ -27,16 +27,16 @@
     <form class="form" action='project-status-answers' method="post">
 
       {{ govukTextarea({
-        name: "paused-notes",
-        id: "paused-notes",
-        value: data["paused-notes"],
+        name: "resumed-notes",
+        id: "resumed-notes",
+        value: data["resumed-notes"],
         label: {
           text: "Enter details",
           classes: "govuk-label--l",
           isPageHeading: true
         },
         hint: {
-          text: "Provide details about why this project has been paused and any next steps required."
+          text: "Give details about why work will continue and what must happen next"
         }
       }) }}
 

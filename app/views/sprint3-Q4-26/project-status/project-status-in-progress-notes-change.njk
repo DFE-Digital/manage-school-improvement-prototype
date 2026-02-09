@@ -18,24 +18,24 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
+
       <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
       {# <h2 class="govuk-heading-l">Additional information</h2> #}
-      {# <p>Enter any additional notes about why this project has been stopped.</p> #}
+      {# <p>Enter any additional notes about why this project has been paused.</p> #}
         
       <form class="form" action='project-status-answers' method="post">
 
         {{ govukTextarea({
-          name: "stopped-notes",
-          id: "stopped-notes",
-          value: data["stopped-notes"],
+          name: "resumed-notes",
+          id: "resumed-notes",
+          value: data["resumed-notes"],
           label: {
             text: "Enter details",
             classes: "govuk-label--l",
             isPageHeading: true
           },
           hint: {
-            text: "Provide any additional context about why the project has been stopped, or details about any next steps required."
+            text: "Give details about why work will continue and what must happen next"
           }
         }) }}
 

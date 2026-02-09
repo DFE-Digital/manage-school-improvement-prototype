@@ -68,15 +68,15 @@ router.post('/' + version + '/contacts/add-contact-organisation', function(req, 
   // Check whether the variable matches a condition
   if (statusAnswer == "Paused") { 
     // Send user to next page 
-    res.redirect('/' + version + '/project-status/project-status-paused')
+    res.redirect('/' + version + '/project-status/project-status-paused-date')
   }   
   else if (statusAnswer == "Stopped") { 
     // Send user to next page 
-    res.redirect('/' + version + '/project-status/project-status-stopped')
+    res.redirect('/' + version + '/project-status/project-status-stopped-date')
   } 
   else {
-    // Send user to ineligible page
-    res.redirect('/' + version + '/project-status/project-status-answers')
+    // Send user to next page
+    res.redirect('/' + version + '/project-status/project-status-in-progress-date')
   }
 })
 
