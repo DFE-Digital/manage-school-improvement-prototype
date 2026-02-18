@@ -30,14 +30,19 @@ function authentication () {
   }
 
   return (req, res, next) => {
-    if (req.path.startsWith('/plugin-assets/')) console.log('PLUGIN-ASSETS', req.path, req.url)
-    if (req.path.startsWith('/plugin-assets/') && req.path.includes('@')) {
+    if (req.path.startsWith('/plugin-assets/')) {
         const query = req.originalUrl.includes('?') ? '?' + req.originalUrl.split('?')[1] : ''
-        const rewritten = req.path
-          .replace(/^\/plugin-assets\/@/, '/plugin-assets/%40')
-          .replace(/^(\/plugin-assets\/%40[^/]+)\/([^/]+)(\/.*)$/, '$1%2F$2$3')
-        req.url = rewritten + query
-      }
+        let rewritten = req.path
+        if (req.path.includes('@')) {
+          rewritten = rewritten
+            .replace(/^\/plugin-assets\/@/, '/plugin-assets/%40')
+            .replace(/^(\/plugin-assets\/%40[^/]+)\/([^/]+)(\/.*)$/, '$1%2F$2$3')
+        } else if (/^\/plugin-assets\/%40[^/]+\/[^/]+/.test(rewritten)) {
+          // Partially encoded by Front Door: %40scope/package/ -> %40scope%2Fpackage/
+          rewritten = rewritten.replace(/^(\/plugin-assets\/%40[^/]+)\/([^/]+)(\/.*)$/, '$1%2F$2$3')
+        }
+        if (rewritten !== req.path) req.url = rewritten + query
+    }
     if (allowedPathsWhenUnauthenticated.includes(req.path) ||
       req.path.startsWith('/manage-prototype/dependencies') ||
       req.path.startsWith('/plugin-assets/') ||
