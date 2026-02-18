@@ -30,6 +30,7 @@ function authentication () {
   }
 
   return (req, res, next) => {
+    if (req.path.startsWith('/plugin-assets/')) console.log('PLUGIN-ASSETS', req.path, req.url)
     if (req.path.startsWith('/plugin-assets/') && req.path.includes('@')) {
         const query = req.originalUrl.includes('?') ? '?' + req.originalUrl.split('?')[1] : ''
         const rewritten = req.path
