@@ -1,28 +1,14 @@
-FROM node:18-bullseye AS builder
+FROM node:18-bullseye
 
 WORKDIR /app
 
 ENV PATH=/app/node_modules/.bin:$PATH
 
-# Install all dependencies and build prototype assets so plugin assets
-# (served from node_modules under /plugin-assets/...) exist in the image.
-COPY package*.json ./
-RUN npm ci
-
-# Copy the rest of the source and generate assets
 COPY . .
 
-# Generate kit assets (creates .tmp/public, compiles sass, etc.)
-RUN node -e "require('govuk-prototype-kit/lib/build').generateAssetsSync()"
+RUN npm install
 
-
-FROM node:18-bullseye AS runtime
-WORKDIR /app
-
-# Use the built application files and node_modules from the builder stage
-COPY --from=builder /app .
-
-ENV PATH=/app/node_modules/.bin:$PATH
+COPY overrides/govuk-prototype-kit-authentication.js /app/node_modules/govuk-prototype-kit/lib/authentication.js
 
 EXPOSE 3000
 
