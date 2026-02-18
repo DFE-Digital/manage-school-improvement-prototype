@@ -30,6 +30,13 @@ function authentication () {
   }
 
   return (req, res, next) => {
+    if (req.path.startsWith('/plugin-assets/') && req.path.includes('@')) {
+        const query = req.originalUrl.includes('?') ? '?' + req.originalUrl.split('?')[1] : ''
+        const rewritten = req.path
+          .replace(/^\/plugin-assets\/@/, '/plugin-assets/%40')
+          .replace(/^(\/plugin-assets\/%40[^/]+)\/([^/]+)(\/.*)$/, '$1%2F$2$3')
+        req.url = rewritten + query
+      }
     if (allowedPathsWhenUnauthenticated.includes(req.path) ||
       req.path.startsWith('/manage-prototype/dependencies') ||
       req.path.startsWith('/plugin-assets/') ||
