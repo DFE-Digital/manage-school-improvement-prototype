@@ -1,0 +1,146 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+  <h2 class="govuk-heading-l">Check your answers</h2>
+  
+  <dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Project status 
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ data['project-status']}}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="change-project-status">Change<span class="govuk-visually-hidden"> project status</span></a>
+      </dd>
+    </div>
+
+    {% if (data['project-status'] == "Paused")%}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of decision
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data | isoDateFromDateInput("intervention-paused-date") | govukDate }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-paused-date-change">Change<span class="govuk-visually-hidden"> date of decision</span></a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if (data['paused-notes'] != '') %}
+            {{ data['paused-notes']}}
+          {% else %}
+            <span data-id="paused-notes" class="empty">Empty</span>
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-paused-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
+        </dd>
+      </div>
+
+    {% elif (data['project-status'] == "Stopped") %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of decision
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-stopped-date-change">Change<span class="govuk-visually-hidden"> date of decision</span></a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if (data['stopped-notes'] != '') %}
+            {{ data['stopped-notes']}}
+          {% else %}
+            <span data-id="stopped-notes" class="empty">Empty</span>
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-stopped-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
+        </dd>
+      </div>
+
+      {% elif (data['project-status'] == "In progress") %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of decision
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data | isoDateFromDateInput("intervention-resumed-date") | govukDate }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-resumed-date-change">Change<span class="govuk-visually-hidden"> date of decision</span></a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if (data['resumed-notes'] != '') %}
+            {{ data['resumed-notes']}}
+          {% else %}
+            <span data-id="resumed-notes" class="empty">Empty</span>
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="project-status-resumed-notes-change">Change<span class="govuk-visually-hidden"> additinal information</span></a>
+        </dd>
+      </div>
+      
+      {% endif %}
+
+    </dl>
+    
+    {{ govukButton({ 
+      text: "Save and return", 
+      href: "../project-status" }) 
+    }}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

@@ -1,0 +1,232 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "project-status" %}
+
+{% if (data['project-status'] === "Stopped") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] === "Paused") %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% else %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% endif %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if (uriLastPart === "project-status-answers") %}
+        {{ govukNotificationBanner({
+          text: "Status updated successfully",
+          type: "success"
+        }) }}
+      {% endif %}
+
+      {% include "sprint5-Q4-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "/layouts/summary-section.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include "/layouts/sub-nav-tabs-all.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Project status</h2>
+
+      {% if (data['project-status'] === "In progress") %}
+        <p>Change the status of a project if targeted intervention work pauses or stops.</p>
+      {% endif %}
+
+      {{ govukButton({ 
+        text: "Change project status", 
+        href: "project-status/change-project-status" }) 
+      }}
+
+      {% if (data['project-status'] === "Stopped") %}
+        
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-stopped-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: data['stopped-notes']
+              }
+            }
+          ]
+        }) }}
+
+      {% elif (data['project-status'] === "Paused") %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-paused-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: data['paused-notes']
+              }
+            }
+          ]
+        }) }}
+
+      {% elif (data['project-status'] === "In progress") %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Date of decision"
+              },
+              value: {
+                html: data | isoDateFromDateInput("intervention-resumed-date") | govukDate
+              }
+            },
+            {
+              key: {
+                text: "Details"
+              },
+              value: {
+                html: data['resumed-notes']
+              }
+            }
+          ]
+        }) }}
+
+      {% endif %}
+
+      <hr class="govuk-section-break govuk-section-break--m">
+
+
+      <h3 class="govuk-heading-m">Status history</h3>
+
+      <div class="moj-timeline">
+
+        {# Paused #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Paused
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">7 September 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">This decision was made on 5th September 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# In progress #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--green">
+              In progress
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">2nd June 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">This decision was made on 15th July 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# Stopped #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--red">
+              Stopped
+            </strong>
+            <p class="moj-timeline__byline">by Iain MacDonald</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">This decision was made on 21st June 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
