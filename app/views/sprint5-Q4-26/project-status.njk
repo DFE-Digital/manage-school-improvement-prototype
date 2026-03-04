@@ -63,7 +63,7 @@
       {% endif %}
 
       {{ govukButton({ 
-        text: "Change project status", 
+        text: "Change project status and eligibility", 
         href: "project-status/change-project-status" }) 
       }}
 
@@ -73,10 +73,18 @@
           rows: [
             {
               key: {
-                text: "Status"
+                text: "Current status"
               },
               value: {
                 html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Eligibility"
+              },
+              value: {
+                text: "Eligibility will go here, Alex to fix logic at end"
               }
             },
             {
@@ -104,10 +112,18 @@
           rows: [
             {
               key: {
-                text: "Status"
+                text: "Current status"
               },
               value: {
                 html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Eligibility"
+              },
+              value: {
+                text: "Eligibility will go here, Alex to fix logic at end"
               }
             },
             {
@@ -135,10 +151,18 @@
           rows: [
             {
               key: {
-                text: "Status"
+                text: "Current status"
               },
               value: {
                 html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Eligibility"
+              },
+              value: {
+                text: "Eligibility will go here, Alex to fix logic at end"
               }
             },
             {
@@ -181,7 +205,8 @@
             <time datetime="2019-06-14T14:01:00.000Z">7 September 2025 at 2:01pm</time>
           </p>
           <div class="moj-timeline__description">
-            <p class="govuk-!-font-weight-bold">This decision was made on 5th September 2025.</p>
+            <p class="govuk-!-font-weight-bold">Eligible, support ending on 15th October 2026</p>
+            <p>This decision was made on 5th September 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>
@@ -198,7 +223,8 @@
             <time datetime="2019-06-14T14:01:00.000Z">2nd June 2025 at 2:01pm</time>
           </p>
           <div class="moj-timeline__description">
-            <p class="govuk-!-font-weight-bold">This decision was made on 15th July 2025.</p>
+            <p class="govuk-!-font-weight-bold">Eligible</p>
+            <p>This decision was made on 15th July 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>
@@ -215,7 +241,8 @@
             <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
           </p>
           <div class="moj-timeline__description">
-            <p class="govuk-!-font-weight-bold">This decision was made on 21st June 2025.</p>
+            <p class="govuk-!-font-weight-bold">Eligible</p>
+            <p>This decision was made on 21st June 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>

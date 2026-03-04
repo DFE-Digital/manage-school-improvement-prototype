@@ -22,12 +22,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-  <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+  <span class="govuk-caption-l">Change project status and eligibility</span>
   <h1 class="govuk-heading-l">Change project status</h1>
     
   <p>Change the status of a project if targeted intervention work pauses or stops.</p>
       
-  <form class="form" action='project-status-answer' method="post">
+  <form class="form" action='change-project-status-eligibility' method="post">
 
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
@@ -44,7 +44,7 @@
               In progress
             </label>
             <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-              Work to support the school through targeted intervention has begun and is progressing.
+              Work on the project has begun and is progressing.
             </div>
           </div>
 
@@ -54,7 +54,7 @@
               Paused
             </label>
             <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-              Work is temporarily paused while a decision is made about the school's eligibility.
+              Work is temporarily paused while a decision is made about whether to continue.
             </div>
           </div>
 
@@ -64,7 +64,7 @@
               Stopped
             </label>
             <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
-              Work has ended because the school has improve sufficiently, or is undergoing structural intervention.
+              Work has ended because the school has improved sufficiently, or is now undergoing structural intervention.
             </div>
           </div>
 
@@ -74,7 +74,7 @@
     </div>
 
     {{ govukButton({
-      text: "Save and continue"
+      text: "Continue"
     }) }}
   
   </form>

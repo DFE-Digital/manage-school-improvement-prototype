@@ -8,6 +8,7 @@ module.exports = function (router) {
 
   var version = "sprint5-Q4-26";
 
+
 //  // Run this code when a form is submitted to 'change-project-status'
 //  router.post('/' + version + '/project-status/project-status-stopped-answer', function(req, res) {
     
@@ -60,25 +61,25 @@ router.post('/' + version + '/contacts/add-contact-organisation', function(req, 
 })
 
 // Run this code when a form is submitted to 'change-project-status'
- router.post('/' + version + '/project-status/project-status-answer', function(req, res) {
+//  router.post('/' + version + '/project-status/change-project-status-eligibility', function(req, res) {
     
-  // Make a variable to give it the value from the radio buttons on the index page  
-  const statusAnswer = req.body["project-status"];
+//   // Make a variable to give it the value from the radio buttons on the index page  
+//   const statusAnswer = req.body["project-status"];
 
-  // Check whether the variable matches a condition
-  if (statusAnswer == "Paused") { 
-    // Send user to next page 
-    res.redirect('/' + version + '/project-status/project-status-paused-date')
-  }   
-  else if (statusAnswer == "Stopped") { 
-    // Send user to next page 
-    res.redirect('/' + version + '/project-status/project-status-stopped-date')
-  } 
-  else {
-    // Send user to next page
-    res.redirect('/' + version + '/project-status/project-status-in-progress-date')
-  }
-})
+//   // Check whether the variable matches a condition
+//   if (statusAnswer == "Paused") { 
+//     // Send user to next page 
+//     res.redirect('/' + version + '/project-status/project-status-paused-date')
+//   }   
+//   else if (statusAnswer == "Stopped") { 
+//     // Send user to next page 
+//     res.redirect('/' + version + '/project-status/project-status-stopped-date')
+//   } 
+//   else {
+//     // Send user to next page
+//     res.redirect('/' + version + '/project-status/project-status-in-progress-date')
+//   }
+// })
 
 
   // Run this code when a form is submitted to 'add-contact-answer'

@@ -20,18 +20,17 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
-    {# <h2 class="govuk-heading-l">Additional information</h2> #}
-    {# <p>Enter any additional notes about why this project has been paused.</p> #}
+    <span class="govuk-caption-l">Change project status and eligibility</span>
       
-    <form class="form" action='project-status-answers' method="post">
+    <form class="form" action='change-project-status-eligibility-answers' method="post">
 
-      {{ govukTextarea({
-        name: "paused-notes",
-        id: "paused-notes",
-        value: data["paused-notes"],
+      {{ govukCharacterCount({
+        name: "eligibility-decision-details",
+        id: "eligibility-decision-details",
+        value: data["eligibility-decision-details"],
+        maxlength: 500,
         label: {
-          text: "Enter details",
+          text: "Enter details about the change",
           classes: "govuk-label--l",
           isPageHeading: true
         },
@@ -41,7 +40,7 @@
       }) }}
 
       {{ govukButton({
-        text: "Save and continue"
+        text: "Continue"
       }) }}
 
     </form>
