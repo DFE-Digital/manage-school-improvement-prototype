@@ -54,12 +54,6 @@
 
 {% block content %}
 
-{{ currentStatus | safe }} <br>
-{{ currentEligibility }} <br>
-{{ taperingDate }} <br>
-{{ decisionDate }} <br>
-{{ currentDetails }} <br>
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -85,7 +79,7 @@
         Eligibility
       </dt>
       <dd class="govuk-summary-list__value">
-        Eligibility go here
+        {{ currentEligibility }}
       </dd>
     </div>
 
@@ -94,7 +88,7 @@
         Date of decision
       </dt>
       <dd class="govuk-summary-list__value">
-        {{ data | isoDateFromDateInput("intervention-paused-date") | govukDate }}
+        {{ decisionDate }}
       </dd>
     </div>
 
@@ -103,11 +97,7 @@
         Details
       </dt>
       <dd class="govuk-summary-list__value">
-        {% if (data['paused-notes'] != '') %}
-          {{ data['paused-notes']}}
-        {% else %}
-          <span data-id="paused-notes" class="empty">Empty</span>
-        {% endif %}
+        {{ currentDetails }}
       </dd>
     </div>
 

@@ -27,7 +27,6 @@
       {{ govukCharacterCount({
         name: "eligibility-decision-details",
         id: "eligibility-decision-details",
-        value: data["eligibility-decision-details"],
         maxlength: 500,
         label: {
           text: "Enter details about the change",
@@ -35,7 +34,7 @@
           isPageHeading: true
         },
         hint: {
-          text: "Provide details about why this project has been paused and any next steps required."
+          text: "Provide details about the change and any next steps required."
         }
       }) }}
 

@@ -2,12 +2,41 @@
 
 {% set NavActive = "project-status" %}
 
-{% if (data['project-status'] === "Stopped") %}
-  {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
-{% elif (data['project-status'] === "Paused") %}
-  {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
-{% else %}
+{# Set CURRENT STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
   {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] == "Paused") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{# Set TAPERING DATE variables #}
+{% if (data['eligibility-tapering-date'] !== "") %}
+  {% set taperingDate = data['eligibility-tapering-date-day'] + data['eligibility-tapering-date-month'] + data['eligibility-tapering-date-year'] %}
+{% endif %}
+
+{# Set ELIGIBILITY variables #}
+{% if (data['eligibility-decision-answer'] !== "") %}
+  {% set currentEligibility = data['eligibility-decision-answer'] %}
+    {% if (taperingDate !== "") %}
+      {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+    {% endif %}
+{% endif %}
+
+{# Set TAPERING DATE variables - THIS IS BROKEN, CAN'T TRANSFROM DATE TO GOVUK STANDARD #}
+{# {% if (data['eligibility-tapering-date'] !== "") %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
+{% endif %} #}
+
+{# Set DECISION DATE variables #}
+{% if (data['eligibility-decision-date'] !== "") %}
+  {% set decisionDate = data | isoDateFromDateInput("eligibility-decision-date") | govukDate %}
+{% endif %}
+
+{# Set DETAILS variables #}
+{% if (data["eligibility-decision-details"] !== "") %}
+  {% set currentDetails = data["eligibility-decision-details"] %}
 {% endif %}
 
 {% block pageTitle %}
@@ -56,7 +85,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Project status</h2>
+      <h2 class="govuk-heading-l">Project status and eligibility</h2>
 
       {% if (data['project-status'] === "In progress") %}
         <p>Change the status of a project if targeted intervention work pauses or stops.</p>
@@ -67,124 +96,42 @@
         href: "project-status/change-project-status" }) 
       }}
 
-      {% if (data['project-status'] === "Stopped") %}
-        
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Current status"
-              },
-              value: {
-                html: currentStatus
-              }
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Current status"
             },
-            {
-              key: {
-                text: "Eligibility"
-              },
-              value: {
-                text: "Eligibility will go here, Alex to fix logic at end"
-              }
-            },
-            {
-              key: {
-                text: "Date of decision"
-              },
-              value: {
-                html: data | isoDateFromDateInput("intervention-stopped-date") | govukDate
-              }
-            },
-            {
-              key: {
-                text: "Details"
-              },
-              value: {
-                html: data['stopped-notes']
-              }
+            value: {
+              html: currentStatus
             }
-          ]
-        }) }}
-
-      {% elif (data['project-status'] === "Paused") %}
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Current status"
-              },
-              value: {
-                html: currentStatus
-              }
+          },
+          {
+            key: {
+              text: "Eligibility"
             },
-            {
-              key: {
-                text: "Eligibility"
-              },
-              value: {
-                text: "Eligibility will go here, Alex to fix logic at end"
-              }
-            },
-            {
-              key: {
-                text: "Date of decision"
-              },
-              value: {
-                html: data | isoDateFromDateInput("intervention-paused-date") | govukDate
-              }
-            },
-            {
-              key: {
-                text: "Details"
-              },
-              value: {
-                html: data['paused-notes']
-              }
+            value: {
+              html: currentEligibility
             }
-          ]
-        }) }}
-
-      {% elif (data['project-status'] === "In progress") %}
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Current status"
-              },
-              value: {
-                html: currentStatus
-              }
+          },
+          {
+            key: {
+              text: "Date of decision"
             },
-            {
-              key: {
-                text: "Eligibility"
-              },
-              value: {
-                text: "Eligibility will go here, Alex to fix logic at end"
-              }
-            },
-            {
-              key: {
-                text: "Date of decision"
-              },
-              value: {
-                html: data | isoDateFromDateInput("intervention-resumed-date") | govukDate
-              }
-            },
-            {
-              key: {
-                text: "Details"
-              },
-              value: {
-                html: data['resumed-notes']
-              }
+            value: {
+              html: decisionDate 
             }
-          ]
-        }) }}
-
-      {% endif %}
+          },
+          {
+            key: {
+              text: "Details"
+            },
+            value: {
+              html: currentDetails
+            }
+          }
+        ]
+      }) }}
 
       <hr class="govuk-section-break govuk-section-break--m">
 
