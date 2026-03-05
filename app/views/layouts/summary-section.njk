@@ -7,23 +7,22 @@
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
 {% endif %}
 
-{# Set TAPERING DATE variables #}
-{% if (data['eligibility-tapering-date'] !== "") %}
-  {% set taperingDate = data['eligibility-tapering-date-day'] + data['eligibility-tapering-date-month'] + data['eligibility-tapering-date-year'] %}
-{% endif %}
-
 {# Set ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] !== "") %}
-  {% set currentEligibility = data['eligibility-decision-answer'] %}
-    {% if (taperingDate !== "") %}
-      {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
-    {% endif %}
+
+{# DEFAULT #}
+{% if (data["starting-eligibility"] == "No") %}
+  {% set currentEligibility = "Not eligible" %}
+{% else %}
+  {% set currentEligibility = "Eligible" %}
 {% endif %}
 
-{# Set TAPERING DATE variables - THIS IS BROKEN, CAN'T TRANSFROM DATE TO GOVUK STANDARD #}
-{# {% if (data['eligibility-tapering-date'] !== "") %}
-  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
-{% endif %} #}
+{% if (data['eligibility-decision-answer']) %}
+  {% set currentEligibility = data['eligibility-decision-answer'] %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer']) and (taperingDate !== "") %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+{% endif %}
 
 {# SET VARIABLES IF PAUSED OR STOPPED #}
 {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}

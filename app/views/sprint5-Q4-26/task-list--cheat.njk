@@ -115,7 +115,7 @@
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
           <a class="govuk-link govuk-task-list__link" href="task-list/eligibility-check" aria-describedby="company-details-2-status">
-            Confirm eligibility
+            Confirm starting eligibility
           </a>
         </div>
 
@@ -126,7 +126,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['project-status'] != "Stopped") or (data['project-status'] != "Paused") and (data['eligible'] == NULL) %}
+          {% elif (data['project-status'] == "In progress") and (data['starting-eligibility'] == NULL) %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% else %}

@@ -1,0 +1,70 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "../task-list"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Confirm starting eligibility</span>
+        
+      <form class="form" action='' method="post">
+
+      {{ govukRadios({
+        idPrefix: "starting-eligibility",
+        name: "starting-eligibility",
+        fieldset: {
+          legend: {
+            text: "Is this school eligible for targeted intervention?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Some good text here to describe or define what eligibility is and how it differs to status. We need to really clarify here that this is the eligiiblity of the school as it comes in."
+        },
+        classes: "govuk-radios--inline",
+        items: [
+          {
+            value: "Yes",
+            checked:  data['starting-eligibility'] === "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            checked:  data['starting-eligibility'] === "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

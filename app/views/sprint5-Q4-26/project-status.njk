@@ -17,12 +17,17 @@
 {% endif %}
 
 {# Set ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] !== "") %}
+{# DEFAULT #}
+{% set currentEligibility = "Eligible" %}
+
+{% if (data['eligibility-decision-answer']) %}
   {% set currentEligibility = data['eligibility-decision-answer'] %}
-    {% if (taperingDate !== "") %}
-      {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
-    {% endif %}
 {% endif %}
+
+{% if (data['eligibility-decision-answer']) and (taperingDate !== "") %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+{% endif %}
+
 
 {# Set TAPERING DATE variables - THIS IS BROKEN, CAN'T TRANSFROM DATE TO GOVUK STANDARD #}
 {# {% if (data['eligibility-tapering-date'] !== "") %}
@@ -96,6 +101,8 @@
         href: "project-status/change-project-status" }) 
       }}
 
+      {% if (decisionDate !== NULL) and (currentDetails !== NULL) %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -132,6 +139,31 @@
           }
         ]
       }) }}
+
+      {% else %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Current status"
+              },
+              value: {
+                html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Eligibility"
+              },
+              value: {
+                html: currentEligibility
+              }
+            }
+          ]
+        }) }}
+
+      {% endif %}
 
       <hr class="govuk-section-break govuk-section-break--m">
 

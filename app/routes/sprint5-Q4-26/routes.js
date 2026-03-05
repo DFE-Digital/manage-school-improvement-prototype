@@ -9,6 +9,23 @@ module.exports = function (router) {
   var version = "sprint5-Q4-26";
 
 
+   // Run this code when a form is submitted to 'eligibility-check'
+  router.post('/' + version + '/task-list/eligibility-check', function(req, res) {
+      
+    // Make a variable to give it the value from the radio buttons on the index page  
+    const startingEligibility = req.body["starting-eligibility"];
+
+    // Check whether the variable matches a condition
+    if (startingEligibility == "Yes") { 
+      // Send user to next page 
+      res.redirect('/' + version + '/task-list-task-updated')
+    }   
+    else if (startingEligibility == "No") { 
+      // Send user to next page 
+      res.redirect('/' + version + '/task-list/eligibility-check-date')
+    } 
+  })
+
 //  // Run this code when a form is submitted to 'change-project-status'
 //  router.post('/' + version + '/project-status/project-status-stopped-answer', function(req, res) {
     
