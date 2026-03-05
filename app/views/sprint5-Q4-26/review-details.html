@@ -1,0 +1,299 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Plan progress</span>
+      <h1 class="govuk-heading-l margin-bottom-30">
+       Add progress review
+      </h1>
+
+      <form class="form" action="./next-review" method="post">
+
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
+
+        
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "review-date-1",
+          namePrefix: "review-date-1",
+          fieldset: {
+            legend: {
+              text: "Enter the date of the review",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007."
+          },
+          items: [
+          {
+            name: "day",
+            value: data["review-date-1-day"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
+          },
+          {
+            name: "month",
+            value: data["review-date-1-month"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
+          },                
+          {
+            name: "year",
+            value: data["review-date-1-year"],
+            allowEmpty: false,
+            classes: "govuk-input--width-4"
+          }
+        ]
+      }) }}
+
+<!--
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "OLD",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "review-name-1",
+  name: "review-name-1"
+}) }}
+    -->
+
+
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        {% set noHtml %}
+
+       {{ govukInput({
+  label: {
+    text: "Enter the name of the person who did carry out this review"
+  },
+  id: "review-name-1",
+  name: "review-name-1",
+  value: data["review-name-1"]
+}) }}
+        {% endset -%}
+
+        
+         
+        {{ govukRadios({
+          idPrefix: "reviewed-by",
+          name: "reviewed-by",
+          fieldset: {
+            legend: {
+              text: "Who carried out the review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+              value: "Alex James",
+              checked:  data['reviewed-by'] === "Alex James",
+              text: "Alex James"
+          },
+           {
+              value: "Bob Roberts",
+              checked:  data['reviewed-by'] === "Bob Roberts",
+              text: "Bob Roberts"
+          },
+          {
+              value: "Someone else",
+              checked:  data['reviewed-by'] === "Someone else",
+              text: "Someone else",
+              conditional: {
+                html: noHtml
+              }
+          }
+          ]
+        }) }}
+
+
+
+
+
+
+        
+         {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
+
+       {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "review-date-2",
+          namePrefix: "review-date-2",
+          fieldset: {
+            legend: {
+              text: "Enter the date of the review",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007."
+          },
+          items: [
+          {
+            name: "day",
+            value: data["review-date-2-day"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
+          },
+          {
+            name: "month",
+            value: data["review-date-2-month"],
+            allowEmpty: false,
+            classes: "govuk-input--width-2"
+          },                
+          {
+            name: "year",
+            value: data["review-date-2-year"],
+            allowEmpty: false,
+            classes: "govuk-input--width-4"
+          }
+        ]
+      }) }}
+
+<!--
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "OLD",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "review-name-2",
+  name: "review-name-2"
+}) }}
+    -->
+
+
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        {% set noHtml %}
+
+       {{ govukInput({
+  label: {
+    text: "Enter the name of the person who did carry out this review"
+  },
+  id: "review-name-2",
+  name: "review-name-2",
+  value: data["review-name-2"]
+}) }}
+        {% endset -%}
+
+        
+         
+        {{ govukRadios({
+          idPrefix: "reviewed-by-2",
+          name: "reviewed-by-2",
+          fieldset: {
+            legend: {
+              text: "Who carried out the review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+              value: "Alex James",
+              checked:  data['reviewed-by-2'] === "Alex James",
+              text: "Alex James"
+          },
+           {
+              value: "Bob Roberts",
+              checked:  data['reviewed-by-2'] === "Bob Roberts",
+              text: "Bob Roberts"
+          },
+          {
+              value: "Someone else",
+              checked:  data['reviewed-by-2'] === "Someone else",
+              text: "Someone else",
+              conditional: {
+                html: noHtml
+              }
+          }
+          ]
+        }) }}
+
+
+
+
+
+
+
+        {% endif %}
+
+
+
+        
+        
+        <div class="govuk-button-group">
+
+       
+          <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save
+          </button>
+     
+
+       
+       
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

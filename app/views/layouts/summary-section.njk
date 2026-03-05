@@ -1,10 +1,27 @@
-{# SET CURRENT STATUS variables #}
+{# Set CURRENT STATUS variables #}
 {% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
   {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
 {% elif (data['project-status'] == "Stopped") %}
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
 {% elif (data['project-status'] == "Paused") %}
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{# Set ELIGIBILITY variables #}
+
+{# DEFAULT #}
+{% if (data["starting-eligibility"] == "No") %}
+  {% set currentEligibility = "Not eligible" %}
+{% else %}
+  {% set currentEligibility = "Eligible" %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer']) %}
+  {% set currentEligibility = data['eligibility-decision-answer'] %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer']) and (taperingDate !== "") %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
 {# SET VARIABLES IF PAUSED OR STOPPED #}
@@ -83,6 +100,14 @@
     },
     {
       key: {
+        text: "Eligibility"
+      },
+      value: {
+        html: currentEligibility
+      }
+    },
+    {
+      key: {
         text: "Date added to MSI"
       },
       value: {
@@ -142,28 +167,3 @@
     }
   ]
 }) }}
-
-{# {
-key: {
-    text: "Date of last Ofsted inspection"
-  },
-  value: {
-    text: "15 November 2024"
-  }
-},
-{
-  key: {
-    text: "Quality of education"
-  },
-  value: {
-    html: "<strong class='govuk-tag govuk-tag--yellow'>Requires improvement</strong>"
-  }
-},
-{
-  key: {
-    text: "Leadership and management"
-  },
-  value: {
-    html: "<strong class='govuk-tag govuk-tag--orange'>Inadequate</strong>"
-  }
-}, #}

@@ -1,0 +1,240 @@
+{# Banner for all pages #}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Awaiting new Ofsted judgement') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention paused
+    </h3>
+    <p class="govuk-body">
+      Targeted intervention at this school is paused while Ofsted write a new inspection report.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for all pages #}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Appealing Ofsted judgement') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention paused
+    </h3>
+    <p class="govuk-body">
+      Targeted intervention at this school is paused while the latest Ofsted judgement is appealled.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for all pages #}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Considering structural or governance change') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention paused
+    </h3>
+    <p class="govuk-body">
+      Targeted intervention at this school is paused while a decision is made about a conversion, transfer or governance change.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for all pages #}
+{% if (data['project-status'] == "Paused") and (data['project-status-paused'] == 'Protecting school staff health and wellbeing') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention paused
+    </h3>
+    <p class="govuk-body">
+      Targeted intervention at this school is paused to protect the health and wellbeing of a member of school staff.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for all pages #}
+{% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Publication of improved Ofsted judgement') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+    <p class="govuk-body">
+      You cannot make changes to this project.
+    </p>
+    <p class="govuk-body">
+      Intervention stopped on <strong>{{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}</strong> because the school got an improved Ofsted inspection.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for all pages #}
+{% if (data['project-status'] == "Stopped") and (data['project-status-stopped'] == 'Approval of structural or governance change') %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+    <p class="govuk-body">
+      You cannot make changes to this project.
+    </p>
+    <p class="govuk-body">
+      Intervention stopped on <strong>{{ data | isoDateFromDateInput("intervention-stopped-date") | govukDate }}</strong>. The school will convert, transfer or undergo another type of governance change.      
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for conflicts-of-interest page #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "conflicts-of-interest") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['conflicts-form-sent'] == NULL) and (data['conflicts-form-back'] == NULL) and (data['conflicts-form-saved'] == NULL) and ((data['conflicts-of-interest-date-day'] == NULL ) or (data['conflicts-of-interest-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['conflicts-form-sent'] == 'done') and (data['conflicts-form-back'] == 'done') and (data['conflicts-form-saved'] == 'done') and (data['conflicts-of-interest-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for record-matching-decision pages #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "record-matching-decision") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['school-matched'] == NULL) and ((data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for share-improvement-plan-template pages #}
+{% if (data['project-status'] == "Stopped") and (uriLastPart == "share-improvement-plan-template") %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Intervention stopped
+    </h3>
+
+    <p class="govuk-body">
+      Targeted intervention as this school has stopped.
+    </p>
+
+    {% if (data['indicative-funding-band'] == NULL) and (data['send-template-to-so'] == NULL) and (data['send-template-to-rb'] == NULL) and ((data['templates-sent-date-day'] == NULL ) or (data['templates-sent-date-day'] == '')) %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--blue">
+          Not started
+        </strong>
+      {% endset %}
+    {% elif (data['indicative-funding-band'] != NULL) and (data['send-template-to-so'] == 'done') and (data['send-template-to-rb'] == 'done') and (data['templates-sent-date-day'] != '') %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--turquiose">
+          Completed
+        </strong>
+      {% endset %}
+    {% else %}
+      {% set taskStatus %}
+        <strong class="govuk-tag govuk-tag--orange">
+          In progress
+        </strong>
+      {% endset %}
+    {% endif %}
+
+    <p class="govuk-body">
+      This task was previously <strong>{{ taskStatus | safe }}</strong>
+    </p>
+
+    <p class="govuk-body">
+      You cannot make changes to this task.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Banner for Task list page, if it has not yet been assigned #}
+{% if (data['assigned-to'] == NULL) %}
+  {% set statusNotificationBannerContent %}
+    <h3 class="govuk-notification-banner__heading">
+      Project must be assigned
+    </h3>
+
+    <p class="govuk-body">
+      Tasks cannot be started until the project has been assigned to a delivery officer.
+    </p>
+  {% endset %}
+{% endif %}
+
+{# Actually show the content in the banner #}
+{% if statusNotificationBannerContent %}
+    {{ govukNotificationBanner({
+        html: statusNotificationBannerContent,
+        type: "notification",
+        classes: "govuk-!-margin-bottom-2"
+    }) }}
+{% endif %}
+
+{# Banner for if DO has been assigned #}
+{% if (uriLastPart === "assign-project") and (data['assigned-to'] != NULL) %}
+  {{ govukNotificationBanner({
+    text: "Project assigned",
+    type: "success",
+    classes: "govuk-!-margin-bottom-2"
+  }) }}
+{% endif %}
+
+{# Banner for project adviser has been allocated #}
+{% if (uriLastPart === "allocate-an-adviser") and (data['allocated-adviser-email'] != NULL) %}
+  {{ govukNotificationBanner({
+    text: "Adviser allocated",
+    type: "success",
+    classes: "govuk-!-margin-bottom-2"
+  }) }}
+{% endif %}
