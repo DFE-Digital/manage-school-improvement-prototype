@@ -130,7 +130,7 @@
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['project-status'] == "In progress") and (data['starting-eligibility'] == NULL) %}
+          {% elif (data['project-status'] !== "Stopped") or (data['project-status'] !== "Paused") and (data['starting-eligibility'] == NULL) %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
           {% else %}
