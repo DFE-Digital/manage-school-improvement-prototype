@@ -24,6 +24,20 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
+
+      {% set successHTML %}
+        <h1 class="govuk-notification-banner__heading">
+          Project added to watchlist
+        </h1>
+      {% endset %}
+
+      {% if (uriLastPart === "watchlist-confirm-school") %}
+        {{ govukNotificationBanner({
+          html: successHTML,
+          type: "success"
+        }) }}
+      {% endif %}
+
     <h1 class="govuk-heading-xl">Your project watchlist</h1>
     <p>You can use your watchlist to save projects that are important to you and find them quickly.</p>
 
@@ -113,6 +127,20 @@
           <td class="govuk-table__cell">{{ paused | safe }}</td>
           <td class="govuk-table__cell"><a href="#" class="govuk-link">Remove</a></td>
         </tr>
+
+        {% if (uriLastPart === "watchlist-confirm-school") %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">St Mary's Catholic Primary School</a></td>
+            <td class="govuk-table__cell">4 Mar 2026</td>
+            <td class="govuk-table__cell">Yorkshire</td>
+            <td class="govuk-table__cell">Bradford</td>
+            <td class="govuk-table__cell">Alex Edwards</td>
+            <td class="govuk-table__cell">Super duper amazing trust</td>
+            <td class="govuk-table__cell">First RISE meeting</td>
+            <td class="govuk-table__cell">{{ inProgress | safe }}</td>
+            <td class="govuk-table__cell"><a href="#" class="govuk-link">Remove</a></td>
+          </tr>
+        {% endif %}
         
       </tbody>
     </table>
