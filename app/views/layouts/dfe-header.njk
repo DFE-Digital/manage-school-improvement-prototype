@@ -21,10 +21,23 @@
   </div>
 </header>
 
-
- {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
-
 {{ govukServiceNavigation({
   serviceName: "Manage school improvement",
-  serviceUrl: "/"
+  serviceUrl: "/",
+  navigation: [
+    {
+      href: "watchlist",
+      text: "Watchlist",
+      active: true if NavActive == "watchlist"
+    },
+    {
+      href: "project-list",
+      text: "All projects",
+      active: true if NavActive == "project-list"
+    },
+    {
+      href: "#",
+      text: "Power BI report (opens in a new tab)"
+    }
+  ]
 }) }}
