@@ -79,11 +79,8 @@
 {% if (data['project-status'] == "Stopped") %}
   {% set statusNotificationBannerContent %}
     <h1 class="govuk-notification-banner__heading">
-      Intervention stopped
+      Project stopped on <strong>{{ data | isoDateFromDateInput("eligibility-decision-date") | govukDate }}</strong>.      
     </h1>
-    <p class="govuk-body">
-      Intervention stopped on <strong>{{ data | isoDateFromDateInput("eligibility-decision-date") | govukDate }}</strong>.      
-    </p>
     <p class="govuk-body">
       You cannot make changes to this project. You can still 
       <a class="govuk-notification-banner__link" href="../project-status/change-project-status">change the project status and eligibility</a>.
@@ -94,11 +91,8 @@
 {% if (data['project-status'] == "Paused") %}
   {% set statusNotificationBannerContent %}
     <h1 class="govuk-notification-banner__heading">
-      Intervention paused
+      Project paused on <strong>{{ data | isoDateFromDateInput("eligibility-decision-date") | govukDate }}</strong>.      
     </h1>
-    <p class="govuk-body">
-      Intervention paused on <strong>{{ data | isoDateFromDateInput("eligibility-decision-date") | govukDate }}</strong>.      
-    </p>
     <p class="govuk-body">
       You cannot make changes to this project. You can still 
       <a class="govuk-notification-banner__link" href="../project-status/change-project-status">change the project status and eligibility</a>.
