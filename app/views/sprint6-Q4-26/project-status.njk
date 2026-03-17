@@ -12,7 +12,7 @@
 {% endif %}
 
 {# Set NEW ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] == "Eligible") %}
+{% if (data['eligibility-decision-answer'] == "Eligible") or (data['eligibility-decision-answer'] == NULL) %}
   {% set currentEligibility = "Eligible" %}
   {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
