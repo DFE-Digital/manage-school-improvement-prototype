@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Change contact
+      </h1>
+
+      <form class="form" action='add-contact-organisation' method="post">
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                Organisation
+              </h2>
+            </legend>
+
+            <div id="contact-hint" class="govuk-hint">
+              Select one option
+            </div>
+
+            <div class="govuk-radios" data-module="govuk-radios">
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-school" name="organisation" type="radio" value="School" {{ checked('organisation','School') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-school">
+                  School
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-supporting-organisation" name="organisation" type="radio" value="Supporting organisation" {{ checked('organisation','Supporting organisation') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-supporting-organisation">
+                  Supporting organisation
+                </label>
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="contacts-governance-bodies" name="organisation" type="radio" value="Governance bodies" {{ checked('organisation','Governance bodies') }}>
+                <label class="govuk-label govuk-radios__label" for="contacts-governance-bodies">
+                  Governance bodies
+                </label>
+              </div>
+
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+          <a class="govuk-link" href="contacts">Cancel</a>
+        </div>
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

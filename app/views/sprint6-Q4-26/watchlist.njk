@@ -1,0 +1,170 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+    {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Primary navigation #}
+{% set NavActive = "watchlist" %}
+
+{# Status tag #}
+{% set paused = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% set stopped = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% set inProgress = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+
+{# {% block beforeContent %}
+
+{% endblock %} #}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+      {% set addProject %}
+        <h1 class="govuk-notification-banner__heading">
+          Project added to watchlist
+        </h1>
+      {% endset %}
+
+      {% set removeProject %}
+        <h1 class="govuk-notification-banner__heading">
+          Project removed from watchlist
+        </h1>
+      {% endset %}
+
+      {% if (uriLastPart === "watchlist-confirm-school") %}
+        {{ govukNotificationBanner({
+          html: addProject,
+          type: "success"
+        }) }}
+      {% endif %}
+  
+       {% if (uriLastPart === "watchlist-remove-school") %}
+        {{ govukNotificationBanner({
+          html: removeProject,
+          type: "success"
+        }) }}
+      {% endif %}
+
+    <h1 class="govuk-heading-xl">Your project watchlist</h1>
+    <p>You can use your watchlist to save projects that are important to you and find them quickly.</p>
+
+    <a href="watchlist-select-school" class="govuk-button">Add to watchlist</a>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table" data-module="moj-sortable-table">
+      <caption class="govuk-table__caption govuk-visually-hidden">My watched projects</caption>
+      
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" aria-sort="none">School</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Date added</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Region</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Local authority</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Assigned to</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Supporting organisation</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Milestone</th>
+          <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+          <th scope="col" class="govuk-table__header govuk-visually-hidden govuk-link--no-visited-state" aria-sort="none">Remove</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">Magdalen college school</a></td>
+          <td class="govuk-table__cell">1 Jan 2026</td>
+          <td class="govuk-table__cell">South East</td>
+          <td class="govuk-table__cell">Oxfordshire</td>
+          <td class="govuk-table__cell">Hugo Prong</td>
+          <td class="govuk-table__cell">Super Helpful Happy Trust</td>
+          <td class="govuk-table__cell">First RISE meeting</td>
+          <td class="govuk-table__cell">{{ inProgress | safe }}</td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+        </tr>
+
+       <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">St Duncan's Secondary</a></td>
+          <td class="govuk-table__cell">25 Nov 2026</td>
+          <td class="govuk-table__cell">East Midlands</td>
+          <td class="govuk-table__cell">Leicestershire</td>
+          <td class="govuk-table__cell">Jane Splaxton-Borrowby</td>
+          <td class="govuk-table__cell">Not yet appointed</td>
+          <td class="govuk-table__cell">First RISE meeting</td>
+          <td class="govuk-table__cell">{{ inProgress | safe }}</td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">Cheltenham Spa Primary School</a></td>
+          <td class="govuk-table__cell">13 Jun 2026</td>
+          <td class="govuk-table__cell">East Midlands</td>
+          <td class="govuk-table__cell">Derbyshire</td>
+          <td class="govuk-table__cell">Barrington Smyth</td>
+          <td class="govuk-table__cell">Not yet appointed</td>
+          <td class="govuk-table__cell">Matching complete</td>
+          <td class="govuk-table__cell">{{ inProgress | safe }}</td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">St Nicholas CofE Primary School</a></td>
+          <td class="govuk-table__cell">15 Sep 2025</td>
+          <td class="govuk-table__cell">North West</td>
+          <td class="govuk-table__cell">Cumbria</td>
+          <td class="govuk-table__cell">Aled Walters</td>
+          <td class="govuk-table__cell">Big Trust</td>
+          <td class="govuk-table__cell">Matching complete</td>
+          <td class="govuk-table__cell">{{ stopped | safe }}</td>
+          <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+        </tr>
+
+        {% if (uriLastPart !== "watchlist-remove-school") %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">St Peter's Church of England Controlled Primary School and Nursery</a></td>
+            <td class="govuk-table__cell">10 Apr 2025</td>
+            <td class="govuk-table__cell">London</td>
+            <td class="govuk-table__cell">Croydon</td>
+            <td class="govuk-table__cell">Barrington Smyth</td>
+            <td class="govuk-table__cell">Even Bigger Trust</td>
+            <td class="govuk-table__cell">Plans approved</td>
+            <td class="govuk-table__cell">{{ paused | safe }}</td>
+            <td class="govuk-table__cell"><a href="watchlist-remove-school" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+          </tr>
+        {% endif %}
+
+        {% if (uriLastPart === "watchlist-confirm-school") %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="task-list" class="govuk-link govuk-link--no-visited-state">St Mary's Catholic Primary School</a></td>
+            <td class="govuk-table__cell">4 Mar 2026</td>
+            <td class="govuk-table__cell">Yorkshire</td>
+            <td class="govuk-table__cell">Bradford</td>
+            <td class="govuk-table__cell">Alex Edwards</td>
+            <td class="govuk-table__cell">Super duper amazing trust</td>
+            <td class="govuk-table__cell">First RISE meeting</td>
+            <td class="govuk-table__cell">{{ inProgress | safe }}</td>
+            <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+          </tr>
+        {% endif %}
+        
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

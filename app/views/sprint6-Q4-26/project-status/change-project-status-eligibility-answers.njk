@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Set CURRENT STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] == "Paused") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{# Set NEW ELIGIBILITY variables #}
+{% if (data['eligibility-decision-answer'] == "Eligible") %}
+  {% set currentEligibility = "Eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer'] == "Not eligible") %}
+  {% set currentEligibility = "Not eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-no-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %}
+
+{# Set DECISION DATE variables #}
+{% if (data['eligibility-decision-date'] !== "") %}
+  {% set decisionDate = data | isoDateFromDateInput("eligibility-decision-date") | govukDate %}
+{% endif %}
+
+{# Set DETAILS variables #}
+{% if (data["eligibility-decision-details"] !== "") %}
+  {% set currentDetails = data["eligibility-decision-details"] %}
+{% endif %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">Change status and eligibility</span>
+  <h1 class="govuk-heading-l">Check your answers</h1>
+  
+  <dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Current status 
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ currentStatus | safe }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="change-project-status">Change<span class="govuk-visually-hidden"> project status</span></a>
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Eligibility
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ currentEligibility }}
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Date of change
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ decisionDate }}
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Details
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ currentDetails }}
+      </dd>
+    </div>
+
+    </dl>
+    
+    {{ govukButton({ 
+      text: "Save and complete", 
+      href: "../project-status" }) 
+    }}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

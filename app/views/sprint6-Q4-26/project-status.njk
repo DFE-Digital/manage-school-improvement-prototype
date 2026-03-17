@@ -1,0 +1,232 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "project-status" %}
+
+{# Set CURRENT STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
+  {% set currentStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] == "Paused") %}
+    {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{# Set NEW ELIGIBILITY variables #}
+{% if (data['eligibility-decision-answer'] == "Eligible") or (data['eligibility-decision-answer'] == NULL) %}
+  {% set currentEligibility = "Eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer'] == "Not eligible") %}
+  {% set currentEligibility = "Not eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-no-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %}
+
+{# Set DECISION DATE variables #}
+{% if (data['eligibility-decision-date'] !== "") %}
+  {% set decisionDate = data | isoDateFromDateInput("eligibility-decision-date") | govukDate %}
+{% endif %}
+
+{# Set DETAILS variables #}
+{% if (data["eligibility-decision-details"] !== "") %}
+  {% set currentDetails = data["eligibility-decision-details"] %}
+{% endif %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if (uriLastPart === "project-status-answers") %}
+        {{ govukNotificationBanner({
+          text: "Status updated successfully",
+          type: "success"
+        }) }}
+      {% endif %}
+
+      {% include "sprint5-Q4-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "/layouts/summary-section.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include "/layouts/sub-nav-tabs-all.html" %}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">Status and eligibility</h2>
+
+      {# {% if (data['project-status'] === "In progress") %}
+        <p>Change the status of a project  if targeted intervention work pauses or stops.</p>
+      {% endif %} #}
+
+      {{ govukButton({ 
+        text: "Change status and eligibility", 
+        href: "project-status/change-project-status" }) 
+      }}
+
+      {% if (decisionDate !== NULL) and (currentDetails !== NULL) %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Current status"
+            },
+            value: {
+              html: currentStatus
+            }
+          },
+          {
+            key: {
+              text: "Eligibility"
+            },
+            value: {
+              html: currentEligibility
+            }
+          },
+          {
+            key: {
+              text: "Date of change"
+            },
+            value: {
+              html: decisionDate 
+            }
+          },
+          {
+            key: {
+              text: "Details"
+            },
+            value: {
+              html: currentDetails
+            }
+          }
+        ]
+      }) }}
+
+      {% else %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Current status"
+              },
+              value: {
+                html: currentStatus
+              }
+            },
+            {
+              key: {
+                text: "Eligibility"
+              },
+              value: {
+                html: currentEligibility
+              }
+            }
+          ]
+        }) }}
+
+      {% endif %}
+
+      <hr class="govuk-section-break govuk-section-break--m">
+
+
+      <h3 class="govuk-heading-m">Status and eligibility history</h3>
+
+      <div class="moj-timeline">
+
+        {# Paused #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--yellow">
+              Paused
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">7 September 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Eligible, support ending on 15th October 2026</p>
+            <p>This change was made on 5th September 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# In progress #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--green">
+              In progress
+            </strong>
+            <p class="moj-timeline__byline">by Alex Edwards</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">2nd June 2025 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Eligible</p>
+            <p>This change was made on 15th July 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+        {# Stopped #}
+        <div class="moj-timeline__item">
+          <div class="moj-timeline__header">
+            <strong class="govuk-tag govuk-tag--red">
+              Stopped
+            </strong>
+            <p class="moj-timeline__byline">by Iain MacDonald</p>
+          </div>
+          <p class="moj-timeline__date">
+            <time datetime="2019-06-14T14:01:00.000Z">14 June 2019 at 2:01pm</time>
+          </p>
+          <div class="moj-timeline__description">
+            <p class="govuk-!-font-weight-bold">Eligible</p>
+            <p>This change was made on 21st June 2025.</p>
+            <p>Additional details about why this was required and next steps.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

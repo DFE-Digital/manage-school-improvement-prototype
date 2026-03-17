@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+    {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Primary navigation #}
+{% set NavActive = "watchlist" %}
+
+{# Status tag #}
+{% set paused = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% set stopped = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% set inProgress = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+
+{# {% block beforeContent %}
+
+{% endblock %} #}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Add to watchlist</span>
+    <h1 class="govuk-heading-l">Confirm project details</h1>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          St Mary's Catholic Primary School
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date added
+        </dt>
+        <dd class="govuk-summary-list__value">
+          4 March 2026
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Region
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yorkshire
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Local authority
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Bradford
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Assigned to
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Alex Edwards
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Supporting organisation
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Super duper amazing trust
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Milestone
+        </dt>
+        <dd class="govuk-summary-list__value">
+          First RISE meeting
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ inProgress | safe }}
+        </dd>
+      </div>
+
+    </dl>
+
+    <a href="#" class="govuk-link">Change project</a>
+    
+    <div class="govuk-button-group govuk-!-margin-top-5">
+      {{ govukButton({ 
+        text: "Save and another", 
+        href: "#" }) 
+      }}
+
+      {{ govukButton({ 
+        text: "Save and complete",
+        classes: "govuk-button--secondary", 
+        href: "watchlist" }) 
+      }}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

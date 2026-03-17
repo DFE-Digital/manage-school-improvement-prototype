@@ -1,0 +1,109 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Send introductory email
+      </h1>
+    </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="padding-bottom-15">The adviser should email the school to introduce themselves to the school's responsible body.</p>
+
+      <form class="form" action="../task-list-task-updated" method="post">
+         
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+           
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+
+              {# <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="share-email-template" name="share-email-template" type="checkbox" value="done" {{checked("share-email-template", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="share-email-template">
+                  Share email template with adviser
+                </label>
+              </div> #}
+
+              <div class="govuk-checkboxes__item padding-bottom-15">
+                <input class="govuk-checkboxes__input" id="remind-the-adviser" name="remind-the-adviser" type="checkbox" value="done" {{checked("remind-the-adviser", "done")}}>
+                <label class="govuk-label govuk-checkboxes__label" for="remind-the-adviser">
+                  Remind the adviser to copy in the RISE team when they send the email
+                </label>
+              </div>
+              
+            </div>
+
+          </fieldset>
+        </div>
+
+        {{ govukDateInput({
+          id: "introductory-email-date",
+          namePrefix: "introductory-email-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the introductory email was sent",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["introductory-email-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["introductory-email-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["introductory-email-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+       
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+     
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

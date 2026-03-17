@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Set STARTING ELIGIBILITY variables #}
+{% if (data['starting-eligibility'] == "Yes") %}
+    {% set currentEligibility = "Eligible" %}
+  {% elseif (data['starting-eligibility'] == "No") %}
+    {% set currentEligibility = "Not eligible" %}
+{% endif %}
+
+{# Set DECISION DATE variables #}
+{% if (data['starting-eligibility-date'] !== "") %}
+  {% set decisionDate = data | isoDateFromDateInput("starting-eligibility-date") | govukDate %}
+{% endif %}
+
+{# Set DETAILS variables #}
+{% if (data["starting-eligibility-details"] !== "") %}
+  {% set currentDetails = data["starting-eligibility-details"] %}
+{% endif %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">Confirm starting eligibility</span>
+  <h2 class="govuk-heading-l">School is not eligible</h2>
+  
+  <dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Eligibility
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ currentEligibility }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="eligibility-check">Change<span class="govuk-visually-hidden"> eligibility</span></a>
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Date of change
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ decisionDate }}
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Details
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ currentDetails }}
+      </dd>
+    </div>
+
+    </dl>
+    
+    <h3 class="govuk-heading-m">What this means</h3>
+    <p class="govuk-body">As the school is no longer eligible to begin targeted intervention, there is no more project work to be done.</p>
+    <p class="govuk-body">A record of this project has been saved for future reference.</p>
+
+    <h3 class="govuk-heading-m">Tell the grant team about this change</h3>
+    <p class="govuk-body">You must contact the grant team to let them know that the school is no longer eligible. They will make arrangements for funding to stop if necessary.</p>
+
+    <h3 class="govuk-heading-m">Inform the school</h3>
+    <p class="govuk-body">You must make the school aware of this change in eligibility and discuss what it means for them and what will happen next.</p>
+
+    <h3 class="govuk-heading-m">If the school becomes eligible again</h3>
+    <p class="govuk-body">A new project must be created if the school becomes eligible for targeted intervention in the future.</p>
+    <p class="govuk-body">Any new project will be linked to older targeted intervention projects and records for the same school.</p>
+
+    <h3 class="govuk-heading-m">Contact service support if this is a mistake</h3>
+    <p class="govuk-body">If this school has been recorded as not elgible by mistake, you must contact service support so they can delete it.</p>
+    
+    <hr class="govuk-section-break govuk-section-break--m">
+
+    {{ govukButton({ 
+      text: "Back to project list", 
+      href: "../project-list" 
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
