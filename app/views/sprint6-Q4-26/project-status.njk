@@ -90,14 +90,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Project status and eligibility</h2>
+      <h2 class="govuk-heading-l">Status and eligibility</h2>
 
-      {% if (data['project-status'] === "In progress") %}
-        <p>Change the status of a project if targeted intervention work pauses or stops.</p>
-      {% endif %}
+      {# {% if (data['project-status'] === "In progress") %}
+        <p>Change the status of a project  if targeted intervention work pauses or stops.</p>
+      {% endif %} #}
 
       {{ govukButton({ 
-        text: "Change project status and eligibility", 
+        text: "Change status and eligibility", 
         href: "project-status/change-project-status" }) 
       }}
 
@@ -185,7 +185,7 @@
           </p>
           <div class="moj-timeline__description">
             <p class="govuk-!-font-weight-bold">Eligible, support ending on 15th October 2026</p>
-            <p>This decision was made on 5th September 2025.</p>
+            <p>This change was made on 5th September 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>
@@ -203,7 +203,7 @@
           </p>
           <div class="moj-timeline__description">
             <p class="govuk-!-font-weight-bold">Eligible</p>
-            <p>This decision was made on 15th July 2025.</p>
+            <p>This change was made on 15th July 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>
@@ -221,7 +221,7 @@
           </p>
           <div class="moj-timeline__description">
             <p class="govuk-!-font-weight-bold">Eligible</p>
-            <p>This decision was made on 21st June 2025.</p>
+            <p>This change was made on 21st June 2025.</p>
             <p>Additional details about why this was required and next steps.</p>
           </div>
         </div>
