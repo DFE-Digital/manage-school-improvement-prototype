@@ -17,6 +17,11 @@
   {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
+{% set guidanceHTML %}
+  <p class="govuk-hint">The school's eligibility may have changed if they have had an new Ofsted inspection or started a conversion or transfer since being identified.</p>
+  <p class="govuk-hint">You can check the latest eligibility criteria in the <a href="https://www.gov.uk/government/publications/schools-causing-concern--2" target="_blank">support and intervention in schools guidance on GOV.UK (opens in new tab).</a></p>
+{% endset %}
+
 {# Check answer 1 #}
 {% if (data["starting-eligibility"]) %}
     {% set answer1 = data["starting-eligibility"] %}
@@ -44,7 +49,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if (data["starting-eligibility"] == "Yes")  %}
+      {% if (data["starting-eligibility"] == "Yes") and (uriLastPart !== "eligibility-check-answers") %}
 
       {{ govukNotificationBanner({
         html: readOnlyBanner
@@ -52,7 +57,7 @@
 
       <span class="govuk-caption-l">Confirm starting eligibility</span>
       <h1 class="govuk-heading-l">
-        Is this school eligible for targeted intervention?
+        Is this school eligible to begin targeted intervention?
       </h1>
 
         {{ govukSummaryList({
@@ -60,7 +65,7 @@
             {
               key: {
                 classes: "govuk-!-width-one-half",
-                text: "Is this school eligible for targeted intervention?"
+                text: "Is this school eligible to begin targeted intervention?"
               },
               value: {
                 text: answer1
@@ -69,7 +74,7 @@
           ]
         }) }}
 
-      {% elif (data["starting-eligibility"] == "No")  %}
+      {% elif (data["starting-eligibility"] == "No") and (uriLastPart !== "eligibility-check-answers")  %}
 
       {{ govukNotificationBanner({
         html: readOnlyBanner
@@ -77,7 +82,7 @@
 
       <span class="govuk-caption-l">Confirm starting eligibility</span>
       <h1 class="govuk-heading-l">
-        Is this school eligible for targeted intervention?
+        Is this school eligible to begin targeted intervention?
       </h1>
 
         {{ govukSummaryList({
@@ -85,7 +90,7 @@
             {
               key: {
                 classes: "govuk-!-width-one-half",
-                text: "Is this school eligible for targeted intervention?"
+                text: "Is this school eligible to begin targeted intervention?"
               },
               value: {
                 text: answer1
@@ -123,13 +128,13 @@
             name: "starting-eligibility",
             fieldset: {
               legend: {
-                text: "Is this school eligible for targeted intervention?",
+                text: "Is this school eligible to begin targeted intervention?",
                 isPageHeading: false,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             hint: {
-              text: "Some good text here to describe or define what eligibility is and how it differs to status. We need to really clarify here that this is the eligiiblity of the school as it comes in."
+              html: guidanceHTML
             },
             classes: "govuk-radios--inline",
             items: [
