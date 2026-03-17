@@ -24,7 +24,7 @@
   {% set currentEligibility = data['eligibility-decision-answer'] %}
 {% endif %}
 
-{% if (data['eligibility-decision-answer']) and (taperingDate !== "") %}
+{% if (data['eligibility-decision-answer']) and (taperingDate == "") %}
   {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
