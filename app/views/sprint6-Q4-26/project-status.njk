@@ -11,28 +11,22 @@
     {% set currentStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
 {% endif %}
 
-{# Set TAPERING DATE variables #}
-{% if (data['eligibility-tapering-date'] !== "") %}
-  {% set taperingDate = data['eligibility-tapering-date-day'] + data['eligibility-tapering-date-month'] + data['eligibility-tapering-date-year'] %}
+{# Set NEW ELIGIBILITY variables #}
+{% if (data['eligibility-decision-answer'] == "Eligible") %}
+  {% set currentEligibility = "Eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
 {% endif %}
 
-{# Set ELIGIBILITY variables #}
-{# DEFAULT #}
-{% set currentEligibility = "Eligible" %}
-
-{% if (data['eligibility-decision-answer']) %}
-  {% set currentEligibility = data['eligibility-decision-answer'] %}
+{% if (data['eligibility-decision-answer'] == "Not eligible") %}
+  {% set currentEligibility = "Not eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-no-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
+    {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
 {% endif %}
-
-{% if (data['eligibility-decision-answer']) and (taperingDate == "") %}
-  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
-{% endif %}
-
-
-{# Set TAPERING DATE variables - THIS IS BROKEN, CAN'T TRANSFROM DATE TO GOVUK STANDARD #}
-{# {% if (data['eligibility-tapering-date'] !== "") %}
-  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
-{% endif %} #}
 
 {# Set DECISION DATE variables #}
 {% if (data['eligibility-decision-date'] !== "") %}
@@ -123,7 +117,7 @@
           },
           {
             key: {
-              text: "Date of decision"
+              text: "Date of change"
             },
             value: {
               html: decisionDate 
