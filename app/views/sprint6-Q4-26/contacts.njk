@@ -1,0 +1,334 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "contacts" %}
+
+{# SET DATA FROM ADD A CONTACT JOURNEY #}
+
+{# Role #}
+{% set roleVar = "" %}
+{% if (data["otherRoleAnswer"] != "") %}
+  {% set roleVar = (data["otherRoleAnswer"]) %}  
+{% else %}
+  {% set roleVar = (data["role"]) %}
+{% endif %}
+
+{# Name #}
+{# {% set data["contact-details-fullName"] = (data["contact-details-fullName"]) %}
+
+{# Email #}
+{# {% set emailVar = (data["contact-details-email"]) %} #}
+
+{# Phone #}
+{# {% set phoneVar = (data["contact-details-phoneNumber"]) %} #}
+
+{# SET UP MACRO #}
+{% macro contactCard(role="'role'", name="'name'", nameChange="no", email='#', emailChange="no", phone="#", phoneChange="no", sourceType="Taken from", source="Get information about schools", dateType="Date taken", date="15 October 2025", change="no") %} 
+
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        {{ role }}
+      </h2>
+      
+      {% if change == "yes" %}
+      <ul class="govuk-summary-card__actions">
+        <li class="govuk-summary-card__action">
+          <a class="govuk-link" href="contacts/add-contact-change">Change<span class="govuk-visually-hidden"> contact details</span></a>
+        </li>
+        {# <li class="govuk-summary-card__action">
+          <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact card</span></a>
+        </li> #}
+      </ul>
+      {% endif %}
+
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ name }}
+          </dd>
+         {# {% if nameChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> name</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {# <a href="#">{{ email }}</a> Commented out until phase 2, where it'll become clickable to add in missing data #}
+            {{ email }}
+          </dd>
+          {# {% if emailChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> email</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Phone
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ phone }}
+          </dd>
+          {# {% if phoneChange == "yes" %}
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="contacts/add-contact-details">Change<span class="govuk-visually-hidden"> phone</span></a>
+            </dd>
+          {% endif %} #}
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ sourceType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ source }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {{ dateType }}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ date }}
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+  </div>
+
+{% endmacro %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint5-Q4-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if (data['contact'] != NULL) %}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+          Contact added
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+    {% include "/layouts/summary-section.html" %}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include "/layouts/sub-nav-tabs-all.html" %}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-l">Contacts</h2>
+    {{ govukButton({ text: "Add contact", href: "contacts/add-contact" }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    {# SCHOOL CONTACTS #}
+    <h3 class="govuk-heading-m">School contacts</h3>
+
+    {# SCHOOL ADDRESS #}
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Cheltenham Spa Primary School<br>
+        123 Alstone Lane<br>
+        Cheltenham<br>
+        Glocestershire<br>
+        GL51 1AA
+        </p>"
+    }) }}
+
+    {# USE MACRO #}
+    {{ contactCard(role='Headteacher', name="Claudia Bourne", email="claudia.bourne@cheltenhamprimaryschool.co.uk", phone="01242 555555") }}
+    
+    {# IF OPTIONAL PHONE NUMBER IS NOT ADDED #}
+    {% if (data["contact-details-phoneNumber"]) %}
+      {% set phoneContent = data["contact-details-phoneNumber"] %}
+    {% else %}
+      {% set phoneContent = "Not available" %}
+    {% endif %}
+
+    {# Manually added #}
+    {% if (data["organisation"] == "School") and (data["contact-details-fullName"] != "") and (data["contact-details-email"] != "") %}
+      {{ contactCard(role=roleVar, name=data["contact-details-fullName"], email=data["contact-details-email"], phone=phoneContent, sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {% endif %}
+
+    {# SUPPORTING ORGANISATION CONTACTS #}
+    <h3 class="govuk-heading-m">Supporting organisation contacts</h3>
+
+    {# SUPPORTING ORGANISATION ADDRESS #}
+    {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Brighton and Hove Academies Trust<br>
+        88 Stroud Street<br>
+        Bristol<br>
+        BS1 9AA
+        </p>"
+    }) }}
+
+    {# USE MACRO #}
+    {{ contactCard(role='Accounting officer for supporting organisation', name="Levi Crombie", email="Not available", phone="01452 890098") }}
+    {{ contactCard(role='Trust CEO', name="Barry Fishcakes", email="b.fishcakes@b-hove-academies-trust.edu.uk", phone="01452 890098") }}
+    {{ contactCard(role='Business development manager', name="Harry Flange", email="h.flange@b-hove-academies-trust.edu.uk", phone="Not available") }}
+    {{ contactCard(role='School improvement lead', name="Larry Goggins", email="l.goggins@b-hove-academies-trust.edu.uk", phone="01234 567891") }}
+
+    {# GOVERNANCE BODIES CONTACTS #}
+    <h3 class="govuk-heading-m">Governance bodies contacts</h3>
+
+    {# GOVERNANCE BODIES ADDRESS #}
+    {# {{ govukInsetText({
+      classes: "govuk-!-margin-top-0",
+      html: "<p class='govuk-body'>
+        Brighton and Hove City Council<br>
+        Hove Town Hall<br>
+        Norton Road<br>
+        BN3 3BQ
+        </p>"
+    }) }} #}
+
+    <h3 class="govuk-heading-m contacts-customBody">Local authority</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Director of childrens services', name="Heather Golden", email="heather@b-hove-cc.gov.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    <h3 class="govuk-heading-m contacts-customBody">Foundation</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Foundation chair', name="Jason Ham", email="hammy@useful-foundation.gov.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    <h3 class="govuk-heading-m contacts-customBody">Diocese</h3>
+    
+    {# USE MACRO #}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    <h3 class="govuk-heading-m contacts-customBody">Contacts without an organisation</h3>
+    <p class="govuk-body">Change these contacts' details to add the organisation they work for.</p>
+    <p class="govuk-body">They will then be grouped on this page according to their organisation type.</p>
+    
+    {# USE CONTACTS WITHOUT AN ORGANISATION  #}
+    {{ contactCard(role='Religious ethos officer', name="Father Gerry", email="father@christchurch-brighton.co.uk", phone="01234 567891", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+    {{ contactCard(role='King of Spain', name="Sir William Large-Governor", email="billy@bossland.com", phone="Not available", sourceType="Taken from", source='Added manually', dateType="Date added", date="today" | govukDate, change="yes") }}
+
+    {# IF "OTHER" IS CHOSEN FOR ROLE WITHIN GOVERNING BODIES #}
+    {% if (data["organisation"] == "Governance bodies") and (data["otherBodyAnswer"] != "") and (data["contact-details-jobTitle"] != "") %}
+      <h3 class="govuk-heading-m contacts-customBody">
+        {{ data["otherBodyAnswer"] }}
+      </h3>
+
+      {{ govukSummaryList({
+        card: {
+          title: {
+            text: data["contact-details-jobTitle"] | capitalize
+          },
+          actions: {
+            items: [
+              {
+                href: "contacts/add-contact-change",
+                text: "Change",
+                visuallyHiddenText: "contact details"
+              }
+            ]
+          }
+        },
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data["contact-details-fullName"]
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              html: data["contact-details-email"]
+            }
+          },
+          {
+            key: {
+              text: "Phone"
+            },
+            value: {
+              html: data["contact-details-phoneNumber"] | default("Not available")
+            }
+          },
+          {
+            key: {
+              text: "Taken from"
+            },
+            value: {
+              text: "Added manually"
+            }
+          },
+          {
+            key: {
+              text: "Date added"
+            },
+            value: {
+              html: "today" | govukDate
+            }
+          }
+        ]
+      }) }}
+    {% endif %}
+
+  </div> {# End column #}
+</div> {# End row #}
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

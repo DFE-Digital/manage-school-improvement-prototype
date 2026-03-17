@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "../task-list"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      
+
+      <span class="govuk-caption-l">Tewkesbury Secondary School</span>
+      <h1 class="govuk-heading-l">
+        Is this school still eligible for targeted intervention?
+      </h1>
+      <!--
+      {% if (data['eligible'] == NULL) %}
+      <form class="form" action='eligibility-check-validation' method="post">
+      {% else %}
+      <form class="form" action='../task-list-task-updated' method="post">
+      {% endif %}
+      -->
+        
+      <form class="form" action='../task-list-tewkesbury-updated' method="post">
+
+    
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+      {% set noHtml %}
+
+      {{ govukTextarea({
+        name: "not-eligible-details",
+        hint: {
+          text: ""
+        },
+        id: "not-eligible-details",
+        title: "Not eligibility details",
+        value: data["not-eligible-details"],
+        label: {
+          text: "If it is no longer eligible, give details."
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "eligible",
+        name: "eligible",
+        items: [
+        {
+            value: "Yes",
+            checked:  data['eligible'] === "Yes",
+            text: "Yes"
+        },
+        {
+            value: "No",
+            checked:  data['eligible'] === "No",
+            text: "No",
+            conditional: {
+              html: noHtml
+            }
+        }
+        ]
+      }) }}
+    
+
+{{ govukButton({
+  text: "Save and return"
+}) }}
+
+      
+
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

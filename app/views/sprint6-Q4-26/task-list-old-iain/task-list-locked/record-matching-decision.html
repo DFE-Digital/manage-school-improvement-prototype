@@ -1,0 +1,228 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['adviser-visit-date-day'] == NULL) %}  
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Record initial diagnosis decision
+      </h1>
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p>Using <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/Assessment-Tool-1---Initial-Diagnosis.aspx?csf=1&web=1&e=18li2Q&CID=8035808a-2dff-41e8-8d4e-402ce710e683" target="_blank">Assessment Tool 1: Initial Diagnosis (opens in new tab)</a>, confirm if this school will be matched with a supporting organisation or not. A regional director must have approved this decision.</p>
+
+
+
+      <form class="form" action="../task-list-locked" method="post">
+
+        
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+ 
+         
+        {% set noHtml %}
+
+        {{ govukTextarea({
+          name: "not-matched-details",
+          hint: {
+            text: ""
+          },
+          id: "not-matched-details",
+          title: "Not matched details",
+          value: data["not-matched-details"],
+          hint: {
+            text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
+          }
+        }) }}
+        {% endset -%}
+
+        {% set reviewHtml %}
+
+        {{ govukTextarea({
+          name: "review-details",
+          hint: {
+            text: ""
+          },
+          id: "not-matched-details",
+          title: "Not matched details",
+          value: data["review-details"],
+          hint: {
+            text: "Copy and paste your notes from the overall recommendation within the summary tab in Assessment Tool 1."
+          }
+        }) }}
+        {% endset -%}
+         
+        {{ govukRadios({
+          idPrefix: "school-matched",
+          name: "school-matched",
+          fieldset: {
+            legend: {
+              text: "Record decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+              text: "Enter the reasons for the decision if the school could not be assessed."
+          },
+          items: [
+          {
+              value: "Yes",
+              checked:  data['school-matched'] === "Yes",
+              text: "Match with a supporting organisation"
+          },
+          {
+              value: "No",
+              checked:  data['school-matched'] === "No",
+              text: "Review school's progress",
+              conditional: {
+                html: reviewHtml
+              }
+          },
+          {
+            value: "Unable to assess",
+            checked:  data['school-matched'] === "Unable to assess",
+            text: "Unable to assess",
+            conditional: {
+              html: noHtml
+            }
+        }
+          ]
+        }) }}
+
+
+
+       
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "school-matched-decision-date",
+          namePrefix: "school-matched-decision-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the regional director made this decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["school-matched-decision-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["school-matched-decision-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["school-matched-decision-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {% if (data['adviser-visit-date-day'] != NULL) %}
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+
+    <!--
+    <div class="govuk-grid-column-one-third">
+
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-responsible-body.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != NULL) %}   
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p>10 March 2025
+        <strong class="govuk-tag govuk-tag--green">
+          New
+        </strong>
+        <br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      <hr class="govuk-section-break govuk-section-break--visible">
+      {% endif %}
+
+    </div>
+    -->
+
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

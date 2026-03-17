@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">Change project status and eligibility</span>
+      
+  <form class="form" action='change-project-status-eligibility-date' method="post">
+
+    {% set eligibilityTaperingDateHTML %}
+      {{ govukDateInput({
+          id: "eligibility-tapering-date",
+          namePrefix: "eligibility-tapering-date",
+          fieldset: {
+            legend: {
+              text: "Enter date support is due to end (optional)",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007."
+          },
+          items: [
+            {
+              name: "day",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) 
+      }}
+    {% endset %}
+
+    <div class="govuk-form-group">
+
+    {{ govukRadios({
+      name: "eligibility-decision-answer",
+      id: "eligibility-decision-answer",
+      fieldset: {
+        legend: {
+          text: "Is this school eligible?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "Some good text here to describe or define what eligibility is and how it differs to status. It would be good to mention the idea of tapering off support here perhaps."
+      },
+      items: [
+        {
+          value: "Eligibile",
+          text: "Yes",
+          conditional: {
+            html: eligibilityTaperingDateHTML
+          }
+        },
+        {
+          value: "Not eligible",
+          text: "No",
+          conditional: {
+            html: eligibilityTaperingDateHTML
+          }
+        }
+      ]
+    }) }}
+
+    </div>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

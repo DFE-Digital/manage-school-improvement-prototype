@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+    {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Primary navigation #}
+{% set NavActive = "watchlist" %}
+
+{# Status tag #}
+{% set paused = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% set stopped = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% set inProgress = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+
+{# {% block beforeContent %}
+
+{% endblock %} #}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {# <span class="govuk-caption-l">Add to watchlist</span> #}
+    <h1 class="govuk-heading-l">Remove project from watchlist</h1>
+
+    <p class="govuk-body">Confirm the details below to remove the project from your wachlist.<br>The project can still be found within the project list.</p>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          St Peter's Church of England Controlled Primary School and Nursery
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date added
+        </dt>
+        <dd class="govuk-summary-list__value">
+          10 April 2025
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Region
+        </dt>
+        <dd class="govuk-summary-list__value">
+          London
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Local authority
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Croydon
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Assigned to
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Barrington Smyth
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Supporting organisation
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Even Bigger Trust
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Milestone
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Plans approved
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ paused | safe }}
+        </dd>
+      </div>
+
+    </dl>
+
+    <div class="govuk-button-group govuk-!-margin-top-5">
+      {{ govukButton({ 
+        text: "Remove from watchlist",
+        classes: "govuk-button--warning",
+        href: "watchlist" }) 
+      }}
+
+      <a href="#" class="govuk-link">Cancel</a>
+      
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
