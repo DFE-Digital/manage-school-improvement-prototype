@@ -28,9 +28,8 @@
   {% endif %}
 {% endif %} #}
 
-{% if (data['eligibility-decision-answer'] == NULL) %}
-  {% set currentEligibility = "Eligible" %}
-{% elif data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+{% set currentEligibility = "Eligible" %}
+{% if data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
   {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
   {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
