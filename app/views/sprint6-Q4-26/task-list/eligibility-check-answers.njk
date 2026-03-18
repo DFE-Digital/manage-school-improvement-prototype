@@ -39,45 +39,49 @@
 
   <span class="govuk-caption-l">Confirm starting eligibility</span>
   <h2 class="govuk-heading-l">Check your answers</h2>
-  
-  <dl class="govuk-summary-list">
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Eligibility
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ currentEligibility }}
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a class="govuk-link" href="eligibility-check">Change<span class="govuk-visually-hidden"> eligibility</span></a>
-      </dd>
-    </div>
+  {# <form class="form" action='eligibility-not-eligible-guidance' method="post"> #}
+    <dl class="govuk-summary-list">
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Date of change
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ decisionDate }}
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Eligibility
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ currentEligibility }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="eligibility-check">Change<span class="govuk-visually-hidden"> eligibility</span></a>
+        </dd>
+      </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Details
-      </dt>
-      <dd class="govuk-summary-list__value">
-        {{ currentDetails }}
-      </dd>
-    </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of change
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ decisionDate }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ currentDetails }}
+        </dd>
+      </div>
 
     </dl>
     
     {{ govukButton({ 
-      text: "Save and complete", 
-      href: "../task-list-task-updated" }) 
+      text: "Save and complete",
+      href: "eligibility-not-eligible-guidance"
+      }) 
     }}
+
+  {# </form> #}
 
   </div>
 </div>
