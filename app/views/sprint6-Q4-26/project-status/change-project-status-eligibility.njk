@@ -32,6 +32,7 @@
       <p class="govuk-hint">You can check the latest eligibility criteria in the <a href="https://www.gov.uk/government/publications/schools-causing-concern--2" target="_blank">support and intervention in schools guidance on GOV.UK (opens in new tab).</a></p>
     {% endset %}
 
+    {# No longer used #}
     {% set eligibilityTaperingDateYesHTML %}
       {{ govukDateInput({
           id: "eligibility-tapering-yes-date",
@@ -67,6 +68,7 @@
       }}
     {% endset %}
 
+    {# No longer used #}
     {% set eligibilityTaperingDateNoHTML %}
       {{ govukDateInput({
           id: "eligibility-tapering-no-date",
@@ -104,36 +106,64 @@
 
     <div class="govuk-form-group">
 
-    {{ govukRadios({
-      name: "eligibility-decision-answer",
-      id: "eligibility-decision-answer",
-      fieldset: {
-        legend: {
-          text: "Is this school eligible for targeted intervention?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        html: guidanceHTML
-      },
-      items: [
-        {
-          value: "Eligible",
-          text: "Yes",
-          conditional: {
-            html: eligibilityTaperingDateYesHTML
+      {{ govukRadios({
+        name: "eligibility-decision-answer",
+        id: "eligibility-decision-answer",
+        classes: "govuk-radios--inline",
+        fieldset: {
+          legend: {
+            text: "Is this school eligible for targeted intervention?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
           }
         },
-        {
-          value: "Not eligible",
-          text: "No",
-          conditional: {
-            html: eligibilityTaperingDateNoHTML
+        hint: {
+          html: guidanceHTML
+        },
+        items: [
+          {
+            value: "Eligible",
+            text: "Yes"
+          },
+          {
+            value: "Not eligible",
+            text: "No"
           }
-        }
-      ]
-    }) }}
+        ]
+      }) }}
+
+      {{ govukDateInput({
+          id: "eligibility-tapering-date",
+          namePrefix: "eligibility-tapering-date",
+          fieldset: {
+            legend: {
+              text: "Enter date support is due to end (optional)",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 5 2026"
+          },
+          items: [
+            {
+              name: "day",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) 
+      }}
 
     </div>
 

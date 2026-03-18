@@ -27,7 +27,7 @@
 {% endif %}
 
 {# Set NEW ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] == "Eligible") %}
+{# {% if (data['eligibility-decision-answer'] == "Eligible") %}
   {% set newEligibility = "Eligible" %}
   {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
@@ -41,6 +41,11 @@
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
     {% set newEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
   {% endif %}
+{% endif %} #}
+
+{% if data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
+  {% set newEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
 
@@ -49,7 +54,7 @@
     rows: [
       {
         key: {
-          text: "Current status"
+          text: "Previous status"
         },
         value: {
           html: '<strong class="govuk-tag govuk-tag--green">In progress</strong>' | safe
@@ -57,7 +62,7 @@
       },
       {
         key: {
-          text: "Current eligibility"
+          text: "Previous eligibility"
         },
         value: {
           text: "Eligible"
@@ -72,7 +77,7 @@
     rows: [
       {
         key: {
-          text: "New status"
+          text: "Current status"
         },
         value: {
           html: newStatus
@@ -80,7 +85,7 @@
       },
       {
         key: {
-          text: "New eligibility"
+          text: "Current eligibility"
         },
         value: {
           html: newEligibility
@@ -98,13 +103,13 @@
       
       <form class="form" action='change-project-status-eligibility-details' method="post">
 
-        <p class-"govuk-body">The current status and eligibility is:</p>
+        <p class-"govuk-body">The previous status and eligibility was:</p>
 
         {{ govukInsetText({
           html: oldStatusEligibility
         }) }}
 
-        <p class-"govuk-body">The new status and eligibility will be:</p>
+        <p class-"govuk-body">The current status and eligibility will be:</p>
 
         {{ govukInsetText({
           html: newStatusEligibility

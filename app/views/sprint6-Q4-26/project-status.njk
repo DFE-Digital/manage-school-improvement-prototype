@@ -12,7 +12,7 @@
 {% endif %}
 
 {# Set NEW ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] == "Eligible") or (data['eligibility-decision-answer'] == NULL) %}
+{# {% if (data['eligibility-decision-answer'] == "Eligible") or (data['eligibility-decision-answer'] == NULL) %}
   {% set currentEligibility = "Eligible" %}
   {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
@@ -26,6 +26,13 @@
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
     {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
   {% endif %}
+{% endif %} #}
+
+{% if (data['eligibility-decision-answer'] == NULL) %}
+  {% set currentEligibility = "Eligible" %}
+{% elif data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
 {# Set DECISION DATE variables #}
@@ -61,7 +68,7 @@
         }) }}
       {% endif %}
 
-      {% include "sprint5-Q4-26/includes/status-notification-banner.njk" %}
+      {% include "sprint6-Q4-26/includes/status-notification-banner.njk" %}
     </div>
   </div>
 
@@ -109,7 +116,7 @@
           },
           {
             key: {
-              text: "Eligibility"
+              text: "Current eligibility"
             },
             value: {
               html: currentEligibility
@@ -148,7 +155,7 @@
             },
             {
               key: {
-                text: "Eligibility"
+                text: "Current eligibility"
               },
               value: {
                 html: currentEligibility

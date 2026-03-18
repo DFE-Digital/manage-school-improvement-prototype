@@ -25,7 +25,7 @@
 {% endif %}
 
 {# Set NEW ELIGIBILITY variables #}
-{% if (data['eligibility-decision-answer'] == "Eligible") %}
+{# {% if (data['eligibility-decision-answer'] == "Eligible") %}
   {% set currentEligibility = "Eligible" %}
   {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
@@ -39,6 +39,11 @@
     {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
     {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
   {% endif %}
+{% endif %} #}
+
+{% if data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
 {# Set DECISION DATE variables #}
@@ -75,7 +80,7 @@
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
-        Eligibility
+        Current eligibility
       </dt>
       <dd class="govuk-summary-list__value">
         {{ currentEligibility }}

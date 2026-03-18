@@ -10,7 +10,7 @@
 {# Set ELIGIBILITY variables #}
 
 {# DEFAULT #}
-{% if (data["starting-eligibility"] == "No") %}
+{# {% if (data["starting-eligibility"] == "No") %}
   {% set currentEligibility = "Not eligible" %}
 {% else %}
   {% set currentEligibility = "Eligible" %}
@@ -21,6 +21,13 @@
 {% endif %}
 
 {% if (data['eligibility-decision-answer']) and (taperingDate !== "") %}
+  {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+{% endif %} #}
+
+{% if (data['eligibility-decision-answer'] == NULL) %}
+  {% set currentEligibility = "Eligible" %}
+{% elif data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
   {% set currentEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
 {% endif %}
 
@@ -100,7 +107,7 @@
     },
     {
       key: {
-        text: "Eligibility"
+        text: "Current eligibility"
       },
       value: {
         html: currentEligibility
