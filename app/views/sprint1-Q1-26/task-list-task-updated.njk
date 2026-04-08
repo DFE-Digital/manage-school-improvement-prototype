@@ -153,10 +153,13 @@
             {{ taskStatusTag | safe }}
           {% endif %} #}
 
-          {% if (data['starting-eligibility'] == "Yes") %}
+          {# {% if (data['starting-eligibility'] == "Yes") %}
             {% set taskStatusTag = completed %}
             {{ taskStatusTag | safe }}
-          {% endif %}
+          {% endif %} #}
+
+          {% set taskStatusTag = completed %}
+          {{ taskStatusTag | safe }}
         </div>
 
       </li>

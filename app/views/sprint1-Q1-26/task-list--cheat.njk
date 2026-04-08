@@ -120,7 +120,7 @@
         </div>
 
         <div class="govuk-task-list__status" id="company-details-2-status">
-          {% if (data['assigned-to'] == NULL) %}
+          {# {% if (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotStartYet %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") %}
@@ -132,7 +132,10 @@
           {% else %}
             {% set taskStatusTag = completed %}
             {{ taskStatusTag | safe }}
-          {% endif %}
+          {% endif %} #}
+
+          {% set taskStatusTag = completed %}
+          {{ taskStatusTag | safe }}
         </div>
 
       </li>
