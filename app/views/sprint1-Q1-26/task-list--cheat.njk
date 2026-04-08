@@ -468,7 +468,7 @@
           {% elif (data['school-matched'] == NULL) and (data['school-matched-decision-date-day'] == NULL) or (data['school-matched-decision-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
-          {% elif  (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') %}
+          {% elif  (data['school-matched'] == "Yes") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             {% set taskStatusTag = completed %}
             {{ taskStatusTag | safe }}
           {% else %}
