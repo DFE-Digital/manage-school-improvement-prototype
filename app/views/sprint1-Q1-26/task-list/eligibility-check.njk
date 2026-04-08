@@ -1,0 +1,168 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "../task-list"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% set guidanceHTML %}
+  <p class="govuk-hint">The school's eligibility may have changed if they have had an new Ofsted inspection or started a conversion or transfer since being identified.</p>
+  <p class="govuk-hint">You can check the latest eligibility criteria in the <a href="https://www.gov.uk/government/publications/schools-causing-concern--2" target="_blank">support and intervention in schools guidance on GOV.UK (opens in new tab).</a></p>
+{% endset %}
+
+{# Check answer 1 #}
+{% if (data["starting-eligibility"]) %}
+    {% set answer1 = data["starting-eligibility"] %}
+{% endif %}
+
+{# Check answer 2 #}
+{% if (data['starting-eligibility-date-day'] != "") and (data['starting-eligibility-date-month'] != "") and (data['starting-eligibility-date-year'] != "") %}
+    {% set answer2 = data | isoDateFromDateInput("starting-eligibility-date") | govukDate %}
+{% endif %}
+
+{# Check answer 3 #}
+{% if (data["starting-eligibility-details"]) %}
+    {% set answer3 = data["starting-eligibility-details"] %}
+{% endif %}
+
+{% set readOnlyBanner %}
+  <p class="govuk-notification-banner__heading">
+    If the eligibility of the school has changed, 
+    <a class="govuk-notification-banner__link" href="../project-status/change-project-status">change the project status and eligibility</a>.
+  </p>
+{% endset %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data["starting-eligibility"] == "Yes") and (prevURL !== "eligibility-check-answers") %}
+
+      {{ govukNotificationBanner({
+        html: readOnlyBanner
+      }) }}
+
+      <span class="govuk-caption-l">Confirm starting eligibility</span>
+      <h1 class="govuk-heading-l">
+        Is this school eligible to begin targeted intervention?
+      </h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Is this school eligible to begin targeted intervention?"
+              },
+              value: {
+                text: answer1
+              }
+            }
+          ]
+        }) }}
+
+      {% elif (data["starting-eligibility"] == "No") and (prevURL !== "eligibility-check-answers")  %}
+
+      {{ govukNotificationBanner({
+        html: readOnlyBanner
+      }) }}
+
+      <span class="govuk-caption-l">Confirm starting eligibility</span>
+      <h1 class="govuk-heading-l">
+        Is this school eligible to begin targeted intervention?
+      </h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Is this school eligible to begin targeted intervention?"
+              },
+              value: {
+                text: answer1
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Date the decision was made"
+              },
+              value: {
+                text: answer2
+              }
+            },
+            {
+              key: {
+                classes: "govuk-!-width-one-half",
+                text: "Details about the change"
+              },
+              value: {
+                text: answer3
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+      
+        <form class="form" action='' method="post">
+
+          <span class="govuk-caption-l">Confirm starting eligibility</span>
+          {{ govukRadios({
+            idPrefix: "starting-eligibility",
+            name: "starting-eligibility",
+            fieldset: {
+              legend: {
+                text: "Is this school eligible to begin targeted intervention?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            hint: {
+              html: guidanceHTML
+            },
+            classes: "govuk-radios--inline",
+            items: [
+              {
+                value: "Yes",
+                checked:  data['starting-eligibility'] === "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                checked:  data['starting-eligibility'] === "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

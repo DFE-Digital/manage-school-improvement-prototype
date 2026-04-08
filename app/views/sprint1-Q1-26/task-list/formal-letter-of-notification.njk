@@ -1,0 +1,153 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint1-Q1-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Send the formal letter of notification
+      </h1>
+
+   </div>
+  </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">Somebody from the RISE regional team with access to their team mailbox must send the formal notification. They may not have access to Manage school improvement so you may have to complete this task on their behalf.</p>
+
+      <p class="govuk-body">DfE must send the formal notification by email to the responsible body and other stakeholders.</p>
+
+      <p class="govuk-body">This must be sent by email from the regional RISE team's mailbox.</p>
+
+      <form class="form" action="../task-list-task-updated" method="post">
+             
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="draft-email" name="draft-email" type="checkbox" value="done" {{checked("draft-email", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="draft-email">
+            Use the enrolment letter template to draft the email
+          </label>
+          <div id="add-attachments-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            <a href="https://educationgovuk.sharepoint.com/:u:/r/sites/lvewp00030/SitePages/2-Intervention/RISE/RISE-Targeted%20Intervention.aspx?csf=1&web=1&e=ekgYLH" target="_blank">Download the enrolment letter template from SharePoint (opens in new tab)</a> and edit it as required. The template includes the conflict of interest form.
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="add-attachments" name="add-attachments" type="checkbox" value="done" {{checked("add-attachments", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="add-attachments">
+            Attach the targeted intervention information sheet
+          </label>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-bottom-minus-30">
+          <input class="govuk-checkboxes__input" id="add-recipients" name="add-recipients" type="checkbox" value="done" {{checked("add-recipients", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="add-recipients">
+            Add recipients
+          </label>
+          <div id="add-recipients-item-hint" class="govuk-hint govuk-checkboxes__hint">
+            The enrolment letter must be sent to particular people at the responsible body depending on the type of school.
+            <p>
+              <details class="govuk-details margin-top-minus-15">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    Who to send the email to
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <h2 class="govuk-heading-m">Academies</h2>
+                  <p>Send the letter, by email, to the Chair of the trust and the trust CEO.</p>
+                  <h2 class="govuk-heading-m">Local authority maintained schools</h2>
+                  <p>Send the letter, by email, to the Chair of governors and the director of children's services at the local authority. You must also copy in the school's headteacher.</p>
+                  <h2 class="govuk-heading-m">Faith schools</h2>
+                  <p>Copy in the diocese or other relevant religious authority if it is a faith school.</p>
+                  <h2 class="govuk-heading-m">Foundation schools</h2>
+                  <p>Copy in the foundation trust if it is a foundation school.</p>
+                  <h2 class="govuk-heading-m">DfE</h2>
+                  You must copy in the regional director or their support team, along with the trust relationship manager or local authority lead.
+                </div>
+              </details>
+            </p> 
+          </div>
+        </div>
+
+        <div class="govuk-checkboxes__item margin-top-15">
+          <input class="govuk-checkboxes__input" id="email-responsible-body" name="email-responsible-body" type="checkbox" value="done" {{checked("email-responsible-body", "done")}}>
+          <label class="govuk-label govuk-checkboxes__label" for="email-responsible-body">
+            Send email
+          </label>
+        </div>
+  
+        <br>
+
+        {{ govukDateInput({
+          id: "school-contacted-date",
+          namePrefix: "school-contacted-date",
+          fieldset: {
+            legend: {
+              text: "Enter the date of formal contact",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["school-contacted-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2 readonly"
+            },
+            {
+              name: "month",
+              value: data["school-contacted-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["school-contacted-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]}) 
+        }}
+    
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+
+      </form>
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">Change status and eligibility</span>
+  <h1 class="govuk-heading-l">Change project status</h1>
+    
+  {# <p>Change the status of a project if targeted intervention work pauses or stops.</p> #}
+      
+  <form class="form" action='change-project-status-eligibility' method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+
+        <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            {% if (data['project-status'] == "Paused") or (data['project-status'] == "Stopped")%}
+            <input class="govuk-radios__input" id="project-status" name="project-status" type="radio" value="In progress">
+            {% else %}
+            <input class="govuk-radios__input" id="project-status" name="project-status" type="radio" checked value="In progress">
+            {% endif %}
+            <label class="govuk-label govuk-radios__label" for="project-status">
+              In progress
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Work on the project has begun and is progressing.
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="project-status-2" name="project-status" type="radio" value="Paused" {{checked("project-status", "Paused") }}>
+            <label class="govuk-label govuk-radios__label" for="project-status-2">
+              Paused
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Work is temporarily paused while a decision is made about whether to continue.
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="project-status-3" name="project-status" type="radio" value="Stopped" {{checked("project-status", "Stopped") }}>
+            <label class="govuk-label govuk-radios__label" for="project-status-3">
+              Stopped
+            </label>
+            <div id="signIn-item-hint" class="govuk-hint govuk-radios__hint">
+              Work has ended because the school has improved sufficiently, or is now undergoing structural intervention.
+            </div>
+          </div>
+
+        </div>
+
+      </fieldset>
+    </div>
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  
+  </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

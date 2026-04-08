@@ -1,0 +1,192 @@
+{% extends "layouts/main.html" %}
+
+{% set NavActive = "about-the-school" %}
+
+{% block pageTitle %}
+  Task list template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "sprint1-Q1-26/includes/status-notification-banner.njk" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "/layouts/summary-section.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include "/layouts/sub-nav-tabs-all.html" %}
+
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-l">About the school</h2>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            School overview
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Previous URN
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Not applicable
+              </dd>
+              <dd class="govuk-summary-list__actions">
+             
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Region
+              </dt>
+              <dd class="govuk-summary-list__value">
+                South west
+              </dd>
+              <dd class="govuk-summary-list__actions">
+               
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Local authority
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Gloucestershire
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                
+              </dd>
+            </div>
+        
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                School type
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Foundation school
+              </dd>
+              <dd class="govuk-summary-list__actions">
+               
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Trust
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Gloucestershire Academies Trust
+              </dd>
+              <dd class="govuk-summary-list__actions">
+             
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Phase of education
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Primary
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Religious character
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Church of England
+              </dd>
+              <dd class="govuk-summary-list__actions">
+               
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Diocese
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Diocese of Gloucestershire
+              </dd>
+              <dd class="govuk-summary-list__actions">
+               
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Number on roll (NOR)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                1086
+              </dd>
+              <dd class="govuk-summary-list__actions">
+               
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <h3 class="govuk-heading-m">Information from other services</h3>
+      <p class="govuk-body">Links open in a new tab</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="#" target="_blank" rel="noopener">See inspection reports at Ofsted</a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">Get information about schools</a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">Find information about schools and trusts</a>
+        </li>
+      </ul>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Where this information came from
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          School information taken from Get information about schools on 25 February 2025.
+        </div>
+      </details>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

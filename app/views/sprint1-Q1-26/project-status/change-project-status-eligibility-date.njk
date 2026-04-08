@@ -1,0 +1,163 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+{# Set NEW STATUS variables #}
+{% if (data['project-status'] == "In progress") or (data['project-status'] == NULL) %}
+  {% set newStatus = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+{% elif (data['project-status'] == "Stopped") %}
+    {% set newStatus = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% elif (data['project-status'] == "Paused") %}
+    {% set newStatus = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% endif %}
+
+{# Set NEW ELIGIBILITY variables #}
+{# {% if (data['eligibility-decision-answer'] == "Eligible") %}
+  {% set newEligibility = "Eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-yes-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-yes-date") | govukDate %}
+    {% set newEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %}
+
+{% if (data['eligibility-decision-answer'] == "Not eligible") %}
+  {% set newEligibility = "Not eligible" %}
+  {% if data | isoDateFromDateInput("eligibility-tapering-no-date") !=="Invalid DateTime" %}
+    {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-no-date") | govukDate %}
+    {% set newEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+  {% endif %}
+{% endif %} #}
+
+{% if data | isoDateFromDateInput("eligibility-tapering-date") !=="Invalid DateTime" %}
+  {% set taperingDate = data | isoDateFromDateInput("eligibility-tapering-date") | govukDate %}
+  {% set newEligibility = data['eligibility-decision-answer'] + ", support ending " + taperingDate %}
+{% endif %}
+
+
+{% set oldStatusEligibility %}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Previous status"
+        },
+        value: {
+          html: '<strong class="govuk-tag govuk-tag--green">In progress</strong>' | safe
+        }
+      },
+      {
+        key: {
+          text: "Previous eligibility"
+        },
+        value: {
+          text: "Eligible"
+        }
+      }
+    ]
+  }) }}
+{% endset %}
+
+{% set newStatusEligibility %}
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Current status"
+        },
+        value: {
+          html: newStatus
+        }
+      },
+      {
+        key: {
+          text: "Current eligibility"
+        },
+        value: {
+          html: newEligibility
+        }
+      }
+    ]
+  }) }}
+{% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Change status and eligibility</span>
+      <h1 class="govuk-heading-l">Confirm the change</h1>
+      
+      <form class="form" action='change-project-status-eligibility-details' method="post">
+
+        <p class-"govuk-body">The previous status and eligibility was:</p>
+
+        {{ govukInsetText({
+          html: oldStatusEligibility
+        }) }}
+
+        <p class-"govuk-body">The current status and eligibility will be:</p>
+
+        {{ govukInsetText({
+          html: newStatusEligibility
+        }) }}
+
+        {{ govukDateInput({
+          id: "eligibility-decision-date",
+          namePrefix: "eligibility-decision-date",
+          fieldset: {
+            legend: {
+              text: "When did the project status or eligibility change?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 27 3 2007"
+          },
+          items: [
+            {
+              name: "day",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

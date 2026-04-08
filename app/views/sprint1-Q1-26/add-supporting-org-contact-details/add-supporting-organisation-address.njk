@@ -1,0 +1,174 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  {# Content logic for the inset text to playback the chose supporting organisation and subsequent role #}
+  {% if (data['so-type'] === "school") %}
+    {% if (data['so-name'] == "Cheltenham Secondary School (100329)") or (data['so-name'] == "Cirencester St Peter's Catholic School (1007437)") %}
+      {% set soOrg = "School" %}
+      {% set soOrgName = data['so-name'] %}
+      {% set soRole = "Headteacher" %}
+      {% set soNameLabel = "Headteacher" %}
+    {% else %}
+        {% set soOrg = "Academy" %}
+        {% set soOrgName = data['so-name'] %}
+        {% set soRole = "Accounting officer of the academy's trust" %}
+        {% set soNameLabel = "Accounting officer" %}
+    {% endif %}
+  {% elif (data['so-type'] === "trust") %}
+    {% set soOrg = "Trust" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "Accounting officer" %}
+    {% set soNameLabel = "Accounting officer" %}
+  {% elif (data['so-type'] === "local-authority") %}
+    {% set soOrg = "Local authority" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% elif (data['so-type'] === "local-authority-traded-service") %}
+    {% set soOrg = "Local authority traded service" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% elif (data['so-type'] === "federation-education-partnership") %}
+    {% set soOrg = "Federation or education partnership" %}
+    {% set soOrgName = data['so-name'] %}
+    {% set soRole = "" %}
+  {% else %}
+    {% set soOrg = "" %}
+    {% set soOrgName = "" %}
+    {% set soRole = "" %}
+  {% endif %}
+
+  {# Set the content for the inset text #}
+  {% set soPlayback %}
+    {# <p class="govuk-body"><strong>Supporting organisation type:</strong> {{ soOrg }}</p> #}
+    <p class="govuk-body"><strong>Name of supporting organisation:</strong> {{ soOrgName }}</p>
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Confirm supporting organisation contact details
+      </h1>
+      <p class="govuk-body">
+        Enter the contact details for the supporting organisation's accounting officer. They will get the grant funding letters.
+      </p>
+      <p class="govuk-body">
+        You can add contact information for other people at the suporting organisation on the Contacts page.
+      </p>
+
+      {# Playback of supporting organisation type and role, from "Choose supporting organisation" task #}
+      {% if (data['so-type'] !== NULL) %}
+        {{ govukInsetText({
+          html: soPlayback
+        }) }}
+      {% endif %}
+
+      <h2 class="govuk-heading-m">
+        Check this postal address is correct
+      </h2>
+
+      <p class="govuk-body">
+        This information came from Get information about schools.
+      </p>
+
+      <p class="govuk-body">
+        Check it is correct. Make changes if it is wrong.
+      </p>
+
+      {{ govukWarningText({
+        text: "You will not be able to make changes to this information once you confirm it.",
+        iconFallbackText: "Warning"
+      }) }}
+
+      <form class="form" action='../task-list' method="post">
+        
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="">
+
+            {{ govukInput({
+              label: {
+                text: "Address line 1",
+                classes: "govuk-label--s"
+              },
+              id: "SOaddressLine1",
+              name: "SOaddressLine1",
+              value: data['SOaddressLine1']
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Address line 2 (optional)",
+                classes: "govuk-label--s"
+              },
+              id: "SOaddressLine2",
+              name: "SOaddressLine2",
+              value: data['SOaddressLine2']
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Town or city",
+                classes: "govuk-label--s"
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "SOaddress-town",
+              name: "SOaddress-town",
+              value: data['SOaddress-town']
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "County (optional)",
+                classes: "govuk-label--s"
+              },
+              classes: "govuk-!-width-two-thirds",
+              id: "SOaddress-county",
+              name: "SOaddress-county",
+              value: data['SOaddress-county']
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Postcode",
+                classes: "govuk-label--s"
+              },
+              classes: "govuk-input--width-10",
+              id: "soaddress-postcode",
+              name: "soaddress-postcode",
+              value: data['soaddress-postcode']
+            }) }}
+
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+      
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}
