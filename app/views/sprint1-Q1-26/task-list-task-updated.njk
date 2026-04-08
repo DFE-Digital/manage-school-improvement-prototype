@@ -23,6 +23,12 @@
 </strong>
 {% endset %}
 
+{% set notRequired %}
+<strong class="govuk-tag govuk-tag--grey">
+  Not required
+</strong>
+{% endset %}
+
 {% set notStarted %}
 <strong class="govuk-tag govuk-tag--blue">
   Not started
@@ -554,7 +560,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '')%}
             Choose preferred supporting organisation
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="choose-preferred-supporting-org/hybrid/choose-preferred-supporting-organisation" aria-describedby="company-details-2-status">
@@ -569,6 +575,9 @@
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-name'] == NULL) and (data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
@@ -587,7 +596,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '')%}
             Carry out due diligence on preferred supporting organisation
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/carry-out-due-diligence" aria-describedby="company-details-2-status">
@@ -599,6 +608,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -620,7 +632,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Record supporting organisation appointment
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/record-supporting-org-appointment" aria-describedby="company-details-3-hint company-details-3-status">
@@ -632,6 +644,9 @@
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -653,7 +668,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Confirm supporting organisation contact details
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="add-supporting-org-contact-details/add-supporting-organisation-contact-details" aria-describedby="">
@@ -665,6 +680,9 @@
         <div class="govuk-task-list__status" id="">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -695,7 +713,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Request planning grant offer letter
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/request-planning-grant-offer-letter" aria-describedby="company-details-2-status">
@@ -707,6 +725,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -728,7 +749,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Confirm planning grant offer letter sent
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/planning-grant-offer-letter-sent" aria-describedby="company-details-2-status">
@@ -740,6 +761,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -767,7 +791,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Share indicative funding band and the improvement plan template
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/share-improvement-plan-template" aria-describedby="company-details-2-status">
@@ -779,6 +803,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -800,7 +827,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Review the improvement plan and confirm the funding band
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/review-improvement-plan" aria-describedby="company-details-2-status">
@@ -812,6 +839,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -833,7 +863,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Send the agreed improvement plan for approval
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/send-plan-for-approval" aria-describedby="company-details-3-hint company-details-3-status">
@@ -845,6 +875,9 @@
         <div class="govuk-task-list__status" id="company-details-3-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -866,7 +899,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Record improvement plan decision
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/record-improvement-plan-decision" aria-describedby="company-details-4-status">
@@ -878,6 +911,9 @@
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -899,7 +935,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Enter improvement plan objectives
           {% elif (data['plan-objective-1'] == NULL) and (data['objectives-completed'] != 'done') %}
             <a class="govuk-link govuk-task-list__link" href="task-list/area-of-improvement" aria-describedby="company-details-2-status">
@@ -915,6 +951,9 @@
         <div class="govuk-task-list__status" id="company-details-4-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -942,7 +981,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Request improvement grant offer letter
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/request-improvement-grant-offer-letter" aria-describedby="company-details-2-status">
@@ -954,6 +993,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
@@ -975,7 +1017,7 @@
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
 
         <div class="govuk-task-list__name-and-hint govuk-!-width-two-thirds">
-          {% if (allocateAnAdviserComplete != "Complete") %}
+          {% if (allocateAnAdviserComplete != "Complete") or (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
             Confirm improvement grant offer letter sent
           {% else %}
             <a class="govuk-link govuk-task-list__link" href="task-list/improvement-grant-offer-letter-sent" aria-describedby="company-details-2-status">
@@ -987,6 +1029,9 @@
         <div class="govuk-task-list__status" id="company-details-2-status">
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['school-matched'] == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
             {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
