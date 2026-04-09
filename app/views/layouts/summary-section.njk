@@ -38,9 +38,16 @@
   {% set adviserChangeURL = "" %}
   {% set engagementConcernChangeText = "" %}
   {% set engagementConcernChangeURL = "" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
 {% else %}
   {% set engagementConcernChangeText = "Change" %}
   {% set engagementConcernChangeURL = "./record-engagement-concern" %}
+{% endif %}
+
+{% if (data['school-matched'] === "No") and (data['project-status'] == "In progress") %}
+  {% set matchingDecisionChangeText = "Change" %}
+  {% set matchingDecisionChangeURL = "#" %}
 {% endif %}
 
 {# SET ASSIGNED TO #}
@@ -83,6 +90,16 @@
   {% endset %}
 {% endif %}
 
+{# SET MATCHING DECISION VARIABLES #}
+{% set matchingDecision = "Initial diagnosis decision not yet recorded" %}
+{% if (data['school-matched'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+{% elif (data['school-matched'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+{% elif (data['school-matched'] === "Unable to assess") %}
+  {% set matchingDecision = "Unable to assess" %}
+{% endif %}
+
 {# SET ENGAGEMENT CONCERN ANSWER #}
 {% set engagementConcern = "" %}
 {% if (data['engagement-concern'] == 'Yes') %}
@@ -106,7 +123,7 @@
       actions: {
         items: [
           {
-            href: "/project-status/change-project-status",
+            href: "project-status/change-project-status",
             text: "Change"
           }
         ]
@@ -158,6 +175,23 @@
             href: adviserChangeURL,
             text: adviserChangeText,
             visuallyHiddenText: "advised by"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Matching decision"
+      },
+      value: {
+        html: matchingDecision
+      },
+      actions: {
+        items: [
+          {
+            href: matchingDecisionChangeURL,
+            text: matchingDecisionChangeText,
+            visuallyHiddenText: "matching decision"
           }
         ]
       }
