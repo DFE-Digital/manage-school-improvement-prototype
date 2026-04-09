@@ -21,18 +21,36 @@
   {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
+{% set readOnlyBanner %}
+  <p class="govuk-notification-banner__heading">
+    If the matching decision of the school has changed, 
+    <a class="govuk-notification-banner__link" href="../matching-decision/change-matching-decision">change the school's matching decision</a>.
+  </p>
+{% endset %}
+
+{# Check answer 1 #}
+{% if (data['school-matched'] == 'Yes') %}
+    {% set answer1="Match with a supporting organisation" %}
+  {% elif (data['school-matched'] == "No") %}
+    {% set answer1 %}
+      Review school's progress:<br>
+      {{ data["review-details"] }}
+    {% endset %}
+  {% elif (data['school-matched'] == "Unable to assess") %}
+    {% set answer1 %}
+      Unable to assess:<br>
+      {{ data["not-matched-details"] }}
+    {% endset %}             
+{% endif %}
+
+{# Check answer 2 #}
+{% if (data['school-matched-decision-date-day'] != "") and (data['school-matched-decision-date-month'] != "") and (data['school-matched-decision-date-year'] != "") %}
+    {% set answer2 = data | isoDateFromDateInput("school-matched-decision-date") | govukDate %}
+  {% else %}
+    {% set answer2='Incomplete' %}
+{% endif %}
+
 {% block content %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
-      <h1 class="govuk-heading-l">
-        Record initial diagnosis decision
-      </h1>
-
-   </div>
-  </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -45,34 +63,23 @@
         confirm if this school will be matched with a supporting organisation or not. A regional director must have approved this decision.
       </p> #}
 
-      <p>
-        <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/Assessment-Tool-1---Initial-Diagnosis.aspx?csf=1&web=1&e=18li2Q&CID=8035808a-2dff-41e8-8d4e-402ce710e683" target="_blank">Download a copy of Assessment Tool 1: Initial Diagnosis (opens in new tab)</a>, and use it to confirm if this school will be matched with a supporting organisation or not.
-      </p>
-      <p>A regional director must have approved this decision.</p>
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) or (data['school-matched'] !== "Unable to assess") and (answer2 !== NULL) %}
 
-      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
+        {{ govukNotificationBanner({
+          html: readOnlyBanner
+        }) }}
 
-        {# Check answer 1 #}
-        {% if (data['school-matched'] == 'Yes') %}
-            {% set answer1="Match with a supporting organisation" %}
-          {% elif (data['school-matched'] == "No") %}
-            {% set answer1 %}
-              Review school's progress:<br>
-              {{ data["review-details"] }}
-            {% endset %}
-          {% elif (data['school-matched'] == "Unable to assess") %}
-            {% set answer1 %}
-              Unable to assess:<br>
-              {{ data["not-matched-details"] }}
-            {% endset %}             
-        {% endif %}
+        {{ data['school-matched'] }} test
+        
+        <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+        <h1 class="govuk-heading-l">
+          Record initial diagnosis decision
+        </h1>
 
-        {# Check answer 2 #}
-        {% if (data['school-matched-decision-date-day'] != "") and (data['school-matched-decision-date-month'] != "") and (data['school-matched-decision-date-year'] != "") %}
-            {% set answer2 = data | isoDateFromDateInput("school-matched-decision-date") | govukDate %}
-          {% else %}
-            {% set answer2='Incomplete' %}
-        {% endif %}
+        <p>
+          <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/Assessment-Tool-1---Initial-Diagnosis.aspx?csf=1&web=1&e=18li2Q&CID=8035808a-2dff-41e8-8d4e-402ce710e683" target="_blank">Download a copy of Assessment Tool 1: Initial Diagnosis (opens in new tab)</a>, and use it to confirm if this school will be matched with a supporting organisation or not.
+        </p>
+        <p>A regional director must have approved this decision.</p>
 
         {{ govukSummaryList({
           rows: [
@@ -98,6 +105,16 @@
         }) }}
 
       {% else %}
+
+        <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+        <h1 class="govuk-heading-l">
+          Record initial diagnosis decision
+        </h1>
+
+        <p>
+          <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/Assessment-Tool-1---Initial-Diagnosis.aspx?csf=1&web=1&e=18li2Q&CID=8035808a-2dff-41e8-8d4e-402ce710e683" target="_blank">Download a copy of Assessment Tool 1: Initial Diagnosis (opens in new tab)</a>, and use it to confirm if this school will be matched with a supporting organisation or not.
+        </p>
+        <p>A regional director must have approved this decision.</p>
 
         <form class="form" action="../task-list-task-updated" method="post">
 

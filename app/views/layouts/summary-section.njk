@@ -45,11 +45,6 @@
   {% set engagementConcernChangeURL = "./record-engagement-concern" %}
 {% endif %}
 
-{% if (data['school-matched'] === "No") and (data['project-status'] == "In progress") %}
-  {% set matchingDecisionChangeText = "Change" %}
-  {% set matchingDecisionChangeURL = "#" %}
-{% endif %}
-
 {# SET ASSIGNED TO #}
 {% set assignedTo = "" %}
 {% if (data['assigned-to'] != NULL) %}
@@ -91,13 +86,28 @@
 {% endif %}
 
 {# SET MATCHING DECISION VARIABLES #}
+{# change-matching-decision is evaluated first so it overrides school-matched after a visit to the change page #}
 {% set matchingDecision = "Initial diagnosis decision not yet recorded" %}
-{% if (data['school-matched'] === "Yes") %}
+{% if (data['change-matching-decision'] === "Yes") %}
   {% set matchingDecision = "Match with a supporting organisation" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
+{% elif (data['change-matching-decision'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+  {% set matchingDecisionChangeText = "Change" %}
+  {% set matchingDecisionChangeURL = "matching-decision/change-matching-decision" %}
+{% elif (data['school-matched'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
 {% elif (data['school-matched'] === "No") %}
   {% set matchingDecision = "Review school's progress" %}
+  {% set matchingDecisionChangeText = "Change" %}
+  {% set matchingDecisionChangeURL = "matching-decision/change-matching-decision" %}
 {% elif (data['school-matched'] === "Unable to assess") %}
   {% set matchingDecision = "Unable to assess" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
 {% endif %}
 
 {# SET ENGAGEMENT CONCERN ANSWER #}
