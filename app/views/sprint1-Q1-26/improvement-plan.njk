@@ -24,7 +24,6 @@
 {% endblock %}
 
 {# Check what the current matching decision is #}
-{# {% set matchingDecision = data['school-matched'] %} #}
 {% if (data['school-matched'] == "Yes") or (data['change-matching-decision'] == "Yes") %}
   {% set matchingDecision = "Yes" %}
 {% elif (data['school-matched'] == "No") or (data['change-matching-decision'] == "No") %}

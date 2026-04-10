@@ -63,7 +63,7 @@
         confirm if this school will be matched with a supporting organisation or not. A regional director must have approved this decision.
       </p> #}
 
-      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) and (data['school-matched'] !== "Unable to assess") and (answer2 !== NULL) %}
+      {% if (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) and (data['school-matched'] == "Yes") or (data['school-matched'] == "No") and (answer2 !== NULL) %}
 
         {{ govukNotificationBanner({
           html: readOnlyBanner
