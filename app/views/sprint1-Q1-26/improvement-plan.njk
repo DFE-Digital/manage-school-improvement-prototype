@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block header %}
-{% include "/layouts/dfe-header.html" %}
+  {% include "/layouts/dfe-header.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,6 +22,14 @@
     </div>
   </div>
 {% endblock %}
+
+{# Check what the current matching decision is #}
+{# {% set matchingDecision = data['school-matched'] %} #}
+{% if (data['school-matched'] == "Yes") or (data['change-matching-decision'] == "Yes") %}
+  {% set matchingDecision = "Yes" %}
+{% elif (data['school-matched'] == "No") or (data['change-matching-decision'] == "No") %}
+  {% set matchingDecision = "No" %}
+{% endif %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -43,29 +51,49 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
 
-      <h2 class="govuk-heading-l">Improvement plan</h2>
+      <h2 class="govuk-heading-l">Record progress</h2>
 
-      {% if (data['objectives-completed'] != 'done') or (data['allocated-adviser-email'] == '') or (data['allocated-adviser-email'] == NULL) %}
+      {% if (matchingDecision == "Yes") and (data['objectives-completed'] == 'done') and (data['allocated-adviser-email'] !== '') %}
 
-      <p>As you add the improvement plan objectives they will be listed on this page.</p>
-      <p>You will only be able to record a progress review when:</p>
+        <p>Record progress on the improvement plan objectives after each review.</p>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>an adviser has been allocated</li>
-        <li>all objectives have been added</li>
-      </ul>
+        {{ govukButton ({ 
+          text: "Record or view progress", 
+          classes: "govuk-button", 
+          href: "progress-reviews"
+        }) }}
+
+      {% elif (matchingDecision == "No") and (data['allocated-adviser-email'] !== '') %}
+
+        <p>Record progress on the improvement plan after each review.</p>
+
+        {{ govukButton ({ 
+          text: "Record or view progress", 
+          classes: "govuk-button", 
+          href: "progress-reviews"
+        }) }}
 
       {% else %}
 
-      <p>Record progress on the improvement plan objectives after each review.</p>
+        <h3 class="govuk-heading-m">Schools matched with a supporting organisation</h3>
+        <p>As you add the improvement plan objectives they will be listed on this page.</p>
+        <p>You will only be able to record a progress review when:</p>
 
-        <div class="govuk-button-group">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an adviser has been allocated</li>
+          <li>the initial diagnosis decision is to match with a supporting organisation</li>
+          <li>all objectives have been added and marked as complete</li>
+        </ul>
 
-          {{ govukButton({ text: "Record or view progress", classes: "govuk-button", href: "progress-reviews" }) }}
-     
-        </div>
+        <h3 class="govuk-heading-m">Review progress schools</h3>
+        <p>You will only be able to record a progress review when:</p>
 
-        {% endif %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an adviser has been allocated</li>
+          <li>the initial diagnosis decision is to review the school's progress</li>
+        </ul>
+
+      {% endif %}
 
 
  {% if (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
