@@ -1,0 +1,246 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# SET MATCHING DECISION VARIABLES #}
+{# change-matching-decision is evaluated first so it overrides school-matched after a visit to the change page #}
+{% set matchingDecision = "Initial diagnosis decision not yet recorded" %}
+{% if (data['change-matching-decision'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+{% elif (data['change-matching-decision'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+{% elif (data['school-matched'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+{% elif (data['school-matched'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+{% elif (data['school-matched'] === "Unable to assess") %}
+  {% set matchingDecision = "Unable to assess" %}
+{% endif %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Plan progress</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        Progress reviews
+      </h1>
+      
+      {% if (data['next-review-day'] != NULL) %}
+
+      <div class="govuk-inset-text">
+        {% if (data['another-review'] == 'Yes') %}
+          The next review should happen on or around <b>{{ data | isoDateFromDateInput("next-review") | govukDate }}</b>.
+          <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p>
+        {% elif (data['another-review'] == 'No') %}
+          <b>No more reviews needed</b>
+          <p class="govuk-body"><a href="next-review" class="govuk-link">Change next review date</a></p> 
+        {% endif %} 
+      </div>
+
+      {% endif %}
+
+      <form class="form" action="./add-an-objective" method="post">
+
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
+
+          {# If no reviews #}
+          <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews recorded</h2>
+              <p class="govuk-body">You must enter details of a progress review first.</p>
+            </section>
+          </article>
+
+          {% if (data['allocated-adviser-email'] == NULL) %}
+          <div class="govuk-inset-text">
+            Before you can add a progress review, you must allocate an adviser.
+          </div>
+          {% endif %}
+
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
+
+          {# First review #}
+          <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              
+              <div class="msi-moj-ticket-panel__container govuk-!-margin-bottom-5">
+
+                {# Title and tag #}
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">First review</h2>
+
+                {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                <strong class="govuk-tag ">
+                  Progress not recorded
+                </strong>
+
+                {% elif (data['progress-summary'] == NULL) or (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                <strong class="govuk-tag govuk-tag--orange ">
+                  Progress partly recorded
+                </strong>
+                
+                {% elif (data['progress-summary'] != NULL) and (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                <strong class="govuk-tag govuk-tag--green ">
+                  Progress recorded
+                </strong>
+                {% endif %}
+              </div>
+
+              {# Extra details #}
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}</span>
+              <br><span class="govuk-!-font-weight-bold">by</span> Alex James</p>
+
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">Matching decision:</span> {{ matchingDecision }}</p>
+              
+              {# Actions #}
+              <ul class="govuk-list">
+                <li class="govuk-list__item">
+                  <a href="./review-details-edit.html">Edit review details</a>
+                </li>
+                <li class="govuk-list__item">
+                {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                  <a href="progress-summary" class="govuk-link">Record progress</a>
+                {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
+                {% endif %}
+                </li>
+              </ul>
+              
+            </section>
+          </article>
+
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] != NULL) %}
+
+          {# Second review #}
+          <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              
+              <div class="msi-moj-ticket-panel__container govuk-!-margin-bottom-5">
+                {# Title and tag #}
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Second review</h2>
+                <strong class="govuk-tag ">
+                  Progress not recorded
+                </strong>
+              </div>
+
+              {# Extra details #}
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">{{ data | isoDateFromDateInput("review-date-2") | govukDate }}</span>
+              <br><span class="govuk-!-font-weight-bold">by</span> Bob Roberts</p>
+
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">Matching decision:</span> {{ matchingDecision }}</p>
+              
+              {# Actions #}
+              <ul class="govuk-list">
+                <li class="govuk-list__item">
+                  <a href="./review-details-edit.html">Edit review details</a>
+                </li>
+                <li class="govuk-list__item">
+                {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                  <a href="progress-summary" class="govuk-link">Record progress</a>
+                {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
+                {% endif %}
+                </li>
+              </ul>
+              
+            </section>
+          </article>
+
+          {# First review #}
+          <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              
+              <div class="msi-moj-ticket-panel__container govuk-!-margin-bottom-5">
+
+                {# Title and tag #}
+                <h2 class="govuk-heading-m govuk-!-margin-bottom-0">First review</h2>
+
+                {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
+                <strong class="govuk-tag ">
+                  Progress not recorded
+                </strong>
+
+                {% elif (data['progress-summary'] == NULL) or (data['progress-objective-1'] == NULL) or (data['progress-objective-2'] == NULL) or (data['progress-objective-3'] == NULL) or (data['progress-objective-4'] == NULL) %}
+                <strong class="govuk-tag govuk-tag--orange ">
+                  Progress partly recorded
+                </strong>
+                
+                {% elif (data['progress-summary'] != NULL) and (data['progress-objective-1'] != NULL) and (data['progress-objective-2'] != NULL) and (data['progress-objective-3'] != NULL) and (data['progress-objective-4'] != NULL) %}
+                <strong class="govuk-tag govuk-tag--green ">
+                  Progress recorded
+                </strong>
+                {% endif %}
+              </div>
+
+              {# Extra details #}
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}</span>
+              <br><span class="govuk-!-font-weight-bold">by</span> Alex James</p>
+
+              <p class="govuk-body"><span class="govuk-!-font-weight-bold">Matching decision:</span> {{ matchingDecision }}</p>
+              
+              {# Actions #}
+              <ul class="govuk-list">
+                <li class="govuk-list__item">
+                  <a href="./review-details-edit.html">Edit review details</a>
+                </li>
+                <li class="govuk-list__item">
+                {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
+                  <a href="progress-summary" class="govuk-link">Record progress</a>
+                {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
+                <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
+                {% endif %}
+                </li>
+              </ul>
+              
+            </section>
+          </article>
+
+        {% endif %}
+
+        <div class="govuk-button-group">
+          {% if (data['allocated-adviser-email'] != NULL) %}
+
+            {{ govukButton({
+              html: "Add review",
+              href: "review-details"
+            }) }}
+
+          {% elif (data['allocated-adviser-email'] == NULL) %}
+
+            {{ govukButton({
+              html: "Allocate an adviser",
+              href: "task-list/allocate-an-adviser"
+            }) }}
+
+          {% endif %}
+     
+          <a class="govuk-link" href="improvement-plan">Return to improvement plan</a>
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}

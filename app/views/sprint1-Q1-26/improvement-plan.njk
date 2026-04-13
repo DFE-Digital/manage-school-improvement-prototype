@@ -194,17 +194,9 @@
 {% endif %}
 -->
 
-
-
-
-
-
       {% if (data['area-of-improvement'] != NULL) and (data['area-of-improvement-2'] == NULL) and (data['area-of-improvement-3'] == NULL) and (data['area-of-improvement-4'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL) %}
 
-
-
-
- <div class="govuk-summary-card">
+      <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">
             {{ data['area-of-improvement']}}
@@ -219,14 +211,16 @@
               <dd class="govuk-summary-list__value">
                 {{ data['plan-objective-1']}}
               </dd>
-             <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
-              </dd>
-               
+              <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action">
+                  <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+                </li>
+                <li class="govuk-summary-card__action">
+                  <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> objective 1 progress</span></a>
+                </li>
+              </ul>
             </div>
-           
-           
-    
+
           </dl>
         </div>
       </div>

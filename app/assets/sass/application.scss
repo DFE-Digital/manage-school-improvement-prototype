@@ -43,3 +43,11 @@
 .custom-width-12 {
   width: 12% !important
 }
+
+// Ticket panel
+.msi-moj-ticket-panel__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
