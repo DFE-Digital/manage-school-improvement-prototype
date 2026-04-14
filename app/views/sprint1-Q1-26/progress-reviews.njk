@@ -111,11 +111,11 @@
               {# Actions #}
               <ul class="govuk-list">
                 <li class="govuk-list__item">
-                  <a href="./review-details-edit.html">Edit review details</a>
+                  <a href="./review-details-edit.html">Edit or delete review</a>
                 </li>
                 <li class="govuk-list__item">
                 {% if (data['progress-summary'] == NULL) and (data['progress-objective-1'] == NULL) and (data['progress-objective-2'] == NULL) and (data['progress-objective-3'] == NULL) and (data['progress-objective-4'] == NULL)%}
-                  <a href="progress-summary" class="govuk-link">Record progress</a>
+                  <a href="progress-objective-1" class="govuk-link">Record progress</a>
                 {% elif (data['progress-summary'] != NULL) or (data['progress-objective-1'] != NULL) or (data['progress-objective-2'] != NULL) or (data['progress-objective-3'] != NULL) or (data['progress-objective-4'] != NULL) %}
                 <a href="review-progress" class="govuk-link margin-top-15">View progress review</a>
                 {% endif %}
@@ -213,7 +213,7 @@
 
         {% endif %}
 
-        <div class="govuk-button-group">
+        <div class="govuk-button-group govuk-!-margin-top-5">
           {% if (data['allocated-adviser-email'] != NULL) %}
 
             {{ govukButton({

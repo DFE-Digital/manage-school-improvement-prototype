@@ -1,0 +1,134 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+
+      <span class="govuk-caption-l">Progress review</span>
+      <h1 class="govuk-heading-l margin-bottom-20">
+        Overall progress
+      </h1>
+
+      <form class="form" action="#" method="post">
+
+        {% if (data['review-date-1-day'] == NULL) and (data['review-date-2-day'] == NULL) %}
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+              <h2 class="govuk-heading-m govuk-!-margin-bottom-2">No progress reviews added</h2>
+              <p class="govuk-body">Before you can update the progress of the plan objectives, you need to add details of at least one termly review of the school’s progress.</p>
+             
+            </section>
+          
+          </article>
+        
+        {% elif (data['review-date-1-day'] != NULL) and (data['review-date-2-day'] == NULL) %}
+
+        <article class="moj-ticket-panel margin-bottom-30" aria-label="Sub navigation 1">
+
+            <section class="moj-ticket-panel__content moj-ticket-panel__content--blue ticket-height" aria-label="Section 1">
+                <dl class="govuk-summary-list margin-top-minus-15 ">
+
+                    <div class="govuk-summary-list__row no-border ">
+                      <dt class="govuk-summary-list__key govuk-!-width-one-half ">
+                        Reviewed on {{ data | isoDateFromDateInput("review-date-1") | govukDate }}<br>
+                        by Alex James
+                      </dt>
+                     
+                    </div>
+                  </dl>
+            
+            </section>
+          
+          </article>
+
+          <h2 class="govuk-heading-m margin-bottom-20">
+            Select progress rating
+          </h2>
+         
+          {{ govukRadios({
+          idPrefix: "progress-summary",
+          name: "progress-summary",
+          items: [
+          {
+              value: "Red",
+              checked: data['progress-summary'] === "Red",
+              text: "Red",
+              hint: {
+                text: "Improvement activities are off track and short-term or end-of-programme changes are unlikely without major intervention."
+              }
+          },
+          {
+              value: "Amber",
+              checked: data['progress-summary'] === "Amber",
+              text: "Amber",
+              hint: {
+                text: "Improvement activities require attention. Short-term or end-of-programme changes are at risk but achievable with timely action."
+              }
+          },
+          {
+              value: "Green",
+              checked: data['progress-summary'] === "Green",
+              text: "Green",
+              hint: {
+                text: "Improvement activities are on track and both short-term and end-of-programme changes are likely to be achieved."
+              }
+          }
+          ]
+          }) }}
+
+          {# {{ govukTextarea({
+          name: "progress-summary-details",
+          id: "progress-summary-details",
+          rows: 5,
+          value: data["progress-summary-details"],
+          label: {
+          text: "Details",
+          classes: "govuk-label--m",
+          isPageHeading: true
+          }
+          }) }} #}
+
+          {% endif %}
+
+        <div class="govuk-button-group margin-top-15">
+          {{ govukButton({
+              type: "submit",
+            html: "Save"
+          }) }}
+
+          <!--<a class="govuk-link" href="./progress-objective-2.html">Skip overall progress</a>-->
+          <a class="govuk-link" href="#">Skip overall progress</a>
+        
+         </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
