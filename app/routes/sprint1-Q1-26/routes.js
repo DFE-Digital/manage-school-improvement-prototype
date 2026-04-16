@@ -8,6 +8,18 @@ module.exports = function (router) {
 
   var version = "sprint1-Q1-26";
 
+  // Run this code when a form is submitted to 'action-recordSupportingOrgAppointment' (regional director approval for supporting organisation)
+  router.post('/' + version + '/task-list/action-recordSupportingOrgAppointment', function(req, res) {
+    const soApproved = req.body['so-approved']
+
+    if (soApproved === 'Yes') {
+      res.redirect('/' + version + '/task-list/record-supporting-org-appointment-details')
+    } else if (soApproved === 'No') {
+      res.redirect('/' + version + '/task-list/record-supporting-org-approval-not-given')
+    } else {
+      res.redirect('/' + version + '/task-list/record-supporting-org-appointment')
+    }
+  })
 
    // Run this code when a form is submitted to 'eligibility-check'
   router.post('/' + version + '/task-list/eligibility-check', function(req, res) {

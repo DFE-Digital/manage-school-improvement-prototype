@@ -566,13 +566,16 @@ PLEASE IGNORE ANY TASKLIST STATUS TAGS
           {% if (allocateAnAdviserComplete != "Complete") %}
             {% set taskStatusTag = cannotStartYet %}
             {{ taskStatusTag | safe }}
+          {% elif (matchingDecision == "No") and (data['school-matched-decision-date-day'] != '') %}
+            {% set taskStatusTag = notRequired %}
+            {{ taskStatusTag | safe }}
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
           {% elif (data['so-approved'] == NULL) and (data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
-          {% elif  (data['so-approved'] != NULL) and (data['so-approved-date-day'] != '') %}
+          {% elif (data['approval-denied-details'] != NULL) and (data['complete-at2'] == 'done') and (data['so-approved-date'] != '') %}
             {% set taskStatusTag = completed %}
             {{ taskStatusTag | safe }}
           {% else %}
