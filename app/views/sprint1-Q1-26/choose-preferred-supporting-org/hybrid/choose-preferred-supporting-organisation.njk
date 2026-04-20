@@ -25,17 +25,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
-      {# <h1 class="govuk-heading-l">
-        Choose preferred supporting organisation
-      </h1> #}
-
       {# 
       FOR A TRUST 
       #}
       
-      {% if (data['complete-at2'] == 'done') and (data['so-type'] == "trust") and (data['so-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
+      {% if (data['so-type'] == "trust") and (data['so-name'] != NULL) and (data['so-contact-added-date-day'] != '') %}
     
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">
@@ -85,8 +85,13 @@
       FOR A SCHOOL 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "school") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['so-type'] == "school") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">
@@ -136,8 +141,13 @@
       FOR A LOCAL AUTHORITY 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['so-type'] == "local-authority") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">
@@ -187,8 +197,13 @@
       FOR A LOCAL AUTHORITY TRADED SERVICE 
       #}
 
-      {% elif (data['complete-at2'] == 'done') and (data['so-type'] == "local-authority-traded-service") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+      {% elif (data['so-type'] == "local-authority-traded-service") and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
     
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">

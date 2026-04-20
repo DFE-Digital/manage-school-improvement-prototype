@@ -511,10 +511,10 @@ PLEASE IGNORE ANY TASKLIST STATUS TAGS
           {% elif (data['project-status'] == "Stopped") or (data['project-status'] == "Paused") or (data['assigned-to'] == NULL) %}
             {% set taskStatusTag = cannotProgress %}
             {{ taskStatusTag | safe }}
-          {% elif (data['complete-at2'] == NULL) and (data['so-type'] == NULL) and (data['so-name'] == NULL) and (data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '') %}
+          {% elif (data['so-type'] == NULL) and (data['so-name'] == NULL) and (data['so-contact-added-date-day'] == NULL ) or (data['so-contact-added-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
-          {% elif (data['complete-at2'] == 'done') and (data['so-type'] != NULL ) and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
+          {% elif (data['so-type'] != NULL ) and (data['so-name'] != NULL ) and (data['so-contact-added-date-day'] != '') %}
             {% set taskStatusTag = completed %}
             {{ taskStatusTag | safe }}
           {% else %}
@@ -575,8 +575,11 @@ PLEASE IGNORE ANY TASKLIST STATUS TAGS
           {% elif (data['so-approved'] == NULL) and (data['so-approved-date-day'] == NULL) or (data['so-approved-date-day'] == '') %}
             {% set taskStatusTag = notStarted %}
             {{ taskStatusTag | safe }}
-          {% elif (data['approval-denied-details'] != NULL) and (data['complete-at2'] == 'done') and (data['so-approved-date'] != '') %}
+          {% elif (data['so-approved'] === "Yes") and (data['complete-at2'] == 'done') and (data['so-approved-date'] != '') %}
             {% set taskStatusTag = completed %}
+            {{ taskStatusTag | safe }}
+          {% elif (data['so-approved'] === "No") and (data['approval-denied-details'] != "") %}
+            {% set taskStatusTag = inProgress %}
             {{ taskStatusTag | safe }}
           {% else %}
             {% set taskStatusTag = inProgress %}
