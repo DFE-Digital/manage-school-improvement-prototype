@@ -1,0 +1,91 @@
+{% extends "/layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% set hintText %}
+  <p class="govuk-body">The supporting organisation is not confirmed until the school and regional director both agree to the choice.</p>
+  <p class="govuk-body">Download a <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/RISE-Assessment-Tool-2---Match---Selecting-a-Supporting-Organisation.aspx?CID=a01adb5e-2364-4eaf-a2a8-87eb547584bd" target="_blank">copy of the assessment tool (opens in new tab)</a> to establish your preferred supporting organisation.</p>
+{% endset %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      {# <h1 class="govuk-heading-l">
+        Change preferred supporting organisation
+      </h1> #}
+
+      <form class="form" action='so-answer' method="post">
+       
+        {{ govukRadios({
+          name: "so-type",
+          fieldset: {
+            legend: {
+              text: "Change preferred supporting organisation",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: hintText
+          },
+          items: [
+          {
+            value: "school",
+            text: "School",
+            checked: data['so-type'] === "school"
+          },
+          {
+            value: "trust",
+            text: "Trust",
+            checked: data['so-type'] === "trust"
+          },
+          {
+            value: "local-authority",
+            text: "Local authority",
+            checked: data['so-type'] === "local-authority"
+          },
+          {
+            value: "local-authority-traded-service",
+            text: "Local authority traded service",
+            checked: data['so-type'] === "local-authority-traded-service"
+          },
+          {
+            value: "federation-education-partnership",
+            text: "Federation or education partnership",
+            checked: data['so-type'] === "federation-education-partnership"
+          }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

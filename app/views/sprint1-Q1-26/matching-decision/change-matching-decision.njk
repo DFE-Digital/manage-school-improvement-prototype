@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Matching decision – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Matching decision
+      </h1>
+
+      <form class="form" action="../task-list-task-updated" method="post">
+
+        {{ govukRadios({
+          idPrefix: "change-matching-decision",
+          name: "change-matching-decision",
+          fieldset: {
+            legend: {
+              text: "Will the school be matched with a supporting organisation?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              checked: data['change-matching-decision'] === "Yes",
+              text: "Yes, we will find a preferred supporting organisation"
+            },
+            {
+              value: "No",
+              checked: data['change-matching-decision'] !== "Yes",
+              text: "No, we have decided to review progress"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "change-matching-decision-date",
+          namePrefix: "change-matching-decision-date",
+          fieldset: {
+            legend: {
+              text: "Enter date this decision was made",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["change-matching-decision-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["change-matching-decision-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "year",
+              value: data["change-matching-decision-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

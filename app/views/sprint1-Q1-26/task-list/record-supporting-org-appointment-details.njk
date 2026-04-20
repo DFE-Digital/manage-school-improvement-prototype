@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block pageTitle %}
+  Record supporting organisation appointment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">Record supporting organisation appointment</h1>
+
+      <form class="form" action="../task-list-task-updated" method="post">
+
+        {% set completeAt2HintHtml %}
+          You must download a <a class="govuk-link" href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/RISE-Assessment-Tool-2---Match---Selecting-a-Supporting-Organisation.aspx?CID=a01adb5e-2364-4eaf-a2a8-87eb547584bd" target="_blank" rel="noopener noreferrer">copy of the assessment tool (opens in new tab)</a>.<br>
+          When complete <a class="govuk-link" href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00299/WorkplaceDocuments/Forms/AllItems.aspx?csf=1&web=1&e=q4hcRV&CID=39552771%2D6946%2D4db5%2D930c%2D5e7a590eb440&FolderCTID=0x012000E7C2FE72052A5344AB3AC158ED8C78A7&id=%2Fsites%2Flvewp00299%2FWorkplaceDocuments%2FRISE%20documents%2FRISE%20Targeted%20Programme%2FAssessments%20%28RISE%20Targeted%29" target="_blank" rel="noopener noreferrer">upload it to the relevant region's assessment folder in SharePoint (opens in new tab)</a>.
+        {% endset %}
+
+        {{ govukCheckboxes({
+          name: "complete-at2",
+          idPrefix: "complete-at2",
+          fieldset: {
+            legend: {
+              text: "Has assessment tool 2 been completed?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            html: completeAt2HintHtml
+          },
+          items: [
+            {
+              value: "done",
+              text: "Assessment tool 2 has been completed and uploaded",
+              checked: data['complete-at2'] == "done"
+            }
+          ]
+        }) }}
+
+        {# DATE #}
+        {{ govukDateInput({
+          id: "so-approved-date",
+          namePrefix: "so-approved-date",
+          fieldset: {
+            legend: {
+              text: "Enter date the regional director made this appointment",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["so-approved-date-day"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["so-approved-date-month"],
+              allowEmpty: false,
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["so-approved-date-year"],
+              allowEmpty: false,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and return"
+          }) }}
+
+          <a href="../task-list" class="govuk-link">Cancel</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

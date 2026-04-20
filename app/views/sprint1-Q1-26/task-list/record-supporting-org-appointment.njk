@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      {# <h1 class="govuk-heading-l">
+        Record supporting organisation appointment
+      </h1> #}
+
+   </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {# <p>Confirm if a regional director has given their approval to appoint this supporting organisation.</p> #}
+
+      <form class="form" action="action-recordSupportingOrgAppointment" method="post">
+         
+        {{ govukRadios({
+          idPrefix: "so-approved",
+          name: "so-approved",
+          classes: "govuk-radios--inline",
+          fieldset: {
+            legend: {
+              text: "Has a regional director approved the appointment of the supporting organisation?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "The regional director must give their approval to appoint a supporting organisation, which must be recorded within the assessment tool 2."
+          },
+          items: [
+          {
+            value: "Yes",
+            checked:  data['so-approved'] === "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            checked:  data['so-approved'] === "No",
+            text: "No"
+          }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

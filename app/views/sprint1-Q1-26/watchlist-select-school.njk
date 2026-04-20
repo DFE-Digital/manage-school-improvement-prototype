@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+    {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{# Primary navigation #}
+{% set NavActive = "watchlist" %}
+
+{# Status tag #}
+{% set paused = '<strong class="govuk-tag govuk-tag--yellow">Paused</strong>' %}
+{% set stopped = '<strong class="govuk-tag govuk-tag--red">Stopped</strong>' %}
+{% set inProgress = '<strong class="govuk-tag govuk-tag--green">In progress</strong>' %}
+
+{# {% block beforeContent %}
+
+{% endblock %} #}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Add school to watchlist</span>
+
+    <form action="watchlist-confirm-school" method="post" novalidate>
+        
+      {{ xGovukAutocomplete({
+        id: "school",
+        name: "school",
+        allowEmpty: false,
+        label: {
+          classes: "govuk-label--l",
+          isPageHeading: true,
+          text: "Select a school"
+        },
+        hint: {
+          text: "Find the school within MSI using its name or URN."
+        },
+        items: [
+          { text: "St Mary's Catholic Primary School (104989)" },
+          { text: "Cheltenham Ladies College (102746)" },
+          { text: "Cheltenham Spa Primary School (100006)" },
+          { text: "Cheltenham Spa Secondary School (103871)" }
+        ]
+       }) }}
+          
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

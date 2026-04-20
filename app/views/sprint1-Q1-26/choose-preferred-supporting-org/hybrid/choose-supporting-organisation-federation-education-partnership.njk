@@ -1,0 +1,80 @@
+{% extends "../../includes/form-template.html" %}
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">  
+  
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Enter supporting organisation details
+      </h1>
+
+      <form action="confirm-so-federation-education-partnership" method="post" novalidate>
+        {% block formQuestions %}
+
+          {# Organisation name #}
+          {{ govukInput({
+            label: {
+              text: "Organisation name",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter the name of the federation or education parternship that will be the supporting organisation"
+            },
+            id: "so-name",
+            name: "so-name",
+            value: data['so-name'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
+
+          {# NUMBER #}
+          {{ govukInput({
+            label: {
+              text: "Identifying number",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "Enter a unique identifying number for this organisation. This could be a Companies House number, a URN or a UKPRN."
+            },
+            id: "so-urn",
+            name: "so-urn",
+            value: data['so-urn'],
+            classes: "govuk-!-width-three-quarters"          
+          }) }}
+
+          <div class="govuk-button-group">
+            <button type="submit" class="govuk-button" data-module="govuk-button">
+                Continue
+            </button>
+          </div>
+
+        {% endblock %}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "/layouts/rsd-footer.html" %}
+{% endblock %}

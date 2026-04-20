@@ -38,6 +38,8 @@
   {% set adviserChangeURL = "" %}
   {% set engagementConcernChangeText = "" %}
   {% set engagementConcernChangeURL = "" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
 {% else %}
   {% set engagementConcernChangeText = "Change" %}
   {% set engagementConcernChangeURL = "./record-engagement-concern" %}
@@ -83,6 +85,31 @@
   {% endset %}
 {% endif %}
 
+{# SET MATCHING DECISION VARIABLES #}
+{# change-matching-decision is evaluated first so it overrides school-matched after a visit to the change page #}
+{% set matchingDecision = "Initial diagnosis decision not yet recorded" %}
+{% if (data['change-matching-decision'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
+{% elif (data['change-matching-decision'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+  {% set matchingDecisionChangeText = "Change" %}
+  {% set matchingDecisionChangeURL = "matching-decision/change-matching-decision" %}
+{% elif (data['school-matched'] === "Yes") %}
+  {% set matchingDecision = "Match with a supporting organisation" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
+{% elif (data['school-matched'] === "No") %}
+  {% set matchingDecision = "Review school's progress" %}
+  {% set matchingDecisionChangeText = "Change" %}
+  {% set matchingDecisionChangeURL = "matching-decision/change-matching-decision" %}
+{% elif (data['school-matched'] === "Unable to assess") %}
+  {% set matchingDecision = "Unable to assess" %}
+  {% set matchingDecisionChangeText = "" %}
+  {% set matchingDecisionChangeURL = "" %}
+{% endif %}
+
 {# SET ENGAGEMENT CONCERN ANSWER #}
 {% set engagementConcern = "" %}
 {% if (data['engagement-concern'] == 'Yes') %}
@@ -106,7 +133,7 @@
       actions: {
         items: [
           {
-            href: "/project-status/change-project-status",
+            href: "project-status/change-project-status",
             text: "Change"
           }
         ]
@@ -158,6 +185,23 @@
             href: adviserChangeURL,
             text: adviserChangeText,
             visuallyHiddenText: "advised by"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Matching decision"
+      },
+      value: {
+        html: matchingDecision
+      },
+      actions: {
+        items: [
+          {
+            href: matchingDecisionChangeURL,
+            text: matchingDecisionChangeText,
+            visuallyHiddenText: "matching decision"
           }
         ]
       }

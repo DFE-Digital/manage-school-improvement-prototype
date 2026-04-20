@@ -1,0 +1,238 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+  <!--
+  <div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="#">Section</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link">Subsection</a>
+      </li>
+    </ol>
+  </div>
+  -->
+
+{% endblock %}
+
+{% block header %}
+{% include "/layouts/dfe-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if (data['assigned-to'] == NULL) %} 
+      {% include "/layouts/task-locked-banner-2.html" %}
+      {% elif (data['adviser-visit-recorded-date-day'] == '') or (data['talk-to-adviser'] != 'done') or (data['complete-assessment-template'] != 'done') or (data['assessment-template-saved-date-day'] == '') or (data['school-matched'] == NULL) or (data['school-matched-decision-date-day'] == '') or (data['supporting-organisation-name'] == '') or (data['id-number'] == '') or (data['supporting-org-chosen-date-day'] == '') %}
+      {% include "/layouts/task-locked-banner.html" %}
+      {% endif %}
+
+      <span class="govuk-caption-l">Cheltenham Spa Primary School</span>
+      <h1 class="govuk-heading-l">
+        Choose preferred supporting organisation
+      </h1>
+     
+
+   </div>
+   </div>
+
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <p>The support organisation is not confirmed until the school and regional director both agree to the choice.</p>
+
+
+        
+       
+        <form class="form" action="../task-list" method="post">
+       
+        
+        
+        <!--
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "adviser-email",
+            name: "adviser-email",
+            value: data["adviser-email"],
+            hint: {
+                text: "It will be formatted like rise.firstname.lastname@education.gov.uk."
+              }
+          }) }}
+         -->
+
+
+          <!--
+          {{ xGovukAutocomplete({
+            label: {
+                text: "Email address",
+                classes: "govuk-label--l",
+                isPageHeading: true
+              },
+            id: "allocated-adviser-email",
+            name: "allocated-adviser-email",
+            value: data['allocated-adviser-email'],
+            allowEmpty: false,
+            hint: {
+              text: "It will be formatted like firstname.lastname-rise@education.gov.uk."
+            },
+            items: [
+              { text: "alan.smith-rise@education.gov.uk" },
+              { text: "alex.alexander-rise@education.gov.uk" },
+              { text: "alex.james-rise@education.gov.uk" },
+              { text: "alice.cooper-rise@education.gov.uk" }
+            ]
+           }) }}
+          -->
+
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item padding-bottom-15">
+              <input class="govuk-checkboxes__input" id="complete-at2" name="complete-at2" type="checkbox" value="done" {{checked("complete-at2", "done")}}>
+              <label class="govuk-label govuk-checkboxes__label" for="complete-at2">
+                Complete assessment tool 2: Selecting a supporting organisation<br>
+                You must download a<a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00030/SitePages/2-Intervention/RISE/Phase%202%20-%20Initial%20Diagnosis%20&%20Match/RISE-Assessment-Tool-2---Match---Selecting-a-Supporting-Organisation.aspx?CID=a01adb5e-2364-4eaf-a2a8-87eb547584bd" target="_blank">copy of the assessment tool (opens in new tab)</a>.<br>
+                When complete <a href="https://educationgovuk.sharepoint.com.mcas.ms/sites/lvewp00299/WorkplaceDocuments/Forms/AllItems.aspx?csf=1&web=1&e=q4hcRV&CID=39552771%2D6946%2D4db5%2D930c%2D5e7a590eb440&FolderCTID=0x012000E7C2FE72052A5344AB3AC158ED8C78A7&id=%2Fsites%2Flvewp00299%2FWorkplaceDocuments%2FRISE%20documents%2FRISE%20Targeted%20Programme%2FAssessments%20%28RISE%20Targeted%29" target="_blank">upload it to the relevant region's assessment folder in SharePoint (opens in new tab)</a>.
+              </label>
+            </div>
+            
+      
+          </div>
+<br>
+          <h2 class="govuk-heading-m">
+            Enter preferred supporting organisation details
+          </h2>
+
+          
+
+
+           {% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Organisation name",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  id: "supporting-organisation-name",
+  name: "supporting-organisation-name",
+  value: data["supporting-organisation-name"]
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "ID number",
+    classes: "govuk-label--m",
+    isPageHeading: true
+  },
+  hint: {
+    text: "If the supporting organisation is a trust, enter the UKPRN. If it is a local authority, enter its LAESTAB."
+  },
+  id: "id-number",
+  name: "id-number",
+  value: data["id-number"]
+}) }}
+  
+
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "supporting-org-chosen-date",
+          namePrefix: "supporting-org-chosen-date",
+          fieldset: {
+            legend: {
+              text: "Enter date preferred supporting organisation chosen",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 1 7 2024."
+          },
+          items: [
+            {
+              name: "day",
+              value: data["supporting-org-chosen-date-day"],
+              allowEmpty: true,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "month",
+              value: data["supporting-org-chosen-date-month"],
+              classes: "govuk-input--width-2"
+            },                
+            {
+              name: "year",
+              value: data["supporting-org-chosen-date-year"],
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {% if (data['adviser-visit-recorded-date-day'] != '') and (data['talk-to-adviser'] == 'done') and (data['complete-assessment-template'] == 'done') and (data['assessment-template-saved-date-day'] != '') and (data['school-matched'] != NULL) and (data['school-matched-decision-date-day'] != '') and (data['supporting-organisation-name'] != '') and (data['id-number'] != '') and (data['supporting-org-chosen-date-day'] != '') %}
+        {{ govukButton({
+        text: "Save and return"
+        }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+
+
+    <div class="govuk-grid-column-one-third">
+      <!--
+      <h2 class="govuk-heading-m">
+      Task notes
+      </h2>
+
+     
+      <a href="../task-notes/contact-the-school.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add a new task note
+      </a>
+      
+      {% if (data['task-note'] != "") %}
+      <p>4 March 2025<br>
+      <strong>Bob Roberts</strong></p>
+      <p>{{ data['task-note']}}</p>
+      <p>
+        <a href="../task-notes/contact-the-school.html">Edit note</a>
+      </p>
+      {% endif %}
+      -->
+
+
+    </div>
+
+
+
+
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "/layouts/rsd-footer.html" %}
+{% endblock %}
